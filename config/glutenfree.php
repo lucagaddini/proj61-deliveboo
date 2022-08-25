@@ -18,7 +18,7 @@ class GlutenFree{
 }
 
 return [
-	new GlutenFree("Panino di pollo", "4,99", "pane gluten free, bistecca di pollo, formaggio cheddar, insalata, salse, patatine fritte", "1", "0"),
+	new GlutenFree("Hamburger di pollo", "4,99", "pane gluten free, bistecca di pollo, formaggio cheddar, insalata, salse, patatine fritte", "1", "0"),
 	new GlutenFree("Uova sode", "3,99", "due uova sode, pepe nero, sale", "1", "0"),
 	new GlutenFree("Salmone arrosto", "9,99", "trancio di salmone arrosto, spicchi d'aglio, pepe nero, prezzemolo", "1", "0"),
 	new GlutenFree("Macedonia", "5,99", "kiwi, banana, fragola, cereali, frutta secca", "1", "1"),
