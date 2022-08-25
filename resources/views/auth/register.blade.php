@@ -118,7 +118,6 @@
                                         </label>
                                     </div>
 
-
                                 </div>
 
                                 @error('categories')

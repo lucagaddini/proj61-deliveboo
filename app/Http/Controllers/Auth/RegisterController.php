@@ -79,12 +79,6 @@ class RegisterController extends Controller
         ]);
     }
 
-
-    public function createSlug ($string) {
-            
-        
-    }
-
 }
 
 
