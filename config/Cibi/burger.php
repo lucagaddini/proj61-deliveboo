@@ -5,8 +5,8 @@ class Burger{
 	public $name;
 	public $price;
 	public $ingredients;
-    public $visible;
-    public $vegetarian;
+  public $visible;
+  public $vegetarian;
 
 	public function __construct($_name, $price, $_description, $_visible, $_vegetarian) {
 		$this->name = $_name;
