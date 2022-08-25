@@ -101,22 +101,23 @@
                             <label for="categories" class="col-md-4 col-form-label text-md-right">{{ __('Seleziona le categorie') }}</label>
 
                             <div class="col-md-6">
+
+                                @php
+                                    $categories = \App\Category::all();
+                                @endphp
                                 
                                 <div class="form-check @error('categories') is-invalid @enderror">
                                     
+                                    @foreach ( $categories as $category )
+                                        
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="categories[]" value="" id="defaultCheck2">
+                                        <input class="form-check-input" type="checkbox" name="categories[]" value="{{$category->id}}" id="{{'category-'.$category->id}}">
                                         <label class="form-check-label" for="defaultCheck2">
-                                            checkbox 1
+                                            {{$category->name}}
                                         </label>
                                     </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="categories[]" value="" id="defaultCheck2">
-                                        <label class="form-check-label" for="defaultCheck2">
-                                            checkbox 2
-                                        </label>
-                                    </div>
+                                    @endforeach
 
                                 </div>
 

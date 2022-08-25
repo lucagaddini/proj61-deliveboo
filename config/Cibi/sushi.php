@@ -26,3 +26,4 @@ return [
     new Sushi("Nigiri", 6.50, "Base di riso con copertura di pesce crudo e freschissimo - 3pz.", "1", "1"),
 
 ];
+
