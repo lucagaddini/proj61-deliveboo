@@ -27,5 +27,5 @@ return [
 	new Indian("Dolce laddu", "1,99", "due laddu", "1", "1"),
 	new Indian("Piatto di naan", "8,99", "due nann, ciotola di brodo di pollo e con verdure miste", "1", "0"),
 	new Indian("Piatto di samosa", "6,99", "quattro samose, ripieni di patate, piselli, coriandolo, cipolla e un pizzico di spezie", "1", "1"),
-	new Indian("Tandoori Chicken", "8,99", "pollo arrosto, yogurt e un pizzico si spezie", "1", "1"),
+	new Indian("Tandoori Chicken", "8,99", "pollo arrosto, yogurt e un pizzico si spezie", "1", "0"),
 ];
