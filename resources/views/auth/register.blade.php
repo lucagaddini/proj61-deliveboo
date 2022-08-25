@@ -10,7 +10,8 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
+                        
+                        {{-- Nome ristorante --}}
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome Ristorante') }}</label>
 
@@ -25,6 +26,7 @@
                             </div>
                         </div>
 
+                        {{-- Indirizzo ristorante --}}
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }}</label>
 
@@ -39,6 +41,7 @@
                             </div>
                         </div>
 
+                        {{-- Partita IVA --}}
                         <div class="form-group row">
                             <label for="vat_number" class="col-md-4 col-form-label text-md-right">{{ __('P.Iva') }}</label>
 
@@ -53,7 +56,7 @@
                             </div>
                         </div>
 
-
+                        {{-- Email Account --}}
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
@@ -68,6 +71,7 @@
                             </div>
                         </div>
 
+                        {{-- Password Account --}}
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
@@ -82,6 +86,7 @@
                             </div>
                         </div>
 
+                        {{-- Conferma Password Account --}}
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
 
