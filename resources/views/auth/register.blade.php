@@ -95,6 +95,41 @@
                             </div>
                         </div>
 
+
+                        {{-- Checkbox Categorie --}}
+                        <div class="form-group row">
+                            <label for="categories" class="col-md-4 col-form-label text-md-right">{{ __('Seleziona le categorie') }}</label>
+
+                            <div class="col-md-6">
+                                
+                                <div class="form-check @error('categories') is-invalid @enderror">
+                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="categories[]" value="" id="defaultCheck2">
+                                        <label class="form-check-label" for="defaultCheck2">
+                                            checkbox 1
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="categories[]" value="" id="defaultCheck2">
+                                        <label class="form-check-label" for="defaultCheck2">
+                                            checkbox 2
+                                        </label>
+                                    </div>
+
+
+                                </div>
+
+                                @error('categories')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
