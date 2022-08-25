@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
@@ -16,8 +17,24 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','address','vat_number', 'slug'
     ];
+
+
+    public function createSlug ($string) {
+            
+        $slug = Str::slug($string,'-');
+        $control_slug = User::where('slug', $slug)->first();
+        $i = 0;
+    
+        while($control_slug){
+            $slug = Str::slug ($string , '-');
+            $i++;
+            $control_slug = User::where('slug', $slug)->first();
+        }
+        return $slug;
+    }
+
 
     /**
      * The attributes that should be hidden for arrays.
