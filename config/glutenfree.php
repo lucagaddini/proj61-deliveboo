@@ -23,5 +23,5 @@ return [
 	new GlutenFree("Salmone arrosto", "9,99", "trancio di salmone arrosto, spicchi d'aglio, pepe nero, prezzemolo", "1", "0"),
 	new GlutenFree("Macedonia", "5,99", "kiwi, banana, fragola, cereali, frutta secca", "1", "1"),
 	new GlutenFree("Insalata di ceci", "6,99", "ceci, avocado, mozzarella", "1", "1"),
-	new GlutenFree("Pancakes", "3,99", "2 pancakes, sciroppo d’acero, mirtilli", "1", "1")
+	new GlutenFree("Pancakes", "3,99", "due pancakes, sciroppo d’acero, mirtilli", "1", "1")
 ];
