@@ -6,3 +6,35 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+.navbar_custom {
+  background-color: $primary-color;
+
+  & .navbar-nav .nav-link {
+    color: white !important;
+  }
+}
+
+.sidebar_custom{
+  background-color: $primary-color;
+  position: fixed;
+  top: 66px;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding: 48px 0 0;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+
+  & li{
+    padding-left: 25px;
+
+    & a {
+      color: white;
+      text-decoration: none;
+      background-color: transparent;
+    }
+
+  }
+  
+}
