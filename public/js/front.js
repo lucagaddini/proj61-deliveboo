@@ -15721,10 +15721,21 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
+/***/ "./resources/sass/admin/style.scss":
+/*!*****************************************!*\
+  !*** ./resources/sass/admin/style.scss ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/front/style.scss":
+/*!*****************************************!*\
+  !*** ./resources/sass/front/style.scss ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -15733,14 +15744,15 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /***/ }),
 
 /***/ 0:
-/*!***************************************************************!*\
-  !*** multi ./resources/js/front.js ./resources/sass/app.scss ***!
-  \***************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** multi ./resources/js/front.js ./resources/sass/admin/style.scss ./resources/sass/front/style.scss ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\amanj\OneDrive\Desktop\Coding\Boolean\Progetto Finale\proj61-deliveboo-team-2\resources\js\front.js */"./resources/js/front.js");
-module.exports = __webpack_require__(/*! C:\Users\amanj\OneDrive\Desktop\Coding\Boolean\Progetto Finale\proj61-deliveboo-team-2\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/lucagaddini/Desktop/Boolean Carrers/001 Corso Full Stack Developer/008 Final Project/proj61-deliveboo-team-2/resources/js/front.js */"./resources/js/front.js");
+__webpack_require__(/*! /Users/lucagaddini/Desktop/Boolean Carrers/001 Corso Full Stack Developer/008 Final Project/proj61-deliveboo-team-2/resources/sass/admin/style.scss */"./resources/sass/admin/style.scss");
+module.exports = __webpack_require__(/*! /Users/lucagaddini/Desktop/Boolean Carrers/001 Corso Full Stack Developer/008 Final Project/proj61-deliveboo-team-2/resources/sass/front/style.scss */"./resources/sass/front/style.scss");
 
 
 /***/ })
