@@ -17,13 +17,14 @@ class CoursesTableSeeder extends Seeder
             'Primi',
             'Secondi',
             'Contorni',
+            'Pizze',
             'Desserts',
             'Sushi',
         ];
 
         foreach ($courses as $course) {
             $new_course = new Course();
-            $new_course->type = $course;
+            $new_course->name = $course;
             $new_course->save();
         }
     }
