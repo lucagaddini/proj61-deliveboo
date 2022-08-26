@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::middleware('auth')
-    ->namespace('admin')
+    ->namespace('Admin')
     ->name('admin.')
     ->prefix('admin')
     ->group(function(){
 
-        Route::get('/admin','HomeController@index')->name('home');
+        Route::get('/','HomeController@index')->name('home');
         Route::resource('items', 'ItemController');
 
 });

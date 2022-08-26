@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Item;
+
 class ItemController extends Controller
 {
     /**
@@ -14,7 +16,10 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        
+        $items = Item::orderBy('id','desc')->paginate(10);
+        return view('admin.items.index', compact('items'));
+
     }
 
     /**
