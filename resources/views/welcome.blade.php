@@ -64,7 +64,7 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+{{--         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -88,7 +88,13 @@
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
                 </div>
+
+
             </div>
-        </div>
+        </div> --}}
+
+        <div id="app"></div>
+
+        <script src="{{asset('js/front.js')}}"></script>
     </body>
 </html>
