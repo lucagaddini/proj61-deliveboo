@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+
 class RegisterController extends Controller
 {
     /*
@@ -42,6 +43,7 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -55,7 +57,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'address' => ['required', 'string', 'min:3', 'max:60'],
-            'vat_number' => ['required', 'string', 'min:11', 'max:16'],
+            'vat_number' => ['required', 'string', 'min:11', 'max:16','unique:users'],
             'categories' => ['required'],
         ]);
     }
@@ -68,8 +70,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -77,6 +78,14 @@ class RegisterController extends Controller
             'vat_number' => $data['vat_number'],
             'slug' => Str::slug($data['name'],'-'),
         ]);
+
+        $categories = $data['categories'];
+
+        foreach ($categories as $category) {
+            $user->categories()->attach([$category]);
+        }
+
+        return $user;
     }
 
 }
