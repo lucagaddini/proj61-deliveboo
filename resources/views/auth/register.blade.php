@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-                        
+
                         {{-- Nome ristorante --}}
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome Ristorante') }}</label>
@@ -98,20 +98,26 @@
 
                         {{-- Checkbox Categorie --}}
                         <div class="form-group row">
-                            <label for="categories" class="col-md-4 col-form-label text-md-right">{{ __('Seleziona le categorie') }}</label>
+                            <label for="categories" class="col-md-4 col-form-label text-md-right">{{ __('Seleziona le categorie') }} <br> (Scegli bene, non sarà possibile aggiornarle successivamente)</label>
 
                             <div class="col-md-6">
 
                                 @php
                                     $categories = \App\Category::all();
                                 @endphp
-                                
+
                                 <div class="form-check @error('categories') is-invalid @enderror">
-                                    
+
                                     @foreach ( $categories as $category )
-                                        
+
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="categories[]" value="{{$category->id}}" id="{{'category-'.$category->id}}">
+                                        <input class="form-check-input"
+                                            type="checkbox"
+                                            name="categories[]"
+                                            value="{{$category->id}}"
+                                            id="{{'category-'.$category->id}}"
+                                            {{ (is_array(old('categories')) && in_array($category->id, old('categories'))) ? ' checked' : '' }}
+                                        >
                                         <label class="form-check-label" for="defaultCheck2">
                                             {{$category->name}}
                                         </label>
@@ -128,7 +134,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
