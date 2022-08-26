@@ -1,23 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+<div class="container-fluid">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <div class="d-flex justify-content-start">
 
-                    {{ __('Accesso Effettuato!') }}
+        {{-- Contenuto centrale della pagina --}}
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            
+            <div class="d-flex justify-content-start flex-wrap align-items-center pt-3 pb-2 mb-3">
+
+                <div class="card w-100">
+                    <div class="card-header">{{ __('Dashboard') }}</div>
+    
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+    
+                        {{ __('Accesso Effettuato!') }}
+                    </div>
                 </div>
             </div>
-        </div>
+
+            
+        </main>
+
     </div>
+
+
+    
 </div>
 @endsection
