@@ -16,7 +16,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        
+
         $items = Item::orderBy('id','desc')->paginate(10);
         return view('admin.items.index', compact('items'));
 
@@ -49,9 +49,9 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Item $item)
     {
-        //
+        return view('admin.items.show', compact('item'));
     }
 
     /**
