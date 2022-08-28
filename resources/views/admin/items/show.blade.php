@@ -16,7 +16,15 @@
                         <p class="card-text">{{ ucfirst($item->description) }}</p>
                         <a href="{{ route('admin.items.index') }}" class="btn btn-dark">Torna al Men&ugrave;</a>
                         <a class="btn btn-dark" href="{{ route('admin.items.edit', $item)  }}">Modifica</a>
+                        <form class= "d-inline"
+                                onsubmit= "return confirm('Vuoi eliminare definitivamente il piatto ## {{ $item->name }} ## ?')"
+                                action= "{{ route('admin.items.destroy', $item) }}" method= "POST">
+                            @csrf
+                            @method ('DELETE')
+                            <button class="btn btn-danger">Elimina</button>
+                        </form>
                     </div>
+
                 </div>
 {{-- /Singola scheda --}}
 

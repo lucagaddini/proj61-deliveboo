@@ -31,7 +31,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.items.create');
     }
 
     /**
@@ -42,7 +42,12 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new_data = $request->all();
+        $item = new Item();
+        $item->fill($new_data);
+        $item->save();
+
+        return redirect()->route('admin.items.index');
     }
 
     /**
@@ -88,8 +93,9 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Item $item)
     {
-        //
+        $item->delete();
+        return redirect()->route('admin.items.index')->with('cancelled', "$item->name cancellato correttamente.");
     }
 }

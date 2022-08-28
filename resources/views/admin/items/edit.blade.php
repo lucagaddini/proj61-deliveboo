@@ -80,7 +80,7 @@
                     </div> --}}
 
             {{-- Submit --}}
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Completa</button>
                 </form>
             </div>
         </main>

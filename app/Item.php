@@ -17,6 +17,6 @@ class Item extends Model
     }
 
     protected $fillable = [
-        'name', 'email', 'password','address','vat_number','slug'
+        'name', 'price', 'description','visible','vegetarian'
     ];
 }
