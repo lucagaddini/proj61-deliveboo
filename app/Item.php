@@ -15,4 +15,8 @@ class Item extends Model
     public function orders(){
         return $this->belongsToMany('App\Order');
     }
+
+    protected $fillable = [
+        'name', 'email', 'password','address','vat_number','slug'
+    ];
 }

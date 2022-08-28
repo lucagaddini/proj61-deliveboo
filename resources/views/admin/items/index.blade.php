@@ -21,7 +21,7 @@
                         <tr>
                           <th scope="col">ID</th>
                           <th scope="col">Nome</th>
-                          <th scope="col">Categoria</th>
+                          {{-- <th scope="col">Categoria</th> --}}
                           <th scope="col">Descrizione</th>
                           <th scope="col">Modifiche</th>
                         </tr>
@@ -32,13 +32,14 @@
                         <tr>
                           <td>{{ $item->id }}</td>
                           <td>{{ $item->name }}</td>
-                          <td> CATEGORIA </td>
+                          {{-- Per le portate mi serve "Se appartiene a questo id, allora mettila qui" --}}
+                          {{-- <td> {{ $item->courses ? $item->courses->name : "Nessuna portata assegnata" }} </td> --}}
 
-                          <td>{{ $item->description }}</td>
+                          <td>{{ ucfirst($item->description) }}</td>
 
                           <td>
-                            <a class="btn btn-primary" href=" {{ route('admin.items.show', $item)  }}">Mostra di pi&ugrave;</a>
-                            <a class="btn btn-secondary" href="{{ route('admin.items.edit', $item)  }}">Modifica</a>
+                            <a class="btn btn-dark" href=" {{ route('admin.items.show', $item)  }}">Mostra di pi&ugrave;</a>
+                            <a class="btn btn-dark" href="{{ route('admin.items.edit', $item)  }}">Modifica</a>
 
                             {{-- <form class= "d-inline"
                                   onsubmit= "return confirm('Vuoi eliminare definitivamente il post ## {{ $post->title }} ## ?')"

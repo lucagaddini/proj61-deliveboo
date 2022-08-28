@@ -12,8 +12,10 @@
                     <img class="card-img-top" src="..." alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ $item->name }}</h5>
+                        <p class="card-text">Prezzo {{ ($item->price) }}</p>
                         <p class="card-text">{{ ucfirst($item->description) }}</p>
-                        <a href="{{ route('admin.items.index') }}" class="btn btn-primary">Torna al Men&ugrave;</a>
+                        <a href="{{ route('admin.items.index') }}" class="btn btn-dark">Torna al Men&ugrave;</a>
+                        <a class="btn btn-dark" href="{{ route('admin.items.edit', $item)  }}">Modifica</a>
                     </div>
                 </div>
 {{-- /Singola scheda --}}

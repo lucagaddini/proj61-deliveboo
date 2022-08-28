@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Item;
+use App\Course;
 
 class ItemController extends Controller
 {
@@ -18,7 +19,8 @@ class ItemController extends Controller
     {
 
         $items = Item::orderBy('id','desc')->paginate(10);
-        return view('admin.items.index', compact('items'));
+        $courses = Course::all();
+        return view('admin.items.index', compact('items', 'courses'));
 
     }
 
@@ -60,9 +62,9 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Item $item)
     {
-        //
+        return view('admin.items.edit', compact('item'));
     }
 
     /**
@@ -72,9 +74,12 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Item $item)
     {
-        //
+        $updated_item = $request->all();
+        $item->update($updated_item);
+
+        return redirect()->route('admin.items.index', compact('item'));
     }
 
     /**
