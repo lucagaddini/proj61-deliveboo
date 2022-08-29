@@ -25,6 +25,7 @@
                           <th scope="col">Nome</th>
                           {{-- <th scope="col">Categoria</th> --}}
                           <th scope="col">Descrizione</th>
+                          <th scope="col">Portate</th>
                           <th scope="col">Modifiche</th>
                         </tr>
                       </thead>
@@ -34,10 +35,12 @@
                         <tr>
                           <td>{{ $item->id }}</td>
                           <td>{{ $item->name }}</td>
-                          {{-- Per le portate mi serve "Se appartiene a questo id, allora mettila qui" --}}
-                          {{-- <td> {{ $item->courses ? $item->courses->name : "Nessuna portata assegnata" }} </td> --}}
+
+
 
                           <td>{{ ucfirst($item->description) }}</td>
+
+                            <td> {{$item->course->name}}</td>
 
                           <td>
                             <a class="btn btn-dark" href=" {{ route('admin.items.show', $item)  }}">Mostra di pi&ugrave;</a>
