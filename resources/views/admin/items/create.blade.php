@@ -92,7 +92,6 @@
 
                             </div>
 
-
                             {{-- Prodotto vegetariano --}}
                             <div class="form-group d-flex">
                                 <label for="vegetarian">Questo prodotto è vegetariano?</label>
@@ -122,7 +121,7 @@
 
                                         <label class="form-check-label" for="vegetarianTrue">
                                         {{-- L'avverbio affermativo richiede sempre l'accento --}}
-                                            S&iacute;
+                                            S&igrave;
                                         </label>
                                     </div>
                                 </div>
@@ -153,7 +152,7 @@
 
                                         <label class="form-check-label" for="visibleTrue">
                                         {{-- L'avverbio affermativo richiede sempre l'accento --}}
-                                            S&iacute;
+                                            S&igrave;
                                         </label>
 
                                     </div>
