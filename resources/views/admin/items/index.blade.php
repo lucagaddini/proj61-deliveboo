@@ -13,7 +13,7 @@
 
               <div class="card w-100">
                 <div class="card-header d-flex justify-content-between align-items-center">{{ __('I tuoi Piatti') }}
-                    <a href="{{ route('admin.items.create') }}" class="btn btn-dark">Aggiungi un nuovo piatto</a>
+                    <a href="{{ route('admin.items.create') }}" class="btn btn_custom_secondary">Aggiungi un nuovo piatto</a>
                 </div>
 
                   <div class="card-body">

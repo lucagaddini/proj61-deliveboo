@@ -13,7 +13,8 @@
 
 //GENERAL
 
-.btn_custom{
+.btn_custom,
+.btn_custom_primary{
   background-color: $primary-color;
   border-color:$primary-color;
   color: white;
@@ -21,7 +22,16 @@
   &:hover{
     color: $fifth-color;
   }
-  
+}
+
+.btn_custom_secondary{
+  background-color: $fifth-color;
+  border-color:$fifth-color;
+  color: white;
+
+  &:hover{
+    color: $primary-color;
+  }
 }
 
 .btn-link_custom{

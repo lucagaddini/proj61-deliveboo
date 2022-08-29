@@ -9308,13 +9308,24 @@ textarea.parsley-error {
   opacity: 1;
 }
 
-.btn_custom {
+.btn_custom,
+.btn_custom_primary {
   background-color: #00D7C7;
   border-color: #00D7C7;
   color: white;
 }
-.btn_custom:hover {
+.btn_custom:hover,
+.btn_custom_primary:hover {
   color: #4F126F;
+}
+
+.btn_custom_secondary {
+  background-color: #4F126F;
+  border-color: #4F126F;
+  color: white;
+}
+.btn_custom_secondary:hover {
+  color: #00D7C7;
 }
 
 .btn-link_custom {
