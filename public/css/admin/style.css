@@ -9334,6 +9334,7 @@ textarea.parsley-error {
 
 .navbar_custom {
   background-color: #00D7C7;
+  z-index: 100;
 }
 .navbar_custom .navbar-nav .nav-link {
   color: white !important;
@@ -9342,11 +9343,11 @@ textarea.parsley-error {
 .sidebar_custom {
   background-color: #00D7C7;
   position: fixed;
-  top: 66px;
+  top: 0;
   bottom: 0;
   left: 0;
-  z-index: 100;
-  padding: 48px 0 0;
+  z-index: 99;
+  padding: 66px 0 0;
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
 }
 .sidebar_custom li {
