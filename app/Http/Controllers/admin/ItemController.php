@@ -18,7 +18,7 @@ class ItemController extends Controller
     public function index()
     {
 
-        $items = Item::orderBy('id','desc')->paginate(10);
+        $items = Item::orderBy('id','desc')->paginate(7);
         $courses = Course::all();
         return view('admin.items.index', compact('items', 'courses'));
 
