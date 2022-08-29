@@ -54,6 +54,15 @@ class UsersTableSeeder extends Seeder
                 'slug' => Str::slug('Chinese world','-'),
                 'categories' => ['1', '8']
             ],
+            [
+                'name' => 'Indian food',
+                'email' => 'india@gmail.com',
+                'password' => Hash::make('12345678'),
+                'address' => 'Via india, A',
+                'vat_number' => '4444499999',
+                'slug' => Str::slug('Indian food','-'),
+                'categories' => ['2', '8']
+            ],
         ];
 
 
