@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Registrazione') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" id="register-form" data-parsley-validate>
                         @csrf
 
                         {{-- Nome ristorante --}}
@@ -16,7 +16,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome Ristorante') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus data-parsley-trigger="keyup">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -106,7 +106,7 @@
                                     $categories = \App\Category::all();
                                 @endphp
 
-                                <div class="form-check @error('categories') is-invalid @enderror">
+                                <div class="form-check @error('categories') is-invalid @enderror required" data-parsley-mincheck="1">
 
                                     @foreach ( $categories as $category )
 
@@ -149,4 +149,12 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    (function(){
+        $("#register-form").parsley();
+    });
+</script>
+
 @endsection
