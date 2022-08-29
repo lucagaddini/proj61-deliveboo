@@ -505,7 +505,7 @@ class ItemsTableSeeder extends Seeder
                 'visible' => 1,
                 'vegetarian' => 0,
                 'user_id' => 7,
-                'course_id' => 1
+                'course_id' => 3
             ],
             [
                 'name' => 'Nopales',
@@ -514,7 +514,7 @@ class ItemsTableSeeder extends Seeder
                 'visible' => 1,
                 'vegetarian' => 1,
                 'user_id' => 7,
-                'course_id' => 1
+                'course_id' => 4
             ],
             [
                 'name' => 'Chapulines',
@@ -523,7 +523,7 @@ class ItemsTableSeeder extends Seeder
                 'visible' => 1,
                 'vegetarian' => 0,
                 'user_id' => 7,
-                'course_id' => 1
+                'course_id' => 3
             ],
             [
                 'name' => 'Enchiladas',
@@ -532,14 +532,153 @@ class ItemsTableSeeder extends Seeder
                 'visible' => 1,
                 'vegetarian' => 0,
                 'user_id' => 7,
-                'course_id' => 1
+                'course_id' => 2
             ],
         //fine cibo messicano--------------
 
 
         //inizio cibo sushi--------------
-
+            [
+                'name' => 'Sushcotumato',
+                'price' => 5.5,
+                'description' => 'Impasto dell\'arancino con all\'interno zucchine e topping di crema di peperoni gialli - 6pz',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 7,
+                'course_id' => 2
+            ],
+            [
+                'name' => 'Tostushi',
+                'price' => 7.5,
+                'description' => 'Riso in forma quadrata, verdure e gamberi con topping di gambero fritto - 1pz',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 7,
+                'course_id' => 3
+            ],
+            [
+                'name' => 'Sashimi',
+                'price' => 9.5,
+                'description' => 'Fette di tonno fresco di altissima qualità - 4pz.',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 7,
+                'course_id' => 3
+            ],
+            [
+                'name' => 'Piatto shushi misto',
+                'price' => 15.5,
+                'description' => 'Hosomaki, sashimi e nigiri - 12pz.',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 7,
+                'course_id' => 2
+            ],
+            [
+                'name' => 'Hosomaki',
+                'price' => 5.5,
+                'description' => 'Involtino di riso con ingredienti tipici della cultura giapponese : salmone, tonno , alghe , radici ecc..  - 5pz.',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 7,
+                'course_id' => 2
+            ],
+            [
+                'name' => 'Nigiri',
+                'price' => 6.5,
+                'description' => 'Base di riso con copertura di pesce crudo e freschissimo - 3pz.',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 7,
+                'course_id' => 3
+            ],
         //fine cibo sushi--------------
+
+
+        //inizio cibo vegetariano--------------
+            [
+                'name' => 'Patatine dolci fritte',
+                'price' => 3.99,
+                'description' => 'patatine fritte dolci, salsa',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 8,
+                'course_id' => 1
+            ],
+            [
+                'name' => 'Piatto di gnocchi',
+                'price' => 7.99,
+                'description' => 'gnocchi, spinaci, castagne, semolino',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 8,
+                'course_id' => 1
+            ],
+            [
+                'name' => 'Cornetti salati',
+                'price' => 4.99,
+                'description' => 'cornetti salati con misto di verdura e salsa',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 8,
+                'course_id' => 2
+            ],
+            [
+                'name' => 'Pizza al peperoncino e pomodoro',
+                'price' => 6.99,
+                'description' => 'impasto della pizza, salsa di pomodoro, mozzarella, pomodoro, peperoncino rosso',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 8,
+                'course_id' => 3
+            ],
+            [
+                'name' => 'Insalata mista',
+                'price' => 5.99,
+                'description' => 'rucola, radicchio, finocchio, carote, porro, olio d\'oliva',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 8,
+                'course_id' => 2
+            ],
+            [
+                'name' => 'Hamburger vegetariano',
+                'price' => 6.99,
+                'description' => 'panino con bistecca di soia, cipolla rossa, insalata, salsa, pomodoro',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 8,
+                'course_id' => 3
+            ],
+            [
+                'name' => 'Noodles con verdure',
+                'price' => 6.99,
+                'description' => 'noodles, cavolo capuccio, carote, peperoni, cipollini, zucchine',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 8,
+                'course_id' => 2
+            ],
+            [
+                'name' => 'Piadina croccante con verdure',
+                'price' => 6.99,
+                'description' => 'piadina croccante, pomodoro, mais, peperoni verdi dolci',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 8,
+                'course_id' => 2
+            ],
+            [
+                'name' => 'Tacos con verdura',
+                'price' => 7.99,
+                'description' => 'tacos, patafine fritte, pomodoro, cipolle rosse, insalata',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 8,
+                'course_id' => 3
+            ],
+        //fine cibo vegetariano--------------
+
 
 
         ];

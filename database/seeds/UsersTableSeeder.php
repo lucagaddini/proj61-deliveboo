@@ -81,6 +81,24 @@ class UsersTableSeeder extends Seeder
                 'slug' => Str::slug('Mexico city','-'),
                 'categories' => ['4', '8']
             ],
+            [
+                'name' => 'Sushi land',
+                'email' => 'sushi@gmail.com',
+                'password' => Hash::make('12345678'),
+                'address' => 'Via delle persone che ama il sushi, A',
+                'vat_number' => '00000077799',
+                'slug' => Str::slug('Sushi land','-'),
+                'categories' => ['6', '8']
+            ],
+            [
+                'name' => 'Vegetarian bros',
+                'email' => 'vegetariano@gmail.com',
+                'password' => Hash::make('12345678'),
+                'address' => 'Via prato fiorito, A',
+                'vat_number' => '11111177799',
+                'slug' => Str::slug('Vegetarian bros','-'),
+                'categories' => ['5', '7', '8']
+            ],
         ];
 
 
