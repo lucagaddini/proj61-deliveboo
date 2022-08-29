@@ -26,7 +26,25 @@ class UsersTableSeeder extends Seeder
                 'vat_number' => '123456548910',
                 'slug' => Str::slug('Pizzeria Gino','-'),
                 'categories' => ['5','9']
-            ]
+            ],
+            [
+                'name' => 'Hambugheria',
+                'email' => 'hamburgher@gmail.com',
+                'password' => Hash::make('12345678'),
+                'address' => 'Via kebab 12, ABC',
+                'vat_number' => '124512451245',
+                'slug' => Str::slug('Hamburgheria','-'),
+                'categories' => ['5']
+            ],
+            [
+                'name' => 'Voulez vous paté',
+                'email' => 'francia@gmail.com',
+                'password' => Hash::make('12345678'),
+                'address' => 'Via sono di parigi 12, ABC',
+                'vat_number' => '88888888888',
+                'slug' => Str::slug('Voulez vous paté','-'),
+                'categories' => ['3, 8']
+            ],
         ];
 
 
