@@ -429,6 +429,7 @@ class ItemsTableSeeder extends Seeder
             ],
         //fine cibo indiano--------------
 
+
         //inizio cibo no glutine--------------
             [
                 'name' => 'Hamburger di pollo',
@@ -485,6 +486,61 @@ class ItemsTableSeeder extends Seeder
                 'course_id' => 3
             ],
         //fine cibo no glutine--------------
+
+
+        //inizio cibo messicano--------------
+            [
+                'name' => 'Chilaquils',
+                'price' => 6.4,
+                'description' => 'composto da pezzi di tortilla di mais fritti conditi con una salsa verde piccante ed accompagnati da cipolle crude, pezzi di pollo, carne macinata, uova, formaggio, panna acida e fagioli',
+                'visible' => 1,
+                'vegetarian' => 0,
+                'user_id' => 7,
+                'course_id' => 1
+            ],
+            [
+                'name' => 'Pozole',
+                'price' => 5.9,
+                'description' => 'stufato a base di mais cotto servito con carne, cavolo affettato, peperoncino, cipolla, aglio e altri aromi e spezie',
+                'visible' => 1,
+                'vegetarian' => 0,
+                'user_id' => 7,
+                'course_id' => 1
+            ],
+            [
+                'name' => 'Nopales',
+                'price' => 5,
+                'description' => 'foglie di cactus consumate crude o cotte alla griglia',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 7,
+                'course_id' => 1
+            ],
+            [
+                'name' => 'Chapulines',
+                'price' => 6.4,
+                'description' => 'cavallette tostate alla piastra e condite con aglio, succo di lime e sale',
+                'visible' => 1,
+                'vegetarian' => 0,
+                'user_id' => 7,
+                'course_id' => 1
+            ],
+            [
+                'name' => 'Enchiladas',
+                'price' => 7,
+                'description' => 'leggere sfoglie ripiene di diversi ingredienti, dalla carne alle verdure, e ricoperte da salsa piccante',
+                'visible' => 1,
+                'vegetarian' => 0,
+                'user_id' => 7,
+                'course_id' => 1
+            ],
+        //fine cibo messicano--------------
+
+
+        //inizio cibo sushi--------------
+
+        //fine cibo sushi--------------
+
 
         ];
 

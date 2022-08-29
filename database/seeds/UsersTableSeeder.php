@@ -67,10 +67,19 @@ class UsersTableSeeder extends Seeder
                 'name' => 'No gluten here',
                 'email' => 'gluten@gmail.com',
                 'password' => Hash::make('12345678'),
-                'address' => 'Via india, A',
+                'address' => 'Via senza glutine, A',
                 'vat_number' => '00000000001',
                 'slug' => Str::slug('No gluten here','-'),
                 'categories' => ['9', '8', '7']
+            ],
+            [
+                'name' => 'Mexico city',
+                'email' => 'mexico@gmail.com',
+                'password' => Hash::make('12345678'),
+                'address' => 'Via senza glutine, A',
+                'vat_number' => '00000000099',
+                'slug' => Str::slug('Mexico city','-'),
+                'categories' => ['4', '8']
             ],
         ];
 
