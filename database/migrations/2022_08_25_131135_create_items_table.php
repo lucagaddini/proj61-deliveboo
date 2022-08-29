@@ -18,7 +18,7 @@ class CreateItemsTable extends Migration
 
             $table->string('name');
             $table->float('price')->default(00.00);
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->boolean('visible')->nullable()->default(false);
             $table->boolean('vegetarian')->nullable()->default(false);
 
