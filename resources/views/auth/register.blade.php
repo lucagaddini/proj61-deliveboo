@@ -214,6 +214,7 @@
     (function(){
         $("#register-form").parsley();
     });
+    
 </script>
 
 @endsection
