@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Item;
+use App\Course;
 
 class ItemController extends Controller
 {
@@ -16,9 +17,10 @@ class ItemController extends Controller
      */
     public function index()
     {
-        
+
         $items = Item::orderBy('id','desc')->paginate(10);
-        return view('admin.items.index', compact('items'));
+        $courses = Course::all();
+        return view('admin.items.index', compact('items', 'courses'));
 
     }
 
@@ -29,7 +31,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.items.create');
     }
 
     /**
@@ -40,7 +42,12 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new_data = $request->all();
+        $item = new Item();
+        $item->fill($new_data);
+        $item->save();
+
+        return redirect()->route('admin.items.index');
     }
 
     /**
@@ -49,9 +56,9 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Item $item)
     {
-        //
+        return view('admin.items.show', compact('item'));
     }
 
     /**
@@ -60,9 +67,9 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Item $item)
     {
-        //
+        return view('admin.items.edit', compact('item'));
     }
 
     /**
@@ -72,9 +79,12 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Item $item)
     {
-        //
+        $updated_item = $request->all();
+        $item->update($updated_item);
+
+        return redirect()->route('admin.items.index', compact('item'));
     }
 
     /**
@@ -83,8 +93,9 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Item $item)
     {
-        //
+        $item->delete();
+        return redirect()->route('admin.items.index')->with('cancelled', "$item->name cancellato correttamente.");
     }
 }
