@@ -7,9 +7,26 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-
-
+// Import dello stile per gli errori derivanti da Parsley
 @import 'parsley';
+
+
+//GENERAL
+
+.btn_custom{
+  background-color: $primary-color;
+  border-color:$primary-color;
+  color: white;
+
+  &:hover{
+    color: $fifth-color;
+  }
+  
+}
+
+.btn-link_custom{
+  color: $primary-color;
+}
 
 //HEADER
 .navbar_custom {
@@ -19,7 +36,6 @@
     color: white !important;
   }
 }
-
 
 //DASHBOARD
 .sidebar_custom{

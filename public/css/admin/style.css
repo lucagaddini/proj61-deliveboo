@@ -9308,6 +9308,19 @@ textarea.parsley-error {
   opacity: 1;
 }
 
+.btn_custom {
+  background-color: #00D7C7;
+  border-color: #00D7C7;
+  color: white;
+}
+.btn_custom:hover {
+  color: #4F126F;
+}
+
+.btn-link_custom {
+  color: #00D7C7;
+}
+
 .navbar_custom {
   background-color: #00D7C7;
 }
