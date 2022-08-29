@@ -43,7 +43,16 @@ class UsersTableSeeder extends Seeder
                 'address' => 'Via sono di parigi 12, ABC',
                 'vat_number' => '88888888888',
                 'slug' => Str::slug('Voulez vous paté','-'),
-                'categories' => ['3, 8']
+                'categories' => ['3', '8']
+            ],
+            [
+                'name' => 'Chinese world',
+                'email' => 'cina@gmail.com',
+                'password' => Hash::make('12345678'),
+                'address' => 'Via adoro i cinesi, ABC',
+                'vat_number' => '44444555555',
+                'slug' => Str::slug('Chinese world','-'),
+                'categories' => ['1', '8']
             ],
         ];
 

@@ -14,6 +14,7 @@ class ItemsTableSeeder extends Seeder
     public function run()
     {
         $items = [
+        //inizio pizze--------------
             [
                 'name' => 'Pizza Margherita',
                 'price' => 6.4,
@@ -218,7 +219,7 @@ class ItemsTableSeeder extends Seeder
                 'visible' => 1,
                 'vegetarian' => 1,
                 'user_id' => 3,
-                'course_id' => 4
+                'course_id' => 6
             ],
             [
                 'name' => 'Escargot à la Bourguignonne',
@@ -227,7 +228,7 @@ class ItemsTableSeeder extends Seeder
                 'visible' => 1,
                 'vegetarian' => 0,
                 'user_id' => 3,
-                'course_id' => 4
+                'course_id' => 2
             ],
             [
                 'name' => 'French Fries',
@@ -245,7 +246,7 @@ class ItemsTableSeeder extends Seeder
                 'visible' => 1,
                 'vegetarian' => 0,
                 'user_id' => 3,
-                'course_id' => 4
+                'course_id' => 3
             ],
             [
                 'name' => 'Quiche lorraine',
@@ -254,7 +255,7 @@ class ItemsTableSeeder extends Seeder
                 'visible' => 1,
                 'vegetarian' => 0,
                 'user_id' => 3,
-                'course_id' => 4
+                'course_id' => 2
             ],
             [
                 'name' => 'Cosciotto d\'agnello',
@@ -263,7 +264,7 @@ class ItemsTableSeeder extends Seeder
                 'visible' => 1,
                 'vegetarian' => 0,
                 'user_id' => 3,
-                'course_id' => 4
+                'course_id' => 3
             ],
             [
                 'name' => 'Filet Mignon',
@@ -272,9 +273,67 @@ class ItemsTableSeeder extends Seeder
                 'visible' => 1,
                 'vegetarian' => 0,
                 'user_id' => 3,
-                'course_id' => 4
+                'course_id' => 3
             ],
         //fine cibo francese--------------
+
+
+        //inizio cibo cinese--------------
+            [
+                'name' => 'Zuppa di noodles',
+                'price' => 8,
+                'description' => 'Noodles all\'uovo 80g, Carote 1, Zucchine 1, Funghi shiitake 1, Porri 1, Broccoli siciliani 250 g, Cavoli cinesi 45 g, Manzo (pezza) 70 g, Zenzero fresco, Aglio 1 spicchio, Soia (salsa) 1 cucchiai, Cipollotti 1, Olio di semi di sesamo 1 cucchiaio, Olio di girasole 1 cucchiai, Peperoncino rosso 1, Brodo vegetale 200 ml',
+                'visible' => 1,
+                'vegetarian' => 0,
+                'user_id' => 4,
+                'course_id' => 2
+            ],
+            [
+                'name' => 'Anatra alla pechinese',
+                'price' => 9,
+                'description' => 'Anatra(mezza), Malto di grano 10 g, Olio di semi di sesamo 5 g, Hoisin 10 g, Zucchero 10 g, Soia (salsa) 2.5 g, Cipollotti 2',
+                'visible' => 1,
+                'vegetarian' => 0,
+                'user_id' => 4,
+                'course_id' => 3
+            ],
+            [
+                'name' => 'Ravioli al vapore cinesi',
+                'price' => 3,
+                'description' => 'Farina tipo 0 50 g, Farina di riso 30 g, Acqua 80 ml, Maiale (lonza macinata) 80 g, Gamberi 40 g, Cavoli cinesi 40 g, Zenzero fresco, Carote 1, Porri ½, Salsa di soia 2 cucchiai, Erba cipollina 1 ciuffo, Sake 1 cucchiaio',
+                'visible' => 1,
+                'vegetarian' => 0,
+                'user_id' => 4,
+                'course_id' => 3
+            ],
+            [
+                'name' => 'Riso alla cantonese',
+                'price' => 9,
+                'description' => 'Riso basmati 70 g, Prosciutto cotto 30 g, Uova 2, Piselli 40 g, Salsa soia 1 cucchiaio, Olio di semi di sesamo 2 cucchiai, Olio di semi 1 cucchiaio, Sale',
+                'visible' => 1,
+                'vegetarian' => 0,
+                'user_id' => 4,
+                'course_id' => 2
+            ],
+            [
+                'name' => 'Manzo al mandarancio',
+                'price' => 10,
+                'description' => '150 g carne di manzo, 1 cipollotto, zenzero fresco, peperoncino rosso piccante, 5 mandaranci piccoli, 2 cucchiai di succo di mandarancio, 4 cucchiai di olio di semi, 1 cucchiaio di pepe di sichuan, 2 cucchiai di vino bianco secco, 2 cucchiai di salsa di soia, zucchero di canna, sale',
+                'visible' => 1,
+                'vegetarian' => 0,
+                'user_id' => 4,
+                'course_id' => 3
+            ],
+            [
+                'name' => 'Maiale arrostito(char siu)',
+                'price' => 10,
+                'description' => '150 g di polpa dii maiale presa da spalla o coscia , salsa hoisin, salsa di soia, 1 cucchiao di zucchero di canna, 1 cucchiaio di vino rosso, 1 cucchiaio di olio vegetale, sale, miele',
+                'visible' => 1,
+                'vegetarian' => 0,
+                'user_id' => 4,
+                'course_id' => 3
+            ],
+        //fine cibo cinese--------------
 
 
         ];
