@@ -38,7 +38,8 @@
 
 
 
-                          <td>{{ ucfirst($item->description) }}</td>
+                          <td>{{ $item->vegetarian === 1? 'Sì' : 'No' }}</td>
+                          <td>{{ $item->visible === 1? 'Sì' : 'No' }}</td>
 
                             <td> {{$item->course->name}}</td>
 
@@ -61,7 +62,7 @@
 
                       </tbody>
                     </table>
-
+                    {{ $items->links() }}
                   </div>
               </div>
           </div>
