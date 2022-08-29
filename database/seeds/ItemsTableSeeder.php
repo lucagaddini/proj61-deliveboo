@@ -337,98 +337,154 @@ class ItemsTableSeeder extends Seeder
 
 
         //inizio cibo indiano--------------
-        [
-            'name' => 'Piatto riso basmati',
-            'price' => 7.99,
-            'description' => 'riso basmati, piselli, anacardo, carote, cumino',
-            'visible' => 1,
-            'vegetarian' => 1,
-            'user_id' => 5,
-            'course_id' => 2
-        ],
-        [
-            'name' => 'Pollo al curry',
-            'price' => 9.99,
-            'description' => 'pollo, curry in polvere, cipolle, aglio, zenzero, brodo di pollo',
-            'visible' => 1,
-            'vegetarian' => 0,
-            'user_id' => 5,
-            'course_id' => 2
-        ],
-        [
-            'name' => 'Piatto dosa',
-            'price' => 5.99,
-            'description' => 'due croccanti dose, quattro ciotole di brodo con verdure miste diverse',
-            'visible' => 1,
-            'vegetarian' => 1,
-            'user_id' => 5,
-            'course_id' => 2
-        ],
-        [
-            'name' => 'Piatto gol gappe',
-            'price' => 3.99,
-            'description' => 'sei gol gappe riempiti con il curry di ceci neri, due ciotole con acque aromatizzate dolce e piccante',
-            'visible' => 1,
-            'vegetarian' => 1,
-            'user_id' => 5,
-            'course_id' => 3
-        ],
-        [
-            'name' => 'Dolce gulab jamun',
-            'price' => 3.99,
-            'description' => 'cinque gulab jamun',
-            'visible' => 1,
-            'vegetarian' => 1,
-            'user_id' => 5,
-            'course_id' => 6
-        ],
-        [
-            'name' => 'Dolce jalebi',
-            'price' => 5.99,
-            'description' => 'otto jalebi',
-            'visible' => 1,
-            'vegetarian' => 1,
-            'user_id' => 5,
-            'course_id' => 6
-        ],
-        [
-            'name' => 'Dolce laddu',
-            'price' => 1.99,
-            'description' => 'due laddu',
-            'visible' => 1,
-            'vegetarian' => 1,
-            'user_id' => 5,
-            'course_id' => 6
-        ],
-        [
-            'name' => 'Piatto di naan',
-            'price' => 8.99,
-            'description' => 'due nann, ciotola di brodo di pollo e con verdure miste',
-            'visible' => 1,
-            'vegetarian' => 1,
-            'user_id' => 5,
-            'course_id' => 2
-        ],
-        [
-            'name' => 'Piatto di samosa',
-            'price' => 6.99,
-            'description' => 'quattro samose, ripieni di patate, piselli, coriandolo, cipolla e un pizzico di spezie',
-            'visible' => 1,
-            'vegetarian' => 1,
-            'user_id' => 5,
-            'course_id' => 3
-        ],
-        [
-            'name' => 'Tandoori Chicken',
-            'price' => 6.99,
-            'description' => 'pollo arrosto, yogurt e un pizzico si spezie',
-            'visible' => 1,
-            'vegetarian' => 0,
-            'user_id' => 5,
-            'course_id' => 3
-        ],
+            [
+                'name' => 'Piatto riso basmati',
+                'price' => 7.99,
+                'description' => 'riso basmati, piselli, anacardo, carote, cumino',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 5,
+                'course_id' => 2
+            ],
+            [
+                'name' => 'Pollo al curry',
+                'price' => 9.99,
+                'description' => 'pollo, curry in polvere, cipolle, aglio, zenzero, brodo di pollo',
+                'visible' => 1,
+                'vegetarian' => 0,
+                'user_id' => 5,
+                'course_id' => 2
+            ],
+            [
+                'name' => 'Piatto dosa',
+                'price' => 5.99,
+                'description' => 'due croccanti dose, quattro ciotole di brodo con verdure miste diverse',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 5,
+                'course_id' => 2
+            ],
+            [
+                'name' => 'Piatto gol gappe',
+                'price' => 3.99,
+                'description' => 'sei gol gappe riempiti con il curry di ceci neri, due ciotole con acque aromatizzate dolce e piccante',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 5,
+                'course_id' => 3
+            ],
+            [
+                'name' => 'Dolce gulab jamun',
+                'price' => 3.99,
+                'description' => 'cinque gulab jamun',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 5,
+                'course_id' => 6
+            ],
+            [
+                'name' => 'Dolce jalebi',
+                'price' => 5.99,
+                'description' => 'otto jalebi',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 5,
+                'course_id' => 6
+            ],
+            [
+                'name' => 'Dolce laddu',
+                'price' => 1.99,
+                'description' => 'due laddu',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 5,
+                'course_id' => 6
+            ],
+            [
+                'name' => 'Piatto di naan',
+                'price' => 8.99,
+                'description' => 'due nann, ciotola di brodo di pollo e con verdure miste',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 5,
+                'course_id' => 2
+            ],
+            [
+                'name' => 'Piatto di samosa',
+                'price' => 6.99,
+                'description' => 'quattro samose, ripieni di patate, piselli, coriandolo, cipolla e un pizzico di spezie',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 5,
+                'course_id' => 3
+            ],
+            [
+                'name' => 'Tandoori Chicken',
+                'price' => 6.99,
+                'description' => 'pollo arrosto, yogurt e un pizzico si spezie',
+                'visible' => 1,
+                'vegetarian' => 0,
+                'user_id' => 5,
+                'course_id' => 3
+            ],
         //fine cibo indiano--------------
 
+        //inizio cibo no glutine--------------
+            [
+                'name' => 'Hamburger di pollo',
+                'price' => 4.99,
+                'description' => 'pane gluten free, bistecca di pollo, formaggio cheddar, insalata, salse, patatine fritte',
+                'visible' => 1,
+                'vegetarian' => 0,
+                'user_id' => 6,
+                'course_id' => 3
+            ],
+            [
+                'name' => 'Uova sode',
+                'price' => 3.99,
+                'description' => 'due uova sode, pepe nero, sale',
+                'visible' => 1,
+                'vegetarian' => 0,
+                'user_id' => 6,
+                'course_id' => 1
+            ],
+            [
+                'name' => 'Salmone arrosto',
+                'price' => 9.99,
+                'description' => 'trancio di salmone arrosto, spicchi d\'aglio, pepe nero, prezzemolo',
+                'visible' => 1,
+                'vegetarian' => 0,
+                'user_id' => 6,
+                'course_id' => 3
+            ],
+            [
+                'name' => 'Macedonia',
+                'price' => 5.99,
+                'description' => 'kiwi, banana, fragola, cereali, frutta secca',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 6,
+                'course_id' => 3
+            ],
+            [
+                'name' => 'Insalata di ceci',
+                'price' => 6.99,
+                'description' => 'ceci, avocado, mozzarella',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 6,
+                'course_id' => 3
+            ],
+            [
+                'name' => 'Pancakes',
+                'price' => 3.99,
+                'description' => 'due pancakes, sciroppo d’acero, mirtilli',
+                'visible' => 1,
+                'vegetarian' => 1,
+                'user_id' => 6,
+                'course_id' => 3
+            ],
+        //fine cibo no glutine--------------
 
         ];
 

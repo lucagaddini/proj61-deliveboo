@@ -63,6 +63,15 @@ class UsersTableSeeder extends Seeder
                 'slug' => Str::slug('Indian food','-'),
                 'categories' => ['2', '8']
             ],
+            [
+                'name' => 'No gluten here',
+                'email' => 'gluten@gmail.com',
+                'password' => Hash::make('12345678'),
+                'address' => 'Via india, A',
+                'vat_number' => '00000000001',
+                'slug' => Str::slug('No gluten here','-'),
+                'categories' => ['9', '8', '7']
+            ],
         ];
 
 
