@@ -106,45 +106,29 @@
                     </div>
 
 
-            {{-- Select per Category --}}
-                    {{-- <div class="input-group mb-3">
+            {{-- Select per Courses --}}
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <label class="input-group-text" for="category_id">Categoria di giochi</label>
+                            <label class="input-group-text" for="course_id">Scegli il tipo di portata</label>
                         </div>
                         <select class="custom-select"
-                                id="category_id" name="category_id">
-                            <option value="">Scegli di che tipo di gioco vuoi parlare</option>
-                            @foreach ($categories as $category)
+                                id="course_id" name="course_id">
+                            <option value=""></option>
+                            @foreach ($courses as $course)
                                 <option
-                                    value="{{ $category->id }}"
-                                    @if ($post->category && $category->id == old('category_id', $post->category->id)) selected @endif>
-                                        {{ $category->name }}
+                                    value="{{ $course->id }}"
+                                    {{ $item->course_id === $course->id ? 'selected' : '' }}
+                                >
+                                        {{ $course->name }}
                                 </option>
                             @endforeach
                         </select>
-                    </div> --}}
+                    </div>
 
-            {{-- Checks per Tags --}}
-                    {{-- <h5 class="mb-1 mt-4">Scegli dei tags per il tuo post!</h5>
-                    <div class="form-check mb-4">
-                        @foreach ($tags as $tag)
-                            <input class="form-check-input"
-                                type="checkbox"
-                                value="{{ $tag->id }}"
-                                id="tag{{ $loop->iteration }}"
-                                name="tags[]"
-                                @if (!$errors->any() && $post->tags->contains($tag->id))
-                                    checked
-                                @elseif (!$errors->any() && in_array($tag->id, old('tags', [])))
-                                    checked
-                                @endif>
-
-                            <label class="form-check-label mr-5"
-                                for="tag{{ $loop->iteration }}"
-                                name="tags[]">
-                                {{ $tag->name }}
-                            </label>
-                        @endforeach
+            {{-- Inserimento Immagini --}}
+                    {{-- <div class="form-group">
+                        <label for="item-image">Aggiungi l'immagine del prodotto</label>
+                        <input type="file" class="form-control-file" id="item-image">
                     </div> --}}
 
             {{-- Submit --}}

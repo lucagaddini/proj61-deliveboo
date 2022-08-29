@@ -11,19 +11,19 @@
                     <div class="card-header d-flex justify-content-between align-items-center">{{ __('Crea nuovo Prodotto') }}
                         <a href="{{ route('admin.items.index') }}" class="btn btn_custom_secondary">Indietro</a>
                     </div>
-    
+
                     <div class="card-body">
-    
+
                         <form action="{{ route('admin.items.store') }}" method="POST" data-parsley-validate>
                             @csrf
 
                             {{-- Nome prodotto --}}
                             <div class="form-group">
                                 <label for="name">Nome del prodotto</label>
-                                <input type="text" 
+                                <input type="text"
                                     value="{{old('name')}}"
                                     class="form-control @error('name') is-invalid @enderror"
-                                    id="name" 
+                                    id="name"
                                     name="name"
                                     placeholder="Inserisci il nome del Prodotto"
 
@@ -45,10 +45,10 @@
                             {{-- Prezzo prodotto --}}
                             <div class="form-group">
                                 <label for="price">Prezzo del prodotto</label>
-                                <input type="text" 
+                                <input type="text"
                                     value="{{old('price')}}"
                                     class="form-control @error('price') is-invalid @enderror"
-                                    id="price" 
+                                    id="price"
                                     name="price"
                                     placeholder="Scrivi qualcosa"
 
@@ -72,7 +72,7 @@
                                 <textarea type="text"
                                         rows="6"
                                         class="form-control @error('description') is-invalid @enderror"
-                                        id="description" 
+                                        id="description"
                                         name="description"
                                         placeholder="Scrivi qualcosa"
 
@@ -98,9 +98,9 @@
                                 <label for="vegetarian">Questo prodotto è vegetariano?</label>
                                 <div class="d-flex">
                                     <div class="form-check mx-3">
-                                        <input class="form-check-input" 
+                                        <input class="form-check-input"
                                                 type="radio"
-                                                name="vegetarian" 
+                                                name="vegetarian"
                                                 id="vegetarianFalse"
                                                 value="0"
                                                 {{ old('vegetarian') == "0" ? 'checked' : '' }}
@@ -112,16 +112,17 @@
                                     </div>
 
                                     <div class="form-check">
-                                        <input class="form-check-input" 
+                                        <input class="form-check-input"
                                                 type="radio"
-                                                name="vegetarian" 
+                                                name="vegetarian"
                                                 id="vegetarianTrue"
                                                 value="1"
                                                 {{ old('vegetarian') == "1" ? 'checked' : '' }}
                                         >
 
                                         <label class="form-check-label" for="vegetarianTrue">
-                                            Si
+                                        {{-- L'avverbio affermativo richiede sempre l'accento --}}
+                                            S&iacute;
                                         </label>
                                     </div>
                                 </div>
@@ -151,52 +152,37 @@
                                         >
 
                                         <label class="form-check-label" for="visibleTrue">
-                                            Si
+                                        {{-- L'avverbio affermativo richiede sempre l'accento --}}
+                                            S&iacute;
                                         </label>
 
                                     </div>
                                 </div>
                             </div>
 
-                            {{-- Select per Category --}}
-                            {{-- <div class="input-group mb-3">
+                            {{-- Select per Courses --}}
+                            <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" for="category_id">Categoria di giochi</label>
+                                    <label class="input-group-text" for="course_id">Scegli il tipo di portata</label>
                                 </div>
                                 <select class="custom-select"
-                                        id="category_id" name="category_id">
-                                    <option value="">Scegli di che tipo di gioco vuoi parlare</option>
-                                    @foreach ($categories as $category)
+                                        id="course_id" name="course_id">
+                                    <option value=""></option>
+                                    @foreach ($courses as $course)
                                         <option
-                                            value="{{ $category->id }}"
-                                            @if ($post->category && $category->id == old('category_id', $post->category->id)) selected @endif>
-                                                {{ $category->name }}
+                                            value="{{ $course->id }}"
+                                            @if (old('course_id')) selected @endif
+                                        >
+                                                {{ $course->name }}
                                         </option>
                                     @endforeach
                                 </select>
-                            </div> --}}
+                            </div>
 
-                            {{-- Checks per Tags --}}
-                            {{-- <h5 class="mb-1 mt-4">Scegli dei tags per il tuo post!</h5>
-                            <div class="form-check mb-4">
-                                @foreach ($tags as $tag)
-                                    <input class="form-check-input"
-                                        type="checkbox"
-                                        value="{{ $tag->id }}"
-                                        id="tag{{ $loop->iteration }}"
-                                        name="tags[]"
-                                        @if (!$errors->any() && $post->tags->contains($tag->id))
-                                            checked
-                                        @elseif (!$errors->any() && in_array($tag->id, old('tags', [])))
-                                            checked
-                                        @endif>
-
-                                    <label class="form-check-label mr-5"
-                                        for="tag{{ $loop->iteration }}"
-                                        name="tags[]">
-                                        {{ $tag->name }}
-                                    </label>
-                                @endforeach
+                            {{-- Inserimento Immagini --}}
+                            {{-- <div class="form-group">
+                                <label for="item-image">Aggiungi l'immagine del prodotto</label>
+                                <input type="file" class="form-control-file" id="item-image">
                             </div> --}}
 
                             {{-- Submit --}}

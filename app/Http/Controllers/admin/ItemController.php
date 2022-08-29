@@ -31,7 +31,8 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('admin.items.create');
+        $courses = Course::all();
+        return view('admin.items.create', compact('courses'));
     }
 
     /**
@@ -46,6 +47,7 @@ class ItemController extends Controller
         $item = new Item();
         $item->fill($new_data);
         $item->save();
+
 
         return redirect()->route('admin.items.index');
     }
@@ -69,7 +71,8 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        return view('admin.items.edit', compact('item'));
+        $courses = Course::all();
+        return view('admin.items.edit', compact('item', 'courses'));
     }
 
     /**
