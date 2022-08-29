@@ -11,9 +11,9 @@
                     @csrf
                     @method('PUT')
 
-            {{-- Title --}}
+            {{-- Nome prodotto --}}
                     <div class="form-group">
-                        <label for="name">Nome del piatto</label>
+                        <label for="name">Nome del prodotto</label>
                         <input type="text" value="{{old('name', $item->name)}}"
                             class="form-control @error('name') is-invalid @enderror"
                             id="name" name="name"
@@ -24,19 +24,87 @@
                         @enderror
                     </div>
 
-            {{-- Content --}}
+            {{-- Prezzo prodotto --}}
                     <div class="form-group">
-                        <label for="description">Descrizione del piatto</label>
+                        <label for="price">Prezzo del prodotto</label>
+                        <input type="text" value="{{old('price', $item->price)}}"
+                            class="form-control @error('price') is-invalid @enderror"
+                            id="price" name="price"
+                            placeholder="Scrivi qualcosa"
+                        >
+                        @error('name')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+            {{-- Descrizione del prodotto --}}
+                    <div class="form-group">
+                        <label for="description">Descrizione del prodotto</label>
                         <textarea type="text" rows="6"
                                 class="form-control @error('description') is-invalid @enderror"
                                 id="description" name="description"
                                 placeholder="Scrivi qualcosa"
-                        >{{old('description', ucfirst($item->description))}}
-                        </textarea>
+                        {{-- Non cambiare la disposizione delle >old< se no aggiunge spazi --}}
+                        >{{old('description', ucfirst($item->description))}}</textarea>
                         @error('description')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
+
+            {{-- Prodotto vegetariano --}}
+                    <div class="form-group d-flex justify-content-between">
+                        <label for="vegetarian">Questo prodotto è vegetariano?</label>
+                        <div class="d-flex">
+                            <div class="form-check mx-3">
+                                <input class="form-check-input" type="radio"
+                                        name="vegetarian" id="vegetarianFalse"
+                                        value="0"
+                                        {{ old('vegetarian') || $item->vegetarian == "0" ? 'checked' : '' }}
+                                >
+                                <label class="form-check-label" for="vegetarianFalse">
+                                No
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio"
+                                        name="vegetarian" id="vegetarianTrue"
+                                        value="1"
+                                        {{ old('vegetarian') || $item->vegetarian == "1" ? 'checked' : '' }}
+                                >
+                                <label class="form-check-label" for="vegetarianTrue">
+                                S&igrave;
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+            {{-- Prodotto visibile --}}
+                    <div class="form-group d-flex">
+                        <label for="visible">Rendi visibile sul tuo men&ugrave; questo prodotto</label>
+                        <div class="d-flex">
+                            <div class="form-check mx-3">
+                                <input class="form-check-input" type="radio"
+                                        name="visible" id="visibleFalse"
+                                        value="0"
+                                        {{ old('visible') || $item->visible == '0' ? 'checked' : '' }}
+                                >
+                                <label class="form-check-label" for="visibleFalse">
+                                No
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio"
+                                        name="visible" id="visibleTrue"
+                                        value="1"
+                                        {{ old('visible') || $item->visible == '1' ? 'checked' : '' }}
+                                >
+                                <label class="form-check-label" for="visibleTrue">
+                                S&igrave;
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
 
             {{-- Select per Category --}}
                     {{-- <div class="input-group mb-3">
