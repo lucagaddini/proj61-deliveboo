@@ -14,7 +14,7 @@
 
                     <div class="card-body">
 
-                        <form action="{{ route('admin.items.store') }}" method="POST" data-parsley-validate>
+                        <form action="{{ route('admin.items.store') }}" method="POST" enctype="multipart/form-data" data-parsley-validate>
                             @csrf
 
                             {{-- Nome prodotto --}}
@@ -180,10 +180,10 @@
                             </div>
 
                             {{-- Inserimento Immagini --}}
-                            {{-- <div class="form-group">
+                            <div class="form-group">
                                 <label for="item-image">Aggiungi l'immagine del prodotto</label>
-                                <input type="file" class="form-control-file" id="item-image">
-                            </div> --}}
+                                <input type="file" class="form-control-file" id="item-image" name="image">
+                            </div>
 
                             {{-- Submit --}}
                             <button type="submit" class="btn btn_custom">Salva</button>

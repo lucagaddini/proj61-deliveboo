@@ -126,10 +126,15 @@
                     </div>
 
             {{-- Inserimento Immagini --}}
-                    {{-- <div class="form-group">
+                    <div class="p-2 m-3">
+                        <p for="immagine-prodotto">Immagine precedente:</p>
+                        <img name="immagine-prodotto" style="max-width: 50%" src="{{ asset('images/' . $item->image_path) }}" alt="{{ $item->path_name }}">
+                    </div>
+
+                    <div class="form-group">
                         <label for="item-image">Aggiungi l'immagine del prodotto</label>
                         <input type="file" class="form-control-file" id="item-image">
-                    </div> --}}
+                    </div>
 
             {{-- Submit --}}
                     <button type="submit" class="btn btn-primary">Completa</button>

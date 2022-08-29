@@ -17,7 +17,7 @@ class Item extends Model
     }
 
     protected $fillable = [
-        'name', 'price', 'description','visible','vegetarian', 'course_id', 'user_id'
+        'name', 'price', 'description','visible','vegetarian', 'course_id', 'user_id', 'image_path'
     ];
 
 }
