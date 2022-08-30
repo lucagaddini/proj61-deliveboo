@@ -19754,11 +19754,19 @@ readers do not read off random characters that represent icons */
 }
 
 .navbar_custom {
+  position: fixed;
+  width: 100%;
   background-color: #00D7C7;
   z-index: 100;
 }
 .navbar_custom .navbar-nav .nav-link {
   color: white !important;
+}
+
+main {
+  height: 100%;
+  padding-top: 35px;
+  overflow-y: auto;
 }
 
 .sidebar_custom {
@@ -19772,7 +19780,7 @@ readers do not read off random characters that represent icons */
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
 }
 .sidebar_custom li {
-  padding-left: 25px;
+  padding-left: 5px;
 }
 .sidebar_custom li a {
   color: white;

@@ -19,7 +19,7 @@ class ItemController extends Controller
     public function index()
     {
         $current_user = auth()->user()->id;
-        $items = Item::select('*')->where('user_id','=', $current_user )->paginate(7);
+        $items = Item::select('*')->where('user_id','=', $current_user )->paginate(10);
         $courses = Course::all();
         return view('admin.items.index', compact('items', 'courses'));
 

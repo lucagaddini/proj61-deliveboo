@@ -24,7 +24,6 @@
                         <tr>
                           <th scope="col">ID</th>
                           <th scope="col">Nome</th>
-                          {{-- <th scope="col">Categoria</th> --}}
                           <th scope="col">Vegetariano</th>
                           <th scope="col">Visibile</th>
                           <th scope="col">Portata</th>
@@ -37,12 +36,8 @@
                         <tr>
                           <td>{{ $item->id }}</td>
                           <td>{{ $item->name }}</td>
-
-
-
                           <td>{{ $item->vegetarian === 1? 'Sì' : 'No' }}</td>
                           <td>{{ $item->visible === 1? 'Sì' : 'No' }}</td>
-
                           <td> {{$item->course->name}}</td>
 
                           <td>
@@ -66,10 +61,11 @@
 
                       </tbody>
                     </table>
+
                     <div class="d-flex justify-content-center">
                       {{ $items->links() }}
                     </div>
-                    
+              
                   </div>
               </div>
           </div>

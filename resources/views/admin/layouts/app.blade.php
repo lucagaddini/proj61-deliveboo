@@ -27,7 +27,7 @@
         
         @include('admin.layouts.partials.left-navbar')
 
-        <main class="py-4">
+        <main class="">
 
             @yield('content')
 
