@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Hambugheria',
-                'email' => 'hamburgher@gmail.com',
+                'email' => 'hamburger@gmail.com',
                 'password' => Hash::make('12345678'),
                 'address' => 'Via kebab 12, ABC',
                 'vat_number' => '124512451245',
