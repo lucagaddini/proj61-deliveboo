@@ -42,7 +42,7 @@
                           <td>{{ $item->vegetarian === 1? 'Sì' : 'No' }}</td>
                           <td>{{ $item->visible === 1? 'Sì' : 'No' }}</td>
 
-                            {{-- <td> {{$item->course->name}}</td> --}}
+                          <td> {{$item->course->name}}</td>
 
                           <td>
                             <a class="btn btn-dark" href=" {{ route('admin.items.show', $item)  }}">Mostra di pi&ugrave;</a>
