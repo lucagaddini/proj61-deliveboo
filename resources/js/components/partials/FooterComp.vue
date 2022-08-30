@@ -66,10 +66,10 @@
             <div class="col-12 col-lg-6">
                 <nav class="payments d-flex justify-content-lg-start justify-content-center">
                     <ul>
-                        <a href="#"><i class="fa-brands fa-cc-visa"></i></a>
-                        <a href="#"><i class="fa-brands fa-cc-mastercard"></i></a>
-                        <a href="#"><i class="fa-brands fa-cc-paypal"></i></a>
-                        <a href="#"><i class="fa-brands fa-cc-amex"></i></a>
+                        <i class="fa-brands fa-cc-visa"></i>
+                        <i class="fa-brands fa-cc-mastercard"></i>
+                        <i class="fa-brands fa-cc-paypal"></i>
+                        <i class="fa-brands fa-cc-amex"></i>
                     </ul>
                 </nav>
             </div>
@@ -189,14 +189,9 @@ hr{
     margin: 0px 20px 6px 0px;
 }
 
-.payments a{
-
+.payments i{
     color: black;
     text-decoration: none;
-
-    &:hover{
-        opacity: 50%;
-    }
 }
 
 /* Other Links */
