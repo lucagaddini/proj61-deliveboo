@@ -52,8 +52,7 @@ class ItemController extends Controller
         // Creo un nome univoco per le immagini che saranno caricate
         $new_image_name = time() . '-' . $request->name . '.' . $request->image->extension();
 
-        // Sposto l'immagine vera e propria in images
-        // NON CAMBIARE IL PATH SE NO SI SMINCHIA TUTTO MANNAGGIA LA PUTTANA CI HO PERSO 45 MINUTI
+        // Sposto l'immagine vera e propria in images (non cambiare il path)
         $request->image->move(public_path('images'), $new_image_name);
 // /STORAGE DELLE IMMAGINI
 

@@ -24,7 +24,6 @@
                             <button class="btn btn-danger">Elimina</button>
                         </form>
                     </div>
-
                 </div>
 {{-- /Singola scheda --}}
 

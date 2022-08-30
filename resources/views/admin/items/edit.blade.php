@@ -9,7 +9,7 @@
 
                 <div class="card-body">
 
-                    <form action="{{ route('admin.items.update', $item) }}" method="POST">
+                    <form action="{{ route('admin.items.update', $item) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -108,7 +108,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                         {{-- Select per Courses --}}
                         <div class="input-group mb-3">

@@ -19,18 +19,14 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
                         <p> Benvenuto {{ Auth::user()->name }} </p>
                     </div>
                 </div>
             </div>
 
-
         </main>
 
     </div>
-
-
 
 </div>
 @endsection
