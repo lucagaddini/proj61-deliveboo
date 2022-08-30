@@ -46,5 +46,9 @@ h1{
   color: $fifth-color;
 }
 
+.lead{
+  color: white;
+}
+
 </style>
 
