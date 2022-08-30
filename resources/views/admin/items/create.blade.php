@@ -20,7 +20,7 @@
 
                             {{-- Nome prodotto --}}
                             <div class="form-group">
-                                <label for="name">Nome del prodotto</label>
+                                <label class="font-weight-bold" for="name">Nome del prodotto</label>
                                 <input type="text"
                                     value="{{old('name')}}"
                                     class="form-control @error('name') is-invalid @enderror"
@@ -45,7 +45,7 @@
 
                             {{-- Prezzo prodotto --}}
                             <div class="form-group">
-                                <label for="price">Prezzo del prodotto</label>
+                                <label class="font-weight-bold" for="price">Prezzo del prodotto</label>
                                 <input type="text"
                                     value="{{old('price')}}"
                                     class="form-control @error('price') is-invalid @enderror"
@@ -69,7 +69,7 @@
 
                             {{-- Descrizione prodotto --}}
                             <div class="form-group">
-                                <label for="description">Descrizione del prodotto</label>
+                                <label class="font-weight-bold" for="description">Descrizione del prodotto</label>
                                 <textarea type="text"
                                         rows="6"
                                         class="form-control @error('description') is-invalid @enderror"
@@ -95,7 +95,7 @@
 
                             {{-- Prodotto vegetariano --}}
                             <div class="form-group d-flex">
-                                <label for="vegetarian">Questo prodotto è vegetariano?</label>
+                                <label class="font-weight-bold" for="vegetarian">Questo prodotto è vegetariano?</label>
                                 <div class="d-flex">
                                     <div class="form-check mx-3">
                                         <input class="form-check-input"
@@ -130,7 +130,7 @@
 
                             {{-- Prodotto visibile --}}
                             <div class="form-group d-flex">
-                                <label for="visible">Rendi visibile sul tuo men&ugrave; questo prodotto</label>
+                                <label class="font-weight-bold" for="visible">Rendi visibile sul tuo men&ugrave; questo prodotto</label>
                                 <div class="d-flex">
                                     <div class="form-check mx-3">
                                         <input class="form-check-input" type="radio"
@@ -163,7 +163,7 @@
                             {{-- Select per Courses --}}
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" for="course_id">Scegli il tipo di portata</label>
+                                    <label class="font-weight-bold input-group-text" for="course_id">Scegli il tipo di portata</label>
                                 </div>
                                 <select class="custom-select"
                                         id="course_id" name="course_id">
@@ -181,8 +181,17 @@
 
                             {{-- Inserimento Immagini --}}
                             <div class="form-group">
-                                <label for="item-image">Aggiungi l'immagine del prodotto</label>
-                                <input type="file" class="form-control-file" id="item-image" name="image">
+                                <label class="font-weight-bold" for="item-image">Aggiungi l'immagine del prodotto</label>
+                                <input type="file" 
+                                        class="form-control-file" 
+                                        id="item-image" 
+                                        name="image"
+                                        onchange="showImage(event)">
+                            </div>
+
+                            <div id="new-image-box" class="d-none">
+                                <p for="immagine-prodotto">Immagine inserita:</p>
+                                <img id="new-image" name="immagine-prodotto" style="max-width: 50%" src="" alt="Nuova Immagine">
                             </div>
 
                             {{-- Submit --}}
@@ -200,6 +209,13 @@
     (function(){
         $("#register-form").parsley();
     });
+
+    var showImage = function(event) {
+        const image = document.getElementById('new-image');
+        image.src = URL.createObjectURL(event.target.files[0]);
+        const box = document.getElementById('new-image-box');
+        box.classList.remove('d-none');
+    };
 
 </script>
 

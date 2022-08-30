@@ -21,7 +21,7 @@
 
                             {{-- Nome prodotto --}}
                             <div class="form-group">
-                                <label for="name">Nome del prodotto</label>
+                                <label class="font-weight-bold"  for="name">Nome del prodotto</label>
                                 <input type="text" value="{{old('name', $item->name)}}"
                                     class="form-control @error('name') is-invalid @enderror"
                                     id="name" name="name"
@@ -34,7 +34,7 @@
 
                             {{-- Prezzo prodotto --}}
                             <div class="form-group">
-                                <label for="price">Prezzo del prodotto</label>
+                                <label class="font-weight-bold"  for="price">Prezzo del prodotto</label>
                                 <input type="text" value="{{old('price', $item->price)}}"
                                     class="form-control @error('price') is-invalid @enderror"
                                     id="price" name="price"
@@ -47,7 +47,7 @@
 
                             {{-- Descrizione del prodotto --}}
                             <div class="form-group">
-                                <label for="description">Descrizione del prodotto</label>
+                                <label class="font-weight-bold"  for="description">Descrizione del prodotto</label>
                                 <textarea type="text" rows="6"
                                         class="form-control @error('description') is-invalid @enderror"
                                         id="description" name="description"
@@ -61,7 +61,7 @@
 
                             {{-- Prodotto vegetariano --}}
                             <div class="form-group d-flex">
-                                <label for="vegetarian">Questo prodotto è vegetariano?</label>
+                                <label class="font-weight-bold" for="vegetarian">Questo prodotto è vegetariano?</label>
                                 <div class="d-flex">
                                     <div class="form-check mx-3">
                                         <input class="form-check-input" type="radio"
@@ -89,7 +89,7 @@
 
                             {{-- Prodotto visibile --}}
                             <div class="form-group d-flex">
-                                <label for="visible">Rendi visibile sul tuo men&ugrave; questo prodotto</label>
+                                <label class="font-weight-bold" for="visible">Rendi visibile sul tuo men&ugrave; questo prodotto</label>
                                 <div class="d-flex">
                                     <div class="form-check mx-3">
                                         <input class="form-check-input" type="radio"
@@ -118,7 +118,7 @@
                             {{-- Select per Courses --}}
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" for="course_id">Scegli il tipo di portata</label>
+                                    <label class="font-weight-bold input-group-text" for="course_id">Scegli il tipo di portata</label>
                                 </div>
                                 <select class="custom-select"
                                         id="course_id" name="course_id">
@@ -135,14 +135,17 @@
                             </div>
 
                             {{-- Inserimento Immagini --}}
-                            <div class="p-2 m-3">
-                                <p for="immagine-prodotto">Immagine precedente:</p>
-                                <img name="immagine-prodotto" style="max-width: 50%" src="{{ asset('images/' . $item->image_path) }}" alt="{{ $item->path_name }}">
+                            <div class="mb-3">
+                                <p class="font-weight-bold" for="immagine-prodotto">Immagine attuale:</p>
+                                <img id="old-image" name="immagine-prodotto" style="max-width: 50%" src="{{ asset('images/' . $item->image_path) }}" alt="{{ $item->path_name }}">
                             </div>
 
                             <div class="form-group">
-                                <label for="item-image">Aggiungi l'immagine del prodotto</label>
-                                <input type="file" class="form-control-file" id="item-image">
+                                <label class="font-weight-bold" for="item-image">Aggiungi/Cambia l'immagine del prodotto</label>
+                                <input type="file" 
+                                        class="form-control-file" 
+                                        id="item-image"
+                                        onchange="showImage(event)">
                             </div>
 
                             {{-- Submit --}}
@@ -154,6 +157,13 @@
         </main>
     </div>
 </div>
+
+<script>
+    var showImage = function(event) {
+        const image = document.getElementById('old-image');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
 
 
 @endsection
