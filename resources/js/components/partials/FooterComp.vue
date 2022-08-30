@@ -103,8 +103,10 @@ export default {
 
 <style lang="scss" scoped>
 
+@import 'resources/sass/front/_variables.scss';
+
 footer{
-    background-color: #00D7C7;
+    background-color: $primary-color;
     color: black;
 }
 
@@ -174,7 +176,7 @@ ul{
 }
 
 hr{
-    border: 2px solid #FF9D22;
+    border: 1px solid $tertiary-color;
     border-radius: 4px;
 }
 
