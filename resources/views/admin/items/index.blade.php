@@ -24,8 +24,9 @@
                           <th scope="col">ID</th>
                           <th scope="col">Nome</th>
                           {{-- <th scope="col">Categoria</th> --}}
-                          <th scope="col">Descrizione</th>
-                          <th scope="col">Portate</th>
+                          <th scope="col">Vegetariano</th>
+                          <th scope="col">Visibile</th>
+                          <th scope="col">Portata</th>
                           <th scope="col">Modifiche</th>
                         </tr>
                       </thead>
@@ -38,7 +39,8 @@
 
 
 
-                          <td>{{ ucfirst($item->description) }}</td>
+                          <td>{{ $item->vegetarian === 1? 'Sì' : 'No' }}</td>
+                          <td>{{ $item->visible === 1? 'Sì' : 'No' }}</td>
 
                             {{-- <td> {{$item->course->name}}</td> --}}
 
@@ -61,7 +63,7 @@
 
                       </tbody>
                     </table>
-
+                    {{ $items->links() }}
                   </div>
               </div>
           </div>
