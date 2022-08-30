@@ -174,7 +174,7 @@ ul{
 }
 
 hr{
-    border: 2px solid #FF9D22;
+    border: 0.8px solid #FF9D22;
     border-radius: 4px;
 }
 
