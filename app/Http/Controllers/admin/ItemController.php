@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -17,8 +18,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-
-        $items = Item::orderBy('id','desc')->paginate(7);
+        $current_user = auth()->user()->id;
+        $items = Item::select('*')->where('user_id','=', $current_user )->paginate(7);
         $courses = Course::all();
         return view('admin.items.index', compact('items', 'courses'));
 
