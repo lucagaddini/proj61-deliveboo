@@ -1,6 +1,6 @@
 {{-- Colonna laterale sinistra --}}
 @auth
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar_custom collapse">
+<nav id="sidebarMenu" class="col-md-2 col-lg-2 d-md-block sidebar_custom collapse">
     <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
 
