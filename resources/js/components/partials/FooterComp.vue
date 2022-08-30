@@ -27,9 +27,9 @@
                 <ul>
                   <h4>Contacts</h4>
                   <li><a href="#">DeliveBoo Inc</a></li>
-                  <li><a href="#">Telephone</a></li>
-                  <li><a href="#">Adress</a></li>
-                  <li><a href="#">Email</a></li>
+                  <li><a href="#">333 567 893</a></li>
+                  <li><a href="#">DeliveBoo S.R.L. Via Garibaldi 110, 37100</a></li>
+                  <li><a href="#">deliveboo@gmail.com</a></li>
                 </ul>
               </nav>
             </div>
@@ -66,10 +66,10 @@
             <div class="col-12 col-lg-6">
                 <nav class="payments d-flex justify-content-lg-start justify-content-center">
                     <ul>
-                        <a href="#"><i class="fa-brands fa-cc-visa"></i></a>
-                        <a href="#"><i class="fa-brands fa-cc-mastercard"></i></a>
-                        <a href="#"><i class="fa-brands fa-cc-paypal"></i></a>
-                        <a href="#"><i class="fa-brands fa-cc-amex"></i></a>
+                        <i class="fa-brands fa-cc-visa"></i>
+                        <i class="fa-brands fa-cc-mastercard"></i>
+                        <i class="fa-brands fa-cc-paypal"></i>
+                        <i class="fa-brands fa-cc-amex"></i>
                     </ul>
                 </nav>
             </div>
@@ -103,10 +103,8 @@ export default {
 
 <style lang="scss" scoped>
 
-@import 'resources/sass/front/_variables.scss';
-
 footer{
-    background-color: $primary-color;
+    background-color: #00D7C7;
     color: black;
 }
 
@@ -176,7 +174,7 @@ ul{
 }
 
 hr{
-    border: 1px solid $tertiary-color;
+    border: 2px solid #FF9D22;
     border-radius: 4px;
 }
 
@@ -191,14 +189,9 @@ hr{
     margin: 0px 20px 6px 0px;
 }
 
-.payments a{
-
+.payments i{
     color: black;
     text-decoration: none;
-
-    &:hover{
-        opacity: 50%;
-    }
 }
 
 /* Other Links */
