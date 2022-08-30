@@ -59,7 +59,10 @@ class ItemController extends Controller
 
         $new_data = $request->all();
         $item = new Item();
+
         $item->image_path = $new_image_name;
+        $item->user_id = auth()->user()->id;
+
         $item->fill($new_data);
         $item->save();
 
