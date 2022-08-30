@@ -75,8 +75,25 @@
         </div>
         <!-- /Categories -->
 
+        <hr>
+
         <!-- Restaurants -->
-        <div class="restaurants"></div>
+        <div class="restaurants container">
+
+            <!-- Res. Title -->
+            <div class="res-title">
+                <h2>Top Rated Restaurants</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti?</p>
+            </div>
+            <!-- /Res. Title -->
+
+            <!-- Res. Cards -->
+            <div class="res-cards">
+
+            </div>
+            <!-- /Res. Cards -->
+
+        </div>
         <!-- /Restaurants -->
 
     </section>
@@ -155,6 +172,12 @@ export default {
 
 @import 'resources/sass/front/_variables.scss';
 
+hr{
+    border: 0.8px solid #FF9D22;
+    border-radius: 4px;
+    width: 90%;
+}
+
 /* Jumbotron */
 .herobanner{
   background-image: url('/assets/img/banner.jpg');
@@ -204,6 +227,21 @@ h1{
         font-weight: bold;
         font-size: 1.2rem;
     }
+}
+
+/* Restaurants */
+.restaurants{
+    margin-top: 75px;
+    margin-bottom: 75px;
+}
+
+.res-title h2{
+    color: black;
+}
+
+.res-title p{
+    font-size: 1.125rem;
+    color: black;
 }
 
 </style>
