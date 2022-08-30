@@ -27,9 +27,9 @@
                 <ul>
                   <h4>Contacts</h4>
                   <li><a href="#">DeliveBoo Inc</a></li>
-                  <li><a href="#">Telephone</a></li>
-                  <li><a href="#">Adress</a></li>
-                  <li><a href="#">Email</a></li>
+                  <li><a href="#">333 567 893</a></li>
+                  <li><a href="#">DeliveBoo S.R.L. Via Garibaldi 110, 37100</a></li>
+                  <li><a href="#">deliveboo@gmail.com</a></li>
                 </ul>
               </nav>
             </div>
@@ -103,10 +103,8 @@ export default {
 
 <style lang="scss" scoped>
 
-@import 'resources/sass/front/_variables.scss';
-
 footer{
-    background-color: $primary-color;
+    background-color: #00D7C7;
     color: black;
 }
 
@@ -176,7 +174,7 @@ ul{
 }
 
 hr{
-    border: 1px solid $tertiary-color;
+    border: 2px solid #FF9D22;
     border-radius: 4px;
 }
 
