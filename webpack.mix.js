@@ -16,6 +16,10 @@ mix.js('resources/js/front.js', 'public/js')
     .js('resources/js/back.js','public/js')
     .sass('resources/sass/admin/style.scss', 'public/css/admin')
     .sass('resources/sass/front/style.scss', 'public/css/front')
+    .copy(
+        'node_modules/@fortawesome/fontawesome-free/webfonts',
+        'public/css/webfonts'
+    )
     .options({
         processCssUrls: false
     });
