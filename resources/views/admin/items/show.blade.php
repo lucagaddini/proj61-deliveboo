@@ -28,13 +28,13 @@
                         
 
                         <div class="button_container d-flex justify-content-end align-items-center">
-                            <a class=" mx-3 btn btn-dark" href="{{ route('admin.items.edit', $item)  }}">Modifica</a>
+                            <a class=" mx-3 btn btn_custom_edit" href="{{ route('admin.items.edit', $item)  }}">Modifica <i class="fas fa-edit"></i></a>
                             <form class= "d-inline"
                                     onsubmit= "return confirm('Vuoi eliminare definitivamente il piatto ## {{ $item->name }} ## ?')"
                                     action= "{{ route('admin.items.destroy', $item) }}" method= "POST">
                                 @csrf
                                 @method ('DELETE')
-                                <button class="btn btn-danger">Elimina</button>
+                                <button class="btn btn_custom_delete">Elimina <i class="far fa-trash-alt"></i></button>
                             </form>
                         </div>
 

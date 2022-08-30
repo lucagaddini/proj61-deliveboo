@@ -146,7 +146,7 @@
                             </div>
 
                             {{-- Submit --}}
-                            <button type="submit" class="btn btn-primary">Completa</button>
+                            <button type="submit" class="btn btn_custom">Modifica</button>
                         </form>
                     </div>
                 </div>
