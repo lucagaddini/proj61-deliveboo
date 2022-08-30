@@ -74,6 +74,7 @@ main{
   padding-top: 35px;
   overflow-y: auto;
 }
+
 .sidebar_custom{
   background-color: $primary-color;
   position: fixed;
@@ -100,10 +101,17 @@ main{
 
 // PULSANTI INDEX
 
+.btn_custom_info,
+.btn_custom_edit,
+.btn_custom_delete{
+  margin: 2px;
+}
+
 .btn_custom_info{
   background-color: $fourth-color;
   border-color: $fourth-color;
   color: white;
+  
 
   &:hover{
     background-color: lighten($color: $fourth-color, $amount: 10%);
@@ -145,14 +153,3 @@ main{
   }
 }
 
-
-//SHOW CRUD
-
-// .card_item_custom_image_box{
-//   width: 30%;
-
-//   img{
-//     width: 100%;
-//   }
-
-// }

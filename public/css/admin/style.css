@@ -19788,6 +19788,12 @@ main {
   background-color: transparent;
 }
 
+.btn_custom_info,
+.btn_custom_edit,
+.btn_custom_delete {
+  margin: 2px;
+}
+
 .btn_custom_info {
   background-color: #FFB69F;
   border-color: #FFB69F;

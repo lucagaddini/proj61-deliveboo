@@ -21,24 +21,24 @@
 
                     <table class="table my-1">
                       <thead>
-                        <tr>
+                        <tr class="text-center">
                           <th scope="col">ID</th>
                           <th scope="col">Nome</th>
-                          <th scope="col">Vegetariano</th>
+                          <th class="d-none d-md-block" scope="col">Vegetariano</th>
                           <th scope="col">Visibile</th>
-                          <th scope="col">Portata</th>
+                          <th class="d-none d-md-block" scope="col">Portata</th>
                           <th scope="col">Modifiche</th>
                         </tr>
                       </thead>
                       <tbody>
                         @foreach ($items as $item )
 
-                        <tr>
+                        <tr class="text-center">
                           <td>{{ $item->id }}</td>
                           <td>{{ $item->name }}</td>
-                          <td>{{ $item->vegetarian === 1? 'Sì' : 'No' }}</td>
+                          <td class="d-none d-md-block" >{{ $item->vegetarian === 1? 'Sì' : 'No' }}</td>
                           <td>{{ $item->visible === 1? 'Sì' : 'No' }}</td>
-                          <td> {{$item->course->name}}</td>
+                          <td class="d-none d-md-block" >{{$item->course->name}}</td>
 
                           <td>
                             <a class="btn btn_custom_info" href=" {{ route('admin.items.show', $item)  }}"><i class="fas fa-info-circle"></i></a>
@@ -49,7 +49,7 @@
                                   action= "{{ route('admin.items.destroy', $item) }}" method= "POST">
                               @csrf
                               @method ('DELETE')
-                              <button class="btn btn btn_custom_delete">
+                              <button class="btn btn_custom_delete">
                                 <i class="far fa-trash-alt"></i>
                               </button>
                             </form>
