@@ -12,8 +12,8 @@
           <div class="d-flex justify-content-start flex-wrap align-items-center pt-3 pb-2 mb-3">
 
               <div class="card w-100">
-                <div class="card-header d-flex justify-content-between align-items-center">{{ __('I tuoi Piatti') }}
-                    <a href="{{ route('admin.items.create') }}" class="btn btn_custom_secondary">Aggiungi un nuovo piatto</a>
+                <div class="card-header d-flex justify-content-between align-items-center">{{ __('I tuoi Prodotti') }}
+                    <a href="{{ route('admin.items.create') }}" class="btn btn_custom_secondary">Aggiungi un nuovo Prodotto</a>
                 </div>
 
                   <div class="card-body">
