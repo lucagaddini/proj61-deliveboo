@@ -9,7 +9,7 @@
 
 {{-- Singola scheda --}}
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <img class="card-img-top" src="{{ asset('images/' . $item->image_path) }}" alt="{{ $item->name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $item->name }}</h5>
                         <p class="card-text">Prezzo {{ ($item->price) }}</p>
@@ -24,7 +24,6 @@
                             <button class="btn btn-danger">Elimina</button>
                         </form>
                     </div>
-
                 </div>
 {{-- /Singola scheda --}}
 

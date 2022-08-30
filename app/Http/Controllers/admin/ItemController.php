@@ -31,7 +31,8 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('admin.items.create');
+        $courses = Course::all();
+        return view('admin.items.create', compact('courses'));
     }
 
     /**
@@ -42,8 +43,22 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+// STORAGE DELLE IMMAGINI
+        // Creo validazione per il nuovo campo aggiunto ad Item (spostabile insieme alle altre validation)
+        $request->validate([
+            'image' => 'required|mimes:jpg,png,jpeg|max:5048'
+        ]);
+
+        // Creo un nome univoco per le immagini che saranno caricate
+        $new_image_name = time() . '-' . $request->name . '.' . $request->image->extension();
+
+        // Sposto l'immagine vera e propria in images (non cambiare il path)
+        $request->image->move(public_path('images'), $new_image_name);
+// /STORAGE DELLE IMMAGINI
+
         $new_data = $request->all();
         $item = new Item();
+        $item->image_path = $new_image_name;
         $item->fill($new_data);
         $item->save();
 
@@ -69,7 +84,8 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        return view('admin.items.edit', compact('item'));
+        $courses = Course::all();
+        return view('admin.items.edit', compact('item', 'courses'));
     }
 
     /**
