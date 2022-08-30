@@ -8,7 +8,8 @@
             <div class="d-flex justify-content-start flex-wrap align-items-center pt-3 pb-2 mb-3">
 
                 <div class="card w-100">
-                    <div class="card-header d-flex justify-content-between align-items-center">{{ __('Crea nuovo Prodotto') }}
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span class="font-weight-bold"> Aggiungi Prodotto</span>
                         <a href="{{ route('admin.items.index') }}" class="btn btn_custom_secondary">Indietro</a>
                     </div>
 

@@ -125,15 +125,21 @@
 
 // PAGINAZIONE INDEX
 .page-item {
-  
   &.active .page-link{
-    
     color: #fff;
     background-color: $primary-color;
     border-color: $primary-color;
   }
+
   .page-link{
     color: $primary-color;
     background-color: #fff;
   }
+}
+
+
+//SHOW CRUD
+
+.card_item_custom_image_box{
+  width: 20%;
 }

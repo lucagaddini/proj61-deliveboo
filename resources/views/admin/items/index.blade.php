@@ -14,7 +14,7 @@
               <div class="card w-100">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <span class="font-weight-bold"> I tuoi Prodotti </span>
-                    <a href="{{ route('admin.items.create') }}" class="btn btn_custom_secondary">Aggiungi un nuovo Prodotto</a>
+                    <a href="{{ route('admin.items.create') }}" class="btn btn_custom_secondary"><i class="fas fa-plus"></i></a>
                 </div>
 
                   <div class="card-body">

@@ -19816,3 +19816,7 @@ readers do not read off random characters that represent icons */
   color: #00D7C7;
   background-color: #fff;
 }
+
+.card_item_custom_image_box {
+  width: 20%;
+}
