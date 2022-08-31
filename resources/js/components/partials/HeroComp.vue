@@ -44,12 +44,6 @@ export default {
 
 @import 'resources/sass/front/_variables.scss';
 
-hr{
-    border: 0.8px solid #FF9D22;
-    border-radius: 4px;
-    width: 90%;
-}
-
 /* Jumbotron */
 .herobanner{
   background-image: url('/assets/img/banner.jpg');
