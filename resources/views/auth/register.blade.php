@@ -211,10 +211,10 @@
 
 <script>
 
-    (function(){
-        $("#register-form").parsley();
-    });
-    
+(function(){
+         $("#register-form").parsley();
+     });
+     
 </script>
 
 @endsection

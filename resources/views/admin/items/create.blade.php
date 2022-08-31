@@ -15,7 +15,7 @@
 
                     <div class="card-body">
 
-                        <form action="{{ route('admin.items.store') }}" method="POST" enctype="multipart/form-data" data-parsley-validate>
+                        <form action="{{ route('admin.items.store') }}" method="POST" enctype="multipart/form-data" id="item-form" data-parsley-validate>
                             @csrf
 
                             {{-- Nome prodotto --}}
@@ -34,12 +34,7 @@
                                     data-parsley-maxlength="255"
                                     data-parsley-trigger="keyup"
                                     {{-- // Parsley --}}
-
                                 >
-
-                                {{-- @error('name')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror --}}
 
                             </div>
 
@@ -51,19 +46,14 @@
                                     class="form-control @error('price') is-invalid @enderror"
                                     id="price"
                                     name="price"
-                                    placeholder="Scrivi qualcosa"
+                                    placeholder="Inserisci il Prezzo"
 
                                     {{-- Utilizzo della libreria Parsley --}}
                                     required
                                     data-parsley-type="number"
                                     data-parsley-trigger="keyup"
                                     {{-- // Parsley --}}
-
                                 >
-
-                                {{-- @error('name')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror --}}
 
                             </div>
 
@@ -75,7 +65,7 @@
                                         class="form-control @error('description') is-invalid @enderror"
                                         id="description"
                                         name="description"
-                                        placeholder="Scrivi qualcosa"
+                                        placeholder="Inserisci la descrizione del Prodotto"
 
                                         {{-- Utilizzo della libreria Parsley --}}
                                         required
@@ -87,16 +77,32 @@
                                 {{-- Non cambiare la disposizione delle >old< se no aggiunge spazi --}}
                                 >{{old('description')}}</textarea>
 
-                                {{-- @error('description')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror --}}
-
                             </div>
 
                             {{-- Prodotto vegetariano --}}
-                            <div class="form-group d-flex">
+                            <div class="form-group d-flex flex-column">
                                 <label class="font-weight-bold" for="vegetarian">Questo prodotto è vegetariano?</label>
                                 <div class="d-flex">
+                                    
+
+                                    <div class="form-check">
+                                        <input class="form-check-input"
+                                                type="radio"
+                                                name="vegetarian"
+                                                id="vegetarianTrue"
+                                                value="1"
+                                                {{ old('vegetarian') == "1" ? 'checked' : '' }}
+                                                {{-- Utilizzo della libreria Parsley --}}
+                                                required
+                                                data-parsley-errors-container="#error-vegetarian"
+                                                {{-- // Parsley --}}
+                                        >
+
+                                        <label class="form-check-label" for="vegetarianTrue">
+                                        {{-- L'avverbio affermativo richiede sempre l'accento --}}
+                                            S&igrave;
+                                        </label>
+                                    </div>
                                     <div class="form-check mx-3">
                                         <input class="form-check-input"
                                                 type="radio"
@@ -110,28 +116,39 @@
                                             No
                                         </label>
                                     </div>
-
-                                    <div class="form-check">
-                                        <input class="form-check-input"
-                                                type="radio"
-                                                name="vegetarian"
-                                                id="vegetarianTrue"
-                                                value="1"
-                                                {{ old('vegetarian') == "1" ? 'checked' : '' }}
-                                        >
-
-                                        <label class="form-check-label" for="vegetarianTrue">
-                                        {{-- L'avverbio affermativo richiede sempre l'accento --}}
-                                            S&igrave;
-                                        </label>
-                                    </div>
                                 </div>
+
+                                {{-- Span contenente gli errori relativi al gruppo di vegetarian --}}
+                                <div id="error-vegetarian">
+                                </div>
+
+
                             </div>
 
                             {{-- Prodotto visibile --}}
-                            <div class="form-group d-flex">
+                            <div class="form-group d-flex flex-column">
                                 <label class="font-weight-bold" for="visible">Rendi visibile sul tuo men&ugrave; questo prodotto</label>
                                 <div class="d-flex">
+                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio"
+                                                name="visible" id="visibleTrue"
+                                                value="1"
+                                                {{ old('visible') == '1' ? 'checked' : '' }}
+
+                                                {{-- Utilizzo della libreria Parsley --}}
+                                                required
+                                                data-parsley-errors-container="#error-visible"
+                                                {{-- // Parsley --}}
+                                        >
+
+                                        <label class="form-check-label" for="visibleTrue">
+                                        {{-- L'avverbio affermativo richiede sempre l'accento --}}
+                                            S&igrave;
+                                        </label>
+
+                                    </div>
+
                                     <div class="form-check mx-3">
                                         <input class="form-check-input" type="radio"
                                                 name="visible" id="visibleFalse"
@@ -144,40 +161,48 @@
                                         </label>
 
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio"
-                                                name="visible" id="visibleTrue"
-                                                value="1"
-                                                {{ old('visible') == '1' ? 'checked' : '' }}
-                                        >
 
-                                        <label class="form-check-label" for="visibleTrue">
-                                        {{-- L'avverbio affermativo richiede sempre l'accento --}}
-                                            S&igrave;
-                                        </label>
-
-                                    </div>
                                 </div>
+
+                                {{-- Span contenente gli errori relativi al gruppo di visible --}}
+                                <div id="error-visible">
+                                </div>
+
                             </div>
 
                             {{-- Select per Courses --}}
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <label class="font-weight-bold input-group-text" for="course_id">Scegli il tipo di portata</label>
+                            <div class="d-flex flex-column">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="font-weight-bold input-group-text" for="course_id">Scegli il tipo di portata</label>
+                                    </div>
+                                    <select class="custom-select"
+                                            id="course_id" 
+                                            name="course_id"
+                                            {{-- Utilizzo della libreria Parsley --}}
+                                            required
+                                            data-parsley-errors-container="#error-courses"
+                                            {{-- // Parsley --}}>
+                                        <option value=""></option>
+                                        @foreach ($courses as $course)
+                                            <option
+                                                value="{{ $course->id }}"
+                                                @if (old('course_id')) selected @endif
+                                            >
+                                                    {{ $course->name }}
+                                            </option>
+                                        @endforeach
+                                        
+                                    </select>
+                                    
                                 </div>
-                                <select class="custom-select"
-                                        id="course_id" name="course_id">
-                                    <option value=""></option>
-                                    @foreach ($courses as $course)
-                                        <option
-                                            value="{{ $course->id }}"
-                                            @if (old('course_id')) selected @endif
-                                        >
-                                                {{ $course->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
+
+                                {{-- Span contenente gli errori relativi al gruppo di visible --}}
+                                <div id="error-courses">
+                                </div>
+
                             </div>
+                            
 
                             {{-- Inserimento Immagini --}}
                             <div class="form-group">
@@ -186,7 +211,16 @@
                                         class="form-control-file" 
                                         id="item-image" 
                                         name="image"
-                                        onchange="showImage(event)">
+                                        onchange="showImage(event)"
+                                        {{-- Utilizzo della libreria Parsley --}}
+                                        required
+                                        data-parsley-errors-container="#error-image"
+                                        {{-- // Parsley --}}
+                                        >
+                            </div>
+
+                             {{-- Span contenente gli errori relativi al gruppo di visible --}}
+                            <div id="error-image">
                             </div>
 
                             <div id="new-image-box" class="d-none">
@@ -204,10 +238,13 @@
     </div>
 </div>
 
+
 <script>
 
+    console.log('test');
+    
     (function(){
-        $("#register-form").parsley();
+        $("#item-form").parsley();
     });
 
     var showImage = function(event) {
