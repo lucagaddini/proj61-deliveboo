@@ -1951,6 +1951,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'MenuComp',
@@ -1962,7 +1968,8 @@ __webpack_require__.r(__webpack_exports__);
       itemApiUrl: "http://127.0.0.1:8000/api/categories",
       // Il props va inserito qui al posto del current user!
       current_user: 1,
-      current_menu: []
+      current_menu: [],
+      coursesArray: []
     };
   },
   methods: {
@@ -1978,10 +1985,33 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       });
+    },
+    getCourses: function getCourses(url) {
+      var _this2 = this;
+
+      axios.get(url).then(function (res) {
+        // console.log(res.data);
+        res.data.courses.forEach(function (el) {
+          // console.log(el);
+          var courseObj = {
+            "boolean": false
+          };
+
+          var merged = _objectSpread(_objectSpread({}, el), courseObj);
+
+          _this2.coursesArray.push(merged); // console.log(this.coursesArray);
+
+        });
+      });
+    },
+    beActive: function beActive(el) {
+      if (el["boolean"] == true) el["boolean"] = false;else el["boolean"] = true; // console.log(el.boolean);
+      // console.log(el.id);
     }
   },
   mounted: function mounted() {
     this.getApi(this.itemApiUrl, this.user_id);
+    this.getCourses(this.itemApiUrl);
   }
 });
 
@@ -2095,18 +2125,7 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", [_c("section", {
-    staticClass: "debug jumbo d-flex align-items-end"
-  }, [_c("div", {
-    staticClass: "debug jumbo-info container p-2"
-  }, [_c("h1", [_vm._v("Pizzeria da Alfredo")]), _vm._v(" "), _c("h5", [_vm._v("Categoria e indirizzo")])])]), _vm._v(" "), _c("nav", [_c("div", {
+  return _c("div", [_vm._m(0), _vm._v(" "), _c("nav", [_c("div", {
     staticClass: "container"
   }, [_c("div", {
     staticClass: "row"
@@ -2114,7 +2133,33 @@ var staticRenderFns = [function () {
     staticClass: "col"
   }, [_c("ul", {
     staticClass: "d-flex list-unstyled"
-  }, [_c("li", [_vm._v("Nello")]), _vm._v(" "), _c("li", [_vm._v("Nello")]), _vm._v(" "), _c("li", [_vm._v("Nello")]), _vm._v(" "), _c("li", [_vm._v("Nello")])])])])])]), _vm._v(" "), _c("main", {
+  }, _vm._l(_vm.coursesArray, function (course) {
+    return _c("li", {
+      key: course.id,
+      "class": course["boolean"] == true ? "active" : "",
+      on: {
+        click: function click($event) {
+          return _vm.beActive(course);
+        }
+      }
+    }, [_vm._v("\n                              " + _vm._s(course.name) + "\n                      ")]);
+  }), 0)])])])]), _vm._v(" "), _vm._m(1)]);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("section", {
+    staticClass: "debug jumbo d-flex align-items-end"
+  }, [_c("div", {
+    staticClass: "debug jumbo-info container p-2"
+  }, [_c("h1", [_vm._v("Pizzeria di Vercingetorige della turingia inferiore")]), _vm._v(" "), _c("h5", [_vm._v("Categoria e indirizzo")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("main", {
     staticClass: "container d-flex justify-content-between flex-column"
   }, [_c("div", {
     staticClass: "row"
@@ -2122,7 +2167,7 @@ var staticRenderFns = [function () {
     staticClass: "sx col-7"
   }, [_vm._v("Lista prodotti")]), _vm._v(" "), _c("section", {
     staticClass: "dx col-5"
-  }, [_vm._v("Recap pagamento")])])])]);
+  }, [_vm._v("Recap pagamento")])])]);
 }];
 render._withStripped = true;
 
@@ -6791,7 +6836,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".jumbo[data-v-68913da4] {\n  min-height: 45vh;\n  background-image: url(\"/images/restaurant-1.jpg\");\n  background-position: center;\n  background-size: auto;\n  background-repeat: no-repeat;\n  color: white;\n}\n.jumbo .jumbo-info[data-v-68913da4] {\n  margin: 3% auto;\n}\n.jumbo .jumbo-info h1[data-v-68913da4] {\n  font-weight: 900;\n}\n.jumbo .jumbo-info h5[data-v-68913da4] {\n  font-weight: 700;\n}\nnav[data-v-68913da4] {\n  box-shadow: 0px 4px 4px 0px rgba(100, 100, 100, 0.1);\n  font-weight: 500;\n}\nnav ul[data-v-68913da4] {\n  margin: 0;\n}\nnav ul li[data-v-68913da4] {\n  padding: 0.5% 2%;\n  margin: 1%;\n  background-color: rgb(241, 241, 241);\n  border-radius: 20px;\n}\nnav ul li[data-v-68913da4]:hover {\n  background-color: #FF9D22;\n  color: white;\n}", ""]);
+exports.push([module.i, ".jumbo[data-v-68913da4] {\n  min-height: 50vh;\n  background-image: url(\"/images/restaurant-1.jpg\");\n  background-position: center;\n  background-size: auto;\n  background-repeat: no-repeat;\n  color: white;\n}\n.jumbo .jumbo-info[data-v-68913da4] {\n  margin: 2% auto;\n}\n.jumbo .jumbo-info h1[data-v-68913da4] {\n  font-weight: 900;\n}\n.jumbo .jumbo-info h5[data-v-68913da4] {\n  font-weight: 700;\n}\nnav[data-v-68913da4] {\n  box-shadow: 0px 4px 4px 0px rgba(100, 100, 100, 0.1);\n  font-weight: 500;\n}\nnav ul[data-v-68913da4] {\n  margin: 0;\n}\nnav ul li[data-v-68913da4] {\n  padding: 0.5% 2%;\n  margin: 1%;\n  background-color: rgb(241, 241, 241);\n  border-radius: 20px;\n}\nnav ul li[data-v-68913da4]:hover {\n  background-color: #FF9D22;\n  color: white;\n  cursor: pointer;\n}\n.active[data-v-68913da4] {\n  background-color: #FF9D22;\n  color: white;\n}\nmain[data-v-68913da4] {\n  min-height: 80vh;\n}", ""]);
 
 // exports
 

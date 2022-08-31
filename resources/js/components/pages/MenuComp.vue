@@ -3,7 +3,7 @@
     <!-- Immagine di testa (ristorante) -->
     <section class="debug jumbo d-flex align-items-end">
         <div class="debug jumbo-info container p-2">
-            <h1>Pizzeria da Alfredo</h1>
+            <h1>Pizzeria di Vercingetorige della turingia inferiore</h1>
             <h5>Categoria e indirizzo</h5>
         </div>
     </section>
@@ -15,10 +15,13 @@
             <div class="row">
                 <div class="col">
                     <ul class="d-flex list-unstyled">
-                        <li>Nello</li>
-                        <li>Nello</li>
-                        <li>Nello</li>
-                        <li>Nello</li>
+                        <li
+                            v-for="course in coursesArray"
+                            :key="course.id"
+                            @click="beActive(course)"
+                            :class="course.boolean == true ? 'active' : '' ">
+                                {{course.name}}
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -59,6 +62,8 @@ export default {
             // Il props va inserito qui al posto del current user!
             current_user: 1,
             current_menu: [],
+            coursesArray: [],
+
         }
     },
 
@@ -75,10 +80,34 @@ export default {
                 });
             })
         },
+        getCourses(url){
+            axios.get(url)
+            .then(res=>{
+                // console.log(res.data);
+                res.data.courses.forEach(el => {
+                    // console.log(el);
+                    var courseObj = {
+                        boolean : false,
+                    };
+                    let merged = {
+                        ...el,...courseObj
+                    };
+                    this.coursesArray.push(merged);
+                    // console.log(this.coursesArray);
+                });
+            })
+        },
+        beActive(el){
+            if(el.boolean == true) el.boolean = false;
+            else el.boolean = true;
+            // console.log(el.boolean);
+            // console.log(el.id);
+        }
     },
 
     mounted(){
         this.getApi(this.itemApiUrl, this.user_id);
+        this.getCourses(this.itemApiUrl);
     },
 }
 </script>
@@ -92,7 +121,7 @@ export default {
 // }
 
 .jumbo{
-    min-height: 45vh;
+    min-height: 50vh;
 
     background-image: url('/images/restaurant-1.jpg');
     background-position: center;
@@ -101,7 +130,7 @@ export default {
 
     color: white;
     .jumbo-info{
-        margin: 3% auto;
+        margin: 2% auto;
         h1{
             font-weight: 900;
         }
@@ -129,8 +158,18 @@ nav{
             &:hover{
                 background-color: $tertiary-color;
                 color: white;
+                cursor: pointer;
             }
         }
     }
+}
+
+.active{
+    background-color: $tertiary-color;
+    color: white;
+}
+
+main{
+    min-height: 80vh;
 }
 </style>
