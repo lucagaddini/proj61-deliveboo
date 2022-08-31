@@ -4,7 +4,7 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 import HomeComp from './components/pages/HomeComp';
-import ProvaComp from './components/pages/ProvaComp';
+import MenuComp from './components/pages/MenuComp';
 
 const router = new VueRouter({
     mode: 'history',
@@ -16,9 +16,9 @@ const router = new VueRouter({
             component: HomeComp
         },
         {
-            path: '/prova',
-            name: 'prova',
-            component: ProvaComp
+            path: '/menu',
+            name: 'menu',
+            component: MenuComp
         }
     ]
 });
