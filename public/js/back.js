@@ -38882,7 +38882,7 @@ Parsley.setLocale('it');
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Laravel\esercizio finale\proj61-deliveboo-team-2\resources\js\back.js */"./resources/js/back.js");
+module.exports = __webpack_require__(/*! /Users/micheleiliescu/Desktop/prog-final/proj61-deliveboo-team-2/resources/js/back.js */"./resources/js/back.js");
 
 
 /***/ })
