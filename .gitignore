@@ -10,3 +10,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+
+// Da togliere alla fine
+public/js/front.js
+public/js/back.js
