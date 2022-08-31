@@ -24,6 +24,7 @@ Route::middleware('auth')
 
         Route::get('/','HomeController@index')->name('home');
         Route::resource('items', 'ItemController');
+        Route::resource('orders', 'OrderController');
 
 });
 
