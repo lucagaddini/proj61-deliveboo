@@ -31,9 +31,30 @@
 
     <!-- Main con piatti e riepilogo -->
     <main class="container d-flex justify-content-between flex-column">
-        <div class="row">
+        <div class="debug row">
             <!-- Lista prodotto -->
-            <section class="sx col-7">Lista prodotti</section>
+            <section class="debug sx col-7">
+                <div class="container">
+                    <h3>Starters</h3>
+                    <div class="row">
+                        <!-- Singola card -->
+                        <div class="ggc_card">
+                            <img class="" src="/images/burghers-0.jpg" alt="Card image cap">
+                            <div class="ggc_card-body">
+                                <div class="add-to-cart p-1">
+                                    <span>add to cart</span>
+                                </div>
+                                <div class="info-card-container d-flex align-items-center">
+                                    <div class="item-name">nome</div>
+                                    <div class="item-price">12.00</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Singola card -->
+
+                    </div>
+                </div>
+            </section>
             <!-- /Lista prodotto -->
 
             <!-- Riepilogo acquisti -->
@@ -68,6 +89,7 @@ export default {
     },
 
     methods:{
+        // Chiamata api da filtrare per id ristorante
         getApi(url){
             axios.get(url)
             .then(res=>{
@@ -80,12 +102,12 @@ export default {
                 });
             })
         },
+
+        // Assegno valori true e false alle portate
         getCourses(url){
             axios.get(url)
             .then(res=>{
-                // console.log(res.data);
                 res.data.courses.forEach(el => {
-                    // console.log(el);
                     var courseObj = {
                         boolean : false,
                     };
@@ -93,16 +115,15 @@ export default {
                         ...el,...courseObj
                     };
                     this.coursesArray.push(merged);
-                    // console.log(this.coursesArray);
                 });
             })
         },
         beActive(el){
             if(el.boolean == true) el.boolean = false;
             else el.boolean = true;
-            // console.log(el.boolean);
-            // console.log(el.id);
-        }
+        },
+        // /Assegno valori true e false alle portate
+
     },
 
     mounted(){
@@ -115,10 +136,10 @@ export default {
 <style scoped lang="scss">
 @import 'resources/sass/front/_variables.scss';
 
-// .debug{
-//     background-color: rgba($color: green, $alpha: 0.2);
-//     border: 1px solid black;
-// }
+.debug{
+    background-color: rgba($color: green, $alpha: 0.2);
+    border: 1px solid black;
+}
 
 .jumbo{
     min-height: 50vh;
@@ -171,5 +192,34 @@ nav{
 
 main{
     min-height: 80vh;
+    .sx{
+        margin-top: 5%;
+        font-weight: 900;
+        color: black;
+        .ggc_card{
+            max-width: 10vw;
+            border-radius: 10px;
+            // max-height: 12vw;
+            // margin-right: 2%;
+            img{
+                max-width: 100%;
+            }
+            .ggc_card-body{
+                text-transform: uppercase;
+                text-align: center;
+                .add-to-cart{
+                    background-color: $primary-color;
+                }
+                .info-card-container{
+                    .item-name{
+                        width: 70%;
+                    }
+                    .item-price{
+                        width: 30%;
+                    }
+                }
+            }
+        }
+    }
 }
 </style>

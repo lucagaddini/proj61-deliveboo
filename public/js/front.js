@@ -1973,6 +1973,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: {
+    // Chiamata api da filtrare per id ristorante
     getApi: function getApi(url) {
       var _this = this;
 
@@ -1986,28 +1987,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       });
     },
+    // Assegno valori true e false alle portate
     getCourses: function getCourses(url) {
       var _this2 = this;
 
       axios.get(url).then(function (res) {
-        // console.log(res.data);
         res.data.courses.forEach(function (el) {
-          // console.log(el);
           var courseObj = {
             "boolean": false
           };
 
           var merged = _objectSpread(_objectSpread({}, el), courseObj);
 
-          _this2.coursesArray.push(merged); // console.log(this.coursesArray);
-
+          _this2.coursesArray.push(merged);
         });
       });
     },
     beActive: function beActive(el) {
-      if (el["boolean"] == true) el["boolean"] = false;else el["boolean"] = true; // console.log(el.boolean);
-      // console.log(el.id);
-    }
+      if (el["boolean"] == true) el["boolean"] = false;else el["boolean"] = true;
+    } // /Assegno valori true e false alle portate
+
   },
   mounted: function mounted() {
     this.getApi(this.itemApiUrl, this.user_id);
@@ -2162,10 +2161,31 @@ var staticRenderFns = [function () {
   return _c("main", {
     staticClass: "container d-flex justify-content-between flex-column"
   }, [_c("div", {
-    staticClass: "row"
+    staticClass: "debug row"
   }, [_c("section", {
-    staticClass: "sx col-7"
-  }, [_vm._v("Lista prodotti")]), _vm._v(" "), _c("section", {
+    staticClass: "debug sx col-7"
+  }, [_c("div", {
+    staticClass: "container"
+  }, [_c("h3", [_vm._v("Starters")]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "ggc_card"
+  }, [_c("img", {
+    attrs: {
+      src: "/images/burghers-0.jpg",
+      alt: "Card image cap"
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "ggc_card-body"
+  }, [_c("div", {
+    staticClass: "add-to-cart p-1"
+  }, [_c("span", [_vm._v("add to cart")])]), _vm._v(" "), _c("div", {
+    staticClass: "info-card-container d-flex align-items-center"
+  }, [_c("div", {
+    staticClass: "item-name"
+  }, [_vm._v("nome")]), _vm._v(" "), _c("div", {
+    staticClass: "item-price"
+  }, [_vm._v("12.00")])])])])])])]), _vm._v(" "), _c("section", {
     staticClass: "dx col-5"
   }, [_vm._v("Recap pagamento")])])]);
 }];
@@ -6836,7 +6856,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".jumbo[data-v-68913da4] {\n  min-height: 50vh;\n  background-image: url(\"/images/restaurant-1.jpg\");\n  background-position: center;\n  background-size: auto;\n  background-repeat: no-repeat;\n  color: white;\n}\n.jumbo .jumbo-info[data-v-68913da4] {\n  margin: 2% auto;\n}\n.jumbo .jumbo-info h1[data-v-68913da4] {\n  font-weight: 900;\n}\n.jumbo .jumbo-info h5[data-v-68913da4] {\n  font-weight: 700;\n}\nnav[data-v-68913da4] {\n  box-shadow: 0px 4px 4px 0px rgba(100, 100, 100, 0.1);\n  font-weight: 500;\n}\nnav ul[data-v-68913da4] {\n  margin: 0;\n}\nnav ul li[data-v-68913da4] {\n  padding: 0.5% 2%;\n  margin: 1%;\n  background-color: rgb(241, 241, 241);\n  border-radius: 20px;\n}\nnav ul li[data-v-68913da4]:hover {\n  background-color: #FF9D22;\n  color: white;\n  cursor: pointer;\n}\n.active[data-v-68913da4] {\n  background-color: #FF9D22;\n  color: white;\n}\nmain[data-v-68913da4] {\n  min-height: 80vh;\n}", ""]);
+exports.push([module.i, ".debug[data-v-68913da4] {\n  background-color: rgba(0, 128, 0, 0.2);\n  border: 1px solid black;\n}\n.jumbo[data-v-68913da4] {\n  min-height: 50vh;\n  background-image: url(\"/images/restaurant-1.jpg\");\n  background-position: center;\n  background-size: auto;\n  background-repeat: no-repeat;\n  color: white;\n}\n.jumbo .jumbo-info[data-v-68913da4] {\n  margin: 2% auto;\n}\n.jumbo .jumbo-info h1[data-v-68913da4] {\n  font-weight: 900;\n}\n.jumbo .jumbo-info h5[data-v-68913da4] {\n  font-weight: 700;\n}\nnav[data-v-68913da4] {\n  box-shadow: 0px 4px 4px 0px rgba(100, 100, 100, 0.1);\n  font-weight: 500;\n}\nnav ul[data-v-68913da4] {\n  margin: 0;\n}\nnav ul li[data-v-68913da4] {\n  padding: 0.5% 2%;\n  margin: 1%;\n  background-color: rgb(241, 241, 241);\n  border-radius: 20px;\n}\nnav ul li[data-v-68913da4]:hover {\n  background-color: #FF9D22;\n  color: white;\n  cursor: pointer;\n}\n.active[data-v-68913da4] {\n  background-color: #FF9D22;\n  color: white;\n}\nmain[data-v-68913da4] {\n  min-height: 80vh;\n}\nmain .sx[data-v-68913da4] {\n  margin-top: 5%;\n  font-weight: 900;\n  color: black;\n}\nmain .sx .ggc_card[data-v-68913da4] {\n  max-width: 10vw;\n  border-radius: 10px;\n}\nmain .sx .ggc_card img[data-v-68913da4] {\n  max-width: 100%;\n}\nmain .sx .ggc_card .ggc_card-body[data-v-68913da4] {\n  text-transform: uppercase;\n  text-align: center;\n}\nmain .sx .ggc_card .ggc_card-body .add-to-cart[data-v-68913da4] {\n  background-color: #00D7C7;\n}\nmain .sx .ggc_card .ggc_card-body .info-card-container .item-name[data-v-68913da4] {\n  width: 70%;\n}\nmain .sx .ggc_card .ggc_card-body .info-card-container .item-price[data-v-68913da4] {\n  width: 30%;\n}", ""]);
 
 // exports
 
