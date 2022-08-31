@@ -1,9 +1,12 @@
 <template>
   <div>
     <!-- Immagine di testa (ristorante) -->
-    <div class="jumbo debug">
-        sono un jumbotron
-    </div>
+    <section class="debug jumbo d-flex align-items-end">
+        <div class="debug jumbo-info p-2">
+            <h1>Pizzeria da Alfredo</h1>
+            <h5>Categoria e indirizzo</h5>
+        </div>
+    </section>
     <!-- /Immagine di testa (ristorante) -->
 
     <!-- Navbar per navigare fra le portate -->
@@ -75,7 +78,25 @@ export default {
     border: 1px solid black;
 }
 
-// .jumbo{
-//     // background-image:;
-// }
+.jumbo{
+    min-height: 45vh;
+
+    background-image: url('/images/restaurant-1.jpg');
+    background-position: center;
+    background-size: auto;
+    background-repeat: no-repeat;
+
+    color: white;
+
+
+    .jumbo-info{
+        margin: 3% 6%;
+        h1{
+            font-weight: 900;
+        }
+        h5{
+            font-weight: 700;
+        }
+    }
+}
 </style>
