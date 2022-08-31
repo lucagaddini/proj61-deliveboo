@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- Immagine di testa (ristorante) -->
-    <section class="debug jumbo d-flex align-items-end">
-        <div class="debug jumbo-info container p-2">
+    <section class="jumbo d-flex align-items-end">
+        <div class="jumbo-info container p-2">
             <h1>Pizzeria di Vercingetorige della turingia inferiore</h1>
             <h5>Categoria e indirizzo</h5>
         </div>
@@ -30,38 +30,39 @@
     <!-- /Navbar per navigare fra le portate -->
 
     <!-- Main con piatti e riepilogo -->
-    <main class="container d-flex justify-content-between flex-column">
-        <div class="debug row">
+    <!-- <main class="container d-flex justify-content-between flex-column">
+        <div class="debug row"> -->
             <!-- Lista prodotto -->
-            <section class="debug sx col-7">
+            <!-- <section class="debug sx col-7">
                 <div class="container">
                     <h3>Starters</h3>
-                    <div class="row">
+                    <div class="row"> -->
                         <!-- Singola card -->
-                        <div class="ggc_card">
-                            <img class="" src="/images/burghers-0.jpg" alt="Card image cap">
+                        <!-- <div class="ggc_card">
+                            <div class="img" style=" background-image: url('/images/pizza-0.jpg');">
+                                <span></span>
+                            </div>
                             <div class="ggc_card-body">
                                 <div class="add-to-cart p-1">
                                     <span>add to cart</span>
                                 </div>
                                 <div class="info-card-container d-flex align-items-center">
-                                    <div class="item-name">nome</div>
-                                    <div class="item-price">12.00</div>
+                                    <div class="item-name">ahjsfjahfjahfajhflahflhs</div>
+                                    <div class="item-price">12.00&euro;</div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- /Singola card -->
-
-                    </div>
+                    <!-- </div>
                 </div>
-            </section>
+            </section> -->
             <!-- /Lista prodotto -->
 
             <!-- Riepilogo acquisti -->
-            <section class="dx col-5">Recap pagamento</section>
+            <!-- <section class="dx col-5">Recap pagamento</section> -->
             <!-- /Riepilogo acquisti -->
-        </div>
-    </main>
+        <!-- </div>
+    </main> -->
     <!-- /Main con piatti e riepilogo -->
 
   </div>
@@ -190,36 +191,50 @@ nav{
     color: white;
 }
 
-main{
-    min-height: 80vh;
-    .sx{
-        margin-top: 5%;
-        font-weight: 900;
-        color: black;
-        .ggc_card{
-            max-width: 10vw;
-            border-radius: 10px;
-            // max-height: 12vw;
-            // margin-right: 2%;
-            img{
-                max-width: 100%;
-            }
-            .ggc_card-body{
-                text-transform: uppercase;
-                text-align: center;
-                .add-to-cart{
-                    background-color: $primary-color;
-                }
-                .info-card-container{
-                    .item-name{
-                        width: 70%;
-                    }
-                    .item-price{
-                        width: 30%;
-                    }
-                }
-            }
-        }
-    }
-}
+// main{
+//     min-height: 80vh;
+//     .sx{
+//         margin-top: 5%;
+//         font-weight: 900;
+//         color: black;
+//         .ggc_card{
+//             // width: 10vw;
+//             width: 150px;
+//             // height: 12vw;
+//             height: 175px;
+//             border-radius: 10px;
+//             margin: 0 3% 5%;
+//             .img{
+//                 // width: 10vw;
+//                 // height: 8vw;
+//                 width: 100%;
+//                 height: 80%;
+//                 background-position: center;
+//                 background-size: cover;
+//             }
+//             .ggc_card-body{
+//                 text-align: center;
+//                 flex-shrink: 0;
+//                 flex-grow: 0;
+//                 .add-to-cart{
+//                     text-transform: uppercase;
+//                     background-color: $tertiary-color;
+//                 }
+//                 .info-card-container{
+//                     background-color: #f2f3f5;
+//                     .item-name{
+//                         width: 65%;
+//                         padding: 2% 0 0 3%;
+//                         text-align: left;
+//                     }
+//                     .item-price{
+//                         width: 35%;
+//                         padding: 2%;
+//                         background-color: $primary-color;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 </style>
