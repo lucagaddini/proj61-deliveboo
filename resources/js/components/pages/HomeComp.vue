@@ -20,32 +20,48 @@
 
             <VueSlickCarousel v-bind='settings'>
 
-            <!-- Cat. Cards --> <!-------------- SISTEMARE EFFETTO SCROOL QUANDO CLICCO NELL'IMG MI TRASPORTA L'IMMAGINE E NON SCROLLA ----------------->
-            <div class="cat-cards">
-                <img src="images/burghers-0.jpg">
-                <p> Pizza</p>
-            </div>
-            <div class="cat-cards">
-                <img src="images/burghers-0.jpg">
-                <p>Pizza</p>
-            </div>
-            <div class="cat-cards">
-                <img src="images/burghers-0.jpg">
-                <p>Pizza</p>
-            </div>
-            <div class="cat-cards">
-                <img src="images/burghers-0.jpg">
-                <p>Pizza</p>
-            </div>
-            <div class="cat-cards">
-                <img src="images/burghers-0.jpg">
-                <p>Pizza</p>
-            </div>
-            <div class="cat-cards">
-                <img src="images/burghers-0.jpg">
-                <p>Pizza</p>
-            </div>
-            <!-- /Cat. Cards -->
+                <!-- Prev Arrow -->
+                <template #prevArrow="arrowOption">
+                    <div class="custom-arrow">
+                        {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
+                    </div>
+                </template>
+                <!-- /Prev Arrow -->
+
+                <!-- Cat. Cards -->
+                <div class="cat-cards">
+                    <img src="images/burghers-0.jpg">
+                    <p>Pizza</p>
+                </div>
+                <div class="cat-cards">
+                    <img src="images/burghers-0.jpg">
+                    <p>Pizza</p>
+                </div>
+                <div class="cat-cards">
+                    <img src="images/burghers-0.jpg">
+                    <p>Pizza</p>
+                </div>
+                <div class="cat-cards">
+                    <img src="images/burghers-0.jpg">
+                    <p>Pizza</p>
+                </div>
+                <div class="cat-cards">
+                    <img src="images/burghers-0.jpg">
+                    <p>Pizza</p>
+                </div>
+                <div class="cat-cards">
+                    <img src="images/burghers-0.jpg">
+                    <p>Pizza</p>
+                </div>
+                <!-- /Cat. Cards -->
+
+                <!-- Next Arrow -->
+                <template #nextArrow="arrowOption">
+                    <div class="custom-arrow">
+                        {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
+                    </div>
+                </template>
+                <!-- /Next Arrow -->
 
             </VueSlickCarousel>
 
@@ -69,7 +85,7 @@
 
                 <!-- Res. Singol Card -->
                 <div class="res-card col">
-                    <div class="card-container bg-debug col-11 offset-1 d-flex">
+                    <div class="card-container bg-debug col-12 d-flex">
 
                         <div class="d-flex card-style">
 
@@ -107,6 +123,7 @@
     <!-- /Categories and Restaurants -->
 
   </div>
+
 </template>
 
 <script>
@@ -127,7 +144,7 @@ export default {
       return {
         settings: {
             "dots": true,
-            "arrows": false,
+            "arrows": true,
             "infinite": true,
             "initialSlide": 0,
             "speed": 1500,
@@ -136,7 +153,7 @@ export default {
             "swipeToSlide": true,
             "centerMode": true,
             "centerPadding": "-50px",
-            "touchMove": true,
+            "touchMove": false,
             "autoplay": true,
             "autoplaySpeed": 3000,
 
@@ -153,6 +170,9 @@ export default {
                     "settings": {
                         "slidesToShow": 2,
                         "centerPadding": '-25px',
+                        "touchMove": true,
+                        "arrows": true,
+                        "speed": 500
                     }
                 },
                 {
@@ -160,6 +180,9 @@ export default {
                     "settings": {
                         "slidesToShow": 2,
                         "centerPadding": '-25px',
+                        "speed": 500,
+                        "touchMove": true,
+                        "arrows": false
                     }
                 },
                 {
@@ -168,6 +191,8 @@ export default {
                         "slidesToShow": 2,
                         "centerPadding": '-100px',
                         "speed": 500,
+                        "touchMove": true,
+                        "arrows": false
                     }
                 }
             ]
@@ -220,6 +245,7 @@ hr{
 
     img{
         height: 100%;
+        width: 250px;
         border-radius: 20px;
         background-attachment: fixed;
     }
@@ -232,6 +258,11 @@ hr{
         font-weight: bold;
         font-size: 1.2rem;
     }
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: $tertiary-color !important;
 }
 
 /* Restaurants */
@@ -251,7 +282,6 @@ hr{
 
 .res-card{
     padding: 20px;
-    margin-bottom: 50px;
 }
 
 .card-style{
@@ -262,20 +292,33 @@ hr{
     border: 1px solid $tertiary-color;
 }
 
+.card-container{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
 /* Res. Img */
 
 .res-img{
-    height: 100px;
+    width: 50%;
+    height: 150px;
 }
 
 .res-img img{
+    width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
 /* Res. Text */
 .res-text{
     color: black;
-    margin: 10px 0px 10px 20px;
+    margin: 0px 0px 0px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+    width: 50%;
 }
 
 .res-name{
