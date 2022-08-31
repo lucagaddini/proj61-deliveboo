@@ -2102,11 +2102,19 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("div", {
-    staticClass: "jumbo debug"
-  }, [_vm._v("\n      sono un jumbotron\n  ")]), _vm._v(" "), _c("nav", {
+  return _c("div", [_c("section", {
+    staticClass: "debug jumbo d-flex align-items-end"
+  }, [_c("div", {
+    staticClass: "debug jumbo-info container p-2"
+  }, [_c("h1", [_vm._v("Pizzeria da Alfredo")]), _vm._v(" "), _c("h5", [_vm._v("Categoria e indirizzo")])])]), _vm._v(" "), _c("nav", [_c("div", {
     staticClass: "container"
-  }, [_vm._v("\n      sono una navbar\n  ")]), _vm._v(" "), _c("main", {
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col"
+  }, [_c("ul", {
+    staticClass: "d-flex list-unstyled"
+  }, [_c("li", [_vm._v("Nello")]), _vm._v(" "), _c("li", [_vm._v("Nello")]), _vm._v(" "), _c("li", [_vm._v("Nello")]), _vm._v(" "), _c("li", [_vm._v("Nello")])])])])])]), _vm._v(" "), _c("main", {
     staticClass: "container d-flex justify-content-between flex-column"
   }, [_c("div", {
     staticClass: "row"
@@ -6783,7 +6791,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".debug[data-v-68913da4] {\n  background-color: rgba(0, 128, 0, 0.2);\n  border: 1px solid black;\n}", ""]);
+exports.push([module.i, ".jumbo[data-v-68913da4] {\n  min-height: 45vh;\n  background-image: url(\"/images/restaurant-1.jpg\");\n  background-position: center;\n  background-size: auto;\n  background-repeat: no-repeat;\n  color: white;\n}\n.jumbo .jumbo-info[data-v-68913da4] {\n  margin: 3% auto;\n}\n.jumbo .jumbo-info h1[data-v-68913da4] {\n  font-weight: 900;\n}\n.jumbo .jumbo-info h5[data-v-68913da4] {\n  font-weight: 700;\n}\nnav[data-v-68913da4] {\n  box-shadow: 0px 4px 4px 0px rgba(100, 100, 100, 0.1);\n  font-weight: 500;\n}\nnav ul[data-v-68913da4] {\n  margin: 0;\n}\nnav ul li[data-v-68913da4] {\n  padding: 0.5% 2%;\n  margin: 1%;\n  background-color: rgb(241, 241, 241);\n  border-radius: 20px;\n}\nnav ul li[data-v-68913da4]:hover {\n  background-color: #FF9D22;\n  color: white;\n}", ""]);
 
 // exports
 
