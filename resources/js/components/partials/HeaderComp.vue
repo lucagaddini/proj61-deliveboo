@@ -5,10 +5,10 @@
         <div class="container-fluid">
 
             <!-- Left Side -->
-            <a class="navbar-brand">
+            <router-link class="navbar-brand" :to="{name: 'search'}">
                 <img src="assets/img/logo.png" width="40px" class="d-inline-block align-center" alt="DeliveBoo Logo">
-                 <strong>DeliveBoo</strong>
-            </a>
+                <strong>DeliveBoo</strong>
+            </router-link>
             <!-- /Left Side -->
 
             <!-- Hamburger -->

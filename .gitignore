@@ -13,3 +13,4 @@ yarn-error.log
 
 // Da togliere alla fine
 /public/js
+/public/css

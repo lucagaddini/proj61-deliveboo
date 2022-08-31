@@ -97,12 +97,14 @@
 
                         <!-- Res.Text -->
                         <div class="res-text">
-                            <h4 class="res-name">Pizzeria Dal Napoli Di Marmetto di Francesco</h4>
-                            <span class="res-adress">Via Garibaldi, 120</span> <br>
-                            <span class="res-cat">
-                                <span>Cat.1</span>
-                                <span>Cat.1</span>
-                            </span>
+                            <router-link class="nav-link" :to="{name: 'menu'}">
+                                <h4 class="res-name">Pizzeria Dal Napoli Di Marmetto di Francesco</h4>
+                                <span class="res-adress">Via Garibaldi, 120</span> <br>
+                                <span class="res-cat">
+                                    <span>Cat.1</span>
+                                    <span>Cat.1</span>
+                                </span>
+                            </router-link>
                         </div>
                         <!-- /Res.Text -->
 
