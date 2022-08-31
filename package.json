@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "autoload": "^0.1.2",
-        "vue-router": "^2.8.1"
+        "vue-router": "^2.8.1",
+        "vue-slick-carousel": "^1.0.6"
     }
 }
