@@ -150,7 +150,7 @@ class ItemsTableSeeder extends Seeder
 
         //inizio hamburgers--------------
             [
-                'image_path' => 'burger-0.jpg',
+                'image_path' => 'burghers-0.jpg',
                 'name' => 'Hamburger classic',
                 'price' => 12,
                 'description' => '300 g di polpa di manzo tritata, la mollica di 2 panini, latte, un cucchiaio di prezzemolo tritato, farina, burro, olio, sale',
@@ -160,7 +160,7 @@ class ItemsTableSeeder extends Seeder
                 'course_id' => 3
             ],
             [
-                'image_path' => 'burger-1.jpg',
+                'image_path' => 'burghers-1.jpg',
                 'name' => 'Hamburger di pollo',
                 'price' => 14,
                 'description' => '200 g di petto di pollo, 50 g di polpa di coscia di pollo, 2 lime, olio extravergine di oliva, pepe verde, erba cipollina fresca, 1 spicchio di aglio, 1 cucchiaio di amido di mais, sale, panna acida',
@@ -170,7 +170,7 @@ class ItemsTableSeeder extends Seeder
                 'course_id' => 3
             ],
             [
-                'image_path' => 'burger-2.jpg',
+                'image_path' => 'burghers-2.jpg',
                 'name' => 'Hamburger di salmone',
                 'price' => 15,
                 'description' => '200 g di salmone fresco, 100 g di mollica di pane, latte, 70 g di burro a temperatura ambiente, pangrattato, la scorza di 1 limone non trattato, burro chiarificato, sale, pepe bianco',
@@ -180,7 +180,7 @@ class ItemsTableSeeder extends Seeder
                 'course_id' => 3
             ],
             [
-                'image_path' => 'burger-3.jpg',
+                'image_path' => 'burghers-3.jpg',
                 'name' => 'Hamburger di tonno, caprino e maionese nera',
                 'price' => 12,
                 'description' => '2 panini tondi e leggeri, 200 g di tonno, 2 uova, olio, limone, caprino, fagiolini verdi, 8 pomodorini tondi, radicchio rosso, condimento balsamico, sale, paprika',
@@ -190,7 +190,7 @@ class ItemsTableSeeder extends Seeder
                 'course_id' => 3
             ],
             [
-                'image_path' => 'burger-4.jpg',
+                'image_path' => 'burghers-4.jpg',
                 'name' => 'Hamburger con cipolla caramellata, crema di avocado e friggitelli',
                 'price' => 7,
                 'description' => '200 g macinato di vitello, 1/4 cipolla di Tropea, 1/2 avocado, 1/4 lime, 3/4 peperone friggitelli, 1 Pomodorini, 0.50 fette pancetta, 0.50 cucchiaini formaggio fresco spalmabile, senape, 0.25 cucchiaino concentrato di pomodoro, insalatina fresca, olio extravergine di oliva, sale',
@@ -200,7 +200,7 @@ class ItemsTableSeeder extends Seeder
                 'course_id' => 3
             ],
             [
-                'image_path' => 'burger-5.jpg',
+                'image_path' => 'burghers-5.jpg',
                 'name' => 'Hamburger alla calabrese, mozzarella di bufala e radicchio',
                 'price' => 13,
                 'description' => '200 g macinato di vitello, 1/2 cipolla di Tropea, 3 fette spianata calabra piccante, 4 Pomodorini, 1/4 rapa rossa, 1/8 bicchiere aceto di mele, 1 cucchiaino zucchero, 1/8 bicchiere vino bianco, 1/8 bicchiere acqua, 1 cucchiain0 formaggio fresco spalmabile, insalatina, olio extravergine di oliva, sale',
@@ -210,7 +210,7 @@ class ItemsTableSeeder extends Seeder
                 'course_id' => 3
             ],
             [
-                'image_path' => 'burger-6.jpg',
+                'image_path' => 'burghers-6.jpg',
                 'name' => 'Hamburger con ravioli di bufala affumicata e basilico',
                 'price' => 14,
                 'description' => '150 g carne macinata carne di vitello, 12.50 g mozzarella di bufala affumicata, 2 ravioli ripieni di mozzarella di bufala, 12.50 g burro, 0.25 l brdo vegetale, fogliolina basilico, cacao, olio extravergine di oliva, sale e pepe',
