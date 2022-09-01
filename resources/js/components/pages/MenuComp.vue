@@ -49,102 +49,53 @@
 
                             <!-- single-card -->
 
-                                <div v-for="i in 8" :key="i"
-                                    class="col-lg-4 col-6 my-card"
-                                >
-                                    <section class="panel my-3">
-                                        <div class="pro-img-box d-flex justify-content-center">
-                                            <img src="images/burghers-0.jpg" />
-                                            <i class="fa-solid fa-leaf icon-vegetarian"></i>
-                                            <a href="#" class="addtocart">
-                                                <i class="fa fa-shopping-cart"></i>
+                            <div v-for="i in 3" :key="i" class="col-lg-4 col-sm-6 col-12 my-card">
+                                <section class="panel my-3">
+                                    <div class="pro-img-box d-flex justify-content-center">
+                                        <img src="images/burghers-0.jpg" />
+                                        <i class="fa-solid fa-leaf icon-vegetarian"></i>
+                                        <a href="#" class="addtocart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="panel-body text-center">
+                                        <h4>
+                                            <a href="#" class="pro-title px-1">
+                                                Leopard Shirt Dress pizza keba pizze e kebab super riga
                                             </a>
-                                        </div>
-
-                                        <div class="panel-body text-center">
-                                            <h4>
-                                                <a href="#" class="pro-title px-1">
-                                                    Leopard Shirt Dress pizza keba pizze e kebab super riga
-                                                </a>
-                                            </h4>
-                                            <span class="price text-center">
-                                                <span>$300.00</span>
-                                            </span>
-                                        </div>
-                                    </section>
-                                </div>
+                                        </h4>
+                                        <span class="price text-center">
+                                            <span>$300.00</span>
+                                        </span>
+                                    </div>
+                                </section>
+                            </div>
 
 
-                                <div class="col-md-4 col-6 my-card">
-                                    <section class="panel my-3">
-                                        <div class="pro-img-box d-flex justify-content-center">
-                                            <img src="images/burghers-0.jpg" />
-                                            <a href="#" class="addtocart">
-                                                <i class="fa fa-shopping-cart"></i>
+                            <div class="col-lg-4 col-sm-6 col-12 my-card">
+                                <section class="panel my-3">
+                                    <div class="pro-img-box d-flex justify-content-center">
+                                        <img src="images/burghers-0.jpg" />
+                                        <a href="#" class="addtocart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="panel-body text-center">
+                                        <h4>
+                                            <a href="#" class="pro-title px-1">
+                                                pizza margerita
                                             </a>
-                                        </div>
-
-                                        <div class="panel-body text-center">
-                                            <h4>
-                                                <a href="#" class="pro-title px-1">
-                                                    pizza margerita
-                                                </a>
-                                            </h4>
-                                            <span class="price text-center">
-                                                <span>$300.00</span>
-                                            </span>
-                                        </div>
-                                    </section>
-                                </div>
-
-                                <div class="col-md-4 col-6 my-card">
-                                    <section class="panel my-3">
-                                        <div class="pro-img-box d-flex justify-content-center">
-                                            <img src="images/messicano-3.jpg" />
-                                            <a href="#" class="addtocart">
-                                                <i class="fa fa-shopping-cart"></i>
-                                            </a>
-                                        </div>
-
-                                        <div class="panel-body text-center">
-                                            <h4>
-                                                <a href="#" class="pro-title px-1">
-                                                    pizza margerita
-                                                </a>
-                                            </h4>
-                                            <span class="price text-center">
-                                                <span>$300.00</span>
-                                            </span>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div class="col-md-4 col-6 my-card">
-                                    <section class="panel my-3">
-                                        <div class="pro-img-box d-flex justify-content-center">
-                                            <img src="images/pizza-3.jpg" />
-                                            <a href="#" class="addtocart">
-                                                <i class="fa fa-shopping-cart"></i>
-                                            </a>
-                                        </div>
-
-                                        <div class="panel-body text-center">
-                                            <h4>
-                                                <a href="#" class="pro-title px-1">
-                                                    pizza margeritas asdasdadasdas
-                                                </a>
-                                            </h4>
-                                            <p class="price">$300.00</p>
-                                        </div>
-                                    </section>
-                                </div>
-
-
-
+                                        </h4>
+                                        <span class="price text-center">
+                                            <span>$300.00</span>
+                                        </span>
+                                    </div>
+                                </section>
+                            </div>
 
                             <!-- //single-card -->
-
-
-
                         </div>
                     </div>
                 </div>
@@ -290,7 +241,7 @@ nav {
 //---------------------------------------------//
 //portate cards
 
-.portata-title{
+.portata-title {
     margin-top: 50px;
     margin-bottom: 25px;
 }
@@ -311,7 +262,7 @@ nav {
     font-size: 14px;
 }
 
-.panel-body{
+.panel-body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -333,7 +284,7 @@ nav {
     height: 45%;
 }
 
-.pro-img-box .icon-vegetarian{
+.pro-img-box .icon-vegetarian {
     padding: 10px;
     border-radius: 50%;
     background-color: $secondary-color;
@@ -371,10 +322,10 @@ nav {
     font-size: 16px;
 }
 
-.price{
+.price {
     margin-bottom: 15px;
 
-    span{
+    span {
         background-color: $primary-color;
         border-radius: 6px;
         font-size: 15px;
@@ -385,8 +336,25 @@ nav {
 }
 
 
-@media screen and (max-width: 460px){
+@media screen and (max-width: 575px) {
+    .panel {
+        width: 50%;
+    }
+
+    .my-card{
+        display: flex;
+        justify-content: center;
+    }
 
 }
-
+@media screen and (max-width: 550px) {
+    .panel {
+        width: 60%;
+    }
+}
+@media screen and (max-width: 400px) {
+    .panel {
+        width: 85%;
+    }
+}
 </style>
