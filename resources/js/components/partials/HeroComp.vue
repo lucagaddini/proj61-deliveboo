@@ -4,8 +4,8 @@
 
     <!-- Jumbotron -->
     <section class="herobanner">
-        <div class="container col-xxl-8 pr-5 px-sm-4 py-5">
-            <div class="row align-items-center g-5 py-5">
+        <div class="container col-xxl-8 pr-5 px-sm-4">
+            <div class="row align-items-center g-5">
 
                 <div class="col-12 col-sm-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Il cibo che ami a Domicilio</h1>
