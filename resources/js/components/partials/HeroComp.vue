@@ -12,10 +12,10 @@
                     <p class="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate distinctio repudiandae perferendis quibusdam voluptas. Veritatis, enim rerum. Hic consectetur incidunt impedit, alias ratione tenetur ex praesentium nisi culpa vero aliquid?</p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
 
-                        <form class="d-flex" role="search">
+                        <!-- <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Inserisci il tipo di piatto" aria-label="Search">
                         <button class="btn btn_custom_secondary" type="submit">Trova</button>
-                        </form>
+                        </form> -->
 
                     </div>
                 </div>
