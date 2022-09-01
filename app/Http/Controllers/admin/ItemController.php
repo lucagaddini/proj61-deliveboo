@@ -19,7 +19,7 @@ class ItemController extends Controller
     public function index()
     {
         $current_user = auth()->user()->id;
-        $items = Item::select('*')->where('user_id','=', $current_user )->paginate(10);
+        $items = Item::select('*')->where('user_id','=', $current_user )->orderBy('id', 'desc')->paginate(10);
         $courses = Course::all();
         return view('admin.items.index', compact('items', 'courses'));
 
@@ -104,7 +104,7 @@ class ItemController extends Controller
         $updated_item = $request->all();
         $item->update($updated_item);
 
-        return redirect()->route('admin.items.index', compact('item'));
+        return redirect()->route('admin.items.index', compact('item'))->with('prodotto_modificato',"$item->name è stato modificato correttamente");
     }
 
     /**
@@ -116,6 +116,6 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         $item->delete();
-        return redirect()->route('admin.items.index')->with('cancelled', "$item->name cancellato correttamente.");
+        return redirect()->route('admin.items.index')->with('prodotto_cancellato', "$item->name è stato cancellato correttamente.");
     }
 }
