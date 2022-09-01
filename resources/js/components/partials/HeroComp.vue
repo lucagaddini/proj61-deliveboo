@@ -4,10 +4,10 @@
 
     <!-- Jumbotron -->
     <section class="herobanner">
-        <div class="container col-xxl-8 pr-5 px-sm-4">
+        <div class="container col-xxl-8 pr-5 px-sm-4 ">
             <div class="row align-items-center g-5">
 
-                <div class="col-12 col-sm-6">
+                <div class="col-12 col-md-6 p-4">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Il cibo che ami a Domicilio</h1>
                     <p class="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate distinctio repudiandae perferendis quibusdam voluptas. Veritatis, enim rerum. Hic consectetur incidunt impedit, alias ratione tenetur ex praesentium nisi culpa vero aliquid?</p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
@@ -20,7 +20,7 @@
                     </div>
                 </div>
 
-                <div class="prova col-12 col-sm-6 d-none d-sm-block">
+                <div class="logo-hero col-12 col-md-6 d-none d-md-block">
                     <img src="/assets/img/logo-hero.png">
                 </div>
 
@@ -47,11 +47,15 @@ export default {
 
 /* Jumbotron */
 .herobanner{
-/*   background-image: url('/assets/img/banner.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat; */
+
   background-color: $fourth-color;
+
+  .logo-hero{
+    
+    img{
+    width: 100%;
+    }
+  }
 }
 
 h1{
