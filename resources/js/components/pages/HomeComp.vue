@@ -32,8 +32,8 @@
                 <div class="cat-cards"
                     v-for="category in categoriesArray"
                     :key="category.id">
-                    <img src="images/burghers-0.jpg">
-                    <p>Pizza</p>
+                    <img :src="'images/'&category.image_path">
+                    <p>{{ category.name }}</p>
                 </div>
                 <!-- /Cat. Cards -->
 
