@@ -84,7 +84,7 @@
 
                             <!-- Res.Text -->
                             <div class="res-text">
-                                <router-link class="nav-link" :to="{name: 'menu'}">
+                                <router-link class="nav-link" :to="{name: 'menu', params:{id:user.id}}">
                                     <h4 class="res-name">{{ user.name }}</h4>
                                     <span class="res-adress">{{ user.address }}</span> <br>
                                     <span class="res-cat">

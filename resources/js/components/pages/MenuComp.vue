@@ -2,23 +2,23 @@
   <div>
     <!-- Immagine di testa (ristorante) -->
     <section>
-        <div v-if="current_user.image_path == null">
+        <div v-if="current_restaurant.image_path == null">
             <div
                 class="jumbo d-flex align-items-end"
                 style="background-image: url('/images/restaurant_placeholder.jpg')">
                 <div class="jumbo-info container p-2">
-                    <h1>Pizzeria di Vercingetorige della turingia inferiore</h1>
-                    <h5>Categoria e indirizzo</h5>
+                    <h1>{{current_restaurant.name}}</h1>
+                    <h5><span></span> <span>{{ current_restaurant.address }}</span></h5>
                 </div>
             </div>
         </div>
         <div v-else>
             <div
                 class="jumbo d-flex align-items-end"
-                :style="`background-image: url('/images/${current_user.image_path}')`">
+                :style="`background-image: url('/images/${current_restaurant.image_path}')`">
                 <div class="jumbo-info container p-2">
-                    <h1>Pizzeria di Vercingetorige della turingia inferiore</h1>
-                    <h5>Categoria e indirizzo</h5>
+                    <h1>{{current_restaurant.name}}</h1>
+                    <h5><span></span> <span>{{ current_restaurant.address }}</span></h5>
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
 </template>
 
 <script>
-//
+// return this.$route.params.id
 
 export default {
     name: 'MenuComp',
@@ -99,11 +99,13 @@ export default {
         return{
             itemApiUrl: "http://127.0.0.1:8000/api",
             // Il props va inserito qui al posto del current user!
-            current_user: {
-                    user_id: 1,
-                    // image_path: 'restaurant-10.jpg',
-                    image_path: null,
-            },
+            // current_user: {
+            //         user_id: this.$route.params.id,
+            //         image_path: null,
+            // },
+
+            current_restaurant: {},
+            current_user: this.$route.params.id,
             current_menu: [],
             coursesArray: [],
 
@@ -117,9 +119,10 @@ export default {
             .then(res=>{
                 // console.log(res.data.menu);
                 res.data.menu.forEach(el => {
-                    if(el.user_id == this.current_user.user_id){
+                    if(el.user_id == this.current_user){
                         this.current_menu.push(el);
-                        // console.log(this.current_menu);
+                        this.current_restaurant = el.user;
+                        console.log(this.current_menu);
                     }
                 });
             })
@@ -145,7 +148,6 @@ export default {
             else el.boolean = true;
         },
         // /Assegno valori true e false alle portate
-
     },
 
     mounted(){

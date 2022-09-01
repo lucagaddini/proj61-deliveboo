@@ -16,7 +16,7 @@ const router = new VueRouter({
             component: HomeComp
         },
         {
-            path: '/menu',
+            path: '/menu/:id',
             name: 'menu',
             component: MenuComp
         }
