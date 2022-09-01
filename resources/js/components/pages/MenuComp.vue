@@ -50,12 +50,13 @@
                             <!-- single-card -->
 
                                 <div v-for="i in 8" :key="i"
-                                    class="col-md-4 col-6 my-card"
+                                    class="col-lg-4 col-6 my-card"
                                 >
                                     <section class="panel my-3">
                                         <div class="pro-img-box d-flex justify-content-center">
                                             <img src="images/burghers-0.jpg" />
-                                            <a href="#" class="adtocart">
+                                            <i class="fa-solid fa-leaf icon-vegetarian"></i>
+                                            <a href="#" class="addtocart">
                                                 <i class="fa fa-shopping-cart"></i>
                                             </a>
                                         </div>
@@ -63,21 +64,22 @@
                                         <div class="panel-body text-center">
                                             <h4>
                                                 <a href="#" class="pro-title px-1">
-                                                    Leopard Shirt Dress pizza e tante parole per vedere se si rompe
+                                                    Leopard Shirt Dress pizza keba pizze e kebab super riga
                                                 </a>
                                             </h4>
-                                            <p class="price">$300.00</p>
+                                            <span class="price text-center">
+                                                <span>$300.00</span>
+                                            </span>
                                         </div>
                                     </section>
                                 </div>
 
 
-                                <div class="col-md-4 col-6 my-card"
-                                >
+                                <div class="col-md-4 col-6 my-card">
                                     <section class="panel my-3">
                                         <div class="pro-img-box d-flex justify-content-center">
                                             <img src="images/burghers-0.jpg" />
-                                            <a href="#" class="adtocart">
+                                            <a href="#" class="addtocart">
                                                 <i class="fa fa-shopping-cart"></i>
                                             </a>
                                         </div>
@@ -88,17 +90,18 @@
                                                     pizza margerita
                                                 </a>
                                             </h4>
-                                            <p class="price">$300.00</p>
+                                            <span class="price text-center">
+                                                <span>$300.00</span>
+                                            </span>
                                         </div>
                                     </section>
                                 </div>
 
-                                <div class="col-md-4 col-6 my-card"
-                                >
+                                <div class="col-md-4 col-6 my-card">
                                     <section class="panel my-3">
                                         <div class="pro-img-box d-flex justify-content-center">
-                                            <img src="images/pizza-1.jpg" />
-                                            <a href="#" class="adtocart">
+                                            <img src="images/messicano-3.jpg" />
+                                            <a href="#" class="addtocart">
                                                 <i class="fa fa-shopping-cart"></i>
                                             </a>
                                         </div>
@@ -109,10 +112,33 @@
                                                     pizza margerita
                                                 </a>
                                             </h4>
+                                            <span class="price text-center">
+                                                <span>$300.00</span>
+                                            </span>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="col-md-4 col-6 my-card">
+                                    <section class="panel my-3">
+                                        <div class="pro-img-box d-flex justify-content-center">
+                                            <img src="images/pizza-3.jpg" />
+                                            <a href="#" class="addtocart">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </a>
+                                        </div>
+
+                                        <div class="panel-body text-center">
+                                            <h4>
+                                                <a href="#" class="pro-title px-1">
+                                                    pizza margeritas asdasdadasdas
+                                                </a>
+                                            </h4>
                                             <p class="price">$300.00</p>
                                         </div>
                                     </section>
                                 </div>
+
+
 
 
                             <!-- //single-card -->
@@ -259,6 +285,9 @@ nav {
 }
 
 //---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
+//---------------------------------------------//
 //portate cards
 
 .portata-title{
@@ -268,83 +297,54 @@ nav {
 
 
 /*panel*/
-
 .panel {
     border: none;
     box-shadow: none;
     border: 1px solid $fifth-color;
     border-radius: 10px;
+    height: 250px
 }
 
-.panel-heading {
-    border-color: #eff2f7;
-    font-size: 16px;
-    font-weight: 300;
-}
 
 .panel-title {
     color: #2A3542;
     font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 0;
-    margin-top: 0;
-    font-family: 'Open Sans', sans-serif;
+}
+
+.panel-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 55%;
+    background-color: #F2F3F4;
+    border-radius: 0px 0px 8px 8px;
 }
 
 
 /*product list*/
-
-.prod-cat li a {
-    border-bottom: 1px dashed #d9d9d9;
-}
-
-.prod-cat li a {
-    color: #3b3b3b;
-}
-
-.prod-cat li ul {
-    margin-left: 30px;
-}
-
-.prod-cat li ul li a {
-    border-bottom: none;
-}
-
-.prod-cat li ul li a:hover,
-.prod-cat li ul li a:focus,
-.prod-cat li ul li.active a,
-.prod-cat li a:hover,
-.prod-cat li a:focus,
-.prod-cat li a.active {
-    background: none;
-    color: #ff7261;
-}
-
-.pro-lab {
-    margin-right: 20px;
-    font-weight: normal;
-}
-
-.pro-sort {
-    padding-right: 20px;
-    float: left;
-}
-
-.pro-page-list {
-    margin: 5px 0 0 0;
-}
-
 .product-list img {
     width: 100%;
-    border-radius: 10px 10px 0 0;
-    -webkit-border-radius: 10px 10px 0 0;
+    border-radius: 8px 8px 0 0;
+    object-fit: cover;
 }
 
 .product-list .pro-img-box {
     position: relative;
+    height: 45%;
 }
 
-.adtocart {
+.pro-img-box .icon-vegetarian{
+    padding: 10px;
+    border-radius: 50%;
+    background-color: $secondary-color;
+    color: white;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    border: 1px solid black;
+}
+
+.addtocart {
     background: $fifth-color;
     width: 50px;
     height: 50px;
@@ -358,7 +358,7 @@ nav {
     position: absolute;
 }
 
-.adtocart i {
+.addtocart i {
     color: #fff;
     font-size: 25px;
     line-height: 42px;
@@ -371,71 +371,22 @@ nav {
     font-size: 16px;
 }
 
-.product-list .price {
-    color: $tertiary-color;
-    font-size: 15px;
-    font-weight: bold;
+.price{
+    margin-bottom: 15px;
+
+    span{
+        background-color: $primary-color;
+        border-radius: 6px;
+        font-size: 15px;
+        font-weight: bold;
+        color: white;
+        padding: 4px 6px;
+    }
 }
 
-.pro-img-details {
-    margin-left: -15px;
+
+@media screen and (max-width: 460px){
+
 }
 
-.pro-img-details img {
-    width: 100%;
-}
-
-.pro-d-title {
-    font-size: 16px;
-    margin-top: 0;
-}
-
-.product_meta {
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    padding: 10px 0;
-    margin: 15px 0;
-}
-
-.product_meta span {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.product_meta a,
-.pro-price {
-    color: #fc5959;
-}
-
-.pro-price,
-.amount-old {
-    font-size: 18px;
-    padding: 0 10px;
-}
-
-.amount-old {
-    text-decoration: line-through;
-}
-
-.quantity {
-    width: 120px;
-}
-
-.pro-img-list {
-    margin: 10px 0 0 -15px;
-    width: 100%;
-    display: inline-block;
-}
-
-.pro-img-list a {
-    float: left;
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
-
-.pro-d-head {
-    font-size: 18px;
-    font-weight: 300;
-}
-//our class
 </style>
