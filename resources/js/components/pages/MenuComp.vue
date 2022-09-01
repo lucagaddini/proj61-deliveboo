@@ -30,19 +30,83 @@
 
 
 
-
-        <!-- Main con piatti e riepilogo -->
+        <!----------------------------- Carrello e piatti ---------------------------------->
 
         <section class="container">
+        <!----------------------------- Card dei piatti ---------------------------------->
+
 
 
             <div id="my-cards">
                 <div class="container-fluid bootdey">
 
+
+<!-- big section big section big section big section big section big section big section big section big section-->
                     <div class="col-md-8">
 
                         <div class="portata-title text-center">
                             <h3>Starters</h3>
+                        </div>
+
+                        <div class="row product-list">
+
+                            <!-- single-card -->
+
+                            <div v-for="i in 3" :key="i" class="col-lg-4 col-sm-6 col-12 my-card">
+                                <section class="panel my-3">
+                                    <div class="pro-img-box d-flex justify-content-center">
+                                        <img src="images/pizza-0.jpg" />
+                                        <i class="fa-solid fa-leaf icon-vegetarian"></i>
+                                        <a href="#" class="addtocart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="panel-body text-center">
+                                        <h4>
+                                            <a href="#" class="pro-title px-1">
+                                                Leopard Shirt Dress pizza keba pizze e kebab super riga
+                                            </a>
+                                        </h4>
+                                        <span class="price text-center">
+                                            <span>$300.00</span>
+                                        </span>
+                                    </div>
+                                </section>
+                            </div>
+
+
+                            <div class="col-lg-4 col-sm-6 col-12 my-card">
+                                <section class="panel my-3">
+                                    <div class="pro-img-box d-flex justify-content-center">
+                                        <img src="images/pizza-3.jpg" />
+                                        <a href="#" class="addtocart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="panel-body text-center">
+                                        <h4>
+                                            <a href="#" class="pro-title px-1">
+                                                pizza margerita
+                                            </a>
+                                        </h4>
+                                        <span class="price text-center">
+                                            <span>$300.00</span>
+                                        </span>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <!-- //single-card -->
+                        </div>
+                    </div>
+<!-- big section big section big section big section big section big section big section big section big section-->
+<!-- big section big section big section big section big section big section big section big section big section-->
+                    <div class="col-md-8">
+
+                        <div class="portata-title text-center">
+                            <h3>Secondi</h3>
                         </div>
 
                         <div class="row product-list">
@@ -73,10 +137,50 @@
                             </div>
 
 
+
+                            <!-- //single-card -->
+                        </div>
+                    </div>
+<!-- /////big section big section big section big section big section big section big section big section big section-->
+<!-- big section big section big section big section big section big section big section big section big section-->
+                    <div class="col-md-8">
+
+                        <div class="portata-title text-center">
+                            <h3>Contorni</h3>
+                        </div>
+
+                        <div class="row product-list">
+
+                            <!-- single-card -->
+
+                            <div v-for="i in 3" :key="i" class="col-lg-4 col-sm-6 col-12 my-card">
+                                <section class="panel my-3">
+                                    <div class="pro-img-box d-flex justify-content-center">
+                                        <img src="images/sushi-0.jpg" />
+                                        <i class="fa-solid fa-leaf icon-vegetarian"></i>
+                                        <a href="#" class="addtocart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="panel-body text-center">
+                                        <h4>
+                                            <a href="#" class="pro-title px-1">
+                                                Leopard Shirt Dress pizza keba pizze e kebab super riga
+                                            </a>
+                                        </h4>
+                                        <span class="price text-center">
+                                            <span>$300.00</span>
+                                        </span>
+                                    </div>
+                                </section>
+                            </div>
+
+
                             <div class="col-lg-4 col-sm-6 col-12 my-card">
                                 <section class="panel my-3">
                                     <div class="pro-img-box d-flex justify-content-center">
-                                        <img src="images/burghers-0.jpg" />
+                                        <img src="images/sushi-5.jpg" />
                                         <a href="#" class="addtocart">
                                             <i class="fa fa-shopping-cart"></i>
                                         </a>
@@ -98,12 +202,22 @@
                             <!-- //single-card -->
                         </div>
                     </div>
+<!-- /////big section big section big section big section big section big section big section big section big section-->
+
                 </div>
             </div>
+
+            <!----------------------------- Card dei piatti ---------------------------------->
         </section>
 
 
-        <!-- /Main con piatti e riepilogo -->
+        <!----------------------------- Carrello e piatti ---------------------------------->
+
+
+
+
+
+
 
     </div>
 </template>
@@ -235,10 +349,7 @@ nav {
     color: white;
 }
 
-//---------------------------------------------//
-//---------------------------------------------//
-//---------------------------------------------//
-//---------------------------------------------//
+//------------------------Card dei piatti ---------------------------------->
 //portate cards
 
 .portata-title {
@@ -357,4 +468,6 @@ nav {
         width: 85%;
     }
 }
+//------------------------Card dei piatti ---------------------------------->
+
 </style>
