@@ -3,9 +3,7 @@
 @section('content')
 
 <div class="container-fluid">
-
   <div class="d-flex justify-content-start">
-
       {{-- Contenuto centrale della pagina --}}
       <section class="col-md-10 ml-sm-auto col-lg-10 px-md-4">
 

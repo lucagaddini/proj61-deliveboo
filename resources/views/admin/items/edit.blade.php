@@ -36,7 +36,6 @@
                                         data-parsley-trigger="keyup"
                                         {{-- // Parsley --}}
                                     >
-                                   
                                 </div>
 
                                 {{-- Prezzo prodotto --}}
