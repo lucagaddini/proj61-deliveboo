@@ -29,29 +29,11 @@
                 <!-- /Prev Arrow -->
 
                 <!-- Cat. Cards -->
-                <div class="cat-cards">
-                    <img src="images/burghers-0.jpg">
-                    <p>Pizza</p>
-                </div>
-                <div class="cat-cards">
-                    <img src="images/burghers-0.jpg">
-                    <p>Pizza</p>
-                </div>
-                <div class="cat-cards">
-                    <img src="images/burghers-0.jpg">
-                    <p>Pizza</p>
-                </div>
-                <div class="cat-cards">
-                    <img src="images/burghers-0.jpg">
-                    <p>Pizza</p>
-                </div>
-                <div class="cat-cards">
-                    <img src="images/burghers-0.jpg">
-                    <p>Pizza</p>
-                </div>
-                <div class="cat-cards">
-                    <img src="images/burghers-0.jpg">
-                    <p>Pizza</p>
+                <div class="cat-cards"
+                    v-for="category in categoriesArray"
+                    :key="'category-'+category.id">
+                    <img :src="'images/' + category.image_path">
+                    <p>{{ category.name }}</p>
                 </div>
                 <!-- /Cat. Cards -->
 
@@ -84,29 +66,34 @@
             <div class="res-cards row row-cols-1 row-cols-lg-2">
 
                 <!-- Res. Singol Card -->
-                <div class="res-card col">
+                <div class="res-card col"
+                    :key="'user-'+user.id"
+                    v-for="user in usersArray">
                     <div class="card-container bg-debug col-12 d-flex">
 
                         <div class="d-flex card-style">
 
-                        <!-- Res. Img -->
-                        <div class="res-img">
-                            <img src="images/vegetariano-7.jpg">
-                        </div>
-                        <!-- /Res. Img -->
+                            <!-- Res. Img -->
+                            <div class="res-img">
+                                <img src="images/restaurant_placeholder.jpg"
+                                    v-if="user.image_path == null">
+                                <img :src="'images/'+user.image_path"
+                                    v-else>
+                            </div>
+                            <!-- /Res. Img -->
 
-                        <!-- Res.Text -->
-                        <div class="res-text">
-                            <router-link class="nav-link" :to="{name: 'menu'}">
-                                <h4 class="res-name">Pizzeria Dal Napoli Di Marmetto di Francesco</h4>
-                                <span class="res-adress">Via Garibaldi, 120</span> <br>
-                                <span class="res-cat">
-                                    <span>Cat.1</span>
-                                    <span>Cat.1</span>
-                                </span>
-                            </router-link>
-                        </div>
-                        <!-- /Res.Text -->
+                            <!-- Res.Text -->
+                            <div class="res-text">
+                                <router-link class="nav-link" :to="{name: 'menu', params:{id:user.id}}">
+                                    <h4 class="res-name">{{ user.name }}</h4>
+                                    <span class="res-adress">{{ user.address }}</span> <br>
+                                    <span class="res-cat">
+                                        <span>Cat.1</span>
+                                        <span>Cat.1</span>
+                                    </span>
+                                </router-link>
+                            </div>
+                            <!-- /Res.Text -->
 
                         </div>
 
@@ -144,6 +131,7 @@ export default {
 
     data() {
       return {
+        // SLIDER
         settings: {
             "dots": true,
             "arrows": true,
@@ -200,7 +188,33 @@ export default {
             ]
 
         },
+        // /SLIDER
+
+        apiUrl: "http://127.0.0.1:8000/api",
+        categoriesArray: [],
+        usersArray: [],
+
       }
+    },
+
+    methods:{
+        fillArrays(url){
+            axios.get(url)
+            .then(res=>{
+                res.data.categories.forEach(el => {
+                    this.categoriesArray.push(el);
+                    // console.log(this.categoriesArray);
+                });
+                res.data.users.forEach(el => {
+                    this.usersArray.push(el);
+                    // console.log(this.usersArray);
+                });
+            })
+        },
+    },
+
+    mounted(){
+        this.fillArrays(this.apiUrl);
     },
 }
 

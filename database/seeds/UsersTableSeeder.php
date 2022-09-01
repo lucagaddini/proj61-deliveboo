@@ -25,7 +25,8 @@ class UsersTableSeeder extends Seeder
                 'address' => 'Via Fillungo 12, XXYY',
                 'vat_number' => '123456548910',
                 'slug' => Str::slug('Pizzeria Gino','-'),
-                'categories' => ['5','9']
+                'categories' => ['5','9'],
+                'image_path' => 'restaurant-1.jpg'
             ],
             [
                 'name' => 'Hambugheria',
@@ -34,7 +35,8 @@ class UsersTableSeeder extends Seeder
                 'address' => 'Via kebab 12, ABC',
                 'vat_number' => '124512451245',
                 'slug' => Str::slug('Hamburgheria','-'),
-                'categories' => ['5']
+                'categories' => ['5'],
+                'image_path' => 'restaurant-2.jpg'
             ],
             [
                 'name' => 'Voulez vous paté',
@@ -43,7 +45,8 @@ class UsersTableSeeder extends Seeder
                 'address' => 'Via sono di parigi 12, ABC',
                 'vat_number' => '88888888888',
                 'slug' => Str::slug('Voulez vous paté','-'),
-                'categories' => ['3', '8']
+                'categories' => ['3', '8'],
+                'image_path' => 'restaurant-3.jpg'
             ],
             [
                 'name' => 'Chinese world',
@@ -52,7 +55,8 @@ class UsersTableSeeder extends Seeder
                 'address' => 'Via adoro i cinesi, ABC',
                 'vat_number' => '44444555555',
                 'slug' => Str::slug('Chinese world','-'),
-                'categories' => ['1', '8']
+                'categories' => ['1', '8'],
+                'image_path' => 'restaurant-4.jpg'
             ],
             [
                 'name' => 'Indian food',
@@ -61,7 +65,8 @@ class UsersTableSeeder extends Seeder
                 'address' => 'Via india, A',
                 'vat_number' => '4444499999',
                 'slug' => Str::slug('Indian food','-'),
-                'categories' => ['2', '8']
+                'categories' => ['2', '8'],
+                'image_path' => 'restaurant-5.jpg'
             ],
             [
                 'name' => 'No gluten here',
@@ -70,7 +75,8 @@ class UsersTableSeeder extends Seeder
                 'address' => 'Via senza glutine, A',
                 'vat_number' => '00000000001',
                 'slug' => Str::slug('No gluten here','-'),
-                'categories' => ['9', '8', '7']
+                'categories' => ['9', '8', '7'],
+                'image_path' => 'restaurant-6.jpg'
             ],
             [
                 'name' => 'Mexico city',
@@ -79,7 +85,8 @@ class UsersTableSeeder extends Seeder
                 'address' => 'Via senza glutine, A',
                 'vat_number' => '00000000099',
                 'slug' => Str::slug('Mexico city','-'),
-                'categories' => ['4', '8']
+                'categories' => ['4', '8'],
+                'image_path' => 'restaurant-7.jpg'
             ],
             [
                 'name' => 'Sushi land',
@@ -88,7 +95,8 @@ class UsersTableSeeder extends Seeder
                 'address' => 'Via delle persone che ama il sushi, A',
                 'vat_number' => '00000077799',
                 'slug' => Str::slug('Sushi land','-'),
-                'categories' => ['6', '8']
+                'categories' => ['6', '8'],
+                'image_path' => 'restaurant-8.jpg'
             ],
             [
                 'name' => 'Vegetarian bros',
@@ -97,7 +105,8 @@ class UsersTableSeeder extends Seeder
                 'address' => 'Via prato fiorito, A',
                 'vat_number' => '11111177799',
                 'slug' => Str::slug('Vegetarian bros','-'),
-                'categories' => ['5', '7', '8']
+                'categories' => ['5', '7', '8'],
+                'image_path' => 'restaurant-9.jpg'
             ],
         ];
 
@@ -112,6 +121,7 @@ class UsersTableSeeder extends Seeder
             $new_user->address = $user['address'];
             $new_user->vat_number = $user['vat_number'];
             $new_user->slug = $user['slug'];
+            $new_user->image_path = $user['image_path'];
             $new_user->save();
 
             $categories = $user['categories'];

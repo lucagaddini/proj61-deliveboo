@@ -1,26 +1,45 @@
 <template>
-    <div>
-        <!-- Immagine di testa (ristorante) -->
-        <section class="jumbo d-flex align-items-end">
-            <div class="jumbo-info container p-2">
-                <h1>Pizzeria di Vercingetorige della turingia inferiore</h1>
-                <h5>Categoria e indirizzo</h5>
+  <div>
+    <!-- Immagine di testa (ristorante) -->
+    <section>
+        <div v-if="current_restaurant.image_path == null">
+            <div
+                class="jumbo d-flex align-items-end"
+                style="background-image: url('/images/restaurant_placeholder.jpg')">
+                <div class="jumbo-info container p-2">
+                    <h1>{{current_restaurant.name}}</h1>
+                    <h5><span></span> <span>{{ current_restaurant.address }}</span></h5>
+                </div>
             </div>
-        </section>
-        <!-- /Immagine di testa (ristorante) -->
+        </div>
+        <div v-else>
+            <div
+                class="jumbo d-flex align-items-end"
+                :style="`background-image: url('/images/${current_restaurant.image_path}')`">
+                <div class="jumbo-info container p-2">
+                    <h1>{{current_restaurant.name}}</h1>
+                    <h5><span></span> <span>{{ current_restaurant.address }}</span></h5>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Navbar per navigare fra le portate -->
-        <nav>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <ul class="d-flex list-unstyled flex-wrap">
-                            <li class="my-2" v-for="course in coursesArray" :key="course.id" @click="beActive(course)"
-                                :class="course.boolean == true ? 'active' : ''">
-                                {{  course.name  }}
-                            </li>
-                        </ul>
-                    </div>
+    <!-- /Immagine di testa (ristorante) -->
+
+    <!-- Navbar per navigare fra le portate -->
+    <nav>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <ul class="d-flex list-unstyled">
+                        <li
+                            v-for="course in coursesArray"
+                            :key="course.id"
+                            @click="beActive(course)"
+                            :class="course.boolean == true ? 'active' : '' ">
+                                {{course.name}}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -223,7 +242,7 @@
 </template>
 
 <script>
-//
+// return this.$route.params.id
 
 export default {
     name: 'MenuComp',
@@ -231,12 +250,19 @@ export default {
     components: {
         props: Number,
     },
+    
+    data(){
+        return{
+            itemApiUrl: "http://127.0.0.1:8000/api",
 
-    data() {
-        return {
-            itemApiUrl: "http://127.0.0.1:8000/api/categories",
             // Il props va inserito qui al posto del current user!
-            current_user: 1,
+            // current_user: {
+            //         user_id: this.$route.params.id,
+            //         image_path: null,
+            // },
+
+            current_restaurant: {},
+            current_user: this.$route.params.id,
             current_menu: [],
             coursesArray: [],
 
@@ -247,15 +273,16 @@ export default {
         // Chiamata api da filtrare per id ristorante
         getApi(url) {
             axios.get(url)
-                .then(res => {
-                    // console.log(res.data.menu);
-                    res.data.menu.forEach(el => {
-                        if (el.user_id == this.current_user) {
-                            this.current_menu.push(el);
-                            // console.log(this.current_menu);
-                        }
-                    });
-                })
+            .then(res=>{
+                // console.log(res.data.menu);
+                res.data.menu.forEach(el => {
+                    if(el.user_id == this.current_user){
+                        this.current_menu.push(el);
+                        this.current_restaurant = el.user;
+                        console.log(this.current_menu);
+                    }
+                });
+            })
         },
 
         // Assegno valori true e false alle portate
@@ -278,7 +305,6 @@ export default {
             else el.boolean = true;
         },
         // /Assegno valori true e false alle portate
-
     },
 
     mounted() {
@@ -299,9 +325,8 @@ export default {
 .jumbo {
     min-height: 50vh;
 
-    background-image: url('/images/restaurant-1.jpg');
     background-position: center;
-    background-size: auto;
+    background-size: cover;
     background-repeat: no-repeat;
 
     color: white;
