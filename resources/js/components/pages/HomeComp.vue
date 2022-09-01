@@ -75,7 +75,7 @@
 
                             <!-- Res. Img -->
                             <div class="res-img">
-                                <img src="images/restaurant_placeholder.jpg"
+                                <img src="images/restaurant_placeholder_home.jpg"
                                     v-if="user.image_path == null">
                                 <img :src="'images/'+user.image_path"
                                     v-else>

@@ -42,6 +42,7 @@
                     </ul>
                 </div>
             </div>
+        </div>
         </nav>
         <!-- /Navbar per navigare fra le portate -->
 
