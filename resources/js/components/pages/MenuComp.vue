@@ -1,12 +1,29 @@
 <template>
   <div>
     <!-- Immagine di testa (ristorante) -->
-    <section class="jumbo d-flex align-items-end">
-        <div class="jumbo-info container p-2">
-            <h1>Pizzeria di Vercingetorige della turingia inferiore</h1>
-            <h5>Categoria e indirizzo</h5>
+    <section>
+        <div v-if="current_user.image_path == null">
+            <div
+                class="jumbo d-flex align-items-end"
+                style="background-image: url('/images/restaurant_placeholder.jpg')">
+                <div class="jumbo-info container p-2">
+                    <h1>Pizzeria di Vercingetorige della turingia inferiore</h1>
+                    <h5>Categoria e indirizzo</h5>
+                </div>
+            </div>
+        </div>
+        <div v-else>
+            <div
+                class="jumbo d-flex align-items-end"
+                :style="`background-image: url('/images/${current_user.image_path}')`">
+                <div class="jumbo-info container p-2">
+                    <h1>Pizzeria di Vercingetorige della turingia inferiore</h1>
+                    <h5>Categoria e indirizzo</h5>
+                </div>
+            </div>
         </div>
     </section>
+
     <!-- /Immagine di testa (ristorante) -->
 
     <!-- Navbar per navigare fra le portate -->
@@ -82,7 +99,11 @@ export default {
         return{
             itemApiUrl: "http://127.0.0.1:8000/api",
             // Il props va inserito qui al posto del current user!
-            current_user: 1,
+            current_user: {
+                    user_id: 1,
+                    // image_path: 'restaurant-10.jpg',
+                    image_path: null,
+            },
             current_menu: [],
             coursesArray: [],
 
@@ -96,7 +117,7 @@ export default {
             .then(res=>{
                 // console.log(res.data.menu);
                 res.data.menu.forEach(el => {
-                    if(el.user_id == this.current_user){
+                    if(el.user_id == this.current_user.user_id){
                         this.current_menu.push(el);
                         // console.log(this.current_menu);
                     }
@@ -145,9 +166,8 @@ export default {
 .jumbo{
     min-height: 50vh;
 
-    background-image: url('/images/restaurant-1.jpg');
     background-position: center;
-    background-size: auto;
+    background-size: cover;
     background-repeat: no-repeat;
 
     color: white;
