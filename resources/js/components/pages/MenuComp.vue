@@ -80,7 +80,7 @@ export default {
 
     data(){
         return{
-            itemApiUrl: "http://127.0.0.1:8000/api/categories",
+            itemApiUrl: "http://127.0.0.1:8000/api",
             // Il props va inserito qui al posto del current user!
             current_user: 1,
             current_menu: [],

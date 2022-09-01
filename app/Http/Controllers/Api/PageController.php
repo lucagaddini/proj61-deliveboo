@@ -15,11 +15,12 @@ class PageController extends Controller
 
         $categories = Category::all();
         $courses = Course::all();
+        $users = User::all();
         // $current_user = auth()->user()->id;
         // $menu = Item::select('*')->where('user_id','=', $current_user )->with('user')->with('course')->paginate(5);
         $menu = Item::with('user')->with('course')->get();
         // dd($categories, $menu);
-        return response()->json(compact('categories', 'courses', 'menu'));
+        return response()->json(compact('categories', 'courses', 'users', 'menu'));
 
     }
 }

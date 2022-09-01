@@ -2001,25 +2001,29 @@ __webpack_require__.r(__webpack_exports__);
         }]
       },
       // /SLIDER
-      apiUrl: "http://127.0.0.1:8000/api/categories",
-      categoriesArray: []
+      apiUrl: "http://127.0.0.1:8000/api",
+      categoriesArray: [],
+      usersArray: []
     };
   },
   methods: {
-    getCategories: function getCategories(url) {
+    fillArrays: function fillArrays(url) {
       var _this = this;
 
       axios.get(url).then(function (res) {
         res.data.categories.forEach(function (el) {
-          _this.categoriesArray.push(el);
+          _this.categoriesArray.push(el); // console.log(this.categoriesArray);
 
-          console.log(_this.categoriesArray);
+        });
+        res.data.users.forEach(function (el) {
+          _this.usersArray.push(el); // console.log(this.usersArray);
+
         });
       });
     }
   },
   mounted: function mounted() {
-    this.getCategories(this.apiUrl);
+    this.fillArrays(this.apiUrl);
   }
 });
 
@@ -2048,7 +2052,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      itemApiUrl: "http://127.0.0.1:8000/api/categories",
+      itemApiUrl: "http://127.0.0.1:8000/api",
       // Il props va inserito qui al posto del current user!
       current_user: 1,
       current_menu: [],
@@ -2205,39 +2209,48 @@ var render = function render() {
     }])
   }, "VueSlickCarousel", _vm.settings, false), [_vm._v(" "), _vm._l(_vm.categoriesArray, function (category) {
     return _c("div", {
-      key: category.id,
+      key: "category-" + category.id,
       staticClass: "cat-cards"
     }, [_c("img", {
       attrs: {
-        src: "images/burghers-0.jpg"
+        src: "images/" + category.image_path
       }
-    }), _vm._v(" "), _c("p", [_vm._v("Pizza")])]);
+    }), _vm._v(" "), _c("p", [_vm._v(_vm._s(category.name))])]);
   })], 2)], 1), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
     staticClass: "restaurants container"
   }, [_vm._m(1), _vm._v(" "), _c("div", {
     staticClass: "res-cards row row-cols-1 row-cols-lg-2"
-  }, [_c("div", {
-    staticClass: "res-card col"
-  }, [_c("div", {
-    staticClass: "card-container bg-debug col-12 d-flex"
-  }, [_c("div", {
-    staticClass: "d-flex card-style"
-  }, [_vm._m(2), _vm._v(" "), _c("div", {
-    staticClass: "res-text"
-  }, [_c("router-link", {
-    staticClass: "nav-link",
-    attrs: {
-      to: {
-        name: "menu"
+  }, _vm._l(_vm.usersArray, function (user) {
+    return _c("div", {
+      key: "user-" + user.id,
+      staticClass: "res-card col"
+    }, [_c("div", {
+      staticClass: "card-container bg-debug col-12 d-flex"
+    }, [_c("div", {
+      staticClass: "d-flex card-style"
+    }, [_c("div", {
+      staticClass: "res-img"
+    }, [_c("img", {
+      attrs: {
+        src: "images/" + user.image_path
       }
-    }
-  }, [_c("h4", {
-    staticClass: "res-name"
-  }, [_vm._v("Pizzeria Dal Napoli Di Marmetto di Francesco")]), _vm._v(" "), _c("span", {
-    staticClass: "res-adress"
-  }, [_vm._v("Via Garibaldi, 120")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("span", {
-    staticClass: "res-cat"
-  }, [_c("span", [_vm._v("Cat.1")]), _vm._v(" "), _c("span", [_vm._v("Cat.1")])])])], 1)])])])])])])], 1);
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "res-text"
+    }, [_c("router-link", {
+      staticClass: "nav-link",
+      attrs: {
+        to: {
+          name: "menu"
+        }
+      }
+    }, [_c("h4", {
+      staticClass: "res-name"
+    }, [_vm._v(_vm._s(user.name))]), _vm._v(" "), _c("span", {
+      staticClass: "res-adress"
+    }, [_vm._v(_vm._s(user.address))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("span", {
+      staticClass: "res-cat"
+    }, [_c("span", [_vm._v("Cat.1")]), _vm._v(" "), _c("span", [_vm._v("Cat.1")])])])], 1)])])]);
+  }), 0)])])], 1);
 };
 
 var staticRenderFns = [function () {
@@ -2254,17 +2267,6 @@ var staticRenderFns = [function () {
   return _c("div", {
     staticClass: "res-title text-center"
   }, [_c("h2", [_vm._v("Top Rated Restaurants")]), _vm._v(" "), _c("p", [_vm._v("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti?")])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "res-img"
-  }, [_c("img", {
-    attrs: {
-      src: "images/vegetariano-7.jpg"
-    }
-  })]);
 }];
 render._withStripped = true;
 
