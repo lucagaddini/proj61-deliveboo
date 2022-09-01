@@ -1950,6 +1950,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      // SLIDER
       settings: {
         "dots": true,
         "arrows": true,
@@ -1998,8 +1999,27 @@ __webpack_require__.r(__webpack_exports__);
             "arrows": false
           }
         }]
-      }
+      },
+      // /SLIDER
+      apiUrl: "http://127.0.0.1:8000/api/categories",
+      categoriesArray: []
     };
+  },
+  methods: {
+    getCategories: function getCategories(url) {
+      var _this = this;
+
+      axios.get(url).then(function (res) {
+        res.data.categories.forEach(function (el) {
+          _this.categoriesArray.push(el);
+
+          console.log(_this.categoriesArray);
+        });
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getCategories(this.apiUrl);
   }
 });
 
@@ -2183,43 +2203,41 @@ var render = function render() {
         }, [_vm._v("\n                      " + _vm._s(arrowOption.currentSlide) + "/" + _vm._s(arrowOption.slideCount) + "\n                  ")])];
       }
     }])
-  }, "VueSlickCarousel", _vm.settings, false), [_vm._v(" "), _c("div", {
-    staticClass: "cat-cards"
-  }, [_c("img", {
+  }, "VueSlickCarousel", _vm.settings, false), [_vm._v(" "), _vm._l(_vm.categoriesArray, function (category) {
+    return _c("div", {
+      key: category.id,
+      staticClass: "cat-cards"
+    }, [_c("img", {
+      attrs: {
+        src: "images/burghers-0.jpg"
+      }
+    }), _vm._v(" "), _c("p", [_vm._v("Pizza")])]);
+  })], 2)], 1), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
+    staticClass: "restaurants container"
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
+    staticClass: "res-cards row row-cols-1 row-cols-lg-2"
+  }, [_c("div", {
+    staticClass: "res-card col"
+  }, [_c("div", {
+    staticClass: "card-container bg-debug col-12 d-flex"
+  }, [_c("div", {
+    staticClass: "d-flex card-style"
+  }, [_vm._m(2), _vm._v(" "), _c("div", {
+    staticClass: "res-text"
+  }, [_c("router-link", {
+    staticClass: "nav-link",
     attrs: {
-      src: "images/burghers-0.jpg"
+      to: {
+        name: "menu"
+      }
     }
-  }), _vm._v(" "), _c("p", [_vm._v("Pizza")])]), _vm._v(" "), _c("div", {
-    staticClass: "cat-cards"
-  }, [_c("img", {
-    attrs: {
-      src: "images/burghers-0.jpg"
-    }
-  }), _vm._v(" "), _c("p", [_vm._v("Pizza")])]), _vm._v(" "), _c("div", {
-    staticClass: "cat-cards"
-  }, [_c("img", {
-    attrs: {
-      src: "images/burghers-0.jpg"
-    }
-  }), _vm._v(" "), _c("p", [_vm._v("Pizza")])]), _vm._v(" "), _c("div", {
-    staticClass: "cat-cards"
-  }, [_c("img", {
-    attrs: {
-      src: "images/burghers-0.jpg"
-    }
-  }), _vm._v(" "), _c("p", [_vm._v("Pizza")])]), _vm._v(" "), _c("div", {
-    staticClass: "cat-cards"
-  }, [_c("img", {
-    attrs: {
-      src: "images/burghers-0.jpg"
-    }
-  }), _vm._v(" "), _c("p", [_vm._v("Pizza")])]), _vm._v(" "), _c("div", {
-    staticClass: "cat-cards"
-  }, [_c("img", {
-    attrs: {
-      src: "images/burghers-0.jpg"
-    }
-  }), _vm._v(" "), _c("p", [_vm._v("Pizza")])])])], 1), _vm._v(" "), _c("hr"), _vm._v(" "), _vm._m(1)])], 1);
+  }, [_c("h4", {
+    staticClass: "res-name"
+  }, [_vm._v("Pizzeria Dal Napoli Di Marmetto di Francesco")]), _vm._v(" "), _c("span", {
+    staticClass: "res-adress"
+  }, [_vm._v("Via Garibaldi, 120")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("span", {
+    staticClass: "res-cat"
+  }, [_c("span", [_vm._v("Cat.1")]), _vm._v(" "), _c("span", [_vm._v("Cat.1")])])])], 1)])])])])])])], 1);
 };
 
 var staticRenderFns = [function () {
@@ -2234,32 +2252,19 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "restaurants container"
-  }, [_c("div", {
     staticClass: "res-title text-center"
-  }, [_c("h2", [_vm._v("Top Rated Restaurants")]), _vm._v(" "), _c("p", [_vm._v("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti?")])]), _vm._v(" "), _c("div", {
-    staticClass: "res-cards row row-cols-1 row-cols-lg-2"
-  }, [_c("div", {
-    staticClass: "res-card col"
-  }, [_c("div", {
-    staticClass: "card-container bg-debug col-12 d-flex"
-  }, [_c("div", {
-    staticClass: "d-flex card-style"
-  }, [_c("div", {
+  }, [_c("h2", [_vm._v("Top Rated Restaurants")]), _vm._v(" "), _c("p", [_vm._v("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti?")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "res-img"
   }, [_c("img", {
     attrs: {
       src: "images/vegetariano-7.jpg"
     }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "res-text"
-  }, [_c("h4", {
-    staticClass: "res-name"
-  }, [_vm._v("Pizzeria Dal Napoli Di Marmetto di Francesco")]), _vm._v(" "), _c("span", {
-    staticClass: "res-adress"
-  }, [_vm._v("Via Garibaldi, 120")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("span", {
-    staticClass: "res-cat"
-  }, [_c("span", [_vm._v("Cat.1")]), _vm._v(" "), _c("span", [_vm._v("Cat.1")])])])])])])])]);
+  })]);
 }];
 render._withStripped = true;
 
@@ -2469,19 +2474,17 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
   return _c("header", [_c("nav", {
     staticClass: "navbar navbar_custom navbar-expand-md navbar-dark shadow-sm"
   }, [_c("div", {
     staticClass: "container-fluid"
-  }, [_c("a", {
-    staticClass: "navbar-brand"
+  }, [_c("router-link", {
+    staticClass: "navbar-brand",
+    attrs: {
+      to: {
+        name: "search"
+      }
+    }
   }, [_c("img", {
     staticClass: "d-inline-block align-center",
     attrs: {
@@ -2489,7 +2492,14 @@ var staticRenderFns = [function () {
       width: "40px",
       alt: "DeliveBoo Logo"
     }
-  }), _vm._v(" "), _c("strong", [_vm._v("DeliveBoo")])]), _vm._v(" "), _c("button", {
+  }), _vm._v(" "), _c("strong", [_vm._v("DeliveBoo")])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)], 1)])]);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("button", {
     staticClass: "navbar-toggler",
     attrs: {
       type: "button",
@@ -2500,7 +2510,12 @@ var staticRenderFns = [function () {
     }
   }, [_c("span", {
     staticClass: "navbar-toggler-icon"
-  })]), _vm._v(" "), _c("div", {
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "collapse navbar-collapse",
     attrs: {
       id: "navbarSupportedContent"
@@ -2532,7 +2547,7 @@ var staticRenderFns = [function () {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-cart-shopping"
-  })])])])])])])]);
+  })])])])]);
 }];
 render._withStripped = true;
 
@@ -2566,36 +2581,19 @@ var staticRenderFns = [function () {
   }, [_c("section", {
     staticClass: "herobanner"
   }, [_c("div", {
-    staticClass: "container col-xxl-8 pr-5 px-sm-4 py-5"
+    staticClass: "container col-xxl-8 pr-5 px-sm-4"
   }, [_c("div", {
-    staticClass: "row align-items-center g-5 py-5"
+    staticClass: "row align-items-center g-5"
   }, [_c("div", {
-    staticClass: "col-12 col-sm-6"
+    staticClass: "col-12 col-md-6 p-4"
   }, [_c("h1", {
     staticClass: "display-5 fw-bold lh-1 mb-3"
   }, [_vm._v("Il cibo che ami a Domicilio")]), _vm._v(" "), _c("p", {
     staticClass: "lead"
   }, [_vm._v("Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate distinctio repudiandae perferendis quibusdam voluptas. Veritatis, enim rerum. Hic consectetur incidunt impedit, alias ratione tenetur ex praesentium nisi culpa vero aliquid?")]), _vm._v(" "), _c("div", {
     staticClass: "d-grid gap-2 d-md-flex justify-content-md-start"
-  }, [_c("form", {
-    staticClass: "d-flex",
-    attrs: {
-      role: "search"
-    }
-  }, [_c("input", {
-    staticClass: "form-control me-2",
-    attrs: {
-      type: "search",
-      placeholder: "Inserisci il tipo di piatto",
-      "aria-label": "Search"
-    }
-  }), _vm._v(" "), _c("button", {
-    staticClass: "btn btn_custom_secondary",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("Trova")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "prova col-12 col-sm-6 d-none d-sm-block"
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "logo-hero col-12 col-md-6 d-none d-md-block"
   }, [_c("img", {
     attrs: {
       src: "/assets/img/logo-hero.png"
@@ -7061,7 +7059,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/* Jumbotron */\n.herobanner[data-v-10995a2a] {\n  /*   background-image: url('/assets/img/banner.jpg');\n    background-position: center;\n    background-size: cover;\n    background-repeat: no-repeat; */\n  background-color: #FFB69F;\n}\nh1[data-v-10995a2a] {\n  color: #4F126F;\n}\n.lead[data-v-10995a2a] {\n  color: white;\n}", ""]);
+exports.push([module.i, "/* Jumbotron */\n.herobanner[data-v-10995a2a] {\n  background-color: #FFB69F;\n}\n.herobanner .logo-hero img[data-v-10995a2a] {\n  width: 100%;\n}\nh1[data-v-10995a2a] {\n  color: #4F126F;\n}\n.lead[data-v-10995a2a] {\n  color: white;\n}", ""]);
 
 // exports
 
@@ -65426,9 +65424,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/micheleiliescu/Desktop/prog-final/proj61-deliveboo-team-2/resources/js/front.js */"./resources/js/front.js");
-__webpack_require__(/*! /Users/micheleiliescu/Desktop/prog-final/proj61-deliveboo-team-2/resources/sass/admin/style.scss */"./resources/sass/admin/style.scss");
-module.exports = __webpack_require__(/*! /Users/micheleiliescu/Desktop/prog-final/proj61-deliveboo-team-2/resources/sass/front/style.scss */"./resources/sass/front/style.scss");
+__webpack_require__(/*! C:\Laravel\esercizio finale\proj61-deliveboo-team-2\resources\js\front.js */"./resources/js/front.js");
+__webpack_require__(/*! C:\Laravel\esercizio finale\proj61-deliveboo-team-2\resources\sass\admin\style.scss */"./resources/sass/admin/style.scss");
+module.exports = __webpack_require__(/*! C:\Laravel\esercizio finale\proj61-deliveboo-team-2\resources\sass\front\style.scss */"./resources/sass/front/style.scss");
 
 
 /***/ })

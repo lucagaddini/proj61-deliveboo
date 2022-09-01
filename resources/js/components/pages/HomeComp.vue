@@ -29,27 +29,9 @@
                 <!-- /Prev Arrow -->
 
                 <!-- Cat. Cards -->
-                <div class="cat-cards">
-                    <img src="images/burghers-0.jpg">
-                    <p>Pizza</p>
-                </div>
-                <div class="cat-cards">
-                    <img src="images/burghers-0.jpg">
-                    <p>Pizza</p>
-                </div>
-                <div class="cat-cards">
-                    <img src="images/burghers-0.jpg">
-                    <p>Pizza</p>
-                </div>
-                <div class="cat-cards">
-                    <img src="images/burghers-0.jpg">
-                    <p>Pizza</p>
-                </div>
-                <div class="cat-cards">
-                    <img src="images/burghers-0.jpg">
-                    <p>Pizza</p>
-                </div>
-                <div class="cat-cards">
+                <div class="cat-cards"
+                    v-for="category in categoriesArray"
+                    :key="category.id">
                     <img src="images/burghers-0.jpg">
                     <p>Pizza</p>
                 </div>
@@ -144,6 +126,7 @@ export default {
 
     data() {
       return {
+        // SLIDER
         settings: {
             "dots": true,
             "arrows": true,
@@ -200,7 +183,28 @@ export default {
             ]
 
         },
+        // /SLIDER
+
+        apiUrl: "http://127.0.0.1:8000/api/categories",
+        categoriesArray: [],
+
       }
+    },
+
+    methods:{
+        getCategories(url){
+            axios.get(url)
+            .then(res=>{
+                res.data.categories.forEach(el => {
+                    this.categoriesArray.push(el);
+                    console.log(this.categoriesArray);
+                });
+            })
+        },
+    },
+
+    mounted(){
+        this.getCategories(this.apiUrl);
     },
 }
 
