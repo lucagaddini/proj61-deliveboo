@@ -26,9 +26,9 @@
                         <h4 class="pro-title px-1">
                             {{ item.name }}
                         </h4>
-                        <!-- <p>
-                            {{ item.description }}
-                        </p> -->
+                        <p>
+                            {{shortContent(item.description)}}
+                        </p>
                         <span class="price text-center">
                             <span>{{ item.price }}&euro;</span>
                         </span>
@@ -57,48 +57,6 @@ export default {
     },
     methods:{
 
-        // filter(){
-        //     // console.log(this.itemsArray);
-        //     this.itemsArray.forEach(item => {
-        //         if(item.course_id == this.singleCourse){
-        //             this.filteredMenu.push(item);
-        //             this.courseName = item.course.name;
-        //             // console.log(item.id);
-        //         }
-        //     });
-        // },
-
-        // isActive(){
-        //     // console.log(this.visibleCourse);
-        //     let i=0;
-        //     this.visibleCourse.forEach(obj => {
-
-        //         console.log('----------------------------- CHIAMATA DA:',obj.id,' - ',obj.name);
-        //         if(obj.id == this.singleCourse){
-
-        //             if(obj.isShown == true){
-
-        //                 console.log('sono dentro l\'IF, portata selezionata:');
-        //                 console.log('PORTATA(IF):',obj.id, '-',obj.name);
-        //                 console.log('PORTATA-SHOW(IF):',obj.isShown);
-        //                 console.log('SINGLE(IF):',this.singleCourse);
-
-        //                 return obj.isShown;
-
-        //             }else{
-        //                 console.log('sono dentro l\'ELSE, nessuna tipologia di portata selezionata');
-        //                 console.log('PORTATA(ELSE):',obj.id, '-',obj.name);
-        //                 console.log('PORTATA-SHOW(ELSE):',obj.isShown);
-        //                 console.log('SINGLE(ELSE):',this.singleCourse);
-
-        //                 return obj.isShown;
-        //             }
-        //         }
-                
-        //         console.log('-----------------------------');
-        //     });
-        // }
-
         // Chiamata API che restituisce i piatti del ristorante scelto tramite ID ed della portata selezionata tramite ID
         getUserItems(url,userId,courseId) {
             axios.get(url+userId+'/'+courseId)
@@ -107,14 +65,18 @@ export default {
                         this.filteredMenu.push(item)
                     })
                 });
+        },
+        shortContent(text){
+            return text.substr (0,30) + "....."
         }
-
-
     },
     mounted(){
         this.getUserItems(this.itemsUrl,this.userId,this.course.id);
-        // setTimeout(this.isActive, 1000);
-    }
+
+    },
+    computed:{
+    
+  }
 
 }
 </script>

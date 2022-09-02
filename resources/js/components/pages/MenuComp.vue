@@ -48,12 +48,11 @@
 
         <!----------------------------- Carrello e piatti ---------------------------------->
 
-        <section class="container">
+        <section class="container d-flex">
             <!----------------------------- Card dei piatti ---------------------------------->
 
-            <div id="my-cards">
-                <div class="container-fluid bootdey">
-
+            <div id="my-cards" class="container">
+                
                     <!-- componente card singola delle portate -->
                     <PiattoMenuComp
                         v-for="course in coursesArray"
@@ -63,11 +62,15 @@
                         :class="course.active === true ? 'd-block' : 'd-none'"
                     />
                     <!-- /componente card singola delle portate -->
-
-                </div>
             </div>
 
             <!----------------------------- Card dei piatti ---------------------------------->
+
+            <!-- componente carrello -->
+            <CarrelloMenuComp />
+            <!-- /componente carrello -->
+
+
         </section>
 
         <!----------------------------- Carrello e piatti ---------------------------------->
@@ -77,13 +80,16 @@
 
 <script>
 import PiattoMenuComp from '../partials/PiattoMenuComp.vue';
+import CarrelloMenuComp from '../partials/CarrelloMenuComp.vue';
+
 // return this.$route.params.id
 
 export default {
     name: 'MenuComp',
 
     components: {
-        PiattoMenuComp
+        PiattoMenuComp,
+        CarrelloMenuComp,
     },
 
     data() {

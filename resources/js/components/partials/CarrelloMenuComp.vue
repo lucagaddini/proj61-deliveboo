@@ -1,0 +1,128 @@
+<template>
+    <div class="col-lg-4 cart">
+        <div class="container">
+            <div class="cart-container">
+                <h4 class="cart-title p-1">Il Tuo Carrello</h4>
+
+                <div class="container list-selected-item d-flex flex-column">
+
+                    <!-- Singol Item -->
+                    <div
+                        v-for="i in 5"
+                        :key="'id'+i" 
+                        class="d-flex justify-content-between singol-item">
+
+                            <div class="d-flex justify-content-start">
+                                <!-- ICONA PER ELIMINARE L\'ELEMENTO -->
+                                <div>
+                                    <a href="#" class="mx-2"><i class="fa-solid fa-circle-minus btn-delete-custom"></i></a>
+                                </div>
+
+                                <!-- NOME PRODOTTO-->
+                                <div>
+                                    <h6 class="mx-2">NOME PRODOTTO</h6>
+                                </div>
+                            </div>
+
+                            <!-- PREZZO PRODOTTO-->
+                            <div>
+                                <h6>00.00 &euro;</h6>
+                            </div>
+
+                    </div>
+                    <!-- /Singol Item -->
+                    
+
+                </div>
+
+                <!-- Order e SubTotale -->
+                <div class="ordernow-sub-button-container container">
+                    <div class="subtotal d-flex justify-content-between">
+                        <h6 class="mt-2">Subtotale: </h6>
+                        <h6 class="mt-2">00.00 &euro;</h6>
+                    </div>
+
+                    <div class="buy-now">
+                        <a href="#" class="p-1">CHECKOUT</a>
+                    </div>
+                </div>
+                <!-- /Order e SubTotale -->
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style lang="scss" scoped>
+@import "resources/sass/front/_variables.scss";
+
+.cart {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.cart-container {
+    height: 300px;
+    border: 1px solid $fifth-color;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f2f3f4;
+}
+
+.cart-title {
+    text-align: center;
+    line-height: 35px;
+    text-transform: uppercase;
+    color: white;
+    background-color: $fifth-color;
+    height: 40px;
+}
+
+/* Singol Item */
+
+.singol-item{
+    border-bottom: 1px solid rgba($color: black, $alpha: .1);
+    margin-bottom: 12px;
+}
+
+.list-selected-item {
+    height: 165px;
+    overflow-y: auto;
+}
+
+.btn-delete-custom{
+    color: $primary-color;
+
+    &:hover{
+        color: red;
+    }
+}
+
+/* Order e SubTotale */
+.ordernow-sub-button-container {
+    text-align: center;
+    border-top: 1px solid $fifth-color;
+}
+
+.buy-now {
+    width: 100%;
+
+    a{  
+        text-decoration: none;
+        display: block;
+        color: white;
+        background-color: $fifth-color;
+        border: 1px solid $fifth-color;
+        border-radius: 5px;
+
+        &:hover{
+            color: $fifth-color;
+            background-color: white;
+            border: 1px solid $fifth-color;
+        }
+    }
+}
+</style>
