@@ -18,7 +18,7 @@
             </div>
             <!-- /Cat. Title -->
 
-            <VueSlickCarousel v-bind='settings'>
+            <VueSlickCarousel v-bind='settings' v-if= 'categoriesLoading'>
 
                 <!-- Prev Arrow -->
                 <template #prevArrow="arrowOption">
@@ -146,6 +146,7 @@ export default {
             "touchMove": false,
             "autoplay": true,
             "autoplaySpeed": 3000,
+            /* "lazyLoad": 'progressive', */
 
             "responsive": [
                 {
@@ -193,6 +194,7 @@ export default {
         apiUrl: "http://127.0.0.1:8000/api/homepage",
         categoriesArray: [],
         usersArray: [],
+        categoriesLoading: false
 
       }
     },
@@ -203,6 +205,9 @@ export default {
             .then(res=>{
                 res.data.categories.forEach(el => {
                     this.categoriesArray.push(el);
+                    if (this.categoriesArray.length >= 1){
+                        this.categoriesLoading = true;
+                    }
                     // console.log(this.categoriesArray);
                 });
                 res.data.users.forEach(el => {
