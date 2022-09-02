@@ -6,8 +6,8 @@
                 <div class="jumbo d-flex align-items-end"
                     style="background-image: url('/images/restaurant_placeholder.jpg')">
                     <div class="jumbo-info container p-2">
-                        <h1>{{ current_restaurant.name }}</h1>
-                        <h5><span></span> <span>{{  current_restaurant.address  }}</span></h5>
+                        <h2 class="restaurant-name">{{ current_restaurant.name }}</h2>
+                        <h5 class="restaurant-cat-address">><span></span> <span>{{  current_restaurant.address  }}</span></h5>
                     </div>
                 </div>
             </div>
@@ -15,16 +15,14 @@
                 <div class="jumbo d-flex align-items-end"
                     :style="`background-image: url('/images/${current_restaurant.image_path}')`">
                     <div class="jumbo-info container p-2">
-                        <h1>{{ current_restaurant.name }}</h1>
-                        <h5><span></span> <span>{{  current_restaurant.address  }}</span></h5>
+                        <h2>{{ current_restaurant.name }}</h2>
+                        <h5><span>CATEGORIA RISTORANTE</span> - <span>{{  current_restaurant.address  }}</span></h5>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- /Immagine di testa (ristorante) -->
-
-
 
         <!-- Navbar per navigare fra le portate -->
         <nav>
@@ -48,12 +46,11 @@
 
         <!----------------------------- Carrello e piatti ---------------------------------->
 
-        <section class="container d-flex">
+        <section class="container-fluid d-flex flex-wrap">
             <!----------------------------- Card dei piatti ---------------------------------->
 
 
             <div id="my-cards" class="container">
-               
                     <!-- componente card singola delle portate -->
                     <PiattoMenuComp
                         v-for="course in coursesArray"
@@ -71,7 +68,6 @@
             <CarrelloMenuComp />
             <!-- /componente carrello -->
 
-
         </section>
 
         <!----------------------------- Carrello e piatti ---------------------------------->
@@ -83,7 +79,6 @@
 import PiattoMenuComp from '../partials/PiattoMenuComp.vue';
 import CarrelloMenuComp from '../partials/CarrelloMenuComp.vue';
 
-// return this.$route.params.id
 
 export default {
     name: 'MenuComp',
@@ -143,29 +138,6 @@ export default {
                 })
         },
 
-
-
-
-        
-        
-
-        // // Assegno valori true e false alle portate
-        // getCourses(url) {
-        //     axios.get(url)
-        //         .then(res => {
-        //             res.data.courses.forEach(el => {
-        //                 var courseObj = {
-        //                     isShown: false,
-        //                 };
-        //                 let merged = {
-        //                     ...el, ...courseObj
-        //                 };
-        //                 this.coursesArray.push(merged);
-        //                 // console.log(this.coursesArray);
-        //             });
-        //         })
-        // },
-
         beActive(el) {
             if (el.active == true){
                 el.active = false;
@@ -178,7 +150,6 @@ export default {
         this.getUserInfo(this.userInfoUrl,this.current_user);
         this.getUserCourses(this.coursesUrl,this.current_user);
         
-        // this.getCourses(this.itemApiUrl);
     },
 }
 </script>
@@ -186,28 +157,21 @@ export default {
 <style scoped lang="scss">
 @import 'resources/sass/front/_variables.scss';
 
-.debug {
-    background-color: rgba($color: green, $alpha: 0.2);
-    border: 1px solid black;
-}
-
 .jumbo {
-    min-height: 50vh;
-
+    min-height: 40vh;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 
-    color: white;
-
     .jumbo-info {
         margin: 2% auto;
+        color: white;
 
-        h1 {
+        .restaurant-name {
             font-weight: 900;
         }
 
-        h5 {
+        .restaurant-cat-address{
             font-weight: 700;
         }
     }
@@ -216,16 +180,13 @@ export default {
 nav {
     -webkit-box-shadow: 0px 4px 4px 0px rgba(100, 100, 100, 0.1);
     box-shadow: 0px 4px 4px 0px rgba(100, 100, 100, 0.1);
-
     font-weight: 500;
 
     ul {
         margin: 0;
-
         li {
             padding: 0.5% 2%;
             margin: 1%;
-
             background-color: rgb(241, 241, 241);
             border-radius: 20px;
 
@@ -243,8 +204,4 @@ nav {
     color: white;
 }
 
-
-
-
-//------------------------Card dei piatti ---------------------------------->
 </style>

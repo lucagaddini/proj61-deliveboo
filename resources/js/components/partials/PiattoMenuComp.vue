@@ -1,15 +1,12 @@
 <template>
-    <div class="col-lg-8">
+    <section>
 
-        <div class="portata-title ">
+        <div class="portata-title">
             <h3>{{course.name}}</h3>
-            <!-- <button @click="isShown()" >Mostra!</button> -->
         </div>
 
         <div class="row product-list">
-
             <!-- single-card -->
-
             <div class="col-lg-4 col-sm-6 col-12 my-card"
                 v-for="item in filteredMenu"
                 :key="'item'+item.id+item.name">
@@ -35,10 +32,10 @@
                     </div>
                 </section>
             </div>
-
             <!-- //single-card -->
         </div>
-    </div>
+        
+    </section>
 </template>
 
 <script>
@@ -86,10 +83,10 @@ export default {
 
 //portate cards
 .portata-title {
+    color: black;
     margin-top: 50px;
     margin-bottom: 25px;
 }
-
 
 /*panel*/
 .panel {
@@ -97,7 +94,8 @@ export default {
     box-shadow: none;
     border: 1px solid $fifth-color;
     border-radius: 10px;
-    height: 250px
+    height: 250px;
+    width: 100%;
 }
 
 

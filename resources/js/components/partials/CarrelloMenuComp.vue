@@ -65,7 +65,8 @@ export default {};
 }
 
 .cart-container {
-    height: 300px;
+    width: 400px;
+    height: auto;
     border: 1px solid $fifth-color;
     border-radius: 10px;
     overflow: hidden;
@@ -89,7 +90,7 @@ export default {};
 }
 
 .list-selected-item {
-    height: 165px;
+    height: auto;
     overflow-y: auto;
 }
 
@@ -103,6 +104,7 @@ export default {};
 
 /* Order e SubTotale */
 .ordernow-sub-button-container {
+    height: 80px;
     text-align: center;
     border-top: 1px solid $fifth-color;
 }
