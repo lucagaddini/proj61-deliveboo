@@ -2,35 +2,48 @@
     <div class="col-lg-4 cart">
         <div class="container">
             <div class="cart-container">
-                <h3 class="p-1">Order Summary</h3>
+                <h4 class="cart-title p-1">Il Tuo Carrello</h4>
 
-                <div class="list-selected-item container">
+                <div class="container list-selected-item d-flex flex-column">
 
                     <!-- Singol Item -->
-                    <div class="d-flex justify-content-between singol-item">
+                    <div
+                        v-for="i in 5"
+                        :key="id+i" 
+                        class="d-flex justify-content-between singol-item">
 
-                        <div>
-                            <p class="mx-2">Item</p>
-                        </div>
+                            <div class="d-flex justify-content-start">
+                                <!-- ICONA PER ELIMINARE L\'ELEMENTO -->
+                                <div>
+                                    <a href="#" class="mx-2"><i class="fa-solid fa-circle-minus btn-delete-custom"></i></a>
+                                </div>
 
-                        <div>
-                            <p>??&euro;</p>
-                        </div>
+                                <!-- NOME PRODOTTO-->
+                                <div>
+                                    <h6 class="mx-2">NOME PRODOTTO</h6>
+                                </div>
+                            </div>
+
+                            <!-- PREZZO PRODOTTO-->
+                            <div>
+                                <h6>00.00 &euro;</h6>
+                            </div>
 
                     </div>
                     <!-- /Singol Item -->
+                    
 
                 </div>
 
                 <!-- Order e SubTotale -->
                 <div class="ordernow-sub-button-container container">
                     <div class="subtotal d-flex justify-content-between">
-                        <p class="mt-2">Subtotal</p>
-                        <p class="mt-2">??&euro;</p>
+                        <h6 class="mt-2">Subtotale: </h6>
+                        <h6 class="mt-2">00.00 &euro;</h6>
                     </div>
 
-                    <div class="try">
-                        <p class="p-1">ORDER NOW!</p>
+                    <div class="buy-now">
+                        <a href="#" class="p-1">CHECKOUT</a>
                     </div>
                 </div>
                 <!-- /Order e SubTotale -->
@@ -59,10 +72,12 @@ export default {};
     background-color: #f2f3f4;
 }
 
-h3 {
+.cart-title {
     text-align: center;
+    line-height: 35px;
+    text-transform: uppercase;
     color: white;
-    background-color: $primary-color;
+    background-color: $fifth-color;
     height: 40px;
 }
 
@@ -78,15 +93,36 @@ h3 {
     overflow-y: auto;
 }
 
+.btn-delete-custom{
+    color: $primary-color;
+
+    &:hover{
+        color: red;
+    }
+}
+
 /* Order e SubTotale */
 .ordernow-sub-button-container {
     text-align: center;
     border-top: 1px solid $fifth-color;
 }
 
-.try {
-    color: white;
-    background-color: $fifth-color;
-    border-radius: 5px;
+.buy-now {
+    width: 100%;
+
+    a{  
+        text-decoration: none;
+        display: block;
+        color: white;
+        background-color: $fifth-color;
+        border: 1px solid $fifth-color;
+        border-radius: 5px;
+
+        &:hover{
+            color: $fifth-color;
+            background-color: white;
+            border: 1px solid $fifth-color;
+        }
+    }
 }
 </style>
