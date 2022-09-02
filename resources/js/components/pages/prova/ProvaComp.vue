@@ -276,7 +276,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .card:hover a {
     background: green;
     transition: 1.5s ease;
