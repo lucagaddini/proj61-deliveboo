@@ -9,7 +9,7 @@
                     <!-- Singol Item -->
                     <div
                         v-for="i in 5"
-                        :key="id+i" 
+                        :key="'id'+i" 
                         class="d-flex justify-content-between singol-item">
 
                             <div class="d-flex justify-content-start">
