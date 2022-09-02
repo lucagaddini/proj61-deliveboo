@@ -1,8 +1,8 @@
 <template>
-    <div v-if="isShown() == true" class="col-md-8">
+    <div class="col-md-8">
 
         <div class="portata-title ">
-            <h3>{{courseName}}</h3>
+            <h3>{{course.name}}</h3>
             <!-- <button @click="isShown()" >Mostra!</button> -->
         </div>
 
@@ -44,55 +44,76 @@
 <script>
 export default {
     props:{
-        itemsArray: Array,
-        singleCourse: Number,
-        visibleCourse: Array,
+        course: Object,
+        userId: Number,
     },
     data(){
         return{
             filteredMenu: [],
             courseName: '',
+            itemsUrl: "http://127.0.0.1:8000/api/itemsUser/",
+
         }
     },
     methods:{
-        filter(){
-            // console.log(this.itemsArray);
-            this.itemsArray.forEach(item => {
-                if(item.course_id == this.singleCourse){
-                    this.filteredMenu.push(item);
-                    this.courseName = item.course.name;
-                    // console.log(item.id);
-                }
-            });
-        },
 
-        // ciao(){
-        //     console.log('esisto prima del loop');
-        //     this.visibleCourse.forEach(i=>{
-        //         console.log('sono i ma non sono computed', i.id);
+        // filter(){
+        //     // console.log(this.itemsArray);
+        //     this.itemsArray.forEach(item => {
+        //         if(item.course_id == this.singleCourse){
+        //             this.filteredMenu.push(item);
+        //             this.courseName = item.course.name;
+        //             // console.log(item.id);
+        //         }
         //     });
         // },
 
-        isShown(){
-            // console.log(this.visibleCourse);
-            this.visibleCourse.forEach(obj => {
-                // console.log(obj.id);
-                if (obj.id == this.singleCourse && obj.isShown == true){
-                    console.log('sono l id del array importanto', obj.id, obj.isShown);
-                    console.log('sono il npme della portata stampata', this.courseName);
-                    console.log('sono l id della portata stampata', this.singleCourse);
-                    return false;
-                }else{
-                    console.log('sono else, accendi tutto');
-                    return true;
-                }
-            });
+        // isActive(){
+        //     // console.log(this.visibleCourse);
+        //     let i=0;
+        //     this.visibleCourse.forEach(obj => {
+
+        //         console.log('----------------------------- CHIAMATA DA:',obj.id,' - ',obj.name);
+        //         if(obj.id == this.singleCourse){
+
+        //             if(obj.isShown == true){
+
+        //                 console.log('sono dentro l\'IF, portata selezionata:');
+        //                 console.log('PORTATA(IF):',obj.id, '-',obj.name);
+        //                 console.log('PORTATA-SHOW(IF):',obj.isShown);
+        //                 console.log('SINGLE(IF):',this.singleCourse);
+
+        //                 return obj.isShown;
+
+        //             }else{
+        //                 console.log('sono dentro l\'ELSE, nessuna tipologia di portata selezionata');
+        //                 console.log('PORTATA(ELSE):',obj.id, '-',obj.name);
+        //                 console.log('PORTATA-SHOW(ELSE):',obj.isShown);
+        //                 console.log('SINGLE(ELSE):',this.singleCourse);
+
+        //                 return obj.isShown;
+        //             }
+        //         }
+                
+        //         console.log('-----------------------------');
+        //     });
+        // }
+
+        // Chiamata API che restituisce i piatti del ristorante scelto tramite ID ed della portata selezionata tramite ID
+        getUserItems(url,userId,courseId) {
+            axios.get(url+userId+'/'+courseId)
+                .then(res => {
+                    res.data.items.forEach(item => {
+                        this.filteredMenu.push(item)
+                    })
+                });
         }
+
+
     },
     mounted(){
-        this.filter();
-        // this.isShown();
-        setTimeout(this.isShown, 5000);
+        this.getUserItems(this.itemsUrl,this.userId,this.course.id);
+        // setTimeout(this.isActive, 1000);
     }
 
 }

@@ -18,7 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('', 'Api\PageController@index');
-Route::get('/filtered/:id', 'Api\PageController@filtered');
+Route::get('/homepage', 'Api\PageController@homepage');
+Route::get('/coursesUser/{id}', 'Api\PageController@coursesUser');
+Route::get('/userInfo/{id}', 'Api\PageController@userInfo');
+Route::get('/itemsUser/{userId}/{courseId}', 'Api\PageController@itemsUser');
 // Route::get('', 'Api\PageController@index');
 // Route::get('', 'Api\PageController@index');
