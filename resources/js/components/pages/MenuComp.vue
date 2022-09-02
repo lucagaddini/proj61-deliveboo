@@ -31,7 +31,7 @@
                     <div class="col">
                         <ul class="d-flex list-unstyled">
                             <li v-for="course in coursesArray" :key="course.id" @click="beActive(course)"
-                                :class="course.boolean == true ? 'active' : ''">
+                                :class="course.isShown == true ? 'active' : ''">
                                 {{ course.name }}
                             </li>
                         </ul>
@@ -59,6 +59,7 @@
                         :key="'course-'+courseId"
                         :itemsArray="current_menu"
                         :singleCourse="courseId"
+                        :visibleCourse="visibleCourse"
                     />
                     <!-- /componente card singola delle portate -->
 
@@ -99,9 +100,7 @@ export default {
             // Lista delle portate
             coursesArray: [],
 
-
             filteredCoursesArray: [],
-            // filteredMenuArray: [],
 
         }
     },
@@ -120,18 +119,11 @@ export default {
                                 this.filteredCoursesArray.push(el.course_id);
                             };
 
-                            // console.log(this.current_menu);
+                            // console.log(el);
                         }
                     });
                 })
         },
-
-        // getFiltered(url){
-        //     axios.get(url)
-        //     .then(res=>{
-
-        //     })
-        // },
 
         // Assegno valori true e false alle portate
         getCourses(url) {
@@ -139,7 +131,7 @@ export default {
                 .then(res => {
                     res.data.courses.forEach(el => {
                         var courseObj = {
-                            boolean: false,
+                            isShown: false,
                         };
                         let merged = {
                             ...el, ...courseObj
@@ -149,17 +141,24 @@ export default {
                     });
                 })
         },
+
         beActive(el) {
-            if (el.boolean == true) el.boolean = false;
-            else el.boolean = true;
+            if (el.isShown == true){
+                el.isShown = false;
+            } else el.isShown = true;
         },
         // /Assegno valori true e false alle portate
+    },
+
+    computed:{
+        visibleCourse(){
+            return this.coursesArray;
+        }
     },
 
     mounted() {
         this.getApi(this.itemApiUrl, this.user_id);
         this.getCourses(this.itemApiUrl);
-        // this.getFiltered(this.itemApiUrl);
     },
 }
 </script>

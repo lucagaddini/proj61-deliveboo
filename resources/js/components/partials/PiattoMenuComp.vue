@@ -3,6 +3,7 @@
 
         <div class="portata-title ">
             <h3>{{courseName}}</h3>
+            <!-- <button @click="isShown()" >Mostra!</button> -->
         </div>
 
         <div class="row product-list">
@@ -25,9 +26,9 @@
                         <h4 class="pro-title px-1">
                             {{ item.name }}
                         </h4>
-                        <p>
+                        <!-- <p>
                             {{ item.description }}
-                        </p>
+                        </p> -->
                         <span class="price text-center">
                             <span>{{ item.price }}&euro;</span>
                         </span>
@@ -45,6 +46,7 @@ export default {
     props:{
         itemsArray: Array,
         singleCourse: Number,
+        visibleCourse: Array,
     },
     data(){
         return{
@@ -54,17 +56,30 @@ export default {
     },
     methods:{
         filter(){
-            console.log(this.itemsArray);
+            // console.log(this.itemsArray);
             this.itemsArray.forEach(item => {
                 if(item.course_id == this.singleCourse){
                     this.filteredMenu.push(item);
                     this.courseName = item.course.name;
+                    // console.log(item.id);
+                }
+            });
+        },
+
+        isShown(){
+            this.visibleCourse.forEach(obj => {
+                // console.log(obj.id);
+                if (obj.id == this.singleCourse && obj.isShown == true){
+                    return true;
+                }else{
+                    return false;
                 }
             });
         }
     },
     mounted(){
         this.filter();
+        // this.isShown();
     }
 
 }
