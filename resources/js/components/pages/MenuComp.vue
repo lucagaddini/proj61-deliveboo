@@ -51,8 +51,9 @@
         <section class="container d-flex">
             <!----------------------------- Card dei piatti ---------------------------------->
 
+
             <div id="my-cards" class="container">
-                
+               
                     <!-- componente card singola delle portate -->
                     <PiattoMenuComp
                         v-for="course in coursesArray"
@@ -91,7 +92,6 @@ export default {
         PiattoMenuComp,
         CarrelloMenuComp,
     },
-
     data() {
         return {
             coursesUrl: "http://127.0.0.1:8000/api/coursesUser/",
