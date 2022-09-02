@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-8">
+    <div class="col-lg-8">
 
         <div class="portata-title ">
             <h3>Starters</h3>
