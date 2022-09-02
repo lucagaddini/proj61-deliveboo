@@ -51,11 +51,15 @@
             <!----------------------------- Card dei piatti ---------------------------------->
 
             <div id="my-cards">
-                <div class="container-fluid bootdey">
+                <div class="container-fluid bootdey row">
 
                     <!-- componente card singola delle portate -->
                     <PiattoMenuComp />
                     <!-- /componente card singola delle portate -->
+
+                    <!-- componente carrello -->
+                    <CarrelloMenuComp />
+                    <!-- /componente carrello -->
 
                 </div>
             </div>
@@ -77,6 +81,7 @@
 
 <script>
 import PiattoMenuComp from '../partials/PiattoMenuComp.vue';
+import CarrelloMenuComp from '../partials/CarrelloMenuComp.vue';
 // return this.$route.params.id
 
 export default {
@@ -84,7 +89,8 @@ export default {
 
     components: {
     props: Number,
-    PiattoMenuComp
+    PiattoMenuComp,
+    CarrelloMenuComp
 },
 
     data() {
