@@ -2,31 +2,34 @@
     <div class="col-md-8">
 
         <div class="portata-title ">
-            <h3>Starters</h3>
+            <h3>{{courseName}}</h3>
         </div>
 
         <div class="row product-list">
 
             <!-- single-card -->
 
-            <div class="col-lg-4 col-sm-6 col-12 my-card">
+            <div class="col-lg-4 col-sm-6 col-12 my-card"
+                v-for="item in filteredMenu"
+                :key="'item'+item.id+item.name">
                 <section class="panel my-3">
                     <div class="pro-img-box d-flex justify-content-center">
-                        <img src="images/pizza-0.jpg" />
-                        <i class="fa-solid fa-leaf icon-vegetarian"></i>
+                        <img :src="'/images/'+item.image_path" />
+                        <i v-if="item.vegetarian == true" class="fa-solid fa-leaf icon-vegetarian"></i>
                         <a href="#" class="addtocart">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
                     </div>
 
                     <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title px-1">
-                                Leopard Shirt Dress pizza keba pizze e kebab super riga
-                            </a>
+                        <h4 class="pro-title px-1">
+                            {{ item.name }}
                         </h4>
+                        <p>
+                            {{ item.description }}
+                        </p>
                         <span class="price text-center">
-                            <span>$300.00</span>
+                            <span>{{ item.price }}&euro;</span>
                         </span>
                     </div>
                 </section>
@@ -39,6 +42,30 @@
 
 <script>
 export default {
+    props:{
+        itemsArray: Array,
+        singleCourse: Number,
+    },
+    data(){
+        return{
+            filteredMenu: [],
+            courseName: '',
+        }
+    },
+    methods:{
+        filter(){
+            console.log(this.itemsArray);
+            this.itemsArray.forEach(item => {
+                if(item.course_id == this.singleCourse){
+                    this.filteredMenu.push(item);
+                    this.courseName = item.course.name;
+                }
+            });
+        }
+    },
+    mounted(){
+        this.filter();
+    }
 
 }
 </script>

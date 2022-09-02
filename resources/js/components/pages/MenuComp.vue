@@ -54,7 +54,12 @@
                 <div class="container-fluid bootdey">
 
                     <!-- componente card singola delle portate -->
-                    <PiattoMenuComp />
+                    <PiattoMenuComp
+                        v-for="courseId in filteredCoursesArray"
+                        :key="'course-'+courseId"
+                        :itemsArray="current_menu"
+                        :singleCourse="courseId"
+                    />
                     <!-- /componente card singola delle portate -->
 
                 </div>
@@ -65,12 +70,6 @@
 
 
         <!----------------------------- Carrello e piatti ---------------------------------->
-
-
-
-
-
-
 
     </div>
 </template>
@@ -91,16 +90,18 @@ export default {
         return {
             itemApiUrl: "http://127.0.0.1:8000/api",
 
-            // Il props va inserito qui al posto del current user!
-            // current_user: {
-            //         user_id: this.$route.params.id,
-            //         image_path: null,
-            // },
-
+            // L'oggetto User
             current_restaurant: {},
+            // Id del ristorante che mi viene da HomeComp
             current_user: this.$route.params.id,
+            // Lista degli Items
             current_menu: [],
+            // Lista delle portate
             coursesArray: [],
+
+
+            filteredCoursesArray: [],
+            // filteredMenuArray: [],
 
         }
     },
@@ -110,16 +111,27 @@ export default {
         getApi(url) {
             axios.get(url)
                 .then(res => {
-                    //console.log(res.data.menu);
                     res.data.menu.forEach(el => {
                         if (el.user_id == this.current_user) {
                             this.current_menu.push(el);
                             this.current_restaurant = el.user;
-                            console.log(this.current_menu);
+
+                            if(!this.filteredCoursesArray.includes(el.course_id)){
+                                this.filteredCoursesArray.push(el.course_id);
+                            };
+
+                            // console.log(this.current_menu);
                         }
                     });
                 })
         },
+
+        // getFiltered(url){
+        //     axios.get(url)
+        //     .then(res=>{
+
+        //     })
+        // },
 
         // Assegno valori true e false alle portate
         getCourses(url) {
@@ -133,6 +145,7 @@ export default {
                             ...el, ...courseObj
                         };
                         this.coursesArray.push(merged);
+                        // console.log(this.coursesArray);
                     });
                 })
         },
@@ -146,6 +159,7 @@ export default {
     mounted() {
         this.getApi(this.itemApiUrl, this.user_id);
         this.getCourses(this.itemApiUrl);
+        // this.getFiltered(this.itemApiUrl);
     },
 }
 </script>

@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('', 'Api\PageController@index');
+Route::get('/filtered/:id', 'Api\PageController@filtered');
+// Route::get('', 'Api\PageController@index');
+// Route::get('', 'Api\PageController@index');
