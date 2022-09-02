@@ -22,7 +22,7 @@ const router = new VueRouter({
             component: ProvaComp
         },
         {
-            path: '/menu/:id',
+            path: '/menu/:slug',
             name: 'menu',
             component: MenuComp
         }

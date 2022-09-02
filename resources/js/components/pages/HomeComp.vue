@@ -67,8 +67,8 @@
 
                 <!-- Res. Singol Card -->
                 <div class="res-card col"
-                    :key="'user-'+user.id"
-                    v-for="user in usersArray">
+                    :key="'user-'+userObj.infoUser.id"
+                    v-for="userObj in usersArray">
                     <div class="card-container bg-debug col-12 d-flex">
 
                         <div class="d-flex card-style">
@@ -76,20 +76,31 @@
                             <!-- Res. Img -->
                             <div class="res-img">
                                 <img src="images/restaurant_placeholder_home.jpg"
-                                    v-if="user.image_path == null">
-                                <img :src="'images/'+user.image_path"
+                                    v-if="userObj.infoUser.image_path == null">
+                                <img :src="'images/'+userObj.infoUser.image_path"
                                     v-else>
                             </div>
                             <!-- /Res. Img -->
 
                             <!-- Res.Text -->
                             <div class="res-text">
-                                <router-link class="nav-link" :to="{name: 'menu', params:{id:user.id}}">
-                                    <h4 class="res-name">{{ user.name }}</h4>
-                                    <span class="res-adress">{{ user.address }}</span> <br>
+                                <router-link class="nav-link" 
+                                :to="{
+                                    name: 'menu',
+                                    params:{
+                                        slug:userObj.infoUser.slug,
+                                        id:userObj.infoUser.id
+
+                                    }
+                                }">
+                                    <h4 class="res-name">{{ userObj.infoUser.name }}</h4>
+                                    <span class="res-adress">{{ userObj.infoUser.address }}</span> <br>
                                     <span class="res-cat">
-                                        <span>Cat.1</span>
-                                        <span>Cat.1</span>
+                                        <span class="mr-2"
+                                            v-for="userCat in userObj.categoriesUser"
+                                            :key="'userCat'+userCat.id" >
+                                            {{userCat.name}}
+                                        </span>
                                     </span>
                                 </router-link>
                             </div>
@@ -192,6 +203,9 @@ export default {
         // /SLIDER
 
         apiUrl: "http://127.0.0.1:8000/api/homepage",
+        urlHome: "http://127.0.0.1:8000/api/homepage",
+        urlCat: "http://127.0.0.1:8000/api/categoryUser/",
+        categoriesUserUrl: "http://127.0.0.1:8000/api/categoryUser/",
         categoriesArray: [],
         usersArray: [],
         categoriesLoading: false
@@ -200,9 +214,30 @@ export default {
     },
 
     methods:{
-        fillArrays(url){
-            axios.get(url)
+        // fillArrays(url){
+        //     axios.get(url)
+        //     .then(res=>{
+        //         res.data.categories.forEach(el => {
+        //             this.categoriesArray.push(el);
+        //             if (this.categoriesArray.length >= 1){
+        //                 this.categoriesLoading = true;
+        //             }
+        //             // console.log(this.categoriesArray);
+        //         });
+        //         res.data.users.forEach(el => {
+        //             this.usersArray.push(el);
+        //             // console.log(this.usersArray);
+        //         });
+        //     })
+        // },
+
+        fillArrays(urlHome,urlCat){
+            let temporaryUserArray = [];
+            let temporaryCatArray = [];
+
+            axios.get(urlHome)
             .then(res=>{
+
                 res.data.categories.forEach(el => {
                     this.categoriesArray.push(el);
                     if (this.categoriesArray.length >= 1){
@@ -210,16 +245,41 @@ export default {
                     }
                     // console.log(this.categoriesArray);
                 });
-                res.data.users.forEach(el => {
-                    this.usersArray.push(el);
-                    // console.log(this.usersArray);
+
+                res.data.users.forEach(user => {
+                    // console.log('urlCat', res.data);
+                    temporaryUserArray.push(user);
+                    // console.log('TempApi', temporaryUserArray);
                 });
-            })
-        },
+
+                // console.log('Temp:', temporaryUserArray);
+                temporaryUserArray.forEach( user =>{
+                // console.log('URLCAT:',urlCat,user.id);
+                var obj = user;
+
+                axios.get(this.categoriesUserUrl+user.id,obj)
+                .then(res=>{
+                    let tempCatArrayUser = [];
+                    // console.log('urlCat-obj', obj);
+                    res.data.categories.forEach(cat => {
+                    // console.log('RES CATURL:', cat);
+                        tempCatArrayUser.push(cat);
+                    });
+
+                    var merge = {'infoUser':obj,'categoriesUser':tempCatArrayUser}
+                    this.usersArray.push(merge);
+
+                });
+            });
+
+            });
+            
+        }
     },
 
     mounted(){
-        this.fillArrays(this.apiUrl);
+        // this.fillArrays(this.apiUrl);
+        this.fillArrays(this.urlHome,this.urlCat);
     },
 }
 

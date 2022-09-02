@@ -43,6 +43,7 @@ export default {
     props:{
         course: Object,
         userId: Number,
+        userSlug: String,
     },
     data(){
         return{
@@ -55,8 +56,8 @@ export default {
     methods:{
 
         // Chiamata API che restituisce i piatti del ristorante scelto tramite ID ed della portata selezionata tramite ID
-        getUserItems(url,userId,courseId) {
-            axios.get(url+userId+'/'+courseId)
+        getUserItems(url,slug,courseId) {
+            axios.get(url+slug+'/'+courseId)
                 .then(res => {
                     res.data.items.forEach(item => {
                         this.filteredMenu.push(item)
@@ -68,7 +69,7 @@ export default {
         }
     },
     mounted(){
-        this.getUserItems(this.itemsUrl,this.userId,this.course.id);
+        this.getUserItems(this.itemsUrl,this.userSlug,this.course.id);
 
     },
     computed:{

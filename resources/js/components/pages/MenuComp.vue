@@ -14,10 +14,15 @@
             <div v-else>
                 <div class="jumbo d-flex align-items-end"
                     :style="`background-image: url('/images/${current_restaurant.image_path}')`">
-                    <div class="jumbo-info container p-2">
-                        <h2>{{ current_restaurant.name }}</h2>
-                        <h5><span>CATEGORIA RISTORANTE</span> - <span>{{  current_restaurant.address  }}</span></h5>
+                    <div class="background-info container-fluid">
+
+                        <div class="jumbo-info container p-2">
+                            <h2>{{ current_restaurant.name }}</h2>
+                            <h5><span>CATEGORIA RISTORANTE</span> - <span>{{  current_restaurant.address  }}</span></h5>
+                        </div>
+
                     </div>
+                    
                 </div>
             </div>
         </section>
@@ -57,6 +62,7 @@
                         :key="'course-'+course.id"
                         :course="course"
                         :userId="current_restaurant.id"
+                        :userSlug="current_user_slug"
                         :class="course.active === true ? 'd-block' : 'd-none'"
                     />
                     <!-- /componente card singola delle portate -->
@@ -96,7 +102,8 @@ export default {
             current_restaurant: {},
 
             // Id del ristorante che mi viene da HomeComp
-            current_user: this.$route.params.id,
+            current_user_id: this.$route.params.id,
+            current_user_slug: this.$route.params.slug,
 
             // Lista delle portate del ristorante attivo
             coursesArray: [],
@@ -108,8 +115,8 @@ export default {
 
     methods: {
         // Chiamata API che restituisce le portate del ristorante scelto tramite ID
-        getUserCourses(url,id) {
-            axios.get(url+id)
+        getUserCourses(url,slug) {
+            axios.get(url+slug)
                 .then(res => {
                     res.data.courses.forEach(course => {
 
@@ -129,8 +136,8 @@ export default {
         },
 
         // Chiamata API che restituisce le INFO del ristorante scelto tramite ID
-        getUserInfo(url,id) {
-            axios.get(url+id)
+        getUserInfo(url,slug) {
+            axios.get(url+slug)
                 .then(res => {
                     res.data.user.forEach(user => {
                         this.current_restaurant = user;
@@ -147,8 +154,8 @@ export default {
     },
 
     mounted() {
-        this.getUserInfo(this.userInfoUrl,this.current_user);
-        this.getUserCourses(this.coursesUrl,this.current_user);
+        this.getUserInfo(this.userInfoUrl,this.current_user_slug);
+        this.getUserCourses(this.coursesUrl,this.current_user_slug);
         
     },
 }
@@ -163,9 +170,16 @@ export default {
     background-size: cover;
     background-repeat: no-repeat;
 
+    .background-info{
+        background-color: white;
+        opacity: 0.7;
+        height: 100px;
+    }
+
     .jumbo-info {
-        margin: 2% auto;
-        color: white;
+        margin: 1% auto;
+        color: black;
+        opacity: 1;
 
         .restaurant-name {
             font-weight: 900;
