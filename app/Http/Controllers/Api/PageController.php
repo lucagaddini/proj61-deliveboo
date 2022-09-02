@@ -39,6 +39,17 @@ class PageController extends Controller
         return response()->json(compact('courses'));
     }
 
+    // API CHE RESTITUISCE LE CATEGORIE DI UN DETERMIANTO RISTORANTE
+    public function categoryUser($id){
+        $categories = DB::table('categories')
+                ->select('categories.id','categories.name')
+                ->join('category_user','category_id','=','categories.id')
+                ->where('category_user.user_id','=', $id)
+                ->distinct()->get();
+
+        return response()->json(compact('categories'));
+    }
+
     // API CHE RESTITUISCE LE PORTATE DI UN DETERMIANTO RISTORANTE
     public function itemsUser($userId,$courseId){
 

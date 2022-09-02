@@ -1,0 +1,48 @@
+QUERY CON CREAZIONE DI OGGETTO USER CON ALL INTERNO I DATI DELL UTENTE ED LE CATEGORIE
+
+fillArrays(urlHome,urlCat){
+            let temporaryUserArray = [];
+            let temporaryCatArray = [];
+            axios.get(urlHome)
+            .then(res=>{
+
+                res.data.categories.forEach(el => {
+                    this.categoriesArray.push(el);
+                    if (this.categoriesArray.length >= 1){
+                        this.categoriesLoading = true;
+                    }
+                    // console.log(this.categoriesArray);
+                });
+
+                res.data.users.forEach(user => {
+                    // console.log('urlCat', res.data);
+                    temporaryUserArray.push(user);
+                    // console.log('TempApi', temporaryUserArray);
+                });
+
+                // console.log('Temp:', temporaryUserArray);
+                temporaryUserArray.forEach( user =>{
+                // console.log('URLCAT:',urlCat,user.id);
+                var obj = user;
+                axios.get(this.categoriesUserUrl+user.id,obj)
+                .then(res=>{
+                    let tempCatArrayUser = [];
+                    // console.log('urlCat-obj', obj);
+                    res.data.categories.forEach(cat => {
+                    console.log('RES CATURL:', cat);
+                        tempCatArrayUser.push(cat);
+                    });
+
+                    var merge = {'infoUser':obj,'categoriesUser':tempCatArrayUser}
+                    this.usersArray.push(merge);
+
+                });
+            });
+
+            });
+            
+            
+            
+
+            
+        }

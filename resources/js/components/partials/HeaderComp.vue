@@ -6,7 +6,7 @@
 
             <!-- Left Side -->
             <router-link class="navbar-brand" :to="{name: 'search'}">
-                <img src="assets/img/logo.png" width="40px" class="d-inline-block align-center" alt="DeliveBoo Logo">
+                <img src="/assets/img/logo.png" width="40px" class="d-inline-block align-center" alt="DeliveBoo Logo">
                 <strong>DeliveBoo</strong>
             </router-link>
             <!-- /Left Side -->

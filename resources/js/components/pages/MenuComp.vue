@@ -26,7 +26,7 @@
 
         <!-- Navbar per navigare fra le portate -->
         <nav>
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col">
                         <ul class="d-flex list-unstyled">
@@ -50,7 +50,7 @@
             <!----------------------------- Card dei piatti ---------------------------------->
 
 
-            <div id="my-cards" class="container">
+            <div id="my-cards" class="container col-8">
                     <!-- componente card singola delle portate -->
                     <PiattoMenuComp
                         v-for="course in coursesArray"

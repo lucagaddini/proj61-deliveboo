@@ -1,7 +1,7 @@
 <template>
     <section>
 
-        <div class="portata-title">
+        <div class="portata-title text-uppercase">
             <h3>{{course.name}}</h3>
         </div>
 
