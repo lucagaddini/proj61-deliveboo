@@ -42,9 +42,6 @@
         <!-- /Navbar per navigare fra le portate -->
 
 
-
-
-
         <!----------------------------- Carrello e piatti ---------------------------------->
 
         <section class="container">
@@ -59,7 +56,7 @@
                         :key="'course-'+courseId"
                         :itemsArray="current_menu"
                         :singleCourse="courseId"
-                        :visibleCourse="visibleCourse"
+                        :visibleCourse="coursesArray"
                     />
                     <!-- /componente card singola delle portate -->
 
@@ -83,9 +80,8 @@ export default {
     name: 'MenuComp',
 
     components: {
-    props: Number,
-    PiattoMenuComp
-},
+        PiattoMenuComp
+    },
 
     data() {
         return {
@@ -150,11 +146,11 @@ export default {
         // /Assegno valori true e false alle portate
     },
 
-    computed:{
-        visibleCourse(){
-            return this.coursesArray;
-        }
-    },
+    // computed:{
+    //     visibleCourse(){
+    //         return this.coursesArray;
+    //     }
+    // },
 
     mounted() {
         this.getApi(this.itemApiUrl, this.user_id);

@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-8">
+    <div v-if="isShown() == true" class="col-md-8">
 
         <div class="portata-title ">
             <h3>{{courseName}}</h3>
@@ -66,13 +66,25 @@ export default {
             });
         },
 
+        // ciao(){
+        //     console.log('esisto prima del loop');
+        //     this.visibleCourse.forEach(i=>{
+        //         console.log('sono i ma non sono computed', i.id);
+        //     });
+        // },
+
         isShown(){
+            // console.log(this.visibleCourse);
             this.visibleCourse.forEach(obj => {
                 // console.log(obj.id);
                 if (obj.id == this.singleCourse && obj.isShown == true){
-                    return true;
-                }else{
+                    console.log('sono l id del array importanto', obj.id, obj.isShown);
+                    console.log('sono il npme della portata stampata', this.courseName);
+                    console.log('sono l id della portata stampata', this.singleCourse);
                     return false;
+                }else{
+                    console.log('sono else, accendi tutto');
+                    return true;
                 }
             });
         }
@@ -80,6 +92,7 @@ export default {
     mounted(){
         this.filter();
         // this.isShown();
+        setTimeout(this.isShown, 5000);
     }
 
 }
