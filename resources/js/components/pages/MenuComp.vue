@@ -24,14 +24,18 @@
 
         <!-- /Immagine di testa (ristorante) -->
 
+
+
         <!-- Navbar per navigare fra le portate -->
         <nav>
             <div class="container">
                 <div class="row">
                     <div class="col">
                         <ul class="d-flex list-unstyled">
-                            <li v-for="course in coursesArray" :key="course.id" @click="beActive(course)"
-                                :class="course.boolean == true ? 'active' : ''">
+                            <li v-for="course in coursesArray" 
+                                :key="course.id"     
+                                @click="beActive(course)"
+                                :class="course.active == true ? 'active' : ''">
                                 {{ course.name }}
                             </li>
                         </ul>
@@ -40,9 +44,6 @@
             </div>
         </nav>
         <!-- /Navbar per navigare fra le portate -->
-
-
-
 
 
         <!----------------------------- Carrello e piatti ---------------------------------->
@@ -54,7 +55,13 @@
                 <div class="container-fluid bootdey row">
 
                     <!-- componente card singola delle portate -->
-                    <PiattoMenuComp />
+                    <PiattoMenuComp
+                        v-for="course in coursesArray"
+                        :key="'course-'+course.id"
+                        :course="course"
+                        :userId="current_restaurant.id"
+                        :class="course.active === true ? 'd-block' : 'd-none'"
+                    />
                     <!-- /componente card singola delle portate -->
 
                     <!-- componente carrello -->
@@ -67,14 +74,7 @@
             <!----------------------------- Card dei piatti ---------------------------------->
         </section>
 
-
         <!----------------------------- Carrello e piatti ---------------------------------->
-
-
-
-
-
-
 
     </div>
 </template>
@@ -92,66 +92,93 @@ export default {
     PiattoMenuComp,
     CarrelloMenuComp
 },
-
     data() {
         return {
-            itemApiUrl: "http://127.0.0.1:8000/api",
+            coursesUrl: "http://127.0.0.1:8000/api/coursesUser/",
+            userInfoUrl: "http://127.0.0.1:8000/api/userInfo/",
 
-            // Il props va inserito qui al posto del current user!
-            // current_user: {
-            //         user_id: this.$route.params.id,
-            //         image_path: null,
-            // },
-
+            // L'oggetto User
             current_restaurant: {},
+
+            // Id del ristorante che mi viene da HomeComp
             current_user: this.$route.params.id,
-            current_menu: [],
+
+            // Lista delle portate del ristorante attivo
             coursesArray: [],
+
+            // filteredCoursesArray: [],
 
         }
     },
 
     methods: {
-        // Chiamata api da filtrare per id ristorante
-        getApi(url) {
-            axios.get(url)
+        // Chiamata API che restituisce le portate del ristorante scelto tramite ID
+        getUserCourses(url,id) {
+            axios.get(url+id)
                 .then(res => {
-                    //console.log(res.data.menu);
-                    res.data.menu.forEach(el => {
-                        if (el.user_id == this.current_user) {
-                            this.current_menu.push(el);
-                            this.current_restaurant = el.user;
-                            console.log(this.current_menu);
-                        }
-                    });
-                })
-        },
+                    res.data.courses.forEach(course => {
 
-        // Assegno valori true e false alle portate
-        getCourses(url) {
-            axios.get(url)
-                .then(res => {
-                    res.data.courses.forEach(el => {
-                        var courseObj = {
-                            boolean: false,
+                        // Aggiunto un attributo Active alla portata
+                        var booleanAttibute = {
+                            active: true,
                         };
+
+                        // Merge dei due oggetti
                         let merged = {
-                            ...el, ...courseObj
+                            ...course, ...booleanAttibute
                         };
+                        
                         this.coursesArray.push(merged);
                     });
                 })
         },
+
+        // Chiamata API che restituisce le INFO del ristorante scelto tramite ID
+        getUserInfo(url,id) {
+            axios.get(url+id)
+                .then(res => {
+                    res.data.user.forEach(user => {
+                        this.current_restaurant = user;
+                    });
+                })
+        },
+
+
+
+
+        
+        
+
+        // // Assegno valori true e false alle portate
+        // getCourses(url) {
+        //     axios.get(url)
+        //         .then(res => {
+        //             res.data.courses.forEach(el => {
+        //                 var courseObj = {
+        //                     isShown: false,
+        //                 };
+        //                 let merged = {
+        //                     ...el, ...courseObj
+        //                 };
+        //                 this.coursesArray.push(merged);
+        //                 // console.log(this.coursesArray);
+        //             });
+        //         })
+        // },
+
         beActive(el) {
-            if (el.boolean == true) el.boolean = false;
-            else el.boolean = true;
+            if (el.active == true){
+                el.active = false;
+            } else el.active = true;
         },
         // /Assegno valori true e false alle portate
     },
 
     mounted() {
-        this.getApi(this.itemApiUrl, this.user_id);
-        this.getCourses(this.itemApiUrl);
+        this.getUserInfo(this.userInfoUrl,this.current_user);
+        this.getUserCourses(this.coursesUrl,this.current_user);
+        
+        // this.getCourses(this.itemApiUrl);
     },
 }
 </script>

@@ -2,31 +2,35 @@
     <div class="col-lg-8">
 
         <div class="portata-title ">
-            <h3>Starters</h3>
+            <h3>{{course.name}}</h3>
+            <!-- <button @click="isShown()" >Mostra!</button> -->
         </div>
 
         <div class="row product-list">
 
             <!-- single-card -->
 
-            <div class="col-lg-4 col-sm-6 col-12 my-card">
+            <div class="col-lg-4 col-sm-6 col-12 my-card"
+                v-for="item in filteredMenu"
+                :key="'item'+item.id+item.name">
                 <section class="panel my-3">
                     <div class="pro-img-box d-flex justify-content-center">
-                        <img src="images/pizza-0.jpg" />
-                        <i class="fa-solid fa-leaf icon-vegetarian"></i>
+                        <img :src="'/images/'+item.image_path" />
+                        <i v-if="item.vegetarian == true" class="fa-solid fa-leaf icon-vegetarian"></i>
                         <a href="#" class="addtocart">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
                     </div>
 
                     <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title px-1">
-                                Leopard Shirt Dress pizza keba pizze e kebab super riga
-                            </a>
+                        <h4 class="pro-title px-1">
+                            {{ item.name }}
                         </h4>
+                        <!-- <p>
+                            {{ item.description }}
+                        </p> -->
                         <span class="price text-center">
-                            <span>$300.00</span>
+                            <span>{{ item.price }}&euro;</span>
                         </span>
                     </div>
                 </section>
@@ -39,6 +43,78 @@
 
 <script>
 export default {
+    props:{
+        course: Object,
+        userId: Number,
+    },
+    data(){
+        return{
+            filteredMenu: [],
+            courseName: '',
+            itemsUrl: "http://127.0.0.1:8000/api/itemsUser/",
+
+        }
+    },
+    methods:{
+
+        // filter(){
+        //     // console.log(this.itemsArray);
+        //     this.itemsArray.forEach(item => {
+        //         if(item.course_id == this.singleCourse){
+        //             this.filteredMenu.push(item);
+        //             this.courseName = item.course.name;
+        //             // console.log(item.id);
+        //         }
+        //     });
+        // },
+
+        // isActive(){
+        //     // console.log(this.visibleCourse);
+        //     let i=0;
+        //     this.visibleCourse.forEach(obj => {
+
+        //         console.log('----------------------------- CHIAMATA DA:',obj.id,' - ',obj.name);
+        //         if(obj.id == this.singleCourse){
+
+        //             if(obj.isShown == true){
+
+        //                 console.log('sono dentro l\'IF, portata selezionata:');
+        //                 console.log('PORTATA(IF):',obj.id, '-',obj.name);
+        //                 console.log('PORTATA-SHOW(IF):',obj.isShown);
+        //                 console.log('SINGLE(IF):',this.singleCourse);
+
+        //                 return obj.isShown;
+
+        //             }else{
+        //                 console.log('sono dentro l\'ELSE, nessuna tipologia di portata selezionata');
+        //                 console.log('PORTATA(ELSE):',obj.id, '-',obj.name);
+        //                 console.log('PORTATA-SHOW(ELSE):',obj.isShown);
+        //                 console.log('SINGLE(ELSE):',this.singleCourse);
+
+        //                 return obj.isShown;
+        //             }
+        //         }
+                
+        //         console.log('-----------------------------');
+        //     });
+        // }
+
+        // Chiamata API che restituisce i piatti del ristorante scelto tramite ID ed della portata selezionata tramite ID
+        getUserItems(url,userId,courseId) {
+            axios.get(url+userId+'/'+courseId)
+                .then(res => {
+                    res.data.items.forEach(item => {
+                        this.filteredMenu.push(item)
+                    })
+                });
+        }
+
+
+    },
+    mounted(){
+        this.getUserItems(this.itemsUrl,this.userId,this.course.id);
+        // setTimeout(this.isActive, 1000);
+    }
 
 }
 </script>
