@@ -284,11 +284,13 @@ export default {
         },
 
         searchRestaurant(category_id){
-            this.searchedRestaurant = [];
+            // this.searchedRestaurant = [];
             this.usersArray.forEach(el => {
                 el.categoriesUser.forEach(cat => {
                     if(cat.id === category_id){
-                        this.searchedRestaurant.push(el);
+                        if(!this.searchedRestaurant.includes(el)){
+                            this.searchedRestaurant.push(el);
+                        };
                     };
                 });
             });
