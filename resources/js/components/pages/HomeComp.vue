@@ -32,7 +32,7 @@
                 <div class="cat-cards"
                     v-for="category in categoriesArray"
                     :key="'category-'+category.id"
-                    @click="searchRestaurant(category.id)">
+                    @click="searchRestaurant(category.name, category.id)">
                     <img :src="'images/' + category.image_path">
                     <p>{{ category.name }}</p>
                 </div>
@@ -217,6 +217,8 @@ export default {
         // Variabile fittizia, nel finale si cambia con l'arrey pieno o vuoto
         siVede: true,
         searchedRestaurant: [],
+        temporaryCategoryNameArray: [],
+        nameRepetitionCounter: {},
       }
     },
 
@@ -283,14 +285,26 @@ export default {
 
         },
 
-        searchRestaurant(category_id){
-            // this.searchedRestaurant = [];
-            this.usersArray.forEach(el => {
+        searchRestaurant(category_name, category_id){
+            // Invece di aggiungere la variabile active inizzializzo un array con cui mi confronto ad ogni click.
+            // se la somma degli id uguali è un numero pari, rimuovo l'id dai ristoranti ricercati, se è dispari
+            // lo aggiungo
+
+            // this.temporaryCategoryNameArray.push(category_name);
+            // console.log(this.temporaryCategoryNameArray);
+
+            // if((this.temporaryCategoryNameArray.includes(category_name))){
+            //     this.nameRepetitionCounter[category_name] = (this.nameRepetitionCounter[category_name] || 0) +1;
+            // }
+            // console.log(this.nameRepetitionCounter);
+
+            this.usersArray.forEach((el, i) => {
                 el.categoriesUser.forEach(cat => {
                     if(cat.id === category_id){
                         if(!this.searchedRestaurant.includes(el)){
                             this.searchedRestaurant.push(el);
-                        };
+                            // console.log(el);
+                        }
                     };
                 });
             });
