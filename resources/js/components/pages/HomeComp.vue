@@ -89,7 +89,8 @@
                                     name: 'menu',
                                     params:{
                                         slug:userObj.infoUser.slug,
-                                        id:userObj.infoUser.id
+                                        id:userObj.infoUser.id,
+                                        categories:userObj.categoriesUser
 
                                     }
                                 }">
@@ -257,7 +258,7 @@ export default {
                 // console.log('URLCAT:',urlCat,user.id);
                 var obj = user;
 
-                axios.get(this.categoriesUserUrl+user.id,obj)
+                axios.get(this.categoriesUserUrl+user.slug,obj)
                 .then(res=>{
                     let tempCatArrayUser = [];
                     // console.log('urlCat-obj', obj);

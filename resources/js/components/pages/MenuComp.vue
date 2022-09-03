@@ -18,7 +18,13 @@
 
                         <div class="jumbo-info container p-2">
                             <h2>{{ current_restaurant.name }}</h2>
-                            <h5><span>CATEGORIA RISTORANTE</span> - <span>{{  current_restaurant.address  }}</span></h5>
+                            <h5>
+                                <!-- VERIFICARE FUNZINAMENTO CATEGORIES PASSATE TRAMITE ROUTELINK -->
+                                <!-- <span :v-for="item in current_user_categories"
+                                    :key="'category'+item.id">
+                                    {{item.name}}
+                                </span> -  -->
+                                <span>{{  current_restaurant.address  }}</span></h5>
                         </div>
 
                     </div>
@@ -104,6 +110,7 @@ export default {
             // Id del ristorante che mi viene da HomeComp
             current_user_id: this.$route.params.id,
             current_user_slug: this.$route.params.slug,
+            current_user_categories: this.$route.params.categories,
 
             // Lista delle portate del ristorante attivo
             coursesArray: [],
