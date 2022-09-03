@@ -31,7 +31,8 @@
                 <!-- Cat. Cards -->
                 <div class="cat-cards"
                     v-for="category in categoriesArray"
-                    :key="'category-'+category.id">
+                    :key="'category-'+category.id"
+                    @click="searchRestaurant(category.id)">
                     <img :src="'images/' + category.image_path">
                     <p>{{ category.name }}</p>
                 </div>
@@ -52,13 +53,14 @@
 
         <hr>
 
-        <!-- Restaurants -->
-        <div class="restaurants container">
-
+        <!-- Res toggle list -->
+        <!-- Variabile fittizia, nel finale si cambia con l'arrey pieno o vuoto -->
+        <div class="restaurants container"
+            >
             <!-- Res. Title -->
             <div class="res-title text-center">
-                <h2>Top Rated Restaurants</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti?</p>
+                <h2>Your selection</h2>
+                <p>The list of restaurant you required</p>
             </div>
             <!-- /Res. Title -->
 
@@ -67,8 +69,8 @@
 
                 <!-- Res. Singol Card -->
                 <div class="res-card col"
-                    :key="'user-'+userObj.infoUser.id"
-                    v-for="userObj in usersArray">
+                    v-for="rest in searchedRestaurant"
+                    :key="'searched-user'+rest.infoUser.id">
                     <div class="card-container bg-debug col-12 d-flex">
 
                         <div class="d-flex card-style">
@@ -76,31 +78,30 @@
                             <!-- Res. Img -->
                             <div class="res-img">
                                 <img src="images/restaurant_placeholder_home.jpg"
-                                    v-if="userObj.infoUser.image_path == null">
-                                <img :src="'images/'+userObj.infoUser.image_path"
+                                    v-if="rest.infoUser.image_path == null">
+                                <img :src="'images/'+rest.infoUser.image_path"
                                     v-else>
                             </div>
                             <!-- /Res. Img -->
 
                             <!-- Res.Text -->
                             <div class="res-text">
-                                <router-link class="nav-link" 
+                                <router-link class="nav-link"
                                 :to="{
                                     name: 'menu',
                                     params:{
-                                        slug:userObj.infoUser.slug,
-                                        id:userObj.infoUser.id,
-                                        categories:userObj.categoriesUser
-
+                                        slug:rest.infoUser.slug,
+                                        id:rest.infoUser.id,
+                                        categories:rest.categoriesUser
                                     }
                                 }">
-                                    <h4 class="res-name">{{ userObj.infoUser.name }}</h4>
-                                    <span class="res-adress">{{ userObj.infoUser.address }}</span> <br>
+                                    <h4 class="res-name">{{ rest.infoUser.name }}</h4>
+                                    <span class="res-adress">{{ rest.infoUser.address }}</span> <br>
                                     <span class="res-cat">
                                         <span class="mr-2"
-                                            v-for="userCat in userObj.categoriesUser"
-                                            :key="'userCat'+userCat.id" >
-                                            {{userCat.name}}
+                                            v-for="restCat in rest.categoriesUser"
+                                            :key="'restCat'+restCat.id" >
+                                            {{restCat.name}}
                                         </span>
                                     </span>
                                 </router-link>
@@ -114,11 +115,13 @@
                 <!-- /Res. Singol Card -->
 
             </div>
-
             <!-- /Res. Cards -->
-
         </div>
-        <!-- /Restaurants -->
+        <!-- /Res toggle list -->
+
+        <hr>
+
+        <!-- Qui ci va restaurant -->
 
     </section>
     <!-- /Categories and Restaurants -->
@@ -209,8 +212,11 @@ export default {
         categoriesUserUrl: "http://127.0.0.1:8000/api/categoryUser/",
         categoriesArray: [],
         usersArray: [],
-        categoriesLoading: false
+        categoriesLoading: false,
 
+        // Variabile fittizia, nel finale si cambia con l'arrey pieno o vuoto
+        siVede: true,
+        searchedRestaurant: [],
       }
     },
 
@@ -274,7 +280,18 @@ export default {
             });
 
             });
-            
+
+        },
+
+        searchRestaurant(category_id){
+            this.searchedRestaurant = [];
+            this.usersArray.forEach(el => {
+                el.categoriesUser.forEach(cat => {
+                    if(cat.id === category_id){
+                        this.searchedRestaurant.push(el);
+                    };
+                });
+            });
         }
     },
 
