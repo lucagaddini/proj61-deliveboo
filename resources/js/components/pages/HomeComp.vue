@@ -302,13 +302,13 @@
 
       methods:{
 
-          axiosDelCazzo(kebab){
-              // axios.get(kebab+this.catIdOne+'/'+this.catIdTwo+'/'+this.catIdThree)
-              axios.get(kebab+1+'/'+null+'/'+null)
-              .then(res=>{
-                  console.log(res.data);
-              })
-          },
+        //   axiosDelCazzo(kebab){
+        //       // axios.get(kebab+this.catIdOne+'/'+this.catIdTwo+'/'+this.catIdThree)
+        //       axios.get(kebab+1+'/'+null+'/'+null)
+        //       .then(res=>{
+        //           console.log(res.data);
+        //       })
+        //   },
 
           fillArrays(urlHome,urlCat){
               let temporaryUserArray = [];
@@ -376,7 +376,7 @@
                   }
               })
 
-              this.usersArray.forEach((userEl, i) => {
+              this.usersArray.forEach(userEl => {
 
                   userEl.categoriesUser.forEach(catUser => {
 
@@ -415,10 +415,9 @@
           }
       },
 
-
       mounted(){
           this.fillArrays(this.urlHome,this.urlCat);
-          this.axiosDelCazzo(this.prova);
+        //   this.axiosDelCazzo(this.prova);
       },
   }
 
