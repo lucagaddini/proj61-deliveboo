@@ -79,6 +79,10 @@ export default {
             var existingCart = JSON.parse(localStorage.getItem("cart"));
             if(existingCart == null) existingCart = [];
 
+            // if(existingCart.includes(item.id)){
+            //     console.log('Prodotto ia presente');
+            // }
+
             let newItem = {
                 id: item.id,
                 name: item.name,
@@ -90,7 +94,7 @@ export default {
             existingCart.push(newItem);
             localStorage.setItem("cart", JSON.stringify(existingCart));
 
-            console.log(localStorage);
+            // console.log(localStorage);
         },
 
         removeFromCart(id) {

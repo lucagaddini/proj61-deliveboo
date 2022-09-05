@@ -5,7 +5,7 @@
                 <h4 class="cart-title p-1">Il Tuo Carrello</h4>
 
                 <div class="container list-selected-item d-flex flex-column">
-
+                    
                     <!-- Singol Item -->
                     <div
                         v-for="item in cartArray"
@@ -56,7 +56,7 @@
 export default {
     data(){
         return{
-            cartArray: JSON.parse(localStorage.getItem("cart")),
+            cartArray: [],
         }
     },
     methods:{
@@ -67,11 +67,17 @@ export default {
 
     },
     computed:{
+
         subtotalCart(){
             var subtotal = 0;
-            this.cartArray.forEach(item => {
-                subtotal += item.price;
-            });
+
+            if(this.cartArray.length > 0) {
+
+                this.cartArray.forEach(item => {
+                    subtotal += item.price;
+                });
+
+            }
 
             return subtotal;
         }
