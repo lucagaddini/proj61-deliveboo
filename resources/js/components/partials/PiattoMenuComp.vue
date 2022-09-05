@@ -15,12 +15,10 @@
                         <img :src="'/images/'+item.image_path" />
                         <i v-if="item.vegetarian == true" class="fa-solid fa-leaf icon-vegetarian"></i>
 
-                        <a href="#" 
-                        class="addtocart"
-                        @click="addToCart(item)">
-
+                        <a class="addtocart"
+                            v-if="(!existingCart == null && existingCart[0].restaurant_id != this.userId)" 
+                            @click="addToCart(item)">
                             <i class="fa fa-shopping-cart"></i>
-
                         </a>
                     </div>
 
@@ -28,18 +26,41 @@
                         <h4 class="pro-title px-1">
                             {{ item.name }}
                         </h4>
+
                         <p>
                             {{shortContent(item.description)}}
                         </p>
+
                         <span class="price text-center">
                             <span>{{ item.price }}&euro;</span>
                         </span>
                     </div>
                 </section>
+
+                <!-- MODAL PER SVUOTAMENTO CARRELLO A SEGUITO DEL CAMBIO RISTORANTE -->
+                <div 
+                    class="modal fade" id="`modalDelete`+item.id" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">ATTENZIONE!</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">Vuoi eliminare <b>{{$item.name}}</b> &quest;</div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn gray  btn-outline-secondary" data-dismiss="modal">Annulla</button>
+                                <button type="submit" class="btn btn-outline-danger">Rimuovi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
             </div>
             <!-- //single-card -->
         </div>
-        
+
     </section>
 </template>
 
@@ -55,6 +76,7 @@ export default {
             filteredMenu: [],
             courseName: '',
             itemsUrl: "http://127.0.0.1:8000/api/itemsUser/",
+            existingCart: JSON.parse(localStorage.getItem("cart")),
 
         }
     },
@@ -77,11 +99,27 @@ export default {
         addToCart(item) {
 
             var existingCart = JSON.parse(localStorage.getItem("cart"));
-            if(existingCart == null) existingCart = [];
 
-            let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
+            if(existingCart == null) {
+                existingCart = [];
 
-            
+                let newItem = {
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    quantity: 1,
+                    restaurant_id: item.user_id,
+                    status: true
+                }
+
+                existingCart.push(newItem);
+                localStorage.setItem("cart", JSON.stringify(existingCart));
+
+            }
+            else if(existingCart[0].restaurant_id == this.userId) {
+                console.log('RISTORANTE CORRETTO')
+
+                let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
 
             if(itemToFind){
 
@@ -103,49 +141,53 @@ export default {
                     name: item.name,
                     price: item.price,
                     quantity: 1,
+                    restaurant_id: item.user_id,
                     status: true
                 }
 
                 existingCart.push(newItem);
                 localStorage.setItem("cart", JSON.stringify(existingCart));
             }
-            // console.log(localStorage);
-        },
 
-        // removeFromCart(id) {
-            
-        //     var existingCart = JSON.parse(localStorage.getItem("cart"));
-        //     // if(existingCart == null) existingCart = [];
+            } else {
 
-        //     let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
+                console.log('RISTORANTE ERRATO')
 
-        //     if(itemToFind){
-
-        //         console.log('Prodotto gia presente');
-        //         console.log('GIA PRESENTE',itemToFind);
-
-        //         var index = existingCart.indexOf(itemToFind);
-
-        //         existingCart.plice(index,1);
-
-        //         console.log('CART:',existingCart);
-
-        //         // existingCart.push(newItem);
-        //         // localStorage.setItem("cart", JSON.stringify(existingCart));
-
-
-        //     }
-        },
-
-        onSelectQuantity (id) {
-            let data = {
-                id: id,
-                quantity: this.selected
             }
-            this.$store.commit('quantity', data);
-        },
 
+            // let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
+
+            // if(itemToFind){
+
+            //     console.log('Prodotto gia presente');
+            //     console.log('GIA PRESENTE',itemToFind);
+
+            //     itemToFind.quantity++;
+
+            //     console.log('DOPO ++',itemToFind);
+
+            //     // existingCart.push(newItem);
+            //     localStorage.setItem("cart", JSON.stringify(existingCart));
+
+
+            // } else{ 
+
+            //     let newItem = {
+            //         id: item.id,
+            //         name: item.name,
+            //         price: item.price,
+            //         quantity: 1,
+            //         restaurant_id: item.user_id,
+            //         status: true
+            //     }
+
+            //     existingCart.push(newItem);
+            //     localStorage.setItem("cart", JSON.stringify(existingCart));
+            // }
+            // console.log(localStorage);
+        }
     },
+
     mounted(){
         this.getUserItems(this.itemsUrl,this.userSlug,this.course.id);
 

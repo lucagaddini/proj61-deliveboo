@@ -15,21 +15,34 @@
                             <div class="d-flex justify-content-start">
                                 <!-- ICONA PER ELIMINARE L\'ELEMENTO -->
                                 <div>
-                                    <a 
-                                    href="#" 
-                                    class="mx-2"
-                                    @click="removeFromCart(item)"><i class="fa-solid fa-circle-minus btn-delete-custom"></i></a>
+                                    <a class="mx-2"
+                                    @click="removeFromCart(item)"><i class="fa-solid fa-trash"></i></a>
                                 </div>
 
                                 <!-- NOME PRODOTTO-->
                                 <div>
                                     <h6 class="mx-2">{{item.id}} - {{item.name}}</h6>
                                 </div>
+                                
+                                <div>
+                                    <a class="mx-2"
+                                    v-if="item.quantity > 1"
+                                    @click="decreaseQuantity(item)"><i class="fa-solid fa-circle-minus btn-delete-custom"></i>
+                                    </a>
+
+                                    <span>{{item.quantity}}</span>
+
+                                    <a class="addtocart"
+                                        @click="increaseQuantity(item)">
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                    </a>
+                                </div>
+
                             </div>
 
                             <!-- PREZZO PRODOTTO-->
                             <div>
-                                <h6>{{item.price}} &euro;</h6>
+                                <h6>{{item.price * item.quantity}} &euro;</h6>
                             </div>
 
                     </div>
@@ -68,6 +81,46 @@ export default {
             this.cartArray = JSON.parse(localStorage.getItem("cart"));
         },
 
+        decreaseQuantity(item) {
+            
+            var existingCart = JSON.parse(localStorage.getItem("cart"));
+
+            let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
+
+            if(itemToFind && itemToFind.quantity > 1 ){
+
+                console.log('Prodotto gia presente');
+                console.log('GIA PRESENTE',itemToFind);
+
+                itemToFind.quantity --;
+
+                console.log('DOPO --',itemToFind);
+
+                // existingCart.push(newItem);
+                localStorage.setItem("cart", JSON.stringify(existingCart));
+            }
+        },
+
+        increaseQuantity(item) {
+            
+            var existingCart = JSON.parse(localStorage.getItem("cart"));
+
+            let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
+
+            if(itemToFind){
+
+                console.log('Prodotto gia presente');
+                console.log('GIA PRESENTE',itemToFind);
+
+                itemToFind.quantity++;
+
+                console.log('DOPO ++',itemToFind);
+
+                // existingCart.push(newItem);
+                localStorage.setItem("cart", JSON.stringify(existingCart));
+            }
+        },
+
         removeFromCart(item) {
             
             var existingCart = JSON.parse(localStorage.getItem("cart"));
@@ -88,8 +141,9 @@ export default {
 
                 // existingCart.push(newItem);
                 localStorage.setItem("cart", JSON.stringify(existingCart));
+            }
         }
-        }
+
 
     },
     computed:{
@@ -100,7 +154,7 @@ export default {
             if(this.cartArray.length > 0) {
 
                 this.cartArray.forEach(item => {
-                    subtotal += item.price;
+                    subtotal += item.price * item.quantity;
                 });
 
             }
