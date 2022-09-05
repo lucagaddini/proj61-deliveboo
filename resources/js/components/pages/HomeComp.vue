@@ -13,7 +13,7 @@
 
             <!-- Cat. Title -->
             <div class="cat-title text-center">
-                <h1>Categorie</h1>
+                <h1>Popular Categories</h1>
                 <p>Lorem ipsum dolor sit amet, adipisicing!</p>
             </div>
             <!-- /Cat. Title -->
@@ -31,13 +31,8 @@
                 <!-- Cat. Cards -->
                 <div class="cat-cards"
                     v-for="category in categoriesArray"
-                    :key="'category-'+category.id"
-                    @click="searchRestaurant(category.id)">
-
-                    <img
-                        :class="category.clicked === true ? 'active' : ''"
-                        :src="'images/' + category.image_path">
-
+                    :key="'category-'+category.id">
+                    <img :src="'images/' + category.image_path">
                     <p>{{ category.name }}</p>
                 </div>
                 <!-- /Cat. Cards -->
@@ -55,91 +50,14 @@
         </div>
         <!-- /Categories -->
 
-   
-
-
-        <!-- Res toggle list -->
-
-        <!-- SEARCHED RESTAURANTS -->
-        <!-- Variabile fittizia, nel finale si cambia con l'arrey pieno o vuoto -->
-        <div class="restaurants container"
-            v-if="searchedRestaurant.length > 0"
-            >
-            
-            <hr>
-            <!-- Res. Title -->
-            <div class="res-title text-center">
-                <h2>Ristoranti Selezionati</h2>
-                <p>The list of restaurant you required</p>
-            </div>
-            <!-- /Res. Title -->
-
-            <!-- Res. Cards -->
-            <div class="res-cards row row-cols-1 row-cols-lg-2">
-
-                <!-- Res. Singol Card -->
-                <div class="res-card col"
-                    v-for="rest in searchedRestaurant"
-                    :key="'searched-user'+rest.infoUser.id">
-                    <div class="card-container bg-debug col-12 d-flex">
-
-                        <div class="d-flex card-style">
-
-                            <!-- Res. Img -->
-                            <div class="res-img">
-                                <img src="images/restaurant_placeholder_home.jpg"
-                                    v-if="rest.infoUser.image_path == null">
-                                <img :src="'images/'+rest.infoUser.image_path"
-                                    v-else>
-                            </div>
-                            <!-- /Res. Img -->
-
-                            <!-- Res.Text -->
-                            <div class="res-text">
-                                <router-link class="nav-link"
-                                :to="{
-                                    name: 'menu',
-                                    params:{
-                                        slug:rest.infoUser.slug,
-                                        id:rest.infoUser.id,
-                                        categories:rest.categoriesUser
-                                    }
-                                }">
-                                    <h4 class="res-name">{{ rest.infoUser.name }}</h4>
-                                    <span class="res-adress">{{ rest.infoUser.address }}</span> <br>
-                                    <span class="res-cat">
-                                        <span class="mr-2"
-                                            v-for="restCat in rest.categoriesUser"
-                                            :key="'restCat'+restCat.id" >
-                                            {{restCat.name}}
-                                        </span>
-                                    </span>
-                                </router-link>
-                            </div>
-                            <!-- /Res.Text -->
-
-                        </div>
-
-                    </div>
-                </div>
-                <!-- /Res. Singol Card -->
-
-            </div>
-            <!-- /Res. Cards -->
-        </div>
-        <!-- /Res toggle list -->
-        <!-- /SEARCHED RESTAURANTS -->
-
-
         <hr>
 
-
-
-        <!-- TOP RATED RESTAURANTS -->
+        <!-- Restaurants -->
         <div class="restaurants container">
+
             <!-- Res. Title -->
             <div class="res-title text-center">
-                <h2>I più votati</h2>
+                <h2>Top Rated Restaurants</h2>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti?</p>
             </div>
             <!-- /Res. Title -->
@@ -178,13 +96,15 @@
                                 }">
                                     <h4 class="res-name">{{ userObj.infoUser.name }}</h4>
                                     <span class="res-adress">{{ userObj.infoUser.address }}</span> <br>
-                                    <span class="res-cat">
-                                        <span class="mr-2"
-                                            v-for="userCat in userObj.categoriesUser"
-                                            :key="'userCat'+userCat.id" >
-                                            {{userCat.name}}
+                                    <div class="res-cat-container">
+                                        <span class="res-cat d-flex flex-wrap">
+                                            <span class="mr-2 mt-2"
+                                                v-for="userCat in userObj.categoriesUser"
+                                                :key="'userCat'+userCat.id" >
+                                                {{userCat.name}}
+                                            </span>
                                         </span>
-                                    </span>
+                                    </div>
                                 </router-link>
                             </div>
                             <!-- /Res.Text -->
@@ -196,9 +116,11 @@
                 <!-- /Res. Singol Card -->
 
             </div>
+
             <!-- /Res. Cards -->
+
         </div>
-        <!-- /TOP RATED RESTAURANTS -->
+        <!-- /Restaurants -->
 
     </section>
     <!-- /Categories and Restaurants -->
@@ -303,13 +225,28 @@ export default {
         categoriesUserUrl: "http://127.0.0.1:8000/api/categoryUser/",
         categoriesArray: [],
         usersArray: [],
-        categoriesLoading: false,
+        categoriesLoading: false
 
-        searchedRestaurant: [],
       }
     },
 
     methods:{
+        // fillArrays(url){
+        //     axios.get(url)
+        //     .then(res=>{
+        //         res.data.categories.forEach(el => {
+        //             this.categoriesArray.push(el);
+        //             if (this.categoriesArray.length >= 1){
+        //                 this.categoriesLoading = true;
+        //             }
+        //             // console.log(this.categoriesArray);
+        //         });
+        //         res.data.users.forEach(el => {
+        //             this.usersArray.push(el);
+        //             // console.log(this.usersArray);
+        //         });
+        //     })
+        // },
 
         fillArrays(urlHome,urlCat){
             let temporaryUserArray = [];
@@ -412,8 +349,8 @@ export default {
         }
     },
 
-
     mounted(){
+        // this.fillArrays(this.apiUrl);
         this.fillArrays(this.urlHome,this.urlCat);
     },
 }
@@ -464,11 +401,6 @@ hr{
         width: 250px;
         border-radius: 20px;
         background-attachment: fixed;
-        border: 5px solid #f9fafc;
-
-        &.active{
-        border: 5px solid $tertiary-color;
-    }
     }
 
     p{
@@ -552,6 +484,40 @@ hr{
     padding: 2px 10px;
     color: white;
     font-size: .7rem;
+}
+
+@media screen and (max-width: 474px) {
+
+    /* Restaurants */
+    .res-card{
+        padding: 20px 5px;
+    }
+
+    /* Res. Text */
+
+    .res-text{
+    margin: 0px 0px 0px 0px;
+    padding: 1px;
+    width: 50%;
+    }
+
+    .res-name{
+        font-size: 1rem;
+    }
+
+    .res-adress{
+        font-size: .8rem;
+    }
+
+    .res-cat span{
+        font-size: .65rem;
+    }
+
+}
+
+.res-cat-container{
+    height: 60px;
+    overflow-y: auto;
 }
 
 </style>
