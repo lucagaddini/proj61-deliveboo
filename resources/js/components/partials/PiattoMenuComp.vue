@@ -15,11 +15,20 @@
                         <img :src="'/images/'+item.image_path" />
                         <i v-if="item.vegetarian == true" class="fa-solid fa-leaf icon-vegetarian"></i>
 
-                        <a class="addtocart"
-                            v-if="(!existingCart == null && existingCart[0].restaurant_id != this.userId)" 
-                            @click="addToCart(item)">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
+
+                        <div v-if="(!exCart == [] && exCart[0].restaurant_id != item.user_id)">
+                            <a class="addtocart" data-toggle="modal" :data-target="`#ModalDelete-item`+item.id">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+
+                        <div v-else>
+                            <a class="addtocart"
+                                @click="addToCart(item)">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+
                     </div>
 
                     <div class="panel-body text-center">
@@ -38,8 +47,7 @@
                 </section>
 
                 <!-- MODAL PER SVUOTAMENTO CARRELLO A SEGUITO DEL CAMBIO RISTORANTE -->
-                <div 
-                    class="modal fade" id="`modalDelete`+item.id" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal fade" :id="`ModalDelete-item`+item.id" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -48,10 +56,15 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">Vuoi eliminare <b>{{$item.name}}</b> &quest;</div>
+
+                            <div class="modal-body">
+                                <p> Non puoi aggiungere al carrello Prodotti di Ristoranti diversi.</p>
+                                <p> Per aggiungere il prodotto {{item.name}} al carrello devi quindi svuotarlo</p>
+                            </div>
+
                             <div class="modal-footer">
                                 <button type="button" class="btn gray  btn-outline-secondary" data-dismiss="modal">Annulla</button>
-                                <button type="submit" class="btn btn-outline-danger">Rimuovi</button>
+                                <button type="submit" class="btn btn-outline-danger" data-dismiss="modal" @click="emptyCart()">Svuota</button>
                             </div>
                         </div>
                     </div>
@@ -76,7 +89,7 @@ export default {
             filteredMenu: [],
             courseName: '',
             itemsUrl: "http://127.0.0.1:8000/api/itemsUser/",
-            existingCart: JSON.parse(localStorage.getItem("cart")),
+            exCart: JSON.parse(localStorage.getItem("cart")),
 
         }
     },
@@ -185,6 +198,14 @@ export default {
             //     localStorage.setItem("cart", JSON.stringify(existingCart));
             // }
             // console.log(localStorage);
+        },
+
+        emptyCart(item) {
+
+            localStorage.clear("cart");
+            console.log('CARRELO CANCELLATO')
+            this.$forceUpdate();
+
         }
     },
 
@@ -193,7 +214,7 @@ export default {
 
     },
     computed:{
-    
+
   }
 
 }

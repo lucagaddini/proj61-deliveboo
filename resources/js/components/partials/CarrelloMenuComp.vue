@@ -151,6 +151,8 @@ export default {
         subtotalCart(){
             var subtotal = 0;
 
+            if(!this.cartArray) { return subtotal; }
+
             if(this.cartArray.length > 0) {
 
                 this.cartArray.forEach(item => {
