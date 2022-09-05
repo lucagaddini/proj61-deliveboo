@@ -13,14 +13,14 @@
 
                         {{-- Nome ristorante --}}
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome Ristorante') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">* {{ __('Nome Ristorante') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" 
-                                class="form-control @error('name') is-invalid @enderror" 
-                                name="name" 
-                                value="{{ old('name') }}" 
-                                autocomplete="name" 
+                                <input id="name" type="text"
+                                class="form-control @error('name') is-invalid @enderror"
+                                name="name"
+                                value="{{ old('name') }}"
+                                autocomplete="name"
                                 autofocus
 
                                 {{-- Utilizzo della libreria Parsley --}}
@@ -30,21 +30,21 @@
                                 data-parsley-trigger="keyup"
                                 {{-- // Parsley --}}
                                 >
-                    
+
                             </div>
                         </div>
 
                         {{-- Indirizzo ristorante --}}
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }}</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">* {{ __('Indirizzo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address" 
-                                type="text" 
-                                class="form-control @error('address') is-invalid @enderror" 
-                                name="address" 
-                                value="{{ old('address') }}" 
-                                autocomplete="address" 
+                                <input id="address"
+                                type="text"
+                                class="form-control @error('address') is-invalid @enderror"
+                                name="address"
+                                value="{{ old('address') }}"
+                                autocomplete="address"
                                 autofocus
 
                                 {{-- Utilizzo della libreria Parsley --}}
@@ -60,17 +60,17 @@
 
                         {{-- Partita IVA --}}
                         <div class="form-group row">
-                            <label for="vat_number" class="col-md-4 col-form-label text-md-right">{{ __('P.Iva') }}</label>
+                            <label for="vat_number" class="col-md-4 col-form-label text-md-right">* {{ __('P.Iva') }}</label>
 
                             <div class="col-md-6">
-                                <input id="vat_number" 
-                                type="text" 
-                                class="form-control @error('vat_number') is-invalid @enderror" 
-                                name="vat_number" 
-                                value="{{ old('vat_number') }}" 
-                                autocomplete="vat_number" 
+                                <input id="vat_number"
+                                type="text"
+                                class="form-control @error('vat_number') is-invalid @enderror"
+                                name="vat_number"
+                                value="{{ old('vat_number') }}"
+                                autocomplete="vat_number"
                                 autofocus
-                                
+
                                 {{-- Utilizzo della libreria Parsley --}}
                                 required
                                 data-parsley-minlength="11"
@@ -84,15 +84,15 @@
 
                         {{-- Email Account --}}
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">* {{ __('E-Mail') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" 
-                                type="email" 
-                                class="form-control @error('email') is-invalid @enderror" 
-                                name="email" value="{{ old('email') }}" 
+                                <input id="email"
+                                type="email"
+                                class="form-control @error('email') is-invalid @enderror"
+                                name="email" value="{{ old('email') }}"
                                 autocomplete="email"
-                                
+
                                 {{-- Utilizzo della libreria Parsley --}}
                                 required
                                 data-parsley-maxlength="255"
@@ -105,15 +105,15 @@
 
                         {{-- Password Account --}}
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">* {{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" 
-                                type="password" 
-                                class="form-control @error('password') is-invalid @enderror" 
-                                name="password" 
+                                <input id="password"
+                                type="password"
+                                class="form-control @error('password') is-invalid @enderror"
+                                name="password"
                                 autocomplete="new-password"
-                                
+
                                 {{-- Utilizzo della libreria Parsley --}}
                                 required
                                 data-parsley-minlength="8"
@@ -127,22 +127,22 @@
 
                         {{-- Conferma Password Account --}}
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">* {{ __('Conferma Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" 
-                                type="password" 
-                                class="form-control" 
-                                name="password_confirmation" 
+                                <input id="password-confirm"
+                                type="password"
+                                class="form-control"
+                                name="password_confirmation"
                                 autocomplete="new-password"
-                                
+
                                 {{-- Utilizzo della libreria Parsley --}}
                                 required
                                 data-parsley-equalto="#password"
                                 data-parsley-maxlength="255"
                                 data-parsley-trigger="keyup"
                                 {{-- // Parsley --}}
-                                
+
                                 >
                             </div>
                         </div>
@@ -150,7 +150,7 @@
 
                         {{-- Checkbox Categorie --}}
                         <div class="form-group row">
-                            <label for="categories" class="col-md-4 col-form-label text-md-right">{{ __('Seleziona le categorie') }} <br> (Scegliere attentamente, non sarà possibile modificarle successivamente)</label>
+                            <label for="categories" class="col-md-4 col-form-label text-md-right">* {{ __('Seleziona le categorie') }} <br> (Scegliere attentamente, non sarà possibile modificarle successivamente)</label>
 
                             <div class="col-md-6">
 
@@ -214,7 +214,7 @@
 (function(){
          $("#register-form").parsley();
      });
-     
+
 </script>
 
 @endsection
