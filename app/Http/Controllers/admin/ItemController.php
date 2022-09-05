@@ -104,7 +104,7 @@ class ItemController extends Controller
         $updated_item = $request->all();
         $item->update($updated_item);
 
-        return redirect()->route('admin.items.index', compact('item'));
+        return redirect()->route('admin.items.index', compact('item'))->with('prodotto_modificato',"$item->name è stato modificato correttamente");
     }
 
     /**
@@ -116,6 +116,6 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         $item->delete();
-        return redirect()->route('admin.items.index')->with('cancelled', "$item->name cancellato correttamente.");
+        return redirect()->route('admin.items.index')->with('prodotto_cancellato', "$item->name è stato cancellato correttamente.");
     }
 }
