@@ -14,8 +14,13 @@
                     <div class="pro-img-box d-flex justify-content-center">
                         <img :src="'/images/'+item.image_path" />
                         <i v-if="item.vegetarian == true" class="fa-solid fa-leaf icon-vegetarian"></i>
-                        <a href="#" class="addtocart">
+
+                        <a href="#" 
+                        class="addtocart"
+                        @click="addToCart(item)">
+
                             <i class="fa fa-shopping-cart"></i>
+
                         </a>
                     </div>
 
@@ -64,9 +69,47 @@ export default {
                     })
                 });
         },
+
         shortContent(text){
             return text.substr (0,30) + "....."
-        }
+        },
+
+        addToCart(item) {
+
+            var existingCart = JSON.parse(localStorage.getItem("cart"));
+            if(existingCart == null) existingCart = [];
+
+            let newItem = {
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                quantity: 1,
+                status: true
+            }
+
+            existingCart.push(newItem);
+            localStorage.setItem("cart", JSON.stringify(existingCart));
+
+            console.log(localStorage);
+        },
+
+        removeFromCart(id) {
+            let data = {
+                id: id,
+                status: false
+            }
+            this.$store.commit('removeFromCart', id);
+            this.$store.commit('setAddedBtn', data);
+        },
+
+        onSelectQuantity (id) {
+            let data = {
+                id: id,
+                quantity: this.selected
+            }
+            this.$store.commit('quantity', data);
+        },
+
     },
     mounted(){
         this.getUserItems(this.itemsUrl,this.userSlug,this.course.id);

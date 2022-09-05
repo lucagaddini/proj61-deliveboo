@@ -8,10 +8,10 @@
 
                     <!-- Singol Item -->
                     <div
-                        v-for="i in 5"
-                        :key="'id'+i" 
+                        v-for="item in cartArray"
+                        :key="'itemId-'+item.id" 
                         class="d-flex justify-content-between singol-item">
-
+                            
                             <div class="d-flex justify-content-start">
                                 <!-- ICONA PER ELIMINARE L\'ELEMENTO -->
                                 <div>
@@ -20,13 +20,13 @@
 
                                 <!-- NOME PRODOTTO-->
                                 <div>
-                                    <h6 class="mx-2">NOME PRODOTTO</h6>
+                                    <h6 class="mx-2">{{item.name}}</h6>
                                 </div>
                             </div>
 
                             <!-- PREZZO PRODOTTO-->
                             <div>
-                                <h6>00.00 &euro;</h6>
+                                <h6>{{item.price}} &euro;</h6>
                             </div>
 
                     </div>
@@ -39,7 +39,7 @@
                 <div class="ordernow-sub-button-container container">
                     <div class="subtotal d-flex justify-content-between">
                         <h6 class="mt-2">Subtotale: </h6>
-                        <h6 class="mt-2">00.00 &euro;</h6>
+                        <h6 class="mt-2"> {{subtotalCart}} &euro;</h6>
                     </div>
 
                     <div class="buy-now">
@@ -53,7 +53,33 @@
 </template>
 
 <script>
-export default {};
+export default {
+    data(){
+        return{
+            cartArray: JSON.parse(localStorage.getItem("cart")),
+        }
+    },
+    methods:{
+
+        setCart(){
+            this.cartArray = JSON.parse(localStorage.getItem("cart"));
+        }
+
+    },
+    computed:{
+        subtotalCart(){
+            var subtotal = 0;
+            this.cartArray.forEach(item => {
+                subtotal += item.price;
+            });
+
+            return subtotal;
+        }
+    },
+    mounted(){
+        setInterval(this.setCart, 500);
+    }
+};
 </script>
 
 <style lang="scss" scoped>
