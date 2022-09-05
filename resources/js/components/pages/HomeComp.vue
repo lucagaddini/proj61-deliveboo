@@ -13,7 +13,7 @@
 
             <!-- Cat. Title -->
             <div class="cat-title text-center">
-                <h1>Popular Categories</h1>
+                <h1>Categorie</h1>
                 <p>Lorem ipsum dolor sit amet, adipisicing!</p>
             </div>
             <!-- /Cat. Title -->
@@ -33,7 +33,11 @@
                     v-for="category in categoriesArray"
                     :key="'category-'+category.id"
                     @click="searchRestaurant(category.id)">
-                    <img :src="'images/' + category.image_path">
+
+                    <img
+                        :class="category.clicked === true ? 'active' : ''"
+                        :src="'images/' + category.image_path">
+
                     <p>{{ category.name }}</p>
                 </div>
                 <!-- /Cat. Cards -->
@@ -53,13 +57,17 @@
 
         <hr>
 
+
         <!-- Res toggle list -->
+
+        <!-- SEARCHED RESTAURANTS -->
         <!-- Variabile fittizia, nel finale si cambia con l'arrey pieno o vuoto -->
         <div class="restaurants container"
+            v-if="searchedRestaurant.length > 0"
             >
             <!-- Res. Title -->
             <div class="res-title text-center">
-                <h2>Your selection</h2>
+                <h2>Ristoranti Selezionati</h2>
                 <p>The list of restaurant you required</p>
             </div>
             <!-- /Res. Title -->
@@ -118,14 +126,18 @@
             <!-- /Res. Cards -->
         </div>
         <!-- /Res toggle list -->
+        <!-- /SEARCHED RESTAURANTS -->
+
 
         <hr>
 
-        <!-- Top rated Restaurants -->
+
+
+        <!-- TOP RATED RESTAURANTS -->
         <div class="restaurants container">
             <!-- Res. Title -->
             <div class="res-title text-center">
-                <h2>Top Rated Restaurants</h2>
+                <h2>I più votati</h2>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti?</p>
             </div>
             <!-- /Res. Title -->
@@ -184,7 +196,7 @@
             </div>
             <!-- /Res. Cards -->
         </div>
-        <!-- /Top rated Restaurants -->
+        <!-- /TOP RATED RESTAURANTS -->
 
     </section>
     <!-- /Categories and Restaurants -->
@@ -282,22 +294,6 @@ export default {
     },
 
     methods:{
-        // fillArrays(url){
-        //     axios.get(url)
-        //     .then(res=>{
-        //         res.data.categories.forEach(el => {
-        //             this.categoriesArray.push(el);
-        //             if (this.categoriesArray.length >= 1){
-        //                 this.categoriesLoading = true;
-        //             }
-        //             // console.log(this.categoriesArray);
-        //         });
-        //         res.data.users.forEach(el => {
-        //             this.usersArray.push(el);
-        //             // console.log(this.usersArray);
-        //         });
-        //     })
-        // },
 
         fillArrays(urlHome,urlCat){
             let temporaryUserArray = [];
@@ -307,7 +303,20 @@ export default {
             .then(res=>{
 
                 res.data.categories.forEach(el => {
-                    this.categoriesArray.push(el);
+                    // this.categoriesArray.push(el);
+
+                     // Aggiunto un attributo clicked alla categoria di ristorante
+                    var booleanAttibute = {
+                        clicked: false,
+                    };
+
+                    // Merge dei due oggetti
+                    let merged = {
+                        ...el, ...booleanAttibute
+                    };
+                    
+                    this.categoriesArray.push(merged);
+
                     if (this.categoriesArray.length >= 1){
                         this.categoriesLoading = true;
                     }
@@ -345,23 +354,50 @@ export default {
         },
 
         searchRestaurant(category_id){
-            this.usersArray.forEach((el, i) => {
-                el.categoriesUser.forEach(cat => {
-                    if(cat.id === category_id){
-                        if(!this.searchedRestaurant.includes(el)){
-                            this.searchedRestaurant.push(el);
+
+            this.categoriesArray.forEach(el =>{
+                if(el.id === category_id){
+                    el.clicked = true;
+                }
+            })
+
+            this.usersArray.forEach((userEl, i) => {
+
+                userEl.categoriesUser.forEach(catUser => {
+
+                    if(catUser.id === category_id){
+
+                        if(!this.searchedRestaurant.includes(userEl)){
+
+                            this.searchedRestaurant.push(userEl);
+
                         }else{
-                            console.log(el);
+
+                            // console.log('CATEGORIA GIà SELEZIONATA');
+                            // Se la categoria è già stata selezionata in passato
+                            this.categoriesArray.forEach(catArrayEl =>{
+                                if(catArrayEl.id === category_id){
+                                    catArrayEl.clicked = false;
+                                }
+                            });
+
+                            // 
+                            const index = this.searchedRestaurant.indexOf(userEl);
+                            if (index > -1) { 
+                                this.searchedRestaurant.splice(index, 1); 
+                            }
+
                         }
+
                     };
                 });
+
             });
         }
     },
 
 
     mounted(){
-        // this.fillArrays(this.apiUrl);
         this.fillArrays(this.urlHome,this.urlCat);
     },
 }
@@ -412,6 +448,11 @@ hr{
         width: 250px;
         border-radius: 20px;
         background-attachment: fixed;
+        border: 5px solid #f9fafc;
+
+        &.active{
+        border: 5px solid $tertiary-color;
+    }
     }
 
     p{
