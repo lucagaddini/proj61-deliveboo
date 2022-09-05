@@ -152,29 +152,33 @@ export default {
             "infinite": true,
             "initialSlide": 0,
             "speed": 1500,
-            "slidesToShow": 4,
+            "slidesToShow": 5,
             "slidesToScroll": 1,
             "swipeToSlide": true,
             "centerMode": true,
-            "centerPadding": "-50px",
+            "centerPadding": "-75px",
             "touchMove": false,
-            "autoplay": true,
-            "autoplaySpeed": 3000,
-            /* "lazyLoad": 'progressive', */
 
             "responsive": [
+                {
+                    "breakpoint": 1200,
+                    "settings": {
+                        "slidesToShow": 4,
+                        "centerPadding": '-40px',
+                    }
+                },
                 {
                     "breakpoint": 991,
                     "settings": {
                         "slidesToShow": 3,
-                        "centerPadding": '-50px',
+                        "centerPadding": '-35px',
                     }
                 },
                 {
                     "breakpoint": 767,
                     "settings": {
                         "slidesToShow": 2,
-                        "centerPadding": '-25px',
+                        "centerPadding": '-1px',
                         "touchMove": true,
                         "arrows": true,
                         "speed": 500
@@ -184,7 +188,7 @@ export default {
                     "breakpoint": 600,
                     "settings": {
                         "slidesToShow": 2,
-                        "centerPadding": '-25px',
+                        "centerPadding": '-5px',
                         "speed": 500,
                         "touchMove": true,
                         "arrows": false
@@ -194,7 +198,17 @@ export default {
                     "breakpoint": 520,
                     "settings": {
                         "slidesToShow": 2,
-                        "centerPadding": '-100px',
+                        "centerPadding": '-50px',
+                        "speed": 500,
+                        "touchMove": true,
+                        "arrows": false
+                    }
+                },
+                {
+                    "breakpoint": 440,
+                    "settings": {
+                        "slidesToShow": 2,
+                        "centerPadding": '-85px',
                         "speed": 500,
                         "touchMove": true,
                         "arrows": false
@@ -242,7 +256,20 @@ export default {
             .then(res=>{
 
                 res.data.categories.forEach(el => {
-                    this.categoriesArray.push(el);
+                    // this.categoriesArray.push(el);
+
+                     // Aggiunto un attributo clicked alla categoria di ristorante
+                    var booleanAttibute = {
+                        clicked: false,
+                    };
+
+                    // Merge dei due oggetti
+                    let merged = {
+                        ...el, ...booleanAttibute
+                    };
+
+                    this.categoriesArray.push(merged);
+
                     if (this.categoriesArray.length >= 1){
                         this.categoriesLoading = true;
                     }
@@ -277,6 +304,48 @@ export default {
 
             });
 
+        },
+
+        searchRestaurant(category_id){
+
+            this.categoriesArray.forEach(el =>{
+                if(el.id === category_id){
+                    el.clicked = true;
+                }
+            })
+
+            this.usersArray.forEach((userEl, i) => {
+
+                userEl.categoriesUser.forEach(catUser => {
+
+                    if(catUser.id === category_id){
+
+                        if(!this.searchedRestaurant.includes(userEl)){
+
+                            this.searchedRestaurant.push(userEl);
+
+                        }else{
+
+                            // console.log('CATEGORIA GIà SELEZIONATA');
+                            // Se la categoria è già stata selezionata in passato
+                            this.categoriesArray.forEach(catArrayEl =>{
+                                if(catArrayEl.id === category_id){
+                                    catArrayEl.clicked = false;
+                                }
+                            });
+
+                            //
+                            const index = this.searchedRestaurant.indexOf(userEl);
+                            if (index > -1) {
+                                this.searchedRestaurant.splice(index, 1);
+                            }
+
+                        }
+
+                    };
+                });
+
+            });
         }
     },
 
