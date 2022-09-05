@@ -168,43 +168,13 @@ export default {
 
             }
 
-            // let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
-
-            // if(itemToFind){
-
-            //     console.log('Prodotto gia presente');
-            //     console.log('GIA PRESENTE',itemToFind);
-
-            //     itemToFind.quantity++;
-
-            //     console.log('DOPO ++',itemToFind);
-
-            //     // existingCart.push(newItem);
-            //     localStorage.setItem("cart", JSON.stringify(existingCart));
-
-
-            // } else{ 
-
-            //     let newItem = {
-            //         id: item.id,
-            //         name: item.name,
-            //         price: item.price,
-            //         quantity: 1,
-            //         restaurant_id: item.user_id,
-            //         status: true
-            //     }
-
-            //     existingCart.push(newItem);
-            //     localStorage.setItem("cart", JSON.stringify(existingCart));
-            // }
-            // console.log(localStorage);
         },
 
         emptyCart(item) {
 
             localStorage.clear("cart");
-            console.log('CARRELO CANCELLATO')
-            this.$forceUpdate();
+            console.log('CARRELO CANCELLATO');
+            location.reload();
 
         }
     },
