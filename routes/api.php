@@ -23,5 +23,6 @@ Route::get('/coursesUser/{slug}', 'Api\PageController@coursesUser');
 Route::get('/categoryUser/{slug}', 'Api\PageController@categoryUser');
 Route::get('/userInfo/{slug}', 'Api\PageController@userInfo');
 Route::get('/itemsUser/{slug}/{courseId}', 'Api\PageController@itemsUser');
-// Route::get('', 'Api\PageController@index');
+Route::get('/advHomeSearch/{catIdOne}/{catIdTwo}/{catIdThree}', 'Api\PageController@advHomeSearch');
+// /{catIdOne}/{catIdTwo}/{catIdThree}
 // Route::get('', 'Api\PageController@index');
