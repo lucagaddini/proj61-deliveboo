@@ -55,7 +55,7 @@
         </div>
         <!-- /Categories -->
 
-        <hr>
+   
 
 
         <!-- Res toggle list -->
@@ -65,6 +65,8 @@
         <div class="restaurants container"
             v-if="searchedRestaurant.length > 0"
             >
+            
+            <hr>
             <!-- Res. Title -->
             <div class="res-title text-center">
                 <h2>Ristoranti Selezionati</h2>
