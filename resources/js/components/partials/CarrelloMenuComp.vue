@@ -15,12 +15,15 @@
                             <div class="d-flex justify-content-start">
                                 <!-- ICONA PER ELIMINARE L\'ELEMENTO -->
                                 <div>
-                                    <a href="#" class="mx-2"><i class="fa-solid fa-circle-minus btn-delete-custom"></i></a>
+                                    <a 
+                                    href="#" 
+                                    class="mx-2"
+                                    @click="removeFromCart(item)"><i class="fa-solid fa-circle-minus btn-delete-custom"></i></a>
                                 </div>
 
                                 <!-- NOME PRODOTTO-->
                                 <div>
-                                    <h6 class="mx-2">{{item.name}}</h6>
+                                    <h6 class="mx-2">{{item.id}} - {{item.name}}</h6>
                                 </div>
                             </div>
 
@@ -63,6 +66,29 @@ export default {
 
         setCart(){
             this.cartArray = JSON.parse(localStorage.getItem("cart"));
+        },
+
+        removeFromCart(item) {
+            
+            var existingCart = JSON.parse(localStorage.getItem("cart"));
+            // if(existingCart == null) existingCart = [];
+
+            let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
+
+            if(itemToFind){
+
+                console.log('Prodotto gia presente');
+                console.log('GIA PRESENTE',itemToFind);
+
+                var index = existingCart.indexOf(itemToFind);
+
+                existingCart.splice(index,1);
+
+                console.log('CART:',existingCart);
+
+                // existingCart.push(newItem);
+                localStorage.setItem("cart", JSON.stringify(existingCart));
+        }
         }
 
     },

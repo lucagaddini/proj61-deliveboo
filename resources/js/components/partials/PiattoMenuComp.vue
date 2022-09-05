@@ -79,31 +79,62 @@ export default {
             var existingCart = JSON.parse(localStorage.getItem("cart"));
             if(existingCart == null) existingCart = [];
 
-            // if(existingCart.includes(item.id)){
-            //     console.log('Prodotto ia presente');
-            // }
+            let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
 
-            let newItem = {
-                id: item.id,
-                name: item.name,
-                price: item.price,
-                quantity: 1,
-                status: true
+            
+
+            if(itemToFind){
+
+                console.log('Prodotto gia presente');
+                console.log('GIA PRESENTE',itemToFind);
+
+                itemToFind.quantity++;
+
+                console.log('DOPO ++',itemToFind);
+
+                // existingCart.push(newItem);
+                localStorage.setItem("cart", JSON.stringify(existingCart));
+
+
+            } else{ 
+
+                let newItem = {
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    quantity: 1,
+                    status: true
+                }
+
+                existingCart.push(newItem);
+                localStorage.setItem("cart", JSON.stringify(existingCart));
             }
-
-            existingCart.push(newItem);
-            localStorage.setItem("cart", JSON.stringify(existingCart));
-
             // console.log(localStorage);
         },
 
-        removeFromCart(id) {
-            let data = {
-                id: id,
-                status: false
-            }
-            this.$store.commit('removeFromCart', id);
-            this.$store.commit('setAddedBtn', data);
+        // removeFromCart(id) {
+            
+        //     var existingCart = JSON.parse(localStorage.getItem("cart"));
+        //     // if(existingCart == null) existingCart = [];
+
+        //     let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
+
+        //     if(itemToFind){
+
+        //         console.log('Prodotto gia presente');
+        //         console.log('GIA PRESENTE',itemToFind);
+
+        //         var index = existingCart.indexOf(itemToFind);
+
+        //         existingCart.plice(index,1);
+
+        //         console.log('CART:',existingCart);
+
+        //         // existingCart.push(newItem);
+        //         // localStorage.setItem("cart", JSON.stringify(existingCart));
+
+
+        //     }
         },
 
         onSelectQuantity (id) {
