@@ -59,7 +59,12 @@
                     </div>
 
                     <div class="buy-now">
-                        <a href="#" class="p-1">CHECKOUT</a>
+
+                        <router-link class="nav-link"
+                                :to="{
+                                    name: 'checkout'
+                                    }
+                                ">CHECKOUT</router-link>
                     </div>
                 </div>
                 <!-- /Order e SubTotale -->
