@@ -69,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-        
+
             </div>
             <!-- //single-card -->
         </div>
@@ -106,7 +106,7 @@ export default {
         },
 
         shortContent(text){
-            return text.substr (0,30) + "....."
+            return text.substr (0,30) + "..."
         },
 
         addToCart(item) {
@@ -147,7 +147,7 @@ export default {
                 localStorage.setItem("cart", JSON.stringify(existingCart));
 
 
-            } else{ 
+            } else{
 
                 let newItem = {
                     id: item.id,
@@ -259,7 +259,10 @@ export default {
     display: inline-block;
     text-align: center;
     border: 3px solid #fff;
+    left: 0;
+    right: 0;
     bottom: -25px;
+    margin: auto;
     position: absolute;
 }
 
