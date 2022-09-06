@@ -10,7 +10,7 @@
                 <form class="mx-3">
 
                     <div class="form-group">
-                        <label for="inputName">First and Last Name</label>
+                        <label for="inputName">Nome e Cognome</label>
                         <input type="text" class="form-control" id="inputName" placeholder="First and Last Name">
                     </div>
 
@@ -21,23 +21,23 @@
                             <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputPhone">Phone</label>
+                            <label for="inputPhone">Telefono</label>
                             <input type="text" class="form-control" id="inputPhone" placeholder="Phone Number">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputAddress">Full Address</label>
+                        <label for="inputAddress">Indirizzo Completo</label>
                         <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputCity">City</label>
+                            <label for="inputCity">Città</label>
                             <input type="text" class="form-control" id="inputCity" placeholder="City">
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="inputZip">Cap</label>
+                            <label for="inputZip">CAP</label>
                             <input type="text" class="form-control" id="inputZip" placeholder="Cap">
                         </div>
                     </div>
@@ -45,10 +45,9 @@
 
             </div>
 
-
             <div class="card-detail-container bg-light  mt-5">
 
-                <h3 class="bg-dark text-white mb-4 container p-2">Card Details</h3>
+                <h3 class="bg-dark text-white mb-4 container p-2">Dettagli Pagamento</h3>
 
                 <Payment
                     v-if="showDropIn"
@@ -74,6 +73,7 @@
                     @success="onSuccess"
                     @error="onError"
                     >
+
                     <template v-slot:button="slotProps">
                         <input type="submit" @click="slotProps.submit" class="btn btn-warning" value="Completa ordine" />
                     </template>
