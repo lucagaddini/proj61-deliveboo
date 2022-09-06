@@ -1,299 +1,286 @@
 <template>
     <div>
 
-      <!-- Jumbotron -->
-      <HeroComp />
-      <!-- /Jumbotron -->
+        <!-- Jumbotron -->
+        <HeroComp />
+        <!-- /Jumbotron -->
 
-      <!-- Categories and Restaurants -->
-      <section class="cat-res">
+        <!-- Categories and Restaurants -->
+        <section class="cat-res">
 
-          <!-- Categories -->
-          <div class="categories container">
+            <!-- Categories -->
+            <div class="categories container">
 
-              <!-- Cat. Title -->
-              <div class="cat-title text-center">
-                  <h1>Categorie</h1>
-                  <p>Lorem ipsum dolor sit amet, adipisicing!</p>
-              </div>
-              <!-- /Cat. Title -->
+                <!-- Cat. Title -->
+                <div class="cat-title text-center">
+                    <h1>Categorie</h1>
+                    <p>Lorem ipsum dolor sit amet, adipisicing!</p>
+                </div>
+                <!-- /Cat. Title -->
 
-              <VueSlickCarousel v-bind='settings' v-if= 'categoriesLoading'>
+                <VueSlickCarousel v-bind='settings' v-if='categoriesLoading'>
 
-                  <!-- Prev Arrow -->
-                  <template #prevArrow="arrowOption">
-                      <div class="custom-arrow">
-                          {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-                      </div>
-                  </template>
-                  <!-- /Prev Arrow -->
+                    <!-- Prev Arrow -->
+                    <template #prevArrow="arrowOption">
+                        <div class="custom-arrow">
+                            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
+                        </div>
+                    </template>
+                    <!-- /Prev Arrow -->
 
-                  <!-- Cat. Cards -->
-                  <div class="cat-cards"
-                      v-for="category in categoriesArray"
-                      :key="'category-'+category.id"
-                      @click="searchRestaurant(category.id)">
+                    <!-- Cat. Cards -->
+                    <div class="cat-cards" v-for="category in categoriesArray" :key="'category-' + category.id"
+                        @click="searchRestaurant(category.id)">
 
-                      <img
-                          :class="category.clicked === true ? 'active' : ''"
-                          :src="'images/' + category.image_path">
+                        <img :class="category.clicked === true ? 'active' : ''" :src="'images/' + category.image_path">
 
-                      <p>{{ category.name }}</p>
-                  </div>
-                  <!-- /Cat. Cards -->
+                        <p>{{ category.name }}</p>
+                    </div>
+                    <!-- /Cat. Cards -->
 
-                  <!-- Next Arrow -->
-                  <template #nextArrow="arrowOption">
-                      <div class="custom-arrow">
-                          {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-                      </div>
-                  </template>
-                  <!-- /Next Arrow -->
+                    <!-- Next Arrow -->
+                    <template #nextArrow="arrowOption">
+                        <div class="custom-arrow">
+                            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
+                        </div>
+                    </template>
+                    <!-- /Next Arrow -->
 
-              </VueSlickCarousel>
+                </VueSlickCarousel>
 
-          </div>
-          <!-- /Categories -->
+            </div>
+            <!-- /Categories -->
 
 
-          <!-- SEARCHED RESTAURANTS -->
-          <div class="restaurants container"
-              v-if="searchedRestaurant.length > 0"
-              >
+            <!-- SEARCHED RESTAURANTS -->
+            <div class="restaurants container" v-if="searchedRestaurant.length > 0">
 
-          <hr>
-              <!-- Res. Title -->
-              <div class="res-title text-center">
-                  <h2>Ristoranti Selezionati</h2>
-                  <p>The list of restaurant you required</p>
-              </div>
-              <!-- /Res. Title -->
+                <hr>
+                <!-- Res. Title -->
+                <div class="res-title text-center">
+                    <h2>Ristoranti Selezionati</h2>
+                    <p>The list of restaurant you required</p>
+                </div>
+                <!-- /Res. Title -->
 
-              <!-- Res. Cards -->
-              <div class="res-cards row row-cols-1 row-cols-lg-2">
+                <!-- Res. Cards -->
+                <div class="res-cards row row-cols-1 row-cols-lg-2">
 
-                  <!-- Res. Singol Card -->
-                  <div class="res-card col"
-                      v-for="rest in searchedRestaurant"
-                      :key="'searched-user'+rest.infoUser.id">
-                      <div class="card-container bg-debug col-12 d-flex">
+                    <!-- Res. Singol Card -->
+                    <div class="res-card col" v-for="rest in searchedRestaurantDef"
+                        :key="'searched-user' + rest.infoUser.id">
+                        <div class="card-container bg-debug col-12 d-flex">
 
-                          <div class="d-flex card-style">
+                            <div class="d-flex card-style">
 
-                              <!-- Res. Img -->
-                              <div class="res-img">
-                                  <img src="images/restaurant_placeholder_home.jpg"
-                                      v-if="rest.infoUser.image_path == null">
-                                  <img :src="'images/'+rest.infoUser.image_path"
-                                      v-else>
-                              </div>
-                              <!-- /Res. Img -->
+                                <!-- Res. Img -->
+                                <div class="res-img">
+                                    <img src="images/restaurant_placeholder_home.jpg"
+                                        v-if="rest.infoUser.image_path == null">
+                                    <img :src="'images/' + rest.infoUser.image_path" v-else>
+                                </div>
+                                <!-- /Res. Img -->
 
-                              <!-- Res.Text -->
-                              <div class="res-text">
-                                  <router-link class="nav-link"
-                                  :to="{
-                                      name: 'menu',
-                                      params:{
-                                          slug:rest.infoUser.slug,
-                                          id:rest.infoUser.id,
-                                          categories:rest.categoriesUser
-                                      }
-                                  }">
-                                      <h4 class="res-name">{{ rest.infoUser.name }}</h4>
-                                      <span class="res-adress">{{ rest.infoUser.address }}</span> <br>
-                                      <span class="res-cat">
-                                          <span class="mr-2"
-                                              v-for="restCat in rest.categoriesUser"
-                                              :key="'restCat'+restCat.id" >
-                                              {{restCat.name}}
-                                          </span>
-                                      </span>
-                                  </router-link>
-                              </div>
-                              <!-- /Res.Text -->
+                                <!-- Res.Text -->
+                                <div class="res-text">
+                                    <router-link class="nav-link" :to="{
+                                        name: 'menu',
+                                        params: {
+                                            slug: rest.infoUser.slug,
+                                            id: rest.infoUser.id,
+                                            categories: rest.categoriesUser
+                                        }
+                                    }">
+                                        <h4 class="res-name">{{ rest.infoUser.name }}</h4>
+                                        <span class="res-adress">{{ rest.infoUser.address }}</span> <br>
+                                        <span class="res-cat">
+                                            <span class="mr-2" v-for="restCat in rest.categoriesUser"
+                                                :key="'restCat' + restCat.id">
+                                                {{ restCat.name }}
+                                            </span>
+                                        </span>
+                                    </router-link>
+                                </div>
+                                <!-- /Res.Text -->
 
-                          </div>
+                            </div>
 
-                      </div>
-                  </div>
-                  <!-- /Res. Singol Card -->
+                        </div>
+                    </div>
+                    <!-- /Res. Singol Card -->
 
-              </div>
-              <!-- /Res. Cards -->
-          </div>
-          <!-- /SEARCHED RESTAURANTS -->
+                </div>
+                <!-- /Res. Cards -->
+            </div>
+            <!-- /SEARCHED RESTAURANTS -->
 
 
-          <hr>
+            <hr>
 
 
-          <!-- TOP RATED RESTAURANTS -->
-          <div class="restaurants container">
-              <!-- Res. Title -->
-              <div class="res-title text-center">
-                  <h2>I più votati</h2>
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti?</p>
-              </div>
-              <!-- /Res. Title -->
+            <!-- TOP RATED RESTAURANTS -->
+            <div class="restaurants container">
+                <!-- Res. Title -->
+                <div class="res-title text-center">
+                    <h2>I più votati</h2>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti?</p>
+                </div>
+                <!-- /Res. Title -->
 
-              <!-- Res. Cards -->
-              <div class="res-cards row row-cols-1 row-cols-lg-2">
+                <!-- Res. Cards -->
+                <div class="res-cards row row-cols-1 row-cols-lg-2">
 
-                  <!-- Res. Singol Card -->
-                  <div class="res-card col"
-                      :key="'user-'+userObj.infoUser.id"
-                      v-for="userObj in usersArray">
-                      <div class="card-container bg-debug col-12 d-flex">
+                    <!-- Res. Singol Card -->
+                    <div class="res-card col" :key="'user-' + userObj.infoUser.id" v-for="userObj in usersArray">
+                        <div class="card-container bg-debug col-12 d-flex">
 
-                          <div class="d-flex card-style">
+                            <div class="d-flex card-style">
 
-                              <!-- Res. Img -->
-                              <div class="res-img">
-                                  <img src="images/restaurant_placeholder_home.jpg"
-                                      v-if="userObj.infoUser.image_path == null">
-                                  <img :src="'images/'+userObj.infoUser.image_path"
-                                      v-else>
-                              </div>
-                              <!-- /Res. Img -->
+                                <!-- Res. Img -->
+                                <div class="res-img">
+                                    <img src="images/restaurant_placeholder_home.jpg"
+                                        v-if="userObj.infoUser.image_path == null">
+                                    <img :src="'images/' + userObj.infoUser.image_path" v-else>
+                                </div>
+                                <!-- /Res. Img -->
 
-                              <!-- Res.Text -->
-                              <div class="res-text">
-                                  <router-link class="nav-link"
-                                  :to="{
-                                      name: 'menu',
-                                      params:{
-                                          slug:userObj.infoUser.slug,
-                                          id:userObj.infoUser.id,
-                                          categories:userObj.categoriesUser
+                                <!-- Res.Text -->
+                                <div class="res-text">
+                                    <router-link class="nav-link" :to="{
+                                        name: 'menu',
+                                        params: {
+                                            slug: userObj.infoUser.slug,
+                                            id: userObj.infoUser.id,
+                                            categories: userObj.categoriesUser
 
-                                      }
-                                  }">
-                                      <h4 class="res-name">{{ userObj.infoUser.name }}</h4>
-                                      <span class="res-adress">{{ userObj.infoUser.address }}</span> <br>
-                                      <span class="res-cat">
-                                          <span class="mr-2"
-                                              v-for="userCat in userObj.categoriesUser"
-                                              :key="'userCat'+userCat.id" >
-                                              {{userCat.name}}
-                                          </span>
-                                      </span>
-                                  </router-link>
-                              </div>
-                              <!-- /Res.Text -->
+                                        }
+                                    }">
+                                        <h4 class="res-name">{{ userObj.infoUser.name }}</h4>
+                                        <span class="res-adress">{{ userObj.infoUser.address }}</span> <br>
+                                        <span class="res-cat">
+                                            <span class="mr-2" v-for="userCat in userObj.categoriesUser"
+                                                :key="'userCat' + userCat.id">
+                                                {{ userCat.name }}
+                                            </span>
+                                        </span>
+                                    </router-link>
+                                </div>
+                                <!-- /Res.Text -->
 
-                          </div>
+                            </div>
 
-                      </div>
-                  </div>
-                  <!-- /Res. Singol Card -->
+                        </div>
+                    </div>
+                    <!-- /Res. Singol Card -->
 
-              </div>
-              <!-- /Res. Cards -->
-          </div>
-          <!-- /TOP RATED RESTAURANTS -->
+                </div>
+                <!-- /Res. Cards -->
+            </div>
+            <!-- /TOP RATED RESTAURANTS -->
 
-      </section>
-      <!-- /Categories and Restaurants -->
+        </section>
+        <!-- /Categories and Restaurants -->
 
     </div>
 
-  </template>
+</template>
 
-  <script>
+<script>
 
-  import VueSlickCarousel from 'vue-slick-carousel';
-  import 'vue-slick-carousel/dist/vue-slick-carousel.css';
-  import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
-  import HeroComp from "../partials/HeroComp.vue";
+import VueSlickCarousel from 'vue-slick-carousel';
+import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
+import HeroComp from "../partials/HeroComp.vue";
 
-  export default {
-      name: 'HomeComp',
-      components:{
-          HeroComp,
-          VueSlickCarousel
-      },
+export default {
+    name: 'HomeComp',
+    components: {
+        HeroComp,
+        VueSlickCarousel
+    },
 
-      data() {
+    data() {
         return {
-          // SLIDER
-          settings: {
-              "dots": true,
-              "arrows": true,
-              "infinite": true,
-              "initialSlide": 0,
-              "speed": 1500,
-              "slidesToShow": 4,
-              "slidesToScroll": 1,
-              "swipeToSlide": true,
-              "centerMode": true,
-              "centerPadding": "-50px",
-              "touchMove": false,
-              "autoplay": true,
-              "autoplaySpeed": 3000,
-              /* "lazyLoad": 'progressive', */
+            // SLIDER
+            settings: {
+                "dots": true,
+                "arrows": true,
+                "infinite": true,
+                "initialSlide": 0,
+                "speed": 1500,
+                "slidesToShow": 4,
+                "slidesToScroll": 1,
+                "swipeToSlide": true,
+                "centerMode": true,
+                "centerPadding": "-50px",
+                "touchMove": false,
+                "autoplay": true,
+                "autoplaySpeed": 3000,
+                /* "lazyLoad": 'progressive', */
 
-              "responsive": [
-                  {
-                      "breakpoint": 991,
-                      "settings": {
-                          "slidesToShow": 3,
-                          "centerPadding": '-50px',
-                      }
-                  },
-                  {
-                      "breakpoint": 767,
-                      "settings": {
-                          "slidesToShow": 2,
-                          "centerPadding": '-25px',
-                          "touchMove": true,
-                          "arrows": true,
-                          "speed": 500
-                      }
-                  },
-                  {
-                      "breakpoint": 600,
-                      "settings": {
-                          "slidesToShow": 2,
-                          "centerPadding": '-25px',
-                          "speed": 500,
-                          "touchMove": true,
-                          "arrows": false
-                      }
-                  },
-                  {
-                      "breakpoint": 520,
-                      "settings": {
-                          "slidesToShow": 2,
-                          "centerPadding": '-100px',
-                          "speed": 500,
-                          "touchMove": true,
-                          "arrows": false
-                      }
-                  }
-              ]
+                "responsive": [
+                    {
+                        "breakpoint": 991,
+                        "settings": {
+                            "slidesToShow": 3,
+                            "centerPadding": '-50px',
+                        }
+                    },
+                    {
+                        "breakpoint": 767,
+                        "settings": {
+                            "slidesToShow": 2,
+                            "centerPadding": '-25px',
+                            "touchMove": true,
+                            "arrows": true,
+                            "speed": 500
+                        }
+                    },
+                    {
+                        "breakpoint": 600,
+                        "settings": {
+                            "slidesToShow": 2,
+                            "centerPadding": '-25px',
+                            "speed": 500,
+                            "touchMove": true,
+                            "arrows": false
+                        }
+                    },
+                    {
+                        "breakpoint": 520,
+                        "settings": {
+                            "slidesToShow": 2,
+                            "centerPadding": '-100px',
+                            "speed": 500,
+                            "touchMove": true,
+                            "arrows": false
+                        }
+                    }
+                ]
 
-          },
-          // /SLIDER
+            },
+            // /SLIDER
 
-          apiUrl: "http://127.0.0.1:8000/api/homepage",
-          urlHome: "http://127.0.0.1:8000/api/homepage",
-          urlCat: "http://127.0.0.1:8000/api/categoryUser/",
-          categoriesUserUrl: "http://127.0.0.1:8000/api/categoryUser/",
-          prova: "http://127.0.0.1:8000/api/advHomeSearch/",
-          categoriesArray: [],
-          usersArray: [],
-          categoriesLoading: false,
+            apiUrl: "http://127.0.0.1:8000/api/homepage",
+            urlHome: "http://127.0.0.1:8000/api/homepage",
+            urlCat: "http://127.0.0.1:8000/api/categoryUser/",
+            categoriesUserUrl: "http://127.0.0.1:8000/api/categoryUser/",
+            prova: "http://127.0.0.1:8000/api/advHomeSearch/",
+            categoriesArray: [],
+            usersArray: [],
+            categoriesLoading: false,
 
-          searchedRestaurant: [],
-          provaRes: [],
-          catIdOne: null,
-          catIdTwo: null,
-          catIdThree: null,
+            searchedRestaurant: [],
+            // searchedRestaurantDef: [],
+            searchedCategories: [],
+            // provaRes: [],
+            // catIdOne: null,
+            // catIdTwo: null,
+            // catIdThree: null,
         }
-      },
+    },
 
-      methods:{
+    methods: {
 
         //   axiosDelCazzo(kebab){
         //         // axios.get(kebab+this.catIdOne+'/'+this.catIdTwo+'/'+this.catIdThree)
@@ -304,171 +291,205 @@
         //       })
         //   },
 
-          fillArrays(urlHome,urlCat){
-              let temporaryUserArray = [];
-              let temporaryCatArray = [];
+        fillArrays(urlHome, urlCat) {
+            let temporaryUserArray = [];
+            let temporaryCatArray = [];
 
-              axios.get(urlHome)
-              .then(res=>{
+            axios.get(urlHome)
+                .then(res => {
 
-                  res.data.categories.forEach(el => {
-                      // this.categoriesArray.push(el);
+                    res.data.categories.forEach(el => {
+                        // this.categoriesArray.push(el);
 
-                       // Aggiunto un attributo clicked alla categoria di ristorante
-                      var booleanAttibute = {
-                          clicked: false,
-                      };
+                        // Aggiunto un attributo clicked alla categoria di ristorante
+                        var booleanAttibute = {
+                            clicked: false,
+                        };
 
-                      // Merge dei due oggetti
-                      let merged = {
-                          ...el, ...booleanAttibute
-                      };
+                        // Merge dei due oggetti
+                        let merged = {
+                            ...el, ...booleanAttibute
+                        };
 
-                      this.categoriesArray.push(merged);
+                        this.categoriesArray.push(merged);
 
-                      if (this.categoriesArray.length >= 1){
-                          this.categoriesLoading = true;
-                      }
-                      // console.log(this.categoriesArray);
-                  });
+                        if (this.categoriesArray.length >= 1) {
+                            this.categoriesLoading = true;
+                        }
+                        // console.log(this.categoriesArray);
+                    });
 
-                  res.data.users.forEach(user => {
-                      // console.log('urlCat', res.data);
-                      temporaryUserArray.push(user);
-                      // console.log('TempApi', temporaryUserArray);
-                  });
+                    res.data.users.forEach(user => {
+                        // console.log('urlCat', res.data);
+                        temporaryUserArray.push(user);
+                        // console.log('TempApi', temporaryUserArray);
+                    });
 
-                  // console.log('Temp:', temporaryUserArray);
-                  temporaryUserArray.forEach( user =>{
-                  // console.log('URLCAT:',urlCat,user.id);
-                  var obj = user;
+                    // console.log('Temp:', temporaryUserArray);
+                    temporaryUserArray.forEach(user => {
+                        // console.log('URLCAT:',urlCat,user.id);
+                        var obj = user;
 
-                  axios.get(this.categoriesUserUrl+user.slug,obj)
-                  .then(res=>{
-                      let tempCatArrayUser = [];
-                      // console.log('urlCat-obj', obj);
-                      res.data.categories.forEach(cat => {
-                      // console.log('RES CATURL:', cat);
-                          tempCatArrayUser.push(cat);
-                      });
+                        axios.get(this.categoriesUserUrl + user.slug, obj)
+                            .then(res => {
+                                let tempCatArrayUser = [];
+                                // console.log('urlCat-obj', obj);
+                                res.data.categories.forEach(cat => {
+                                    // console.log('RES CATURL:', cat);
+                                    tempCatArrayUser.push(cat);
+                                });
 
-                      var merge = {'infoUser':obj,'categoriesUser':tempCatArrayUser}
-                      this.usersArray.push(merge);
+                                var merge = { 'infoUser': obj, 'categoriesUser': tempCatArrayUser }
+                                this.usersArray.push(merge);
 
-                  });
-              });
+                            });
+                    });
 
-              });
+                });
 
-          },
+        },
 
-          searchRestaurant(category_id){
+        // searchRestaurant(category_id) {
 
-              this.categoriesArray.forEach(el =>{
-                  if(el.id === category_id){
-                      el.clicked = true;
-                  }
-              })
+        //     this.searchedCategories.push(category_id);
 
-              this.usersArray.forEach(userEl => {
+        //     this.categoriesArray.forEach(el => {
+        //         if (el.id === category_id) {
+        //             el.clicked = true;
+        //         }
+        //     })
 
-                  userEl.categoriesUser.forEach(catUser => {
+        //     this.usersArray.forEach(userEl => {
 
-                      if(catUser.id === category_id){
+        //         userEl.categoriesUser.forEach(catUser => {
 
-                          if(!this.searchedRestaurant.includes(userEl)){
+        //             let idsArray = {
+        //                 idArr: [],
+        //             };
+        //             userEl.categoriesUser.forEach(id => {
+        //                 idsArray.idArr.push(id.id);
+        //             });
+        //             let userElMerged = {
+        //                 ...userEl, ...idsArray
+        //             };
 
-                              this.searchedRestaurant.push(userEl);
+        //             if (catUser.id === category_id) {
 
-                              // if(this.catIdOne == null){
-                              //     this.catIdOne=category_id;
-                              // }else if()
+        //                 if (!this.searchedRestaurant.includes(userElMerged)) {
 
-                          }else{
+        //                     this.searchedRestaurant.push(userElMerged);
 
-                              // console.log('CATEGORIA GIà SELEZIONATA');
-                              // Se la categoria è già stata selezionata in passato
-                              this.categoriesArray.forEach(catArrayEl =>{
-                                  if(catArrayEl.id === category_id){
-                                      catArrayEl.clicked = false;
-                                  }
-                              });
+        //                     //   ////////////////////////////////////////////////
+        //                     this.searchedRestaurantDef = [];
+        //                     this.searchedRestaurant.forEach(el => {
+        //                         if (this.searchedCategories.every(id => el.idArr.includes(id))) {
+        //                             if (!this.searchedRestaurantDef.includes(el)) {
+        //                                 this.searchedRestaurantDef.push(el);
+        //                             }
+        //                         }
+        //                     });
 
-                              //
-                              const index = this.searchedRestaurant.indexOf(userEl);
-                              if (index > -1) {
-                                  this.searchedRestaurant.splice(index, 1);
-                              }
+        //                 } else {
 
-                          }
+        //                     // console.log('CATEGORIA GIà SELEZIONATA');
+        //                     // Se la categoria è già stata selezionata in passato
+        //                     this.categoriesArray.forEach(catArrayEl => {
+        //                         if (catArrayEl.id === category_id) {
+        //                             catArrayEl.clicked = false;
+        //                             console.log(this.categoriesArray);
+        //                         }
+        //                     });
 
-                      };
-                  });
+        //                     //
+        //                     const index = this.searchedRestaurant.indexOf(userElMerged);
+        //                     if (index > -1) {
+        //                         this.searchedRestaurant.splice(index, 1);
+        //                         console.log(this.searchedRestaurant);
+        //                     }
+        //                     const index_two = this.searchedCategories.indexOf(userElMerged);
+        //                     if (index_two > -1) {
+        //                         this.searchedCategories.splice(index_two, 1);
+        //                         console.log(this.searchedCategories);
+        //                     }
+        //                     const index_three = this.searchedRestaurantDef.indexOf(userElMerged);
+        //                     if (index_three > -1) {
+        //                         this.searchedRestaurantDef.splice(index_three, 1);
+        //                         console.log(this.searchedRestaurantDef);
+        //                     }
 
-              });
-          }
-      },
+        //                 }
 
-      mounted(){
-        this.fillArrays(this.urlHome,this.urlCat);
+        //             };
+        //         });
+
+        //     });
+        // },
+
+        searchRestaurant(category_id){
+
+        }
+
+    },
+
+    mounted() {
+        this.fillArrays(this.urlHome, this.urlCat);
         // this.axiosDelCazzo(this.prova);
-      },
-  }
+    },
+}
 
 
-  </script>
+</script>
 
-  <style lang='scss' scoped>
-
+<style lang='scss' scoped>
   @import 'resources/sass/front/_variables.scss';
 
   /* Categories and Restaurants */
 
-  .cat-res{
+  .cat-res {
       background-color: #F9FAFC;
       display: flex;
       flex-direction: column;
   }
 
-  hr{
+  hr {
       border: 0.8px solid $tertiary-color;
       border-radius: 4px;
       width: 90%;
   }
 
   /* Categories */
-  .categories{
+  .categories {
       margin-top: 75px;
       margin-bottom: 75px;
   }
 
-  .cat-title h1{
+  .cat-title h1 {
       color: black;
   }
 
-  .cat-title p{
+  .cat-title p {
       font-size: 1.125rem;
       color: black;
   }
 
-  .cat-cards{
+  .cat-cards {
       height: 300px;
       position: relative;
       cursor: pointer;
 
-      img{
+      img {
           height: 100%;
           width: 250px;
           border-radius: 20px;
           background-attachment: fixed;
           border: 5px solid #f9fafc;
 
-          &.active{
-          border: 5px solid $tertiary-color;
-      }
+          &.active {
+              border: 5px solid $tertiary-color;
+          }
       }
 
-      p{
+      p {
           position: absolute;
           bottom: 10px;
           color: white;
@@ -480,29 +501,29 @@
 
   .slick-prev:before,
   .slick-next:before {
-    color: $tertiary-color !important;
+      color: $tertiary-color  !important;
   }
 
   /* Restaurants */
-  .restaurants{
+  .restaurants {
       margin-top: 75px;
       margin-bottom: 75px;
   }
 
-  .res-title h2{
+  .res-title h2 {
       color: black;
   }
 
-  .res-title p{
+  .res-title p {
       font-size: 1.125rem;
       color: black;
   }
 
-  .res-card{
+  .res-card {
       padding: 20px;
   }
 
-  .card-style{
+  .card-style {
       background-color: white;
       width: 100%;
       border-radius: 10px;
@@ -510,26 +531,26 @@
       border: 1px solid $tertiary-color;
   }
 
-  .card-container{
+  .card-container {
       padding-right: 0px;
       padding-left: 0px;
   }
 
   /* Res. Img */
 
-  .res-img{
+  .res-img {
       width: 50%;
       height: 150px;
   }
 
-  .res-img img{
+  .res-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
   }
 
   /* Res. Text */
-  .res-text{
+  .res-text {
       color: black;
       margin: 0px 0px 0px 10px;
       display: flex;
@@ -539,16 +560,15 @@
       width: 50%;
   }
 
-  .res-name{
+  .res-name {
       font-size: 1.1rem;
   }
 
-  .res-cat span{
+  .res-cat span {
       background-color: $tertiary-color;
       border-radius: 6px;
       padding: 2px 10px;
       color: white;
       font-size: .7rem;
   }
-
   </style>
