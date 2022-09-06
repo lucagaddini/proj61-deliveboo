@@ -73,5 +73,14 @@ class PageController extends Controller
         return response()->json(compact('user'));
     }
 
+
+    // API CHE RESTITUISCE LE INFO DI UN RISTORANTE
+    public function saveOrder($orderData){
+
+
+
+        return response()->json(compact('user'));
+    }
+
     
 }

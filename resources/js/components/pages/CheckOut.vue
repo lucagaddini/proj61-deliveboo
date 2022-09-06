@@ -8,11 +8,15 @@
 
                 <h4 class=" title-card bg-dark text-white mb-4 p-2 container">Personal Details</h4>
 
-                <form class="mx-3">
+                <form class="mx-3" id="checkout-form" data-parsley-validate>
 
                     <div class="form-group">
                         <label for="inputName">Nome e Cognome</label>
-                        <input type="text" class="form-control" id="inputName" placeholder="First and Last Name">
+                        <input type="text" 
+                        class="form-control"
+
+                        id="inputName" 
+                        placeholder="Nome e Cognome">
                     </div>
 
                     <div class="form-row">
@@ -42,6 +46,7 @@
                             <input type="text" class="form-control" id="inputZip" placeholder="Cap">
                         </div>
                     </div>
+                    <button type="submit">Salva dati</button>
                 </form>
 
             </div>
@@ -84,8 +89,6 @@
                         <input type="submit" @click="slotProps.submit" class="btn buy-now" value="Aggiungi Carta" />
                     </template>
                     
-                    
-
                     </Payment>
 
                     <!-- <button @click="deleteInstance" class="btn btn-danger">
@@ -106,6 +109,10 @@
 
 <script>
 
+(function(){
+    $("#checkout-form").parsley();
+});
+
 import SummaryComp from "../partials/SummaryComp.vue";
 import Payment from "../partials/Payment.vue";
 
@@ -119,6 +126,10 @@ export default {
         }
   },
   methods: {
+
+    saveData(el){
+        console.log('NOME');
+    },
 
     onLoad (instance) {
       this.instance = instance;
@@ -153,6 +164,8 @@ export default {
     }
   }
 }
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -186,5 +199,7 @@ export default {
 [data-braintree-id="toggle"] {
   display: none;
 }
+
+
 
 </style>
