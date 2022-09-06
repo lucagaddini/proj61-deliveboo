@@ -8,46 +8,46 @@
 
                 <h4 class=" title-card bg-dark text-white mb-4 p-2 container">Personal Details</h4>
 
-                <form class="mx-3" id="checkout-form" data-parsley-validate>
+                <div class="mx-3" id="checkout-form">
 
-                    <div class="form-group">
-                        <label for="inputName">Nome e Cognome</label>
-                        <input type="text" 
-                        class="form-control"
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="inputName">Nome</label>
+                            <input type="text" 
+                            class="form-control"
 
-                        id="inputName" 
-                        placeholder="Nome e Cognome">
+                            id="order-info-name" 
+                            placeholder="Nome">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputSurname">Cognome</label>
+                            <input type="text" 
+                            class="form-control"
+
+                            id="order-info-surname" 
+                            placeholder="Cognome">
+                        </div>
                     </div>
 
                     <div class="form-row">
 
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                            <input type="email" class="form-control" id="order-info-email" placeholder="Email">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPhone">Telefono</label>
-                            <input type="text" class="form-control" id="inputPhone" placeholder="Phone Number">
+                            <input type="text" class="form-control" id="order-info-phone" placeholder="Phone Number">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">Indirizzo Completo</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        <input type="text" class="form-control" id="order-info-address" placeholder="1234 Main St">
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">Città</label>
-                            <input type="text" class="form-control" id="inputCity" placeholder="City">
-                        </div>
-
-                        <div class="form-group col-md-4">
-                            <label for="inputZip">CAP</label>
-                            <input type="text" class="form-control" id="inputZip" placeholder="Cap">
-                        </div>
-                    </div>
-                    <button type="submit">Salva dati</button>
-                </form>
+                    <button class="buy-now" @click="saveData()">Salva dati</button>
+                </div>
 
             </div>
 
@@ -89,7 +89,7 @@
                         <input type="submit" @click="slotProps.submit" class="btn buy-now" value="Aggiungi Carta" />
                     </template>
                     
-                    </Payment>
+                </Payment>
 
                     <!-- <button @click="deleteInstance" class="btn btn-danger">
                         Delete instance
@@ -101,7 +101,9 @@
         </div>
 
         <div class="recap-spece">
-            <SummaryComp/>
+            <SummaryComp
+            :orderCustomerInfo="this.orderCustomerInfo"
+            :cardVerified="this.cardVerified"/>
         </div>
 
     </section>
@@ -109,9 +111,9 @@
 
 <script>
 
-(function(){
-    $("#checkout-form").parsley();
-});
+// (function(){
+//     $("#checkout-form").parsley();
+// });
 
 import SummaryComp from "../partials/SummaryComp.vue";
 import Payment from "../partials/Payment.vue";
@@ -122,13 +124,21 @@ export default {
         return {
             instance: null,
             showDropIn: true,
-            cardVerified: false
+            cardVerified: false,
+            orderCustomerInfo: {}
         }
   },
   methods: {
 
-    saveData(el){
-        console.log('NOME');
+    saveData(){
+        this.orderCustomerInfo = {
+            'name': document.getElementById('order-info-name').value,
+            'surname': document.getElementById('order-info-surname').value,
+            'address': document.getElementById('order-info-address').value,
+            'phone': document.getElementById('order-info-phone').value,
+            'email': document.getElementById('order-info-email').value,
+            'total': 0,
+        };
     },
 
     onLoad (instance) {
