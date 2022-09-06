@@ -1,68 +1,67 @@
 <template>
     <div class="col-lg-4 cart">
         <div class="container">
-            <div class="cart-container">
-                <h4 class="cart-title p-1">Il Tuo Carrello</h4>
+            <div class="cart-container bg-light m-5">
+                <div class="cart-title bg-dark p-1">
+                    <h4>Riepilogo Ordine</h4>
+                    <span>nomeristorantedinamico</span>
+                </div>
+
 
                 <div class="container list-selected-item d-flex flex-column">
-                    
                     <!-- Singol Item -->
-                    <div
-                        v-for="item in cartArray"
-                        :key="'itemId-'+item.id" 
+                    <div v-for="item in cartArray" :key="'itemId-' + item.id"
                         class="d-flex justify-content-between singol-item">
-                            
-                            <div class="d-flex justify-content-start">
-                                <!-- ICONA PER ELIMINARE L\'ELEMENTO -->
-                                <div>
-                                    <a class="mx-2"
-                                    @click="removeFromCart(item)"><i class="fa-solid fa-trash"></i></a>
-                                </div>
 
-                                <!-- NOME PRODOTTO-->
-                                <div>
-                                    <h6 class="mx-2">{{item.id}} - {{item.name}}</h6>
-                                </div>
-                                
-                                <div>
-                                    <a class="mx-2"
-                                    v-if="item.quantity > 1"
-                                    @click="decreaseQuantity(item)"><i class="fa-solid fa-circle-minus btn-delete-custom"></i>
-                                    </a>
-
-                                    <span>{{item.quantity}}</span>
-
-                                    <a class="addtocart"
-                                        @click="increaseQuantity(item)">
-                                        <i class="fa-solid fa-circle-plus"></i>
-                                    </a>
-                                </div>
-
-                            </div>
-
-                            <!-- PREZZO PRODOTTO-->
+                        <div class="d-flex justify-content-start">
+                            <!-- ICONA PER ELIMINARE L\'ELEMENTO -->
                             <div>
-                                <h6>{{item.price * item.quantity}} &euro;</h6>
+                                <a class="mx-2" @click="removeFromCart(item)"><i class="fa-solid fa-trash"></i></a>
                             </div>
+
+                            <!-- NOME PRODOTTO-->
+                            <div>
+                                <h6 class="mx-2">{{ item.id }} - {{ item.name }} </h6>
+                            </div>
+
+                            <div>
+                                <a class="mx-2" v-if="item.quantity > 1" @click="decreaseQuantity(item)"><i
+                                        class="fa-solid fa-circle-minus btn-delete-custom"></i>
+                                </a>
+
+                                <span>{{ item.quantity }}</span>
+
+                                <a class="addtocart" @click="increaseQuantity(item)">
+                                    <i class="fa-solid fa-circle-plus"></i>
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <!-- PREZZO PRODOTTO-->
+                        <div>
+                            <h6>{{ item.price * item.quantity }} &euro;</h6>
+                        </div>
 
                     </div>
                     <!-- /Singol Item -->
-                    
+
 
                 </div>
 
                 <!-- Order e SubTotale -->
                 <div class="ordernow-sub-button-container container">
                     <div class="subtotal d-flex justify-content-between">
+                        <h6 class="mt-2">Costi Spedizione: </h6>
+                        <h6 class="mt-2"> {{ shippingFee }} &euro;</h6>
+                    </div>
+                    <div class="subtotal d-flex justify-content-between">
                         <h6 class="mt-2">Subtotale: </h6>
-                        <h6 class="mt-2"> {{subtotalCart}} &euro;</h6>
+                        <h6 class="mt-2"> {{ subtotalCart }} &euro;</h6>
                     </div>
 
                     <div class="buy-now">
-
-                        <router-link class="nav-link"
-                                :to="{name: 'checkout'}
-                                ">CHECKOUT</router-link>
+                        <a href="#" class="p-1 mt-2 font-weight-bold">Completa e Paga</a>
                     </div>
                 </div>
                 <!-- /Order e SubTotale -->
@@ -73,31 +72,32 @@
 
 <script>
 export default {
-    data(){
-        return{
+    data() {
+        return {
             cartArray: [],
+            shippingFee: 5,
         }
     },
-    methods:{
+    methods: {
 
-        setCart(){
+        setCart() {
             this.cartArray = JSON.parse(localStorage.getItem("cart"));
         },
 
         decreaseQuantity(item) {
-            
+
             var existingCart = JSON.parse(localStorage.getItem("cart"));
 
-            let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
+            let itemToFind = existingCart.find(oldItem => oldItem['id'] === item.id);
 
-            if(itemToFind && itemToFind.quantity > 1 ){
+            if (itemToFind && itemToFind.quantity > 1) {
 
                 console.log('Prodotto gia presente');
-                console.log('GIA PRESENTE',itemToFind);
+                console.log('GIA PRESENTE', itemToFind);
 
-                itemToFind.quantity --;
+                itemToFind.quantity--;
 
-                console.log('DOPO --',itemToFind);
+                console.log('DOPO --', itemToFind);
 
                 // existingCart.push(newItem);
                 localStorage.setItem("cart", JSON.stringify(existingCart));
@@ -105,19 +105,19 @@ export default {
         },
 
         increaseQuantity(item) {
-            
+
             var existingCart = JSON.parse(localStorage.getItem("cart"));
 
-            let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
+            let itemToFind = existingCart.find(oldItem => oldItem['id'] === item.id);
 
-            if(itemToFind){
+            if (itemToFind) {
 
                 console.log('Prodotto gia presente');
-                console.log('GIA PRESENTE',itemToFind);
+                console.log('GIA PRESENTE', itemToFind);
 
                 itemToFind.quantity++;
 
-                console.log('DOPO ++',itemToFind);
+                console.log('DOPO ++', itemToFind);
 
                 // existingCart.push(newItem);
                 localStorage.setItem("cart", JSON.stringify(existingCart));
@@ -125,53 +125,51 @@ export default {
         },
 
         removeFromCart(item) {
-            
+
             var existingCart = JSON.parse(localStorage.getItem("cart"));
             // if(existingCart == null) existingCart = [];
 
-            let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
+            let itemToFind = existingCart.find(oldItem => oldItem['id'] === item.id);
 
-            if(itemToFind){
+            if (itemToFind) {
 
                 console.log('Prodotto gia presente');
-                console.log('GIA PRESENTE',itemToFind);
+                console.log('GIA PRESENTE', itemToFind);
 
                 var index = existingCart.indexOf(itemToFind);
 
-                existingCart.splice(index,1);
+                existingCart.splice(index, 1);
 
-                console.log('CART:',existingCart);
+                console.log('CART:', existingCart);
 
                 // existingCart.push(newItem);
                 localStorage.setItem("cart", JSON.stringify(existingCart));
-            }
-
-            if(existingCart.length == 0){
-                localStorage.clear("cart");
             }
         }
 
 
     },
-    computed:{
+    computed: {
 
-        subtotalCart(){
+        subtotalCart() {
             var subtotal = 0;
 
-            if(!this.cartArray) { return subtotal; }
+            if (!this.cartArray) { return subtotal; }
 
-            if(this.cartArray.length > 0) {
+            if (this.cartArray.length > 0) {
 
                 this.cartArray.forEach(item => {
                     subtotal += item.price * item.quantity;
                 });
+
+                subtotal+= this.shippingFee;
 
             }
 
             return subtotal;
         }
     },
-    mounted(){
+    mounted() {
         setInterval(this.setCart, 500);
     }
 };
@@ -188,44 +186,40 @@ export default {
 .cart-container {
     width: 400px;
     height: auto;
-    border: 1px solid $fifth-color;
     border-radius: 10px;
     overflow: hidden;
-    background-color: #f2f3f4;
 }
 
 .cart-title {
     text-align: center;
     line-height: 35px;
-    text-transform: uppercase;
     color: white;
-    background-color: $fifth-color;
-    height: 40px;
+    height: fit-content;
 }
 
 /* Singol Item */
 
-.singol-item{
+.singol-item {
     border-bottom: 1px solid rgba($color: black, $alpha: .1);
     margin-bottom: 12px;
 }
 
 .list-selected-item {
-    height: auto;
+    min-height: 30px;
     overflow-y: auto;
 }
 
-.btn-delete-custom{
+.btn-delete-custom {
     color: $primary-color;
 
-    &:hover{
+    &:hover {
         color: red;
     }
 }
 
 /* Order e SubTotale */
 .ordernow-sub-button-container {
-    height: 80px;
+    height: 120px;
     text-align: center;
     border-top: 1px solid $fifth-color;
 }
@@ -233,7 +227,7 @@ export default {
 .buy-now {
     width: 100%;
 
-    a{  
+    a {
         text-decoration: none;
         display: block;
         color: white;
@@ -241,7 +235,7 @@ export default {
         border: 1px solid $fifth-color;
         border-radius: 5px;
 
-        &:hover{
+        &:hover {
             color: $fifth-color;
             background-color: white;
             border: 1px solid $fifth-color;
