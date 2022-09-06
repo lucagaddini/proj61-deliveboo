@@ -61,9 +61,7 @@
                     <div class="buy-now">
 
                         <router-link class="nav-link"
-                                :to="{
-                                    name: 'checkout'
-                                    }
+                                :to="{name: 'checkout'}
                                 ">CHECKOUT</router-link>
                     </div>
                 </div>

@@ -50,52 +50,38 @@
 
                 <h3 class="bg-dark text-white mb-4 container p-2">Card Details</h3>
 
-                <form class="mx-3">
+                <Payment
+                    v-if="showDropIn"
+                    authorization="sandbox_zjqhxx8m_r75zzzxtvzc8dddc"
+                    :three-d-secure="false"
+                    :three-d-secure-parameters="{
+                        amount: 100, 
+                        email: 'francois@witify.io', 
+                        billingAddress: {
+                        givenName: 'John',
+                        surname: 'Doe',
+                        phoneNumber: '515 515 1234',
+                        streetAddress: '485 boul. dagenais E',
+                        extendedAddress: '1',
+                        locality: 'Laval',
+                        region: 'QC',
+                        postalCode: 'h7m5z5',
+                        countryCodeAlpha2: 'CA'
+                        }
+                    }"
+                    @load="onLoad"
+                    @loadFail="onLoadFail"
+                    @success="onSuccess"
+                    @error="onError"
+                    >
+                    <template v-slot:button="slotProps">
+                        <input type="submit" @click="slotProps.submit" class="btn btn-warning" value="Completa ordine" />
+                    </template>
+                    </Payment>
 
-                    <div class="form-group">
-                        <label for="inputName">Name on Card</label>
-                        <input type="text" class="form-control" id="inputName" placeholder="First and Last Name">
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="inputCNumber">Card Number</label>
-                        <input type="text" class="form-control" id="inputCNumber" placeholder="Card Number">
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-3">
-                            <label for="inputMM">Month</label>
-                            <input type="text" class="form-control" id="inputMM" placeholder="MM">
-                        </div>
-
-                        <div class="form-group col-md-3">
-                            <label for="inputYYYY">Year</label>
-                            <input type="text" class="form-control" id="inputYYYY" placeholder="YYYY">
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="inputCVC">Security Code</label>
-                            <input type="text" class="form-control" id="inputCVC" placeholder="CVC">
-                        </div>
-                        <div>
-                            IMMAGINE CARTA
-                        </div>
-                    </div>
-                </form>
 
             </div>
-
-
-
         </div>
-
-
-
-
-
-
-
-
 
         <div class="recap-spece">
             <SummaryComp/>
@@ -108,9 +94,48 @@
 
 
 import SummaryComp from "../partials/SummaryComp.vue";
+import Payment from "../partials/Payment.vue";
 
 export default {
-    components: { SummaryComp }
+    components: { SummaryComp,Payment },
+    data () {
+        return {
+            instance: null,
+            showDropIn: true,
+        }
+  },
+  methods: {
+
+    onLoad (instance) {
+      this.instance = instance;
+    },
+
+    onLoadFail (instance) {
+      console.error('Load fail', instance);
+    },
+
+    onSuccess (payload) {
+      console.log("Success!", payload.nonce);
+    },
+
+    onError (error) {
+      console.error("Error:", error);
+    },
+
+    clearPaymentSelection () {
+      if (this.instance != null) {
+        this.instance.clearSelectedPaymentMethod();
+      }
+    },
+
+    deleteInstance() {
+      this.showDropIn = false;
+
+      setInterval(() => {
+        this.showDropIn = true;
+      }, 1000);
+    }
+  }
 }
 </script>
 
