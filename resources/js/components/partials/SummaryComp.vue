@@ -4,7 +4,7 @@
             <div class="cart-container bg-light m-5">
                 <div class="cart-title bg-dark p-1">
                     <h4>Riepilogo Ordine</h4>
-                    <span>nomeristorantedinamico</span>
+                    <span>{{this.$route.params.name}}</span>
                 </div>
 
 
@@ -76,6 +76,7 @@ export default {
         return {
             cartArray: [],
             shippingFee: 5,
+            restaurantInfoParams: this.$route.params,
         }
     },
     methods: {

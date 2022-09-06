@@ -6,7 +6,7 @@
             <!-- FORM DATI UTENTE -->
             <div class="user-detail-container bg-light">
 
-                <h3 class="bg-dark text-white mb-4 p-2 container">Personal Details</h3>
+                <h4 class=" title-card bg-dark text-white mb-4 p-2 container">Personal Details</h4>
 
                 <form class="mx-3">
 
@@ -51,7 +51,7 @@
             <!-- FORM DATI CARTA -->
             <div class="card-detail-container bg-light  mt-5">
 
-                <h3 class="bg-dark text-white mb-4 container p-2">Dettagli Pagamento</h3>
+                <h4 class=" title-card bg-dark text-white mb-4 container p-2">Dettagli Pagamento</h4>
 
                 <Payment
                     v-if="showDropIn"
@@ -158,10 +158,12 @@ export default {
 <style lang="scss" scoped>
 @import 'resources/sass/front/_variables.scss';
 
-.user-detail-container{
+.user-detail-container,
+.card-detail-container{
     border-radius: 10px;
-    h3{
-        border-radius:10px 10px 0 0;
+
+    .title-card{
+        border-radius: 10px 10px 0 0;
     }
 }
 

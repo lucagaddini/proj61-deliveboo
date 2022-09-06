@@ -77,7 +77,8 @@
             <!----------------------------- Card dei piatti ---------------------------------->
 
             <!-- componente carrello -->
-            <CarrelloMenuComp />
+            <CarrelloMenuComp 
+            :restaurantInfo="current_restaurant"/>
             <!-- /componente carrello -->
 
         </section>

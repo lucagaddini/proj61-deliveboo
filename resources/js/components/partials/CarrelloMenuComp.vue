@@ -61,8 +61,11 @@
                     <div class="buy-now">
 
                         <router-link class="nav-link"
-                                :to="{name: 'checkout'}
-                                ">CHECKOUT</router-link>
+                                :to="{
+                                    name: 'checkout', 
+                                    params: this.restaurantInfo
+                                    }"
+                                >CHECKOUT</router-link>
                     </div>
                 </div>
                 <!-- /Order e SubTotale -->
@@ -76,7 +79,11 @@ export default {
     data(){
         return{
             cartArray: [],
+            
         }
+    },
+    props:{
+        restaurantInfo: Object,
     },
     methods:{
 
