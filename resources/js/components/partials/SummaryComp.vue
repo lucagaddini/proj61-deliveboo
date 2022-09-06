@@ -159,8 +159,10 @@ export default {
             if (this.cartArray.length > 0) {
 
                 this.cartArray.forEach(item => {
-                    subtotal += item.price * item.quantity + this.shippingFee;
+                    subtotal += item.price * item.quantity;
                 });
+
+                subtotal+= this.shippingFee;
 
             }
 
