@@ -3,6 +3,7 @@
 
         <div class="form-space m-5">
 
+            <!-- FORM DATI UTENTE -->
             <div class="user-detail-container bg-light">
 
                 <h3 class="bg-dark text-white mb-4 p-2 container">Personal Details</h3>
@@ -45,6 +46,9 @@
 
             </div>
 
+            <!-- //FORM DATI UTENTE -->
+
+            <!-- FORM DATI CARTA -->
             <div class="card-detail-container bg-light  mt-5">
 
                 <h3 class="bg-dark text-white mb-4 container p-2">Dettagli Pagamento</h3>
@@ -75,13 +79,22 @@
                     @error="onError"
                     >
 
-                    <template v-slot:button="slotProps">
-                        <input type="submit" @click="slotProps.submit" class="btn btn-warning" value="Completa ordine" />
+                    <template v-slot:button="slotProps"
+                    v-if="(!cardVerified)">
+                        <input type="submit" @click="slotProps.submit" class="btn buy-now" value="Aggiungi Carta" />
                     </template>
+                    
+                    
+
                     </Payment>
 
+                    <!-- <button @click="deleteInstance" class="btn btn-danger">
+                        Delete instance
+                    </button> -->
 
             </div>
+            <!-- //FORM DATI CARTA -->
+
         </div>
 
         <div class="recap-spece">
@@ -102,6 +115,7 @@ export default {
         return {
             instance: null,
             showDropIn: true,
+            cardVerified: false
         }
   },
   methods: {
@@ -116,6 +130,7 @@ export default {
 
     onSuccess (payload) {
       console.log("Success!", payload.nonce);
+      this.cardVerified = true;
     },
 
     onError (error) {
@@ -130,6 +145,7 @@ export default {
 
     deleteInstance() {
       this.showDropIn = false;
+      this.cardVerified = false;
 
       setInterval(() => {
         this.showDropIn = true;
@@ -148,4 +164,25 @@ export default {
         border-radius:10px 10px 0 0;
     }
 }
+
+.buy-now {
+    width: 100%;
+    text-decoration: none;
+    display: block;
+    color: white;
+    background-color: $fifth-color;
+    border: 1px solid $fifth-color;
+    border-radius: 5px;
+
+    &:hover{
+        color: $fifth-color;
+        background-color: white;
+        border: 1px solid $fifth-color;
+    }
+}
+
+[data-braintree-id="toggle"] {
+  display: none;
+}
+
 </style>

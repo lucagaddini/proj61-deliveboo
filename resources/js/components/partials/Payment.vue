@@ -1,16 +1,18 @@
 <template>
   <div class="payment">
     <div ref="dropin" />
+
     <slot
       name="button"
       :submit="submit"
     >
-      <button
+
+      <!-- <button
         :class="btnClass"
         @click="submit"
       >
         {{ btnText }}
-      </button>
+      </button> -->
     </slot>
   </div>
 </template>
@@ -25,11 +27,11 @@ export default {
     },
     locale: {
       type: String,
-      default: "en_US"
+      default: "it_IT"
     },
     btnText: {
       type: String,
-      default: "Pay"
+      default: " Paga Ora"
     },
     btnClass: {
       type: String,
@@ -145,3 +147,11 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+
+[data-braintree-id="toggle"] {
+  display: none;
+}
+
+</style>
