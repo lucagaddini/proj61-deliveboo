@@ -24,28 +24,28 @@ class PageController extends Controller
 
     // $catIdOne,$catIdTwo,$catIdThree
     // API PER L'ADVACED SEARCHING
-    public function advHomeSearch($catIdOne,$catIdTwo){
+    // public function advHomeSearch($catIdOne,$catIdTwo){
 
-        $advSrc = DB::table('users')
-                ->select('users.name')
-                ->join('category_user','user_id', '=', 'users.id')
-                ->join('categories', 'categories.id', "=", 'category_user.category_id')
-                ->whereIn('categories.id', [$catIdOne, $catIdTwo])
+    //     $advSrc = DB::table('users')
+    //             ->select('users.name')
+    //             ->join('category_user','user_id', '=', 'users.id')
+    //             ->join('categories', 'categories.id', "=", 'category_user.category_id')
+    //             ->whereIn('categories.id', [$catIdOne, $catIdTwo])
 
-                // ->where('categories.id', '=', $catIdOne)
-                // ->orWhere('categories.id', '=', $catIdTwo)
+    //             // ->where('categories.id', '=', $catIdOne)
+    //             // ->orWhere('categories.id', '=', $catIdTwo)
 
-                // ->when($catIdTwo == 'null',function($advSrc, $catIdOne){
-                //     return $advSrc->where('categories.id', '=', $catIdOne); //è uguale a null
-                // },function($advSrc, $catIdTwo){
-                //     return $advSrc->where('categories.id', $catIdTwo); //non è uguale a null
-                // })
+    //             // ->when($catIdTwo == 'null',function($advSrc, $catIdOne){
+    //             //     return $advSrc->where('categories.id', '=', $catIdOne); //è uguale a null
+    //             // },function($advSrc, $catIdTwo){
+    //             //     return $advSrc->where('categories.id', $catIdTwo); //non è uguale a null
+    //             // })
 
-                ->distinct()
-                ->get();
+    //             ->distinct()
+    //             ->get();
 
-        return response()->json(compact('advSrc'));
-    }
+    //     return response()->json(compact('advSrc'));
+    // }
 
 
 

@@ -30,7 +30,7 @@
 
                     <!-- Cat. Cards -->
                     <div class="cat-cards" v-for="category in categoriesArray" :key="'category-' + category.id"
-                        @click="searchRestaurant(category.id)">
+                        @click="searchRestaurant(category)">
 
                         <img :class="category.clicked === true ? 'active' : ''" :src="'images/' + category.image_path">
 
@@ -67,7 +67,7 @@
                 <div class="res-cards row row-cols-1 row-cols-lg-2">
 
                     <!-- Res. Singol Card -->
-                    <div class="res-card col" v-for="rest in searchedRestaurantDef"
+                    <div class="res-card col" v-for="rest in searchedRestaurant"
                         :key="'searched-user' + rest.infoUser.id">
                         <div class="card-container bg-debug col-12 d-flex">
 
@@ -271,25 +271,12 @@ export default {
             categoriesLoading: false,
 
             searchedRestaurant: [],
-            // searchedRestaurantDef: [],
             searchedCategories: [],
-            // provaRes: [],
-            // catIdOne: null,
-            // catIdTwo: null,
-            // catIdThree: null,
+
         }
     },
 
     methods: {
-
-        //   axiosDelCazzo(kebab){
-        //         // axios.get(kebab+this.catIdOne+'/'+this.catIdTwo+'/'+this.catIdThree)
-        //         //   +'/'+null+'/'+null
-        //       axios.get(kebab+1+'/'+null)
-        //       .then(res=>{
-        //           console.log(res.data);
-        //       })
-        //   },
 
         fillArrays(urlHome, urlCat) {
             let temporaryUserArray = [];
@@ -339,7 +326,13 @@ export default {
                                     tempCatArrayUser.push(cat);
                                 });
 
-                                var merge = { 'infoUser': obj, 'categoriesUser': tempCatArrayUser }
+                                let catIdArray = []
+                                tempCatArrayUser.forEach(id => {
+                                    catIdArray.push(id.id);
+                                });
+                                // console.log(tempCatArrayUser);
+
+                                var merge = { 'infoUser': obj, 'categoriesUser': tempCatArrayUser, 'comparisonId': catIdArray }
                                 this.usersArray.push(merge);
 
                             });
@@ -349,91 +342,36 @@ export default {
 
         },
 
-        // searchRestaurant(category_id) {
+        searchRestaurant(cat){
 
-        //     this.searchedCategories.push(category_id);
+            console.log(cat);
 
-        //     this.categoriesArray.forEach(el => {
-        //         if (el.id === category_id) {
-        //             el.clicked = true;
-        //         }
-        //     })
+            if (!this.searchedCategories.includes(cat.id)) {
+                this.searchedCategories.push(cat.id);
+                cat.clicked = true;
+            } else {
+                const index = this.searchedCategories.indexOf(cat.id);
+                if (index > -1) {
+                    this.searchedCategories.splice(index, 1);
+                    console.log(this.searchedCategories);
+                }
+                cat.clicked = false;
+            };
 
-        //     this.usersArray.forEach(userEl => {
+            console.log(this.searchedCategories);
 
-        //         userEl.categoriesUser.forEach(catUser => {
-
-        //             let idsArray = {
-        //                 idArr: [],
-        //             };
-        //             userEl.categoriesUser.forEach(id => {
-        //                 idsArray.idArr.push(id.id);
-        //             });
-        //             let userElMerged = {
-        //                 ...userEl, ...idsArray
-        //             };
-
-        //             if (catUser.id === category_id) {
-
-        //                 if (!this.searchedRestaurant.includes(userElMerged)) {
-
-        //                     this.searchedRestaurant.push(userElMerged);
-
-        //                     //   ////////////////////////////////////////////////
-        //                     this.searchedRestaurantDef = [];
-        //                     this.searchedRestaurant.forEach(el => {
-        //                         if (this.searchedCategories.every(id => el.idArr.includes(id))) {
-        //                             if (!this.searchedRestaurantDef.includes(el)) {
-        //                                 this.searchedRestaurantDef.push(el);
-        //                             }
-        //                         }
-        //                     });
-
-        //                 } else {
-
-        //                     // console.log('CATEGORIA GIà SELEZIONATA');
-        //                     // Se la categoria è già stata selezionata in passato
-        //                     this.categoriesArray.forEach(catArrayEl => {
-        //                         if (catArrayEl.id === category_id) {
-        //                             catArrayEl.clicked = false;
-        //                             console.log(this.categoriesArray);
-        //                         }
-        //                     });
-
-        //                     //
-        //                     const index = this.searchedRestaurant.indexOf(userElMerged);
-        //                     if (index > -1) {
-        //                         this.searchedRestaurant.splice(index, 1);
-        //                         console.log(this.searchedRestaurant);
-        //                     }
-        //                     const index_two = this.searchedCategories.indexOf(userElMerged);
-        //                     if (index_two > -1) {
-        //                         this.searchedCategories.splice(index_two, 1);
-        //                         console.log(this.searchedCategories);
-        //                     }
-        //                     const index_three = this.searchedRestaurantDef.indexOf(userElMerged);
-        //                     if (index_three > -1) {
-        //                         this.searchedRestaurantDef.splice(index_three, 1);
-        //                         console.log(this.searchedRestaurantDef);
-        //                     }
-
-        //                 }
-
-        //             };
-        //         });
-
-        //     });
-        // },
-
-        searchRestaurant(category_id){
-
-        }
+            this.searchedRestaurant = [];
+            this.usersArray.forEach(el => {
+                if(this.searchedCategories.length > 0 && this.searchedCategories.every(id => el.comparisonId.includes(id))) {
+                    this.searchedRestaurant.push(el);
+                };
+            });
+        },
 
     },
 
     mounted() {
         this.fillArrays(this.urlHome, this.urlCat);
-        // this.axiosDelCazzo(this.prova);
     },
 }
 
