@@ -53,6 +53,7 @@
                     v-if="showDropIn"
                     authorization="sandbox_zjqhxx8m_r75zzzxtvzc8dddc"
                     :three-d-secure="false"
+                    locale="it_IT"
                     :three-d-secure-parameters="{
                         amount: 100, 
                         email: 'francois@witify.io', 
@@ -91,7 +92,6 @@
 </template>
 
 <script>
-
 
 import SummaryComp from "../partials/SummaryComp.vue";
 import Payment from "../partials/Payment.vue";
