@@ -55,7 +55,7 @@
         </div>
         <!-- /Categories -->
 
-   
+
 
 
         <!-- Res toggle list -->
@@ -65,7 +65,7 @@
         <div class="restaurants container"
             v-if="searchedRestaurant.length > 0"
             >
-            
+
             <hr>
             <!-- Res. Title -->
             <div class="res-title text-center">
@@ -107,13 +107,15 @@
                                 }">
                                     <h4 class="res-name">{{ rest.infoUser.name }}</h4>
                                     <span class="res-adress">{{ rest.infoUser.address }}</span> <br>
-                                    <span class="res-cat">
-                                        <span class="mr-2"
-                                            v-for="restCat in rest.categoriesUser"
-                                            :key="'restCat'+restCat.id" >
-                                            {{restCat.name}}
+                                    <div class="res-cat-container">
+                                        <span class="res-cat d-flex flex-wrap">
+                                            <span class="mr-2 mt-2"
+                                                v-for="restCat in rest.categoriesUser"
+                                                :key="'restCat'+restCat.id" >
+                                                {{restCat.name}}
+                                            </span>
                                         </span>
-                                    </span>
+                                    </div>
                                 </router-link>
                             </div>
                             <!-- /Res.Text -->
@@ -178,13 +180,15 @@
                                 }">
                                     <h4 class="res-name">{{ userObj.infoUser.name }}</h4>
                                     <span class="res-adress">{{ userObj.infoUser.address }}</span> <br>
-                                    <span class="res-cat">
-                                        <span class="mr-2"
-                                            v-for="userCat in userObj.categoriesUser"
-                                            :key="'userCat'+userCat.id" >
-                                            {{userCat.name}}
+                                    <div class="res-cat-container">
+                                        <span class="res-cat d-flex flex-wrap">
+                                            <span class="mr-2 mt-2"
+                                                v-for="userCat in userObj.categoriesUser"
+                                                :key="'userCat'+userCat.id" >
+                                                {{userCat.name}}
+                                            </span>
                                         </span>
-                                    </span>
+                                    </div>
                                 </router-link>
                             </div>
                             <!-- /Res.Text -->
@@ -540,10 +544,16 @@ hr{
     justify-content: center;
     padding: 5px;
     width: 50%;
+    height: 150px;
 }
 
 .res-name{
     font-size: 1.1rem;
+}
+
+.res-cat-container{
+    height: 60px;
+    overflow-y: auto;
 }
 
 .res-cat span{
@@ -581,11 +591,6 @@ hr{
         font-size: .65rem;
     }
 
-}
-
-.res-cat-container{
-    height: 60px;
-    overflow-y: auto;
 }
 
 </style>
