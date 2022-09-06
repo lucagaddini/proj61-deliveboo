@@ -1,18 +1,18 @@
 <template>
-    <section class="d-flex container-fluid">
+    <section class="d-flex container">
 
         <div class="form-space m-5">
 
             <!-- FORM DATI UTENTE -->
             <div class="user-detail-container bg-light">
 
-                <h4 class=" title-card bg-dark text-white mb-4 p-2 container">Personal Details</h4>
+                <h4 class=" title-card bg-dark text-white mb-2 p-2 container">Dettagli Ordine</h4>
 
                 <form class="mx-3">
 
                     <div class="form-group">
                         <label for="inputName">Nome e Cognome</label>
-                        <input type="text" class="form-control" id="inputName" placeholder="First and Last Name">
+                        <input type="text" class="form-control" id="inputName" placeholder="Nome e Cognome">
                     </div>
 
                     <div class="form-row">
@@ -23,23 +23,23 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPhone">Telefono</label>
-                            <input type="text" class="form-control" id="inputPhone" placeholder="Phone Number">
+                            <input type="text" class="form-control" id="inputPhone" placeholder="Telefono">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">Indirizzo Completo</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        <input type="text" class="form-control" id="inputAddress" placeholder="Indirizzo Completo">
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCity">Città</label>
-                            <input type="text" class="form-control" id="inputCity" placeholder="City">
+                            <input type="text" class="form-control" id="inputCity" placeholder="Città">
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="inputZip">CAP</label>
-                            <input type="text" class="form-control" id="inputZip" placeholder="Cap">
+                            <input type="text" class="form-control" id="inputZip" placeholder="CAP">
                         </div>
                     </div>
                 </form>
@@ -49,9 +49,9 @@
             <!-- //FORM DATI UTENTE -->
 
             <!-- FORM DATI CARTA -->
-            <div class="card-detail-container bg-light  mt-5">
+            <div class="card-detail-container bg-light mt-5 pb-4">
 
-                <h4 class=" title-card bg-dark text-white mb-4 container p-2">Dettagli Pagamento</h4>
+                <h4 class=" title-card bg-dark text-white m-1 container p-2">Dettagli Pagamento</h4>
 
                 <Payment
                     v-if="showDropIn"
@@ -81,7 +81,7 @@
 
                     <template v-slot:button="slotProps"
                     v-if="(!cardVerified)">
-                        <input type="submit" @click="slotProps.submit" class="btn buy-now" value="Aggiungi Carta" />
+                        <input type="submit" @click="slotProps.submit" class="btn buy-now mb-3" value="Aggiungi Carta" />
                     </template>
                     
                     
