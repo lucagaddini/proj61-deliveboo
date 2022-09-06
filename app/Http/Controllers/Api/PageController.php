@@ -24,32 +24,27 @@ class PageController extends Controller
 
     // $catIdOne,$catIdTwo,$catIdThree
     // API PER L'ADVACED SEARCHING
-    public function advHomeSearch($catIdOne,$catIdTwo,$catIdThree){
+    public function advHomeSearch($catIdOne,$catIdTwo){
+
+        // $catIdO = $catIdOne;
+
         $advSrc = DB::table('users')
                 ->select('users.name')
                 ->join('category_user','user_id', '=', 'users.id')
-                ->join('categories', 'categories.id', "=", 'category_id')
-
-                // ->join('users','users.id','=','category_user.user_id')
-                // ->join('category_user','category_id','=','categories.id')
-
-                // ->where('categories.id','=', $catIdOne);
-                // if($catIdTwo != null){
-                //     $advSrc->where('categories.id','=', $catIdTwo);
-                // }
-                // if($catIdThree != null){
-                //     $advSrc->where('categories.id','=', $catIdThree);
-                // }
+                ->join('categories', 'categories.id', "=", 'category_user.category_id')
+                // ->where('categories.id', '=', $catIdOne)
+                ->when($catIdTwo == 'null',function($advSrc, $catIdOne){
+                    return $advSrc->where('categories.id', '=', $catIdOne); //è uguale a null
+                },function($advSrc, $catIdOne, $catIdTwo){
+                    return $advSrc->where('categories.id', '=', $catIdOne, $catIdTwo); //non è uguale a null
+                })
                 ->distinct()->get();
 
-                return response()->json(compact('advSrc'));
+        return response()->json(compact('advSrc'));
     }
 
 
-    // select DISTINCT courses.id , courses.name
-    // from courses
-    // INNER JOIN items ON items.course_id = courses.id
-    // where items.user_id = userId
+
 
     // API CHE RESTITUISCE LE PORTATE DI UN DETERMIANTO RISTORANTE
     public function coursesUser($slug){

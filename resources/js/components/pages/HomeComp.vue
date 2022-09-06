@@ -56,12 +56,7 @@
           <!-- /Categories -->
 
 
-
-
-          <!-- Res toggle list -->
-
           <!-- SEARCHED RESTAURANTS -->
-          <!-- Variabile fittizia, nel finale si cambia con l'arrey pieno o vuoto -->
           <div class="restaurants container"
               v-if="searchedRestaurant.length > 0"
               >
@@ -127,12 +122,10 @@
               </div>
               <!-- /Res. Cards -->
           </div>
-          <!-- /Res toggle list -->
           <!-- /SEARCHED RESTAURANTS -->
 
 
           <hr>
-
 
 
           <!-- TOP RATED RESTAURANTS -->
@@ -303,8 +296,9 @@
       methods:{
 
         //   axiosDelCazzo(kebab){
-        //       // axios.get(kebab+this.catIdOne+'/'+this.catIdTwo+'/'+this.catIdThree)
-        //       axios.get(kebab+1+'/'+null+'/'+null)
+        //         // axios.get(kebab+this.catIdOne+'/'+this.catIdTwo+'/'+this.catIdThree)
+        //         //   +'/'+null+'/'+null
+        //       axios.get(kebab+1+'/'+null)
         //       .then(res=>{
         //           console.log(res.data);
         //       })
@@ -416,8 +410,8 @@
       },
 
       mounted(){
-          this.fillArrays(this.urlHome,this.urlCat);
-        //   this.axiosDelCazzo(this.prova);
+        this.fillArrays(this.urlHome,this.urlCat);
+        // this.axiosDelCazzo(this.prova);
       },
   }
 
