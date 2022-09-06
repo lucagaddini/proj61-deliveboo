@@ -28,7 +28,7 @@
                         </div>
 
                     </div>
-                    
+
                 </div>
             </div>
         </section>
@@ -41,8 +41,12 @@
                 <div class="row">
                     <div class="col">
                         <ul class="d-flex list-unstyled">
-                            <li v-for="course in coursesArray" 
-                                :key="course.id"     
+                            <li class="active"
+                                @click="allActive(coursesArray)">
+                                Tutti
+                            </li>
+                            <li v-for="course in coursesArray"
+                                :key="course.id"
                                 @click="beActive(course)"
                                 :class="course.active == true ? 'active' : ''">
                                 {{ course.name }}
@@ -136,7 +140,7 @@ export default {
                         let merged = {
                             ...course, ...booleanAttibute
                         };
-                        
+
                         this.coursesArray.push(merged);
                     });
                 })
@@ -157,13 +161,19 @@ export default {
                 el.active = false;
             } else el.active = true;
         },
+
+        allActive(arr) {
+            arr.forEach(el=>{
+                el.active = true;
+            })
+        },
         // /Assegno valori true e false alle portate
     },
 
     mounted() {
         this.getUserInfo(this.userInfoUrl,this.current_user_slug);
         this.getUserCourses(this.coursesUrl,this.current_user_slug);
-        
+
     },
 }
 </script>
