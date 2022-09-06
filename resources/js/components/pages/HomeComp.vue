@@ -382,7 +382,6 @@ export default {
   @import 'resources/sass/front/_variables.scss';
 
   /* Categories and Restaurants */
-
   .cat-res {
       background-color: #F9FAFC;
       display: flex;

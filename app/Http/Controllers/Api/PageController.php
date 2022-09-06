@@ -22,34 +22,6 @@ class PageController extends Controller
         return response()->json(compact('categories','users',));
     }
 
-    // $catIdOne,$catIdTwo,$catIdThree
-    // API PER L'ADVACED SEARCHING
-    // public function advHomeSearch($catIdOne,$catIdTwo){
-
-    //     $advSrc = DB::table('users')
-    //             ->select('users.name')
-    //             ->join('category_user','user_id', '=', 'users.id')
-    //             ->join('categories', 'categories.id', "=", 'category_user.category_id')
-    //             ->whereIn('categories.id', [$catIdOne, $catIdTwo])
-
-    //             // ->where('categories.id', '=', $catIdOne)
-    //             // ->orWhere('categories.id', '=', $catIdTwo)
-
-    //             // ->when($catIdTwo == 'null',function($advSrc, $catIdOne){
-    //             //     return $advSrc->where('categories.id', '=', $catIdOne); //è uguale a null
-    //             // },function($advSrc, $catIdTwo){
-    //             //     return $advSrc->where('categories.id', $catIdTwo); //non è uguale a null
-    //             // })
-
-    //             ->distinct()
-    //             ->get();
-
-    //     return response()->json(compact('advSrc'));
-    // }
-
-
-
-
     // API CHE RESTITUISCE LE PORTATE DI UN DETERMIANTO RISTORANTE
     public function coursesUser($slug){
         $courses = DB::table('courses')
