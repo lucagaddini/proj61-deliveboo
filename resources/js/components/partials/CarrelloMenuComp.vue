@@ -142,6 +142,10 @@ export default {
                 // existingCart.push(newItem);
                 localStorage.setItem("cart", JSON.stringify(existingCart));
             }
+
+            if(existingCart.length == 0){
+                localStorage.clear("cart");
+            }
         }
 
 
