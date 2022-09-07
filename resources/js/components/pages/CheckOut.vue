@@ -41,6 +41,7 @@
 
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="inputAddress">Indirizzo Completo</label>
                         <input type="text" class="form-control" id="order-info-address" placeholder="1234 Main St">
@@ -48,8 +49,7 @@
 
                     <button class="buy-now" @click="saveData()">Salva dati</button>
                 </div>
-                </form>
-
+                </div>
             </div>
 
             <!-- //FORM DATI UTENTE -->
