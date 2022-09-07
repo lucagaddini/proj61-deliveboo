@@ -1,17 +1,15 @@
 <template>
-    <div class="col-lg-4 cart">
+    <div class="m-4">
         <div class="container">
-            <div class="cart-container bg-light m-5">
+            <div class="cart-container bg-light">
                 <div class="cart-title bg-dark p-1">
                     <h4>Riepilogo Ordine</h4>
                     <span>{{this.$route.params.name}}</span>
                 </div>
-
-
                 <div class="container list-selected-item d-flex flex-column">
                     <!-- Singol Item -->
                     <div v-for="item in cartArray" :key="'itemId-' + item.id"
-                        class="my-1 singol-item">
+                        class="my-1 single-item">
 
                         <div class="d-flex justify-content-between">
                             <div class="d-flex" >
@@ -26,8 +24,6 @@
                                 </div>
                             </div>
 
-                            
-
                             <!-- PREZZO PRODOTTO-->
                             <div>
                                 <h6>{{ item.quantity * item.price }} &euro;</h6>
@@ -35,7 +31,8 @@
 
                         </div>
 
-                        <div>
+                        <div class="text-center">
+                            <span>Quantità: </span>
                             <a class="mx-2" v-if="item.quantity > 1" @click="decreaseQuantity(item)"><i
                                 class="fa-solid fa-circle-minus btn-delete-custom"></i>
                             </a>
@@ -202,9 +199,12 @@ export default {
 <style lang="scss" scoped>
 @import "resources/sass/front/_variables.scss";
 
-.cart {
-    margin-top: 50px;
-    margin-bottom: 50px;
+
+.list-selected-item,
+.ordernow-sub-button-container {
+
+    background-color: lightgray !important;
+
 }
 
 .cart-container {
@@ -223,9 +223,10 @@ export default {
 
 /* Singol Item */
 
-.singol-item {
-    border-bottom: 1px solid rgba($color: black, $alpha: .1);
-    margin-bottom: 12px;
+.single-item{
+    border-top: 1px solid rgba($color: black, $alpha: .1);
+    margin: 10px 0;
+    padding: 5px;
 }
 
 .list-selected-item {

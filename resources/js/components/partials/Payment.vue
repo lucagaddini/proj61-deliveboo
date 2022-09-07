@@ -1,5 +1,5 @@
 <template>
-  <div class="payment m-2">
+  <div class="payment p-2">
     <div ref="dropin" />
 
     <slot
@@ -152,6 +152,10 @@ export default {
 
 [data-braintree-id="toggle"] {
   display: none;
+}
+
+.braintree-large-button {
+  display: none !important;
 }
 
 </style>
