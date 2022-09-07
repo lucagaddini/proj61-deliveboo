@@ -112,6 +112,13 @@
                 </div>
                 <!-- /Res. Cards -->
             </div>
+            <div class="restaurants container" v-else-if="!searchedRestaurant.length > 0 && searchedCategories.length > 0">
+                <hr>
+                <div class="res-title text-center">
+                    <h2>Ristoranti Selezionati</h2>
+                    <h4>Spiacente ma la tua ricerca non ha dato risultati, prova a deselezionare una categoria!</h4>
+                </div>
+            </div>
             <!-- /SEARCHED RESTAURANTS -->
 
 
@@ -273,18 +280,19 @@ export default {
                 ]
 
             },
-            // /SLIDER
-            apiUrl: "http://127.0.0.1:8000/api/homepage",
-            urlHome: "http://127.0.0.1:8000/api/homepage",
-            urlCat: "http://127.0.0.1:8000/api/categoryUser/",
-            categoriesUserUrl: "http://127.0.0.1:8000/api/categoryUser/",
-            prova: "http://127.0.0.1:8000/api/advHomeSearch/",
-            categoriesArray: [],
-            usersArray: [],
-            categoriesLoading: false,
+        // /SLIDER
 
-            searchedRestaurant: [],
-            searchedCategories: [],
+        apiUrl: "http://127.0.0.1:8000/api/homepage",
+        urlHome: "http://127.0.0.1:8000/api/homepage",
+        urlCat: "http://127.0.0.1:8000/api/categoryUser/",
+        categoriesUserUrl: "http://127.0.0.1:8000/api/categoryUser/",
+        prova: "http://127.0.0.1:8000/api/advHomeSearch/",
+        categoriesArray: [],
+        usersArray: [],
+        categoriesLoading: false,
+
+        searchedRestaurant: [],
+        searchedCategories: [],
 
         }
     },
