@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\DB;
 
 use App\Category;
+use App\Order;
 use App\Item;
 use App\Course;
 use App\User;
+
 
 class PageController extends Controller
 {
@@ -67,19 +69,44 @@ class PageController extends Controller
 
     // API CHE RESTITUISCE LE INFO DI UN RISTORANTE
     public function userInfo($slug){
-
         $user = User::where('slug',$slug)->get();
-
         return response()->json(compact('user'));
     }
 
 
     // API CHE RESTITUISCE LE INFO DI UN RISTORANTE
-    public function saveOrder($orderData){
+    public function saveOrder(Request $req){
 
 
+        // $food->allergies()->attach($allergy_ids, array('severity' => $singleSeverityValue));
 
-        return response()->json(compact('orderData'));
+        $new_order = new Order;
+        // $new_order->fill($req->customerInfo);
+        $new_order->name=$req->customerInfo->name;
+        $new_order->surname=$req->customerInfo->surname;
+        $new_order->address=$req->customerInfo->address;
+        $new_order->email=$req->customerInfo->email;
+        $new_order->telephone_number=$req->customerInfo->telephone_number;
+        $new_order->total=$req->customerInfo->total;
+
+        $result = $new_order->save();
+
+        // $orderRes = JSON.parse($req->cartInfo);
+        // $userRes = JSON.parse($req->customerInfo);
+
+        if($result)
+        {
+            return ["Result"=> "Data has been saved",
+                    "RQUEST" => $req,
+                    ];
+
+        }else{
+
+            return ["Result"=>"Operation failed"];
+
+        }
+
+        // return response()->json(compact('orderData'));
     }
 
     

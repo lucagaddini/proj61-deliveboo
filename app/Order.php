@@ -9,4 +9,9 @@ class Order extends Model
     public function items(){
         return $this->belongsToMany('App\Item');
     }
+
+
+    protected $fillable = [
+        'name', 'surname', 'email','address','telephone_number','total',
+    ];
 }

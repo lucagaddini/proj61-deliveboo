@@ -135,7 +135,7 @@ export default {
             'name': document.getElementById('order-info-name').value,
             'surname': document.getElementById('order-info-surname').value,
             'address': document.getElementById('order-info-address').value,
-            'phone': document.getElementById('order-info-phone').value,
+            'telephone_number': document.getElementById('order-info-phone').value,
             'email': document.getElementById('order-info-email').value,
             'total': 0,
         };
