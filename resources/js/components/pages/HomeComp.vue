@@ -1,52 +1,42 @@
 <template>
-  <div>
+    <div>
 
-    <!-- Jumbotron -->
-    <HeroComp />
-    <!-- /Jumbotron -->
+        <!-- Jumbotron -->
+        <HeroComp />
+        <!-- /Jumbotron -->
 
    <!-- Categories and Restaurants -->
     <section class="cat-res">
 
-        <!-- Categories -->
-        <div class="categories container">
+            <!-- Categories -->
+            <div class="categories container">
 
-            <!-- Cat. Title -->
-            <div class="cat-title text-center">
-                <h1>Categorie</h1>
-                <p>Lorem ipsum dolor sit amet, adipisicing!</p>
-            </div>
-            <!-- /Cat. Title -->
-
-            <VueSlickCarousel v-bind='settings' v-if= 'categoriesLoading'>
-
-                <!-- Prev Arrow -->
-                <template #prevArrow="arrowOption">
-                    <div class="custom-arrow">
-                        {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-                    </div>
-                </template>
-                <!-- /Prev Arrow -->
-
-                <!-- Cat. Cards -->
-                <div class="cat-cards"
-                    v-for="category in categoriesArray"
-                    :key="'category-'+category.id"
-                    @click="searchRestaurant(category.id)">
-
-                    <img
-                        :class="category.clicked === true ? 'active' : ''"
-                        :src="'images/' + category.image_path">
-
-                    <p>{{ category.name }}</p>
+                <!-- Cat. Title -->
+                <div class="cat-title text-center">
+                    <h1>Categorie</h1>
+                    <p>Lorem ipsum dolor sit amet, adipisicing!</p>
                 </div>
-                <!-- /Cat. Cards -->
+                <!-- /Cat. Title -->
 
-                <!-- Next Arrow -->
-                <template #nextArrow="arrowOption">
-                    <div class="custom-arrow">
-                        {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
+                <VueSlickCarousel v-bind='settings' v-if='categoriesLoading'>
+
+                    <!-- Prev Arrow -->
+                    <template #prevArrow="arrowOption">
+                        <div class="custom-arrow">
+                            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
+                        </div>
+                    </template>
+                    <!-- /Prev Arrow -->
+
+                    <!-- Cat. Cards -->
+                    <div class="cat-cards" v-for="category in categoriesArray" :key="'category-' + category.id"
+                        @click="searchRestaurant(category)">
+
+                        <img :class="category.clicked === true ? 'active' : ''" :src="'images/' + category.image_path">
+
+                        <p>{{ category.name }}</p>
                     </div>
+
                 </template>
                 <!-- /Next Arrow -->
 
@@ -55,108 +45,98 @@
         </div>
         <!-- /Categories -->
 
+                    <!-- Next Arrow -->
+                    <template #nextArrow="arrowOption">
+                        <div class="custom-arrow">
+                            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
+                        </div>
+                    </template>
+                    <!-- /Next Arrow -->
 
-
-
-        <!-- Res toggle list -->
-
-        <!-- SEARCHED RESTAURANTS -->
-        <!-- Variabile fittizia, nel finale si cambia con l'arrey pieno o vuoto -->
-        <div class="restaurants container"
-            v-if="searchedRestaurant.length > 0"
-            >
-
-            <hr>
-            <!-- Res. Title -->
-            <div class="res-title text-center">
-                <h2>Ristoranti Selezionati</h2>
-                <p>The list of restaurant you required</p>
+                </VueSlickCarousel>
             </div>
-            <!-- /Res. Title -->
+            <!-- /Categories -->
 
-            <!-- Res. Cards -->
-            <div class="res-cards row row-cols-1 row-cols-lg-2">
 
-                <!-- Res. Singol Card -->
-                <div class="res-card col"
-                    v-for="rest in searchedRestaurant"
-                    :key="'searched-user'+rest.infoUser.id">
-                    <div class="card-container bg-debug col-12 d-flex">
+            <!-- SEARCHED RESTAURANTS -->
+            <div class="restaurants container" v-if="searchedRestaurant.length > 0">
 
-                        <div class="d-flex card-style">
+                <hr>
+                <!-- Res. Title -->
+                <div class="res-title text-center">
+                    <h2>Ristoranti Selezionati</h2>
+                    <p>The list of restaurant you required</p>
+                </div>
+                <!-- /Res. Title -->
 
-                            <!-- Res. Img -->
-                            <div class="res-img">
-                                <img src="images/restaurant_placeholder_home.jpg"
-                                    v-if="rest.infoUser.image_path == null">
-                                <img :src="'images/'+rest.infoUser.image_path"
-                                    v-else>
-                            </div>
-                            <!-- /Res. Img -->
+                <!-- Res. Cards -->
+                <div class="res-cards row row-cols-1 row-cols-lg-2">
 
-                            <!-- Res.Text -->
-                            <div class="res-text">
-                                <router-link class="nav-link"
-                                :to="{
-                                    name: 'menu',
-                                    params:{
-                                        slug:rest.infoUser.slug,
-                                        id:rest.infoUser.id,
-                                        categories:rest.categoriesUser
-                                    }
-                                }">
-                                    <h4 class="res-name">{{ rest.infoUser.name }}</h4>
-                                    <span class="res-adress">{{ rest.infoUser.address }}</span> <br>
-                                    <div class="res-cat-container">
-                                        <span class="res-cat d-flex flex-wrap">
-                                            <span class="mr-2 mt-2"
-                                                v-for="restCat in rest.categoriesUser"
-                                                :key="'restCat'+restCat.id" >
-                                                {{restCat.name}}
+                    <!-- Res. Singol Card -->
+                    <div class="res-card col" v-for="rest in searchedRestaurant"
+                        :key="'searched-user' + rest.infoUser.id">
+                        <div class="card-container bg-debug col-12 d-flex">
+
+                            <div class="d-flex card-style">
+
+                                <!-- Res. Img -->
+                                <div class="res-img">
+                                    <img src="images/restaurant_placeholder_home.jpg"
+                                        v-if="rest.infoUser.image_path == null">
+                                    <img :src="'images/' + rest.infoUser.image_path" v-else>
+                                </div>
+                                <!-- /Res. Img -->
+
+                                <!-- Res.Text -->
+                                <div class="res-text">
+                                    <router-link class="nav-link" :to="{
+                                        name: 'menu',
+                                        params: {
+                                            slug: rest.infoUser.slug,
+                                            id: rest.infoUser.id,
+                                            categories: rest.categoriesUser
+                                        }
+                                    }">
+                                        <h4 class="res-name">{{ rest.infoUser.name }}</h4>
+                                        <span class="res-adress">{{ rest.infoUser.address }}</span> <br>
+                                        <span class="res-cat">
+                                            <span class="mr-2" v-for="restCat in rest.categoriesUser"
+                                                :key="'restCat' + restCat.id">
+                                                {{ restCat.name }}
                                             </span>
                                         </span>
-                                    </div>
-                                </router-link>
-                            </div>
-                            <!-- /Res.Text -->
-
+                                    </router-link>
+                                </div>
+                                <!-- /Res.Text -->
                         </div>
-
                     </div>
+                    <!-- /Res. Singol Card -->
+
                 </div>
-                <!-- /Res. Singol Card -->
-
+                <!-- /Res. Cards -->
             </div>
-            <!-- /Res. Cards -->
-        </div>
-        <!-- /Res toggle list -->
-        <!-- /SEARCHED RESTAURANTS -->
+            <!-- /SEARCHED RESTAURANTS -->
 
 
-        <hr>
+            <hr>
 
+            <!-- TOP RATED RESTAURANTS -->
+            <div class="restaurants container">
+                <!-- Res. Title -->
+                <div class="res-title text-center">
+                    <h2>I più votati</h2>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti?</p>
+                </div>
+                <!-- /Res. Title -->
 
+                <!-- Res. Cards -->
+                <div class="res-cards row row-cols-1 row-cols-lg-2">
 
-        <!-- TOP RATED RESTAURANTS -->
-        <div class="restaurants container">
-            <!-- Res. Title -->
-            <div class="res-title text-center">
-                <h2>I più votati</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti?</p>
-            </div>
-            <!-- /Res. Title -->
+                    <!-- Res. Singol Card -->
+                    <div class="res-card col" :key="'user-' + userObj.infoUser.id" v-for="userObj in usersArray">
+                        <div class="card-container bg-debug col-12 d-flex">
 
-            <!-- Res. Cards -->
-            <div class="res-cards row row-cols-1 row-cols-lg-2">
-
-                <!-- Res. Singol Card -->
-                <div class="res-card col"
-                    :key="'user-'+userObj.infoUser.id"
-                    v-for="userObj in usersArray">
-                    <div class="card-container bg-debug col-12 d-flex">
-
-                        <div class="d-flex card-style">
-
+                            <div class="d-flex card-style">
                             <!-- Res. Img -->
                             <div class="res-img">
                                 <img src="images/restaurant_placeholder_home.jpg"
@@ -191,23 +171,20 @@
                                     </div>
                                 </router-link>
                             </div>
-                            <!-- /Res.Text -->
 
                         </div>
-
                     </div>
+                    <!-- /Res. Singol Card -->
+
                 </div>
-                <!-- /Res. Singol Card -->
-
+                <!-- /Res. Cards -->
             </div>
-            <!-- /Res. Cards -->
-        </div>
-        <!-- /TOP RATED RESTAURANTS -->
+            <!-- /TOP RATED RESTAURANTS -->
 
-    </section>
-    <!-- /Categories and Restaurants -->
+        </section>
+        <!-- /Categories and Restaurants -->
 
-  </div>
+    </div>
 
 </template>
 
@@ -220,7 +197,7 @@ import HeroComp from "../partials/HeroComp.vue";
 
 export default {
     name: 'HomeComp',
-    components:{
+    components: {
         HeroComp,
         VueSlickCarousel
     },
@@ -295,127 +272,116 @@ export default {
                         "touchMove": true,
                         "arrows": false
                     }
-                }
-            ]
+                ]
 
-        },
-        // /SLIDER
+            },
+            // /SLIDER
+            apiUrl: "http://127.0.0.1:8000/api/homepage",
+            urlHome: "http://127.0.0.1:8000/api/homepage",
+            urlCat: "http://127.0.0.1:8000/api/categoryUser/",
+            categoriesUserUrl: "http://127.0.0.1:8000/api/categoryUser/",
+            prova: "http://127.0.0.1:8000/api/advHomeSearch/",
+            categoriesArray: [],
+            usersArray: [],
+            categoriesLoading: false,
 
-        apiUrl: "http://127.0.0.1:8000/api/homepage",
-        urlHome: "http://127.0.0.1:8000/api/homepage",
-        urlCat: "http://127.0.0.1:8000/api/categoryUser/",
-        categoriesUserUrl: "http://127.0.0.1:8000/api/categoryUser/",
-        categoriesArray: [],
-        usersArray: [],
-        categoriesLoading: false,
-        searchedRestaurant: [],
+            searchedRestaurant: [],
+            searchedCategories: [],
 
-
-      }
+        }
     },
 
-    methods:{
+    methods: {
 
-        fillArrays(urlHome,urlCat){
+        fillArrays(urlHome, urlCat) {
             let temporaryUserArray = [];
             let temporaryCatArray = [];
 
             axios.get(urlHome)
-            .then(res=>{
+                .then(res => {
 
-                res.data.categories.forEach(el => {
-                    // this.categoriesArray.push(el);
+                    res.data.categories.forEach(el => {
+                        // this.categoriesArray.push(el);
 
-                     // Aggiunto un attributo clicked alla categoria di ristorante
-                    var booleanAttibute = {
-                        clicked: false,
-                    };
+                        // Aggiunto un attributo clicked alla categoria di ristorante
+                        var booleanAttibute = {
+                            clicked: false,
+                        };
 
-                    // Merge dei due oggetti
-                    let merged = {
-                        ...el, ...booleanAttibute
-                    };
+                        // Merge dei due oggetti
+                        let merged = {
+                            ...el, ...booleanAttibute
+                        };
 
-                    this.categoriesArray.push(merged);
+                        this.categoriesArray.push(merged);
 
-                    if (this.categoriesArray.length >= 1){
-                        this.categoriesLoading = true;
-                    }
-                    // console.log(this.categoriesArray);
-                });
-
-                res.data.users.forEach(user => {
-                    // console.log('urlCat', res.data);
-                    temporaryUserArray.push(user);
-                    // console.log('TempApi', temporaryUserArray);
-                });
-
-                // console.log('Temp:', temporaryUserArray);
-                temporaryUserArray.forEach( user =>{
-                // console.log('URLCAT:',urlCat,user.id);
-                var obj = user;
-
-                axios.get(this.categoriesUserUrl+user.slug,obj)
-                .then(res=>{
-                    let tempCatArrayUser = [];
-                    // console.log('urlCat-obj', obj);
-                    res.data.categories.forEach(cat => {
-                    // console.log('RES CATURL:', cat);
-                        tempCatArrayUser.push(cat);
+                        if (this.categoriesArray.length >= 1) {
+                            this.categoriesLoading = true;
+                        }
+                        // console.log(this.categoriesArray);
                     });
 
-                    var merge = {'infoUser':obj,'categoriesUser':tempCatArrayUser}
-                    this.usersArray.push(merge);
+                    res.data.users.forEach(user => {
+                        // console.log('urlCat', res.data);
+                        temporaryUserArray.push(user);
+                        // console.log('TempApi', temporaryUserArray);
+                    });
+
+                    // console.log('Temp:', temporaryUserArray);
+                    temporaryUserArray.forEach(user => {
+                        // console.log('URLCAT:',urlCat,user.id);
+                        var obj = user;
+
+                        axios.get(this.categoriesUserUrl + user.slug, obj)
+                            .then(res => {
+                                let tempCatArrayUser = [];
+                                // console.log('urlCat-obj', obj);
+                                res.data.categories.forEach(cat => {
+                                    // console.log('RES CATURL:', cat);
+                                    tempCatArrayUser.push(cat);
+                                });
+
+                                let catIdArray = []
+                                tempCatArrayUser.forEach(id => {
+                                    catIdArray.push(id.id);
+                                });
+                                // console.log(tempCatArrayUser);
+
+                                var merge = { 'infoUser': obj, 'categoriesUser': tempCatArrayUser, 'comparisonId': catIdArray }
+                                this.usersArray.push(merge);
+
+                            });
+                    });
 
                 });
-            });
-
-            });
 
         },
 
-        searchRestaurant(category_id){
+        searchRestaurant(cat){
 
-            this.categoriesArray.forEach(el =>{
-                if(el.id === category_id){
-                    el.clicked = true;
+            console.log(cat);
+
+            if (!this.searchedCategories.includes(cat.id)) {
+                this.searchedCategories.push(cat.id);
+                cat.clicked = true;
+            } else {
+                const index = this.searchedCategories.indexOf(cat.id);
+                if (index > -1) {
+                    this.searchedCategories.splice(index, 1);
+                    console.log(this.searchedCategories);
                 }
-            })
+                cat.clicked = false;
+            };
 
-            this.usersArray.forEach((userEl, i) => {
+            console.log(this.searchedCategories);
 
-                userEl.categoriesUser.forEach(catUser => {
-
-                    if(catUser.id === category_id){
-
-                        if(!this.searchedRestaurant.includes(userEl)){
-
-                            this.searchedRestaurant.push(userEl);
-
-                        }else{
-
-                            // console.log('CATEGORIA GIà SELEZIONATA');
-                            // Se la categoria è già stata selezionata in passato
-                            this.categoriesArray.forEach(catArrayEl =>{
-                                if(catArrayEl.id === category_id){
-                                    catArrayEl.clicked = false;
-                                }
-                            });
-
-                            //
-                            const index = this.searchedRestaurant.indexOf(userEl);
-                            if (index > -1) {
-                                this.searchedRestaurant.splice(index, 1);
-                            }
-
-                        }
-
-                    };
-                });
-
+            this.searchedRestaurant = [];
+            this.usersArray.forEach(el => {
+                if(this.searchedCategories.length > 0 && this.searchedCategories.every(id => el.comparisonId.includes(id))) {
+                    this.searchedRestaurant.push(el);
+                };
             });
-        }
-    },
+        },
 
     mounted(){
         this.fillArrays(this.urlHome,this.urlCat);
@@ -426,7 +392,6 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-
 @import 'resources/sass/front/_variables.scss';
 
 /* Categories and Restaurants */
