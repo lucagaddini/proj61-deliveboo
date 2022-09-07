@@ -77,36 +77,28 @@ class PageController extends Controller
     // API CHE RESTITUISCE LE INFO DI UN RISTORANTE
     public function saveOrder(Request $req){
 
+        $new_order = new Order();
+        $new_order->fill($req->customerInfo);
 
-        // $food->allergies()->attach($allergy_ids, array('severity' => $singleSeverityValue));
-
-        $new_order = new Order;
-        // $new_order->fill($req->customerInfo);
-        $new_order->name=$req->customerInfo->name;
-        $new_order->surname=$req->customerInfo->surname;
-        $new_order->address=$req->customerInfo->address;
-        $new_order->email=$req->customerInfo->email;
-        $new_order->telephone_number=$req->customerInfo->telephone_number;
-        $new_order->total=$req->customerInfo->total;
+        // $new_order->name=$req->customerInfo['name'];
+        // $new_order->surname=$req->customerInfo['surname'];
+        // $new_order->address=$req->customerInfo['address'];
+        // $new_order->email=$req->customerInfo['email'];
+        // $new_order->telephone_number=$req->customerInfo['telephone_number'];
+        // $new_order->total=$req->customerInfo['total'];
 
         $result = $new_order->save();
 
-        // $orderRes = JSON.parse($req->cartInfo);
-        // $userRes = JSON.parse($req->customerInfo);
+        foreach($req->cartInfo as $item){
+            $new_order->items()->attach($item['id'], array('quantity' => $item['quantity']));
+        }
 
         if($result)
         {
-            return ["Result"=> "Data has been saved",
-                    "RQUEST" => $req,
-                    ];
-
+            return ["Result"=> "Data has been saved"];
         }else{
-
             return ["Result"=>"Operation failed"];
-
         }
-
-        // return response()->json(compact('orderData'));
     }
 
     

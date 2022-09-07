@@ -155,10 +155,10 @@ export default {
 
         saveOrderApi(){
             axios.post(this.orderUrl, {
-                data:{
-                    customerInfo: JSON.stringify(this.orderCustomerInfo),
-                    cartInfo: localStorage.getItem("cart"),
-                }
+                
+                    customerInfo: this.orderCustomerInfo,
+                    cartInfo: this.cartArray,
+            
 
             })
                 .then(function (response){
