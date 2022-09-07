@@ -1,63 +1,84 @@
 <template>
-    <section class="d-flex container">
+    <section class="d-flex container flex-wrap">
 
-        <div class="form-space m-5">
+        <div class="form-space m-4">
 
             <!-- FORM DATI UTENTE -->
             <div class="user-detail-container bg-light">
+                <div class="title-card bg-dark text-white mb-2 p-2 container text-center">
+                    <h4>Dettagli Ordine</h4>
+                </div>
 
-                <h4 class=" title-card bg-dark text-white mb-2 p-2 container">Dettagli Ordine</h4>
+                <div class="p-3" id="checkout-form" data-parsley-validate="">
 
-                <div class="mx-3" id="checkout-form">
-
+                    <!-- NOME E COGNOME -->
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label for="inputName">Nome</label>
                             <input type="text" 
                             class="form-control"
+                            
+                            required
+                            data-parsley-minlength="3"
+                            data-parsley-maxlength="255"
+                            data-parsley-trigger="keyup"
 
                             id="order-info-name" 
                             placeholder="Nome">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label for="inputSurname">Cognome</label>
                             <input type="text" 
                             class="form-control"
 
+                            required
+                            data-parsley-trigger="keyup"
+
                             id="order-info-surname" 
                             placeholder="Cognome">
                         </div>
-
-                        <div class="form-row">
-
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Email</label>
-                                <input type="email" class="form-control" id="order-info-email" placeholder="Email">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputPhone">Telefono</label>
-                                <input type="text" class="form-control" id="order-info-phone" placeholder="Phone Number">
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="inputAddress">Indirizzo Completo</label>
-                            <input type="text" class="form-control" id="order-info-address" placeholder="1234 Main St">
-                        </div>
-
-                        <button class="buy-now" @click="saveData()">Salva dati</button>
                     </div>
+
+                    <!-- EMAIL E TELEFONO -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email</label>
+                            <input type="email" class="form-control" id="order-info-email" placeholder="Email">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="inputPhone">Telefono</label>
+                            <input type="text" class="form-control" id="order-info-phone" placeholder="Telefono">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputAddress">Indirizzo Completo</label>
+                        <input type="text" 
+                        class="form-control"
+
+                        required
+                        data-parsley-minlength="3"
+                        data-parsley-maxlength="60"
+                        data-parsley-trigger="keyup"
+
+                        id="order-info-address" 
+                        placeholder="Via e numero Civico">
+                    </div>
+                    <input type="submit" @click="saveData()" id="save-data-button" class="btn buy-now mb-3" value="Salva dati" />
+                    <!-- <button class="buy-now" @click="saveData()">Salva dati</button> -->
                 </div>
+
             </div>
 
             <!-- //FORM DATI UTENTE -->
 
             <!-- FORM DATI CARTA -->
-            <div class="card-detail-container bg-light mt-5 pb-4">
-
-                <h4 class=" title-card bg-dark text-white m-1 container p-2">Dettagli Pagamento</h4>
+            <div class="card-detail-container bg-light mt-5">
+                <div class="title-card bg-dark text-white mb-2 p-2 container text-center">
+                    <h4>Dettagli Pagamento</h4>
+                </div>
 
                 <Payment
                     v-if="showDropIn"
@@ -101,7 +122,7 @@
 
         </div>
 
-        <div class="recap-spece">
+        <div class="recap-space">
             <SummaryComp
             :orderCustomerInfo="this.orderCustomerInfo"
             :cardVerified="this.cardVerified"/>
@@ -111,10 +132,22 @@
 </template>
 
 <script>
+$(function() {
+  $('#checkout-form').parsley().on('field:validated', function() {
+    var ok = $('.parsley-error').length === 0;
+    $('.bs-callout-info').toggleClass('hidden', !ok);
+    $('.bs-callout-warning').toggleClass('hidden', ok);
+  })
+//   .on('form:submit', function() {
+//     return false; // Don't submit form for this demo
+//   });
+});
+</script>
 
-// (function(){
-//     $("#checkout-form").parsley();
-// });
+
+
+
+<script>
 
 import SummaryComp from "../partials/SummaryComp.vue";
 import Payment from "../partials/Payment.vue";
@@ -132,14 +165,25 @@ export default {
   methods: {
 
     saveData(){
+
         this.orderCustomerInfo = {
             'name': document.getElementById('order-info-name').value,
             'surname': document.getElementById('order-info-surname').value,
             'address': document.getElementById('order-info-address').value,
             'telephone_number': document.getElementById('order-info-phone').value,
             'email': document.getElementById('order-info-email').value,
-            'total': 0,
+            'total': 0
         };
+
+        document.getElementById('order-info-name').setAttribute("disabled","disabled");
+        document.getElementById('order-info-surname').setAttribute("disabled","disabled");
+        document.getElementById('order-info-address').setAttribute("disabled","disabled");
+        document.getElementById('order-info-phone').setAttribute("disabled","disabled");
+        document.getElementById('order-info-email').setAttribute("disabled","disabled");
+
+        // document.getElementById('save-data-button').setAttribute("disabled","disabled");
+        document.getElementById('save-data-button').classList.add('d-none');
+
     },
 
     onLoad (instance) {
@@ -177,6 +221,7 @@ export default {
 }
 
 
+
 </script>
 
 <style lang="scss" scoped>
@@ -185,12 +230,13 @@ export default {
 .user-detail-container,
 .card-detail-container{
     border-radius: 10px;
+    // padding: 20px;
+    background-color: lightgray !important;
 
     .title-card{
         border-radius: 10px 10px 0 0;
     }
 }
-
 .buy-now {
     width: 100%;
     text-decoration: none;
@@ -206,11 +252,5 @@ export default {
         border: 1px solid $fifth-color;
     }
 }
-
-[data-braintree-id="toggle"] {
-  display: none;
-}
-
-
 
 </style>

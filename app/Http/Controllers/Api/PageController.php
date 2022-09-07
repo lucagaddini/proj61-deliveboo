@@ -9,9 +9,9 @@ use \Illuminate\Support\Facades\DB;
 
 use App\Category;
 use App\Order;
-use App\Item;
-use App\Course;
 use App\User;
+
+use Mail;
 
 
 class PageController extends Controller
@@ -87,7 +87,7 @@ class PageController extends Controller
         }
 
         if($result)
-        {
+        {   
             return ["Result"=> "Data has been saved"];
         }else{
             return ["Result"=>"Operation failed"];
