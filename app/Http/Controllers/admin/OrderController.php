@@ -29,12 +29,9 @@ class OrderController extends Controller
             ->join('item_order','order_id','=','orders.id')
             ->join('items','items.id','=','item_order.order_id')
             ->where('items.user_id','=', $current_user)
+            ->orderBy('updated_at','desc')
             ->distinct()->paginate(10);
 
-            // dd($orders);
-
-
-        // $orders = Order::all();
         return view('admin.orders.index', compact('orders'));
 
     }
@@ -67,10 +64,16 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Order $order)
-    {   
-        // $orderInfo = Order::find($order);
+    {
 
-        return view('admin.orders.show', compact('order'));
+        $items = DB::table('orders')
+            ->select('items.*', 'item_order.quantity')
+            ->join('item_order','order_id','=', 'orders.id')
+            ->join('items','items.id','=','item_order.item_id')
+            ->where('item_order.order_id', '=', $order->id)
+            ->distinct()->get();
+
+        return view('admin.orders.show', compact('order', 'items'));
     }
 
     /**
@@ -81,7 +84,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-    
+
     }
 
     /**
@@ -93,7 +96,7 @@ class OrderController extends Controller
      */
     public function update(Request $request)
     {
-    
+
     }
 
     /**
