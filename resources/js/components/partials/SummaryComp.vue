@@ -64,8 +64,8 @@
                         <h6 class="mt-2"> {{ subtotalCart }} &euro;</h6>
                     </div>
 
-                    <div class="buy-now">
-                        <a href="#" class="p-1 mt-2 font-weight-bold">Completa e Paga</a>
+                    <div v-if="cardVerified && orderCustomerInfo.name != null" class="buy-now">
+                        <a @click="saveOrderApi()" class="p-1 mt-2 font-weight-bold" >Completa e Paga</a>
                     </div>
                 </div>
                 <!-- /Order e SubTotale -->
@@ -81,7 +81,12 @@ export default {
             cartArray: [],
             shippingFee: 5,
             restaurantInfoParams: this.$route.params,
+            orderUrl: "http://127.0.0.1:8000/api/saveOrder/",
         }
+    },
+    props:{
+        orderCustomerInfo: Object,
+        cardVerified: Boolean,
     },
     methods: {
 
@@ -150,6 +155,19 @@ export default {
                 // existingCart.push(newItem);
                 localStorage.setItem("cart", JSON.stringify(existingCart));
             }
+        },
+
+        saveOrderApi(){
+
+            this.orderCustomerInfo.total = this.subtotalCart;
+
+            axios.post(this.orderUrl, {
+                customerInfo: this.orderCustomerInfo,
+                cartInfo: this.cartArray,
+            })
+                .then(function (response){
+                    console.log(response);
+                });
         }
 
 

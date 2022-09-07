@@ -6,10 +6,15 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use \Illuminate\Support\Facades\DB;
+
 use App\Order;
 
 class OrderController extends Controller
 {
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +23,18 @@ class OrderController extends Controller
     public function index()
     {
         $current_user = auth()->user()->id;
-        // $orders = Order::select('*')->where('user_id','=', $current_user )->paginate(10);
-        $orders = Order::all();
+
+        $orders = DB::table('orders')
+            ->select('orders.*')
+            ->join('item_order','order_id','=','orders.id')
+            ->join('items','items.id','=','item_order.order_id')
+            ->where('items.user_id','=', $current_user)
+            ->distinct()->paginate(10);
+
+            // dd($orders);
+
+
+        // $orders = Order::all();
         return view('admin.orders.index', compact('orders'));
 
     }
@@ -52,7 +67,10 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Order $order)
-    {
+    {   
+        // $orderInfo = Order::find($order);
+
+        return view('admin.orders.show', compact('order'));
     }
 
     /**
