@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Order;
+use App\Item;
 use Illuminate\Support\Str;
 
 use Faker\Generator as Faker;
@@ -29,6 +30,9 @@ class OrdersTableSeeder extends Seeder
             $new_order->telephone_number = $faker->e164PhoneNumber();
             $new_order->total = $faker->numberBetween(8, 104);
             $new_order->save();
+
+            $item_id = Item::inRandomOrder()->first()->id;
+            $new_order -> items() -> attach($item_id, array("quantity" =>  $faker->randomDigit()));
         }
 
     }
