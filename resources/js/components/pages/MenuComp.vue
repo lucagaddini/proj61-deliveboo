@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="col">
                         <ul class="d-flex list-unstyled">
-                            <li class="active"
+                            <li class="all_btn"
                                 @click="allActive(coursesArray)">
                                 Tutti
                             </li>
@@ -233,7 +233,29 @@ nav {
 
 .active {
     background-color: $tertiary-color;
+    border: 2px solid $tertiary-color;
     color: white;
+
+    &:hover {
+        background-color: white;
+        border: 2px solid $tertiary-color;
+        color: black;
+        cursor: pointer;
+    }
+
+}
+
+.all_btn{
+    background-color: $primary-color;
+    border: 2px solid $primary-color;
+    color: white;
+
+    &:hover {
+        background-color: white;
+        border: 2px solid $primary-color;
+        color: black;
+        cursor: pointer;
+    }
 }
 
 </style>
