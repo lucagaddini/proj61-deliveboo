@@ -154,12 +154,12 @@ export default {
         },
 
         saveOrderApi(){
-            axios.post(this.orderUrl, {
-                
-                    customerInfo: this.orderCustomerInfo,
-                    cartInfo: this.cartArray,
-            
 
+            this.orderCustomerInfo.total = this.subtotalCart;
+
+            axios.post(this.orderUrl, {
+                customerInfo: this.orderCustomerInfo,
+                cartInfo: this.cartArray,
             })
                 .then(function (response){
                     console.log(response);

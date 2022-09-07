@@ -14,7 +14,6 @@
               <div class="card w-100">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <span class="font-weight-bold"> I tuoi Ordini </span>
-                    {{-- <a href="{{ route('admin.orders.create') }}" class="btn btn_custom_secondary"><i class="fas fa-plus"></i></a> --}}
                 </div>
 
                   <div class="card-body">
@@ -22,34 +21,24 @@
                     <table class="table my-1">
                       <thead>
                         <tr class="text-center">
-                          <th scope="col">ID</th>
-                          <th scope="col">Nome</th>
-                          <th scope="col">Modifiche</th>
+                          <th scope="col">ID Ordine</th>
+                          <th scope="col">Nome Cliente</th>
+                          <th scope="col">Totale Ordine</th>
+                          <th scope="col">Dettagli</th>
                         </tr>
                       </thead>
                       <tbody>
                         @foreach ($orders as $order )
 
+                        {{-- @dd($order) --}}
+
                         <tr class="text-center">
                           <td>{{ $order->id }}</td>
-                          <td>{{ $order->name }}</td>
-                          <td> Pulsanti
-
-                          {{-- <td>
-                            <a class="btn btn_custom_info" href=" {{ route('admin.orders.show', $order)  }}"><i class="fas fa-info-circle"></i></a>
-                            <a class="btn btn_custom_edit" href="{{ route('admin.orders.edit', $order)  }}"><i class="fas fa-edit"></i></a>
-
-                            <form class= "d-inline"
-                                  onsubmit= "return confirm('Vuoi eliminare definitivamente il piatto ## {{ $order->name }} ## ?')"
-                                  action= "{{ route('admin.orders.destroy', $order) }}" method= "POST">
-                              @csrf
-                              @method ('DELETE')
-                              <button class="btn btn_custom_delete">
-                                <i class="far fa-trash-alt"></i>
-                              </button>
-                            </form>
-
-                          </td> --}}
+                          <td>{{ $order->name}} {{ $order->surname }}</td>
+                          <td>{{ $order->total}} &euro; </td>
+                          <td>
+                            <a class="btn btn_custom_info" href=" {{ route('admin.orders.show', $order->id)  }}"><i class="fas fa-info-circle"></i></a>
+                          </td>
                         </tr>
 
                         @endforeach
