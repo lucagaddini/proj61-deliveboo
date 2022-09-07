@@ -29,26 +29,26 @@
                             placeholder="Cognome">
                         </div>
 
-                    <div class="form-row">
+                        <div class="form-row">
 
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="order-info-email" placeholder="Email">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Email</label>
+                                <input type="email" class="form-control" id="order-info-email" placeholder="Email">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPhone">Telefono</label>
+                                <input type="text" class="form-control" id="order-info-phone" placeholder="Phone Number">
+
+                            </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputPhone">Telefono</label>
-                            <input type="text" class="form-control" id="order-info-phone" placeholder="Phone Number">
 
+                        <div class="form-group">
+                            <label for="inputAddress">Indirizzo Completo</label>
+                            <input type="text" class="form-control" id="order-info-address" placeholder="1234 Main St">
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="inputAddress">Indirizzo Completo</label>
-                        <input type="text" class="form-control" id="order-info-address" placeholder="1234 Main St">
+                        <button class="buy-now" @click="saveData()">Salva dati</button>
                     </div>
-
-                    <button class="buy-now" @click="saveData()">Salva dati</button>
-                </div>
                 </div>
             </div>
 
