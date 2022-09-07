@@ -5,7 +5,7 @@
         <HeroComp />
         <!-- /Jumbotron -->
 
-   <!-- Categories and Restaurants -->
+    <!-- Categories and Restaurants -->
     <section class="cat-res">
 
             <!-- Categories -->
@@ -18,45 +18,41 @@
                 </div>
                 <!-- /Cat. Title -->
 
-                <VueSlickCarousel v-bind='settings' v-if='categoriesLoading'>
+                <VueSlickCarousel v-bind='settings' v-if= 'categoriesLoading'>
 
-                    <!-- Prev Arrow -->
-                    <template #prevArrow="arrowOption">
-                        <div class="custom-arrow">
-                            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-                        </div>
-                    </template>
-                    <!-- /Prev Arrow -->
-
-                    <!-- Cat. Cards -->
-                    <div class="cat-cards" v-for="category in categoriesArray" :key="'category-' + category.id"
-                        @click="searchRestaurant(category)">
-
-                        <img :class="category.clicked === true ? 'active' : ''" :src="'images/' + category.image_path">
-
-                        <p>{{ category.name }}</p>
+                <!-- Prev Arrow -->
+                <template #prevArrow="arrowOption">
+                    <div class="custom-arrow">
+                        {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
                     </div>
+                </template>
+                <!-- /Prev Arrow -->
 
+                <!-- Cat. Cards -->
+                <div class="cat-cards"
+                    v-for="category in categoriesArray"
+                    :key="'category-'+category.id"
+                    @click="searchRestaurant(category)">
+
+                    <img
+                        :class="category.clicked === true ? 'active' : ''"
+                        :src="'images/' + category.image_path">
+
+                    <p>{{ category.name }}</p>
+                </div>
+                <!-- /Cat. Cards -->
+
+                <!-- Next Arrow -->
+                <template #nextArrow="arrowOption">
+                    <div class="custom-arrow">
+                        {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
+                    </div>
                 </template>
                 <!-- /Next Arrow -->
 
             </VueSlickCarousel>
-
-        </div>
-        <!-- /Categories -->
-
-                    <!-- Next Arrow -->
-                    <template #nextArrow="arrowOption">
-                        <div class="custom-arrow">
-                            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-                        </div>
-                    </template>
-                    <!-- /Next Arrow -->
-
-                </VueSlickCarousel>
             </div>
             <!-- /Categories -->
-
 
             <!-- SEARCHED RESTAURANTS -->
             <div class="restaurants container" v-if="searchedRestaurant.length > 0">
@@ -108,6 +104,7 @@
                                     </router-link>
                                 </div>
                                 <!-- /Res.Text -->
+                            </div>
                         </div>
                     </div>
                     <!-- /Res. Singol Card -->
@@ -171,7 +168,7 @@
                                     </div>
                                 </router-link>
                             </div>
-
+                            </div>
                         </div>
                     </div>
                     <!-- /Res. Singol Card -->
@@ -203,7 +200,7 @@ export default {
     },
 
     data() {
-      return {
+        return {
         // SLIDER
         settings: {
             "dots": true,
@@ -272,6 +269,7 @@ export default {
                         "touchMove": true,
                         "arrows": false
                     }
+                }
                 ]
 
             },
@@ -382,12 +380,12 @@ export default {
                 };
             });
         },
+    },
 
     mounted(){
         this.fillArrays(this.urlHome,this.urlCat);
-    },
+    }
 }
-
 
 </script>
 
