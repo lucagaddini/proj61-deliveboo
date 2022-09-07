@@ -5,7 +5,7 @@ Vue.use(VueRouter);
 
 import HomeComp from './components/pages/HomeComp';
 import MenuComp from './components/pages/MenuComp';
-import ProvaComp from './components/pages/prova/ProvaComp'
+import CheckOut from './components/pages/CheckOut';
 
 const router = new VueRouter({
     mode: 'history',
@@ -17,14 +17,14 @@ const router = new VueRouter({
             component: HomeComp
         },
         {
-            path: '/Prova',
-            name: 'prova',
-            component: ProvaComp
-        },
-        {
             path: '/menu/:slug',
             name: 'menu',
             component: MenuComp
+        },
+        {
+            path: '/checkout',
+            name: 'checkout',
+            component: CheckOut
         }
     ]
 });

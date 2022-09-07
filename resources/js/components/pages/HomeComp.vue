@@ -5,8 +5,8 @@
         <HeroComp />
         <!-- /Jumbotron -->
 
-        <!-- Categories and Restaurants -->
-        <section class="cat-res">
+   <!-- Categories and Restaurants -->
+    <section class="cat-res">
 
             <!-- Categories -->
             <div class="categories container">
@@ -36,7 +36,14 @@
 
                         <p>{{ category.name }}</p>
                     </div>
-                    <!-- /Cat. Cards -->
+
+                </template>
+                <!-- /Next Arrow -->
+
+            </VueSlickCarousel>
+
+        </div>
+        <!-- /Categories -->
 
                     <!-- Next Arrow -->
                     <template #nextArrow="arrowOption">
@@ -47,7 +54,6 @@
                     <!-- /Next Arrow -->
 
                 </VueSlickCarousel>
-
             </div>
             <!-- /Categories -->
 
@@ -102,9 +108,6 @@
                                     </router-link>
                                 </div>
                                 <!-- /Res.Text -->
-
-                            </div>
-
                         </div>
                     </div>
                     <!-- /Res. Singol Card -->
@@ -116,7 +119,6 @@
 
 
             <hr>
-
 
             <!-- TOP RATED RESTAURANTS -->
             <div class="restaurants container">
@@ -135,38 +137,39 @@
                         <div class="card-container bg-debug col-12 d-flex">
 
                             <div class="d-flex card-style">
+                            <!-- Res. Img -->
+                            <div class="res-img">
+                                <img src="images/restaurant_placeholder_home.jpg"
+                                    v-if="userObj.infoUser.image_path == null">
+                                <img :src="'images/'+userObj.infoUser.image_path"
+                                    v-else>
+                            </div>
+                            <!-- /Res. Img -->
 
-                                <!-- Res. Img -->
-                                <div class="res-img">
-                                    <img src="images/restaurant_placeholder_home.jpg"
-                                        v-if="userObj.infoUser.image_path == null">
-                                    <img :src="'images/' + userObj.infoUser.image_path" v-else>
-                                </div>
-                                <!-- /Res. Img -->
+                            <!-- Res.Text -->
+                            <div class="res-text">
+                                <router-link class="nav-link"
+                                :to="{
+                                    name: 'menu',
+                                    params:{
+                                        slug:userObj.infoUser.slug,
+                                        id:userObj.infoUser.id,
+                                        categories:userObj.categoriesUser
 
-                                <!-- Res.Text -->
-                                <div class="res-text">
-                                    <router-link class="nav-link" :to="{
-                                        name: 'menu',
-                                        params: {
-                                            slug: userObj.infoUser.slug,
-                                            id: userObj.infoUser.id,
-                                            categories: userObj.categoriesUser
-
-                                        }
-                                    }">
-                                        <h4 class="res-name">{{ userObj.infoUser.name }}</h4>
-                                        <span class="res-adress">{{ userObj.infoUser.address }}</span> <br>
-                                        <span class="res-cat">
-                                            <span class="mr-2" v-for="userCat in userObj.categoriesUser"
-                                                :key="'userCat' + userCat.id">
-                                                {{ userCat.name }}
+                                    }
+                                }">
+                                    <h4 class="res-name">{{ userObj.infoUser.name }}</h4>
+                                    <span class="res-adress">{{ userObj.infoUser.address }}</span> <br>
+                                    <div class="res-cat-container">
+                                        <span class="res-cat d-flex flex-wrap">
+                                            <span class="mr-2 mt-2"
+                                                v-for="userCat in userObj.categoriesUser"
+                                                :key="'userCat'+userCat.id" >
+                                                {{userCat.name}}
                                             </span>
                                         </span>
-                                    </router-link>
-                                </div>
-                                <!-- /Res.Text -->
-
+                                    </div>
+                                </router-link>
                             </div>
 
                         </div>
@@ -200,67 +203,79 @@ export default {
     },
 
     data() {
-        return {
-            // SLIDER
-            settings: {
-                "dots": true,
-                "arrows": true,
-                "infinite": true,
-                "initialSlide": 0,
-                "speed": 1500,
-                "slidesToShow": 4,
-                "slidesToScroll": 1,
-                "swipeToSlide": true,
-                "centerMode": true,
-                "centerPadding": "-50px",
-                "touchMove": false,
-                "autoplay": true,
-                "autoplaySpeed": 3000,
-                /* "lazyLoad": 'progressive', */
+      return {
+        // SLIDER
+        settings: {
+            "dots": true,
+            "arrows": true,
+            "infinite": true,
+            "initialSlide": 0,
+            "speed": 1500,
+            "slidesToShow": 5,
+            "slidesToScroll": 1,
+            "swipeToSlide": true,
+            "centerMode": true,
+            "centerPadding": "-75px",
+            "touchMove": false,
 
-                "responsive": [
-                    {
-                        "breakpoint": 991,
-                        "settings": {
-                            "slidesToShow": 3,
-                            "centerPadding": '-50px',
-                        }
-                    },
-                    {
-                        "breakpoint": 767,
-                        "settings": {
-                            "slidesToShow": 2,
-                            "centerPadding": '-25px',
-                            "touchMove": true,
-                            "arrows": true,
-                            "speed": 500
-                        }
-                    },
-                    {
-                        "breakpoint": 600,
-                        "settings": {
-                            "slidesToShow": 2,
-                            "centerPadding": '-25px',
-                            "speed": 500,
-                            "touchMove": true,
-                            "arrows": false
-                        }
-                    },
-                    {
-                        "breakpoint": 520,
-                        "settings": {
-                            "slidesToShow": 2,
-                            "centerPadding": '-100px',
-                            "speed": 500,
-                            "touchMove": true,
-                            "arrows": false
-                        }
+            "responsive": [
+                {
+                    "breakpoint": 1200,
+                    "settings": {
+                        "slidesToShow": 4,
+                        "centerPadding": '-40px',
+                    }
+                },
+                {
+                    "breakpoint": 991,
+                    "settings": {
+                        "slidesToShow": 3,
+                        "centerPadding": '-35px',
+                    }
+                },
+                {
+                    "breakpoint": 767,
+                    "settings": {
+                        "slidesToShow": 2,
+                        "centerPadding": '-1px',
+                        "touchMove": true,
+                        "arrows": true,
+                        "speed": 500
+                    }
+                },
+                {
+                    "breakpoint": 600,
+                    "settings": {
+                        "slidesToShow": 2,
+                        "centerPadding": '-5px',
+                        "speed": 500,
+                        "touchMove": true,
+                        "arrows": false
+                    }
+                },
+                {
+                    "breakpoint": 520,
+                    "settings": {
+                        "slidesToShow": 2,
+                        "centerPadding": '-50px',
+                        "speed": 500,
+                        "touchMove": true,
+                        "arrows": false
+                    }
+                },
+                {
+                    "breakpoint": 440,
+                    "settings": {
+                        "slidesToShow": 2,
+                        "centerPadding": '-85px',
+                        "speed": 500,
+                        "touchMove": true,
+                        "arrows": false
                     }
                 ]
 
             },
             // /SLIDER
-
             apiUrl: "http://127.0.0.1:8000/api/homepage",
             urlHome: "http://127.0.0.1:8000/api/homepage",
             urlCat: "http://127.0.0.1:8000/api/categoryUser/",
@@ -368,10 +383,8 @@ export default {
             });
         },
 
-    },
-
-    mounted() {
-        this.fillArrays(this.urlHome, this.urlCat);
+    mounted(){
+        this.fillArrays(this.urlHome,this.urlCat);
     },
 }
 
@@ -379,133 +392,170 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-  @import 'resources/sass/front/_variables.scss';
+@import 'resources/sass/front/_variables.scss';
 
-  /* Categories and Restaurants */
-  .cat-res {
-      background-color: #F9FAFC;
-      display: flex;
-      flex-direction: column;
-  }
+/* Categories and Restaurants */
 
-  hr {
-      border: 0.8px solid $tertiary-color;
-      border-radius: 4px;
-      width: 90%;
-  }
+.cat-res{
+    background-color: #F9FAFC;
+    display: flex;
+    flex-direction: column;
+}
 
-  /* Categories */
-  .categories {
-      margin-top: 75px;
-      margin-bottom: 75px;
-  }
+hr{
+    border: 0.8px solid $tertiary-color;
+    border-radius: 4px;
+    width: 90%;
+}
 
-  .cat-title h1 {
-      color: black;
-  }
+/* Categories */
+.categories{
+    margin-top: 75px;
+    margin-bottom: 75px;
+}
 
-  .cat-title p {
-      font-size: 1.125rem;
-      color: black;
-  }
+.cat-title h1{
+    color: black;
+}
 
-  .cat-cards {
-      height: 300px;
-      position: relative;
-      cursor: pointer;
+.cat-title p{
+    font-size: 1.125rem;
+    color: black;
+}
 
-      img {
-          height: 100%;
-          width: 250px;
-          border-radius: 20px;
-          background-attachment: fixed;
-          border: 5px solid #f9fafc;
+.cat-cards{
+    height: 300px;
+    position: relative;
+    cursor: pointer;
 
-          &.active {
-              border: 5px solid $tertiary-color;
-          }
-      }
+    img{
+        height: 100%;
+        width: 250px;
+        border-radius: 20px;
+        background-attachment: fixed;
+        border: 5px solid #f9fafc;
 
-      p {
-          position: absolute;
-          bottom: 10px;
-          color: white;
-          left: 25px;
-          font-weight: bold;
-          font-size: 1.2rem;
-      }
-  }
+        &.active{
+        border: 5px solid $tertiary-color;
+    }
+    }
 
-  .slick-prev:before,
-  .slick-next:before {
-      color: $tertiary-color  !important;
-  }
+    p{
+        position: absolute;
+        bottom: 10px;
+        color: white;
+        left: 25px;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+}
 
-  /* Restaurants */
-  .restaurants {
-      margin-top: 75px;
-      margin-bottom: 75px;
-  }
+.slick-prev:before,
+.slick-next:before {
+  color: $tertiary-color !important;
+}
 
-  .res-title h2 {
-      color: black;
-  }
+/* Restaurants */
+.restaurants{
+    margin-top: 75px;
+    margin-bottom: 75px;
+}
 
-  .res-title p {
-      font-size: 1.125rem;
-      color: black;
-  }
+.res-title h2{
+    color: black;
+}
 
-  .res-card {
-      padding: 20px;
-  }
+.res-title p{
+    font-size: 1.125rem;
+    color: black;
+}
 
-  .card-style {
-      background-color: white;
-      width: 100%;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid $tertiary-color;
-  }
+.res-card{
+    padding: 20px;
+}
 
-  .card-container {
-      padding-right: 0px;
-      padding-left: 0px;
-  }
+.card-style{
+    background-color: white;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid $tertiary-color;
+}
 
-  /* Res. Img */
+.card-container{
+    padding-right: 0px;
+    padding-left: 0px;
+}
 
-  .res-img {
-      width: 50%;
-      height: 150px;
-  }
+/* Res. Img */
 
-  .res-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-  }
+.res-img{
+    width: 50%;
+    height: 150px;
+}
 
-  /* Res. Text */
-  .res-text {
-      color: black;
-      margin: 0px 0px 0px 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 5px;
-      width: 50%;
-  }
+.res-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-  .res-name {
-      font-size: 1.1rem;
-  }
+/* Res. Text */
+.res-text{
+    color: black;
+    margin: 0px 0px 0px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+    width: 50%;
+    height: 150px;
+}
 
-  .res-cat span {
-      background-color: $tertiary-color;
-      border-radius: 6px;
-      padding: 2px 10px;
-      color: white;
-      font-size: .7rem;
-  }
-  </style>
+.res-name{
+    font-size: 1.1rem;
+}
+
+.res-cat-container{
+    height: 60px;
+    overflow-y: auto;
+}
+
+.res-cat span{
+    background-color: $tertiary-color;
+    border-radius: 6px;
+    padding: 2px 10px;
+    color: white;
+    font-size: .7rem;
+}
+
+@media screen and (max-width: 474px) {
+
+    /* Restaurants */
+    .res-card{
+        padding: 20px 5px;
+    }
+
+    /* Res. Text */
+
+    .res-text{
+    margin: 0px 0px 0px 0px;
+    padding: 1px;
+    width: 50%;
+    }
+
+    .res-name{
+        font-size: 1rem;
+    }
+
+    .res-adress{
+        font-size: .8rem;
+    }
+
+    .res-cat span{
+        font-size: .65rem;
+    }
+
+}
+
+</style>

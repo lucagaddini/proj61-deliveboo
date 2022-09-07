@@ -8,30 +8,49 @@
 
                     <!-- Singol Item -->
                     <div
-                        v-for="i in 5"
-                        :key="'id'+i" 
-                        class="d-flex justify-content-between singol-item">
+                        v-for="item in cartArray"
+                        :key="'itemId-'+item.id"
+                        class="singol-item">
 
-                            <div class="d-flex justify-content-start">
-                                <!-- ICONA PER ELIMINARE L\'ELEMENTO -->
-                                <div>
-                                    <a href="#" class="mx-2"><i class="fa-solid fa-circle-minus btn-delete-custom"></i></a>
+                            <div class="d-flex justify-content-between">
+
+                                <div class="d-flex">
+                                    <!-- ICONA PER ELIMINARE L\'ELEMENTO -->
+                                    <div>
+                                        <a class="mx-2"
+                                        @click="removeFromCart(item)"><i class="fa-solid fa-trash"></i></a>
+                                    </div>
+
+                                    <!-- NOME PRODOTTO-->
+                                    <div>
+                                        <h6 class="mx-2">{{item.id}} - {{item.name}}</h6>
+                                    </div>
                                 </div>
 
-                                <!-- NOME PRODOTTO-->
+                                <!-- PREZZO PRODOTTO-->
                                 <div>
-                                    <h6 class="mx-2">NOME PRODOTTO</h6>
+                                    <h6>{{item.price * item.quantity}}&euro;</h6>
                                 </div>
+
                             </div>
 
-                            <!-- PREZZO PRODOTTO-->
+                            <!-- Quantità Prodotto -->
                             <div>
-                                <h6>00.00 &euro;</h6>
+                                <a class="mx-2"
+                                v-if="item.quantity > 1"
+                                @click="decreaseQuantity(item)"><i class="fa-solid fa-circle-minus btn-delete-custom"></i>
+                                </a>
+
+                                <span>{{item.quantity}}</span>
+
+                                <a class="mx-2 addtocart"
+                                    @click="increaseQuantity(item)">
+                                    <i class="fa-solid fa-circle-plus"></i>
+                                </a>
                             </div>
 
                     </div>
                     <!-- /Singol Item -->
-                    
 
                 </div>
 
@@ -39,11 +58,17 @@
                 <div class="ordernow-sub-button-container container">
                     <div class="subtotal d-flex justify-content-between">
                         <h6 class="mt-2">Subtotale: </h6>
-                        <h6 class="mt-2">00.00 &euro;</h6>
+                        <h6 class="mt-2"> {{subtotalCart}}&euro;</h6>
                     </div>
 
                     <div class="buy-now">
-                        <a href="#" class="p-1">CHECKOUT</a>
+
+                        <router-link class="nav-link"
+                                :to="{
+                                    name: 'checkout', 
+                                    params: this.restaurantInfo
+                                    }"
+                                >CHECKOUT</router-link>
                     </div>
                 </div>
                 <!-- /Order e SubTotale -->
@@ -53,19 +78,124 @@
 </template>
 
 <script>
-export default {};
+export default {
+    data(){
+        return{
+            cartArray: [],
+            
+        }
+    },
+    props:{
+        restaurantInfo: Object,
+    },
+    methods:{
+
+        setCart(){
+            this.cartArray = JSON.parse(localStorage.getItem("cart"));
+        },
+
+        decreaseQuantity(item) {
+
+            var existingCart = JSON.parse(localStorage.getItem("cart"));
+
+            let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
+
+            if(itemToFind && itemToFind.quantity > 1 ){
+
+                console.log('Prodotto gia presente');
+                console.log('GIA PRESENTE',itemToFind);
+
+                itemToFind.quantity --;
+
+                console.log('DOPO --',itemToFind);
+
+                // existingCart.push(newItem);
+                localStorage.setItem("cart", JSON.stringify(existingCart));
+            }
+        },
+
+        increaseQuantity(item) {
+
+            var existingCart = JSON.parse(localStorage.getItem("cart"));
+
+            let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
+
+            if(itemToFind){
+
+                console.log('Prodotto gia presente');
+                console.log('GIA PRESENTE',itemToFind);
+
+                itemToFind.quantity++;
+
+                console.log('DOPO ++',itemToFind);
+
+                // existingCart.push(newItem);
+                localStorage.setItem("cart", JSON.stringify(existingCart));
+            }
+        },
+
+        removeFromCart(item) {
+
+            var existingCart = JSON.parse(localStorage.getItem("cart"));
+            // if(existingCart == null) existingCart = [];
+
+            let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
+
+            if(itemToFind){
+
+                console.log('Prodotto gia presente');
+                console.log('GIA PRESENTE',itemToFind);
+
+                var index = existingCart.indexOf(itemToFind);
+
+                existingCart.splice(index,1);
+
+                console.log('CART:',existingCart);
+
+                // existingCart.push(newItem);
+                localStorage.setItem("cart", JSON.stringify(existingCart));
+            }
+
+            if(existingCart.length == 0){
+                localStorage.clear("cart");
+            }
+        }
+
+
+    },
+    computed:{
+
+        subtotalCart(){
+            var subtotal = 0;
+
+            if(!this.cartArray) { return subtotal; }
+
+            if(this.cartArray.length > 0) {
+
+                this.cartArray.forEach(item => {
+                    subtotal += item.price * item.quantity;
+                });
+
+            }
+
+            return subtotal;
+        }
+    },
+    mounted(){
+        setInterval(this.setCart, 500);
+    }
+};
 </script>
 
 <style lang="scss" scoped>
 @import "resources/sass/front/_variables.scss";
 
 .cart {
-    margin-top: 50px;
+    margin-top: 120px;
     margin-bottom: 50px;
 }
 
 .cart-container {
-    width: 400px;
     height: auto;
     border: 1px solid $fifth-color;
     border-radius: 10px;
@@ -112,7 +242,7 @@ export default {};
 .buy-now {
     width: 100%;
 
-    a{  
+    a{
         text-decoration: none;
         display: block;
         color: white;

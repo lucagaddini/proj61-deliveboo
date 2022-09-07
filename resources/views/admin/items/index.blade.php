@@ -47,12 +47,28 @@
                         @foreach ($items as $item )
                         @include('admin.items.modal.delete')
 
+                        @php
+
+                        if ($item->vegetarian === 1) {
+                           $colorVeg = "green";
+                        }else{
+                          $colorVeg = "red";
+                        };
+
+                        if ($item->visible === 1) {
+                           $coloreVis = "green";
+                        }else{
+                          $coloreVis = "red";
+                        }
+
+                        @endphp
+
                         <tr class="text-center">
 
                           <td>{{ $item->id }}</td>
                           <td>{{ $item->name }}</td>
-                          <td class="d-none d-md-block" >{{ $item->vegetarian === 1? 'Sì' : 'No' }}</td>
-                          <td>{{ $item->visible === 1? 'Sì' : 'No' }}</td>
+                          <td class="d-none d-md-block" style="color:{{$colorVeg}}">{{ $item->vegetarian === 1? 'Sì' : 'No' }}</td>
+                          <td style="color:{{$coloreVis}}">{{ $item->visible === 1? 'Sì' : 'No' }}</td>
                           <td class="d-none d-md-block" >{{$item->course->name}}</td>
 
                           <td>
