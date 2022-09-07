@@ -29,6 +29,10 @@
                             </a>
                         </div>
 
+                        <span class="price text-center">
+                            <span>{{ item.price }}&euro;</span>
+                        </span>
+
                     </div>
 
                     <div class="panel-body text-center">
@@ -39,10 +43,6 @@
                         <p>
                             {{shortContent(item.description)}}
                         </p>
-
-                        <span class="price text-center">
-                            <span>{{ item.price }}&euro;</span>
-                        </span>
                     </div>
                 </section>
 
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-        
+
             </div>
             <!-- //single-card -->
         </div>
@@ -106,7 +106,7 @@ export default {
         },
 
         shortContent(text){
-            return text.substr (0,30) + "....."
+            return text.substr (0,30) + "..."
         },
 
         addToCart(item) {
@@ -147,7 +147,7 @@ export default {
                 localStorage.setItem("cart", JSON.stringify(existingCart));
 
 
-            } else{ 
+            } else{
 
                 let newItem = {
                     id: item.id,
@@ -210,7 +210,6 @@ export default {
     width: 100%;
 }
 
-
 .panel-title {
     color: #2A3542;
     font-size: 14px;
@@ -219,12 +218,11 @@ export default {
 .panel-body {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     height: 55%;
     background-color: #F2F3F4;
     border-radius: 0px 0px 8px 8px;
+    overflow-y: auto;
 }
-
 
 /*product list*/
 .product-list img {
@@ -259,7 +257,10 @@ export default {
     display: inline-block;
     text-align: center;
     border: 3px solid #fff;
+    left: 0;
+    right: 0;
     bottom: -25px;
+    margin: auto;
     position: absolute;
 }
 
@@ -278,6 +279,9 @@ export default {
 
 .price {
     margin-bottom: 15px;
+    position: absolute;
+    top: 15px;
+    right: 10px;
 
     span {
         background-color: $primary-color;
@@ -288,7 +292,6 @@ export default {
         padding: 4px 6px;
     }
 }
-
 
 @media screen and (max-width: 575px) {
     .panel {

@@ -1,5 +1,5 @@
 <template>
-  <div class="payment">
+  <div class="payment m-2">
     <div ref="dropin" />
 
     <slot

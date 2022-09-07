@@ -24,12 +24,6 @@ class PageController extends Controller
         return response()->json(compact('categories','users',));
     }
 
-
-    // select DISTINCT courses.id , courses.name
-    // from courses
-    // INNER JOIN items ON items.course_id = courses.id
-    // where items.user_id = userId
-        
     // API CHE RESTITUISCE LE PORTATE DI UN DETERMIANTO RISTORANTE
     public function coursesUser($slug){
         $courses = DB::table('courses')
@@ -73,7 +67,6 @@ class PageController extends Controller
         return response()->json(compact('user'));
     }
 
-
     // API CHE RESTITUISCE LE INFO DI UN RISTORANTE
     public function saveOrder(Request $req){
 
@@ -100,6 +93,4 @@ class PageController extends Controller
             return ["Result"=>"Operation failed"];
         }
     }
-
-    
 }

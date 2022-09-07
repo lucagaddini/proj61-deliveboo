@@ -1,12 +1,12 @@
 <template>
-    <section class="d-flex container-fluid">
+    <section class="d-flex container">
 
         <div class="form-space m-5">
 
             <!-- FORM DATI UTENTE -->
             <div class="user-detail-container bg-light">
 
-                <h4 class=" title-card bg-dark text-white mb-4 p-2 container">Personal Details</h4>
+                <h4 class=" title-card bg-dark text-white mb-2 p-2 container">Dettagli Ordine</h4>
 
                 <div class="mx-3" id="checkout-form">
 
@@ -28,7 +28,6 @@
                             id="order-info-surname" 
                             placeholder="Cognome">
                         </div>
-                    </div>
 
                     <div class="form-row">
 
@@ -39,6 +38,7 @@
                         <div class="form-group col-md-6">
                             <label for="inputPhone">Telefono</label>
                             <input type="text" class="form-control" id="order-info-phone" placeholder="Phone Number">
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -48,15 +48,16 @@
 
                     <button class="buy-now" @click="saveData()">Salva dati</button>
                 </div>
+                </form>
 
             </div>
 
             <!-- //FORM DATI UTENTE -->
 
             <!-- FORM DATI CARTA -->
-            <div class="card-detail-container bg-light  mt-5">
+            <div class="card-detail-container bg-light mt-5 pb-4">
 
-                <h4 class=" title-card bg-dark text-white mb-4 container p-2">Dettagli Pagamento</h4>
+                <h4 class=" title-card bg-dark text-white m-1 container p-2">Dettagli Pagamento</h4>
 
                 <Payment
                     v-if="showDropIn"
@@ -86,7 +87,7 @@
 
                     <template v-slot:button="slotProps"
                     v-if="(!cardVerified)">
-                        <input type="submit" @click="slotProps.submit" class="btn buy-now" value="Aggiungi Carta" />
+                        <input type="submit" @click="slotProps.submit" class="btn buy-now mb-3" value="Aggiungi Carta" />
                     </template>
                     
                 </Payment>

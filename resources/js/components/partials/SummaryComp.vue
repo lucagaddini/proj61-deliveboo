@@ -11,36 +11,40 @@
                 <div class="container list-selected-item d-flex flex-column">
                     <!-- Singol Item -->
                     <div v-for="item in cartArray" :key="'itemId-' + item.id"
-                        class="d-flex justify-content-between singol-item">
+                        class="my-1 singol-item">
 
-                        <div class="d-flex justify-content-start">
-                            <!-- ICONA PER ELIMINARE L\'ELEMENTO -->
-                            <div>
-                                <a class="mx-2" @click="removeFromCart(item)"><i class="fa-solid fa-trash"></i></a>
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex" >
+                                <!-- ICONA PER ELIMINARE L\'ELEMENTO -->
+                                <div>
+                                    <a class="mx-2" @click="removeFromCart(item)"><i class="fa-solid fa-trash"></i></a>
+                                </div>
+
+                                <!-- NOME PRODOTTO-->
+                                <div>
+                                    <h6 class="mx-2">{{ item.id }} - {{ item.name }} </h6>
+                                </div>
                             </div>
 
-                            <!-- NOME PRODOTTO-->
+                            
+
+                            <!-- PREZZO PRODOTTO-->
                             <div>
-                                <h6 class="mx-2">{{ item.id }} - {{ item.name }} </h6>
-                            </div>
-
-                            <div>
-                                <a class="mx-2" v-if="item.quantity > 1" @click="decreaseQuantity(item)"><i
-                                        class="fa-solid fa-circle-minus btn-delete-custom"></i>
-                                </a>
-
-                                <span>{{ item.quantity }}</span>
-
-                                <a class="addtocart" @click="increaseQuantity(item)">
-                                    <i class="fa-solid fa-circle-plus"></i>
-                                </a>
+                                <h6>{{ item.quantity * item.price }} &euro;</h6>
                             </div>
 
                         </div>
 
-                        <!-- PREZZO PRODOTTO-->
                         <div>
-                            <h6>{{ item.price * item.quantity }} &euro;</h6>
+                            <a class="mx-2" v-if="item.quantity > 1" @click="decreaseQuantity(item)"><i
+                                class="fa-solid fa-circle-minus btn-delete-custom"></i>
+                            </a>
+
+                            <span>{{ item.quantity }}</span>
+
+                            <a class="mx-2 addtocart" @click="increaseQuantity(item)">
+                                <i class="fa-solid fa-circle-plus"></i>
+                            </a>
                         </div>
 
                     </div>
@@ -169,6 +173,7 @@ export default {
 
     },
     computed: {
+
 
         subtotalCart() {
             var subtotal = 0;

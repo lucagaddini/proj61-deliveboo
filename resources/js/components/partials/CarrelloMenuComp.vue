@@ -5,49 +5,52 @@
                 <h4 class="cart-title p-1">Il Tuo Carrello</h4>
 
                 <div class="container list-selected-item d-flex flex-column">
-                    
+
                     <!-- Singol Item -->
                     <div
                         v-for="item in cartArray"
-                        :key="'itemId-'+item.id" 
-                        class="d-flex justify-content-between singol-item">
-                            
-                            <div class="d-flex justify-content-start">
-                                <!-- ICONA PER ELIMINARE L\'ELEMENTO -->
-                                <div>
-                                    <a class="mx-2"
-                                    @click="removeFromCart(item)"><i class="fa-solid fa-trash"></i></a>
+                        :key="'itemId-'+item.id"
+                        class="singol-item">
+
+                            <div class="d-flex justify-content-between">
+
+                                <div class="d-flex">
+                                    <!-- ICONA PER ELIMINARE L\'ELEMENTO -->
+                                    <div>
+                                        <a class="mx-2"
+                                        @click="removeFromCart(item)"><i class="fa-solid fa-trash"></i></a>
+                                    </div>
+
+                                    <!-- NOME PRODOTTO-->
+                                    <div>
+                                        <h6 class="mx-2">{{item.id}} - {{item.name}}</h6>
+                                    </div>
                                 </div>
 
-                                <!-- NOME PRODOTTO-->
+                                <!-- PREZZO PRODOTTO-->
                                 <div>
-                                    <h6 class="mx-2">{{item.id}} - {{item.name}}</h6>
-                                </div>
-                                
-                                <div>
-                                    <a class="mx-2"
-                                    v-if="item.quantity > 1"
-                                    @click="decreaseQuantity(item)"><i class="fa-solid fa-circle-minus btn-delete-custom"></i>
-                                    </a>
-
-                                    <span>{{item.quantity}}</span>
-
-                                    <a class="addtocart"
-                                        @click="increaseQuantity(item)">
-                                        <i class="fa-solid fa-circle-plus"></i>
-                                    </a>
+                                    <h6>{{item.price * item.quantity}}&euro;</h6>
                                 </div>
 
                             </div>
 
-                            <!-- PREZZO PRODOTTO-->
+                            <!-- Quantità Prodotto -->
                             <div>
-                                <h6>{{item.price * item.quantity}} &euro;</h6>
+                                <a class="mx-2"
+                                v-if="item.quantity > 1"
+                                @click="decreaseQuantity(item)"><i class="fa-solid fa-circle-minus btn-delete-custom"></i>
+                                </a>
+
+                                <span>{{item.quantity}}</span>
+
+                                <a class="mx-2 addtocart"
+                                    @click="increaseQuantity(item)">
+                                    <i class="fa-solid fa-circle-plus"></i>
+                                </a>
                             </div>
 
                     </div>
                     <!-- /Singol Item -->
-                    
 
                 </div>
 
@@ -55,7 +58,7 @@
                 <div class="ordernow-sub-button-container container">
                     <div class="subtotal d-flex justify-content-between">
                         <h6 class="mt-2">Subtotale: </h6>
-                        <h6 class="mt-2"> {{subtotalCart}} &euro;</h6>
+                        <h6 class="mt-2"> {{subtotalCart}}&euro;</h6>
                     </div>
 
                     <div class="buy-now">
@@ -92,7 +95,7 @@ export default {
         },
 
         decreaseQuantity(item) {
-            
+
             var existingCart = JSON.parse(localStorage.getItem("cart"));
 
             let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
@@ -112,7 +115,7 @@ export default {
         },
 
         increaseQuantity(item) {
-            
+
             var existingCart = JSON.parse(localStorage.getItem("cart"));
 
             let itemToFind = existingCart.find( oldItem => oldItem['id'] === item.id );
@@ -132,7 +135,7 @@ export default {
         },
 
         removeFromCart(item) {
-            
+
             var existingCart = JSON.parse(localStorage.getItem("cart"));
             // if(existingCart == null) existingCart = [];
 
@@ -188,12 +191,11 @@ export default {
 @import "resources/sass/front/_variables.scss";
 
 .cart {
-    margin-top: 50px;
+    margin-top: 120px;
     margin-bottom: 50px;
 }
 
 .cart-container {
-    width: 400px;
     height: auto;
     border: 1px solid $fifth-color;
     border-radius: 10px;
@@ -240,7 +242,7 @@ export default {
 .buy-now {
     width: 100%;
 
-    a{  
+    a{
         text-decoration: none;
         display: block;
         color: white;
