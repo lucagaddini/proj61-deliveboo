@@ -9,66 +9,55 @@
                     <h4>Dettagli Ordine</h4>
                 </div>
 
-                <div class="p-3" id="checkout-form" data-parsley-validate="">
+                <ValidationObserver v-slot="{ handleSubmit }">
+                    <form @submit.prevent="handleSubmit(onSubmit)" class="p-3" id="checkout-form">
 
-                    <!-- NOME E COGNOME -->
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputName">Nome</label>
-                            <input type="text" 
-                            class="form-control"
-                            
-                            required
-                            data-parsley-minlength="3"
-                            data-parsley-maxlength="255"
-                            data-parsley-trigger="keyup"
+                        <!-- NOME E COGNOME -->
+                        <div class="form-row">
+                            <validationProvider name="Name" rules="required|alpha" v-slot="{ errors }" class="form-group col-md-6">
+                                <label for="inputName">Nome</label>
+                                <input type="text" class="form-control" id="order-info-name" placeholder="Nome"
+                                    v-model="name">
+                                <small>{{ errors[0] }}</small>
+                            </validationProvider>
 
-                            id="order-info-name" 
-                            placeholder="Nome">
+                            <validationProvider name="Surname" rules="required|alpha" v-slot="{ errors }" class="form-group col-md-6">
+                                <label for="inputSurname">Cognome</label>
+                                <input type="text" class="form-control" id="order-info-surname" placeholder="Cognome"
+                                    v-model="surname">
+                                <small>{{ errors[0] }}</small>
+                            </validationProvider>
                         </div>
 
-                        <div class="form-group col-md-6">
-                            <label for="inputSurname">Cognome</label>
-                            <input type="text" 
-                            class="form-control"
+                        <!-- EMAIL E TELEFONO -->
+                        <div class="form-row">
+                            <validationProvider name="email" rules="required|email" v-slot="{ errors }" class="form-group col-md-6">
+                                <label for="inputEmail4">Email</label>
+                                <input type="text" class="form-control" id="order-info-email" placeholder="Email"
+                                    v-model="email">
+                                <small>{{ errors[0] }}</small>
+                            </validationProvider>
 
-                            required
-                            data-parsley-trigger="keyup"
-
-                            id="order-info-surname" 
-                            placeholder="Cognome">
-                        </div>
-                    </div>
-
-                    <!-- EMAIL E TELEFONO -->
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="order-info-email" placeholder="Email">
+                            <validationProvider name="numero" rules="required|numeric" v-slot="{ errors }"  class="form-group col-md-6">
+                                <label for="inputEmail4">Telefono</label>
+                                <input type="text" class="form-control" id="order-info-phone" placeholder="Telefono"
+                                    v-model="telephone_number">
+                                <small class="danger">{{ errors[0] }}</small>
+                            </validationProvider>
                         </div>
 
-                        <div class="form-group col-md-6">
-                            <label for="inputPhone">Telefono</label>
-                            <input type="text" class="form-control" id="order-info-phone" placeholder="Telefono">
-                        </div>
-                    </div>
+                        <validationProvider name="indirizzo" rules="required|alpha_dash|alpha_spaces|min:5" v-slot="{ errors }" class="form-group">
+                            <label for="inputAddress">Indirizzo Completo</label>
+                            <input type="text" class="form-control" id="order-info-address"
+                                placeholder="Via e numero Civico" v-model="address">
+                            <small class="danger">{{ errors[0] }}</small>
+                        </validationProvider>
 
-                    <div class="form-group">
-                        <label for="inputAddress">Indirizzo Completo</label>
-                        <input type="text" 
-                        class="form-control"
-
-                        required
-                        data-parsley-minlength="3"
-                        data-parsley-maxlength="60"
-                        data-parsley-trigger="keyup"
-
-                        id="order-info-address" 
-                        placeholder="Via e numero Civico">
-                    </div>
-                    <input type="submit" @click="saveData()" id="save-data-button" class="btn buy-now mb-3" value="Salva dati" />
-                    <!-- <button class="buy-now" @click="saveData()">Salva dati</button> -->
-                </div>
+                        <input type="submit" @click="saveData()" id="save-data-button" class="btn buy-now my-3"
+                            value="Salva dati" />
+                        <!-- <button class="buy-now" @click="saveData()">Salva dati</button> -->
+                    </form>
+                </ValidationObserver>
 
             </div>
 
@@ -80,40 +69,31 @@
                     <h4>Dettagli Pagamento</h4>
                 </div>
 
-                <Payment
-                    v-if="showDropIn"
-                    authorization="sandbox_zjqhxx8m_r75zzzxtvzc8dddc"
-                    :three-d-secure="false"
-                    locale="it_IT"
-                    :three-d-secure-parameters="{
-                        amount: 100, 
-                        email: 'francois@witify.io', 
+                <Payment v-if="showDropIn" authorization="sandbox_zjqhxx8m_r75zzzxtvzc8dddc" :three-d-secure="false"
+                    locale="it_IT" :three-d-secure-parameters="{
+                        amount: 100,
+                        email: 'francois@witify.io',
                         billingAddress: {
-                        givenName: 'John',
-                        surname: 'Doe',
-                        phoneNumber: '515 515 1234',
-                        streetAddress: '485 boul. dagenais E',
-                        extendedAddress: '1',
-                        locality: 'Laval',
-                        region: 'QC',
-                        postalCode: 'h7m5z5',
-                        countryCodeAlpha2: 'CA'
+                            givenName: 'John',
+                            surname: 'Doe',
+                            phoneNumber: '515 515 1234',
+                            streetAddress: '485 boul. dagenais E',
+                            extendedAddress: '1',
+                            locality: 'Laval',
+                            region: 'QC',
+                            postalCode: 'h7m5z5',
+                            countryCodeAlpha2: 'CA'
                         }
-                    }"
-                    @load="onLoad"
-                    @loadFail="onLoadFail"
-                    @success="onSuccess"
-                    @error="onError"
-                    >
+                    }" @load="onLoad" @loadFail="onLoadFail" @success="onSuccess" @error="onError">
 
-                    <template v-slot:button="slotProps"
-                    v-if="(!cardVerified)">
-                        <input type="submit" @click="slotProps.submit" class="btn buy-now mb-3" value="Aggiungi Carta" />
+                    <template v-slot:button="slotProps" v-if="(!cardVerified)">
+                        <input type="submit" @click="slotProps.submit" class="btn buy-now mb-3"
+                            value="Aggiungi Carta" />
                     </template>
-                    
+
                 </Payment>
 
-                    <!-- <button @click="deleteInstance" class="btn btn-danger">
+                <!-- <button @click="deleteInstance" class="btn btn-danger">
                         Delete instance
                     </button> -->
 
@@ -123,24 +103,22 @@
         </div>
 
         <div class="recap-space">
-            <SummaryComp
-            :orderCustomerInfo="this.orderCustomerInfo"
-            :cardVerified="this.cardVerified"/>
+            <SummaryComp :orderCustomerInfo="this.orderCustomerInfo" :cardVerified="this.cardVerified" />
         </div>
 
     </section>
 </template>
 
 <script>
-$(function() {
-  $('#checkout-form').parsley().on('field:validated', function() {
-    var ok = $('.parsley-error').length === 0;
-    $('.bs-callout-info').toggleClass('hidden', !ok);
-    $('.bs-callout-warning').toggleClass('hidden', ok);
-  })
-//   .on('form:submit', function() {
-//     return false; // Don't submit form for this demo
-//   });
+$(function () {
+    $('#checkout-form').parsley().on('field:validated', function () {
+        var ok = $('.parsley-error').length === 0;
+        $('.bs-callout-info').toggleClass('hidden', !ok);
+        $('.bs-callout-warning').toggleClass('hidden', ok);
+    })
+    //   .on('form:submit', function() {
+    //     return false; // Don't submit form for this demo
+    //   });
 });
 </script>
 
@@ -148,43 +126,60 @@ $(function() {
 
 
 <script>
-
 import SummaryComp from "../partials/SummaryComp.vue";
 import Payment from "../partials/Payment.vue";
 
+import { ValidationProvider } from 'vee-validate/dist/vee-validate.full.esm';
+import { ValidationObserver } from 'vee-validate';
+
+
 export default {
-    components: { SummaryComp,Payment },
+    components: { SummaryComp,Payment, ValidationProvider, ValidationObserver },
     data () {
         return {
             instance: null,
             showDropIn: true,
             cardVerified: false,
-            orderCustomerInfo: {}
+            orderCustomerInfo: {
+                name: "",
+                surname: "",
+                telephone_number: "",
+                email: "",
+                address: "",
+                total: 0
+            },
         }
   },
   methods: {
+    onSubmit(){
+        this.$refs.form.setErrors({
+            telephone_number: ['This phone is already taken']
+        });
 
-    saveData(){
-
-        this.orderCustomerInfo = {
-            'name': document.getElementById('order-info-name').value,
-            'surname': document.getElementById('order-info-surname').value,
-            'address': document.getElementById('order-info-address').value,
-            'telephone_number': document.getElementById('order-info-phone').value,
-            'email': document.getElementById('order-info-email').value,
-            'total': 0
-        };
-
-        document.getElementById('order-info-name').setAttribute("disabled","disabled");
-        document.getElementById('order-info-surname').setAttribute("disabled","disabled");
-        document.getElementById('order-info-address').setAttribute("disabled","disabled");
-        document.getElementById('order-info-phone').setAttribute("disabled","disabled");
-        document.getElementById('order-info-email').setAttribute("disabled","disabled");
-
-        // document.getElementById('save-data-button').setAttribute("disabled","disabled");
-        document.getElementById('save-data-button').classList.add('d-none');
-
+        console.log(this.orderCustomerInfo);
     },
+
+    // saveData(){
+
+    //     this.orderCustomerInfo = {
+    //         'name': document.getElementById('order-info-name').value,
+    //         'surname': document.getElementById('order-info-surname').value,
+    //         'address': document.getElementById('order-info-address').value,
+    //         'telephone_number': document.getElementById('order-info-phone').value,
+    //         'email': document.getElementById('order-info-email').value,
+    //         'total': 0
+    //     };
+
+    //     document.getElementById('order-info-name').setAttribute("disabled","disabled");
+    //     document.getElementById('order-info-surname').setAttribute("disabled","disabled");
+    //     document.getElementById('order-info-address').setAttribute("disabled","disabled");
+    //     document.getElementById('order-info-phone').setAttribute("disabled","disabled");
+    //     document.getElementById('order-info-email').setAttribute("disabled","disabled");
+
+    //     // document.getElementById('save-data-button').setAttribute("disabled","disabled");
+    //     document.getElementById('save-data-button').classList.add('d-none');
+
+    // },
 
     onLoad (instance) {
       this.instance = instance;
@@ -228,15 +223,16 @@ export default {
 @import 'resources/sass/front/_variables.scss';
 
 .user-detail-container,
-.card-detail-container{
+.card-detail-container {
     border-radius: 10px;
     // padding: 20px;
     background-color: lightgray !important;
 
-    .title-card{
+    .title-card {
         border-radius: 10px 10px 0 0;
     }
 }
+
 .buy-now {
     width: 100%;
     text-decoration: none;
@@ -246,11 +242,10 @@ export default {
     border: 1px solid $fifth-color;
     border-radius: 5px;
 
-    &:hover{
+    &:hover {
         color: $fifth-color;
         background-color: white;
         border: 1px solid $fifth-color;
     }
 }
-
 </style>
