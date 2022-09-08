@@ -17,14 +17,14 @@
                             <validationProvider name="Name" rules="required|alpha" v-slot="{ errors }" class="form-group col-md-6">
                                 <label for="inputName">Nome</label>
                                 <input type="text" class="form-control" id="order-info-name" placeholder="Nome"
-                                    v-model="name">
+                                    v-model="orderCustomerInfo.name">
                                 <small>{{ errors[0] }}</small>
                             </validationProvider>
 
                             <validationProvider name="Surname" rules="required|alpha" v-slot="{ errors }" class="form-group col-md-6">
                                 <label for="inputSurname">Cognome</label>
                                 <input type="text" class="form-control" id="order-info-surname" placeholder="Cognome"
-                                    v-model="surname">
+                                    v-model="orderCustomerInfo.surname">
                                 <small>{{ errors[0] }}</small>
                             </validationProvider>
                         </div>
@@ -34,27 +34,27 @@
                             <validationProvider name="email" rules="required|email" v-slot="{ errors }" class="form-group col-md-6">
                                 <label for="inputEmail4">Email</label>
                                 <input type="text" class="form-control" id="order-info-email" placeholder="Email"
-                                    v-model="email">
+                                    v-model="orderCustomerInfo.email">
                                 <small>{{ errors[0] }}</small>
                             </validationProvider>
 
                             <validationProvider name="numero" rules="required|numeric" v-slot="{ errors }"  class="form-group col-md-6">
                                 <label for="inputEmail4">Telefono</label>
                                 <input type="text" class="form-control" id="order-info-phone" placeholder="Telefono"
-                                    v-model="telephone_number">
+                                    v-model="orderCustomerInfo.telephone_number">
                                 <small class="danger">{{ errors[0] }}</small>
                             </validationProvider>
                         </div>
 
-                        <validationProvider name="indirizzo" rules="required|alpha_dash|alpha_spaces|min:5" v-slot="{ errors }" class="form-group">
+                        <validationProvider name="indirizzo" rules="required|alpha_spaces && alpha_dash|min:5" v-slot="{ errors }" class="form-group">
                             <label for="inputAddress">Indirizzo Completo</label>
                             <input type="text" class="form-control" id="order-info-address"
-                                placeholder="Via e numero Civico" v-model="address">
+                                placeholder="Via e numero Civico" v-model="orderCustomerInfo.address">
                             <small class="danger">{{ errors[0] }}</small>
                         </validationProvider>
 
-                        <input type="submit" @click="saveData()" id="save-data-button" class="btn buy-now my-3"
-                            value="Salva dati" />
+                        <!-- <input type="submit" @click="saveData()" id="save-data-button" class="btn buy-now my-3"
+                            value="Salva dati" /> -->
                         <!-- <button class="buy-now" @click="saveData()">Salva dati</button> -->
                     </form>
                 </ValidationObserver>
@@ -129,12 +129,12 @@ $(function () {
 import SummaryComp from "../partials/SummaryComp.vue";
 import Payment from "../partials/Payment.vue";
 
-import { ValidationProvider } from 'vee-validate/dist/vee-validate.full.esm';
-import { ValidationObserver } from 'vee-validate';
+// import { ValidationProvider } from 'vee-validate/dist/vee-validate.full.esm';
+// import { ValidationObserver } from 'vee-validate';
 
 
 export default {
-    components: { SummaryComp,Payment, ValidationProvider, ValidationObserver },
+    components: { SummaryComp,Payment,  },
     data () {
         return {
             instance: null,
