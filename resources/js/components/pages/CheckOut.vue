@@ -109,21 +109,6 @@
     </section>
 </template>
 
-<script>
-$(function () {
-    $('#checkout-form').parsley().on('field:validated', function () {
-        var ok = $('.parsley-error').length === 0;
-        $('.bs-callout-info').toggleClass('hidden', !ok);
-        $('.bs-callout-warning').toggleClass('hidden', ok);
-    })
-    //   .on('form:submit', function() {
-    //     return false; // Don't submit form for this demo
-    //   });
-});
-</script>
-
-
-
 
 <script>
 import SummaryComp from "../partials/SummaryComp.vue";
@@ -158,6 +143,9 @@ export default {
         document.getElementById('order-info-address').setAttribute("disabled","disabled");
         document.getElementById('order-info-phone').setAttribute("disabled","disabled");
         document.getElementById('order-info-email').setAttribute("disabled","disabled");
+
+        document.getElementById('save-data-button').setAttribute("disabled","disabled");
+        document.getElementById('save-data-button').classList.add('d-none');
 
         console.log(this.orderCustomerInfo);
     },
