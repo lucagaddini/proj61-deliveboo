@@ -53,8 +53,8 @@
                             <small class="danger">{{ errors[0] }}</small>
                         </validationProvider>
 
-                        <!-- <input type="submit" @click="saveData()" id="save-data-button" class="btn buy-now my-3"
-                            value="Salva dati" /> -->
+                        <input type="submit" @click="onSubmit()" id="save-data-button" class="btn buy-now my-3"
+                            value="Salva dati" />
                         <!-- <button class="buy-now" @click="saveData()">Salva dati</button> -->
                     </form>
                 </ValidationObserver>
@@ -152,9 +152,12 @@ export default {
   },
   methods: {
     onSubmit(){
-        this.$refs.form.setErrors({
-            telephone_number: ['This phone is already taken']
-        });
+
+        document.getElementById('order-info-name').setAttribute("disabled","disabled");
+        document.getElementById('order-info-surname').setAttribute("disabled","disabled");
+        document.getElementById('order-info-address').setAttribute("disabled","disabled");
+        document.getElementById('order-info-phone').setAttribute("disabled","disabled");
+        document.getElementById('order-info-email').setAttribute("disabled","disabled");
 
         console.log(this.orderCustomerInfo);
     },
