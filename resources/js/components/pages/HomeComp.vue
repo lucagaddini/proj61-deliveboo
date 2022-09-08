@@ -9,7 +9,7 @@
         <section class="cat-res">
 
             <!-- Categories -->
-            <div class="categories container">
+            <div class="categories container-md">
 
                 <!-- Cat. Title -->
                 <div class="cat-title text-center">
@@ -18,40 +18,22 @@
                 </div>
                 <!-- /Cat. Title -->
 
-                <VueSlickCarousel v-bind='settings' v-if='categoriesLoading'>
+                    <div class="cards-container d-flex flex-wrap justify-content-around">
+                    <!-- Cat. Singol Cards -->
+                        <div class="cat-cards mx-2 my-2"
+                            v-for="category in categoriesArray"
+                            :key="'category-'+category.id"
+                            @click="searchRestaurant(category)">
 
-                    <!-- Prev Arrow -->
-                    <template #prevArrow="arrowOption">
-                        <div class="custom-arrow">
-                            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
+                            <img
+                                :class="category.clicked === true ? 'active' : ''"
+                                :src="'images/' + category.image_path"
+                            >
+
+                            <p class="">{{ category.name }}</p>
                         </div>
-                    </template>
-                    <!-- /Prev Arrow -->
-
-                    <!-- Cat. Cards -->
-                    <div class="cat-cards"
-                        v-for="category in categoriesArray"
-                        :key="'category-'+category.id"
-                        @click="searchRestaurant(category)">
-
-                        <img
-                            :class="category.clicked === true ? 'active' : ''"
-                            :src="'images/' + category.image_path"
-                        >
-
-                        <p>{{ category.name }}</p>
+                        <!-- /Cat. Singol Cards -->
                     </div>
-                    <!-- /Cat. Cards -->
-
-                    <!-- Next Arrow -->
-                    <template #nextArrow="arrowOption">
-                        <div class="custom-arrow">
-                            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-                        </div>
-                    </template>
-                    <!-- /Next Arrow -->
-
-                </VueSlickCarousel>
 
             </div>
             <!-- /Categories -->
@@ -210,78 +192,6 @@ export default {
 
     data() {
         return {
-            // SLIDER
-            settings: {
-                "dots": true,
-                "arrows": true,
-                "infinite": true,
-                "initialSlide": 0,
-                "speed": 1500,
-                "slidesToShow": 5,
-                "slidesToScroll": 1,
-                "swipeToSlide": true,
-                "centerMode": true,
-                "centerPadding": "-75px",
-                "touchMove": false,
-
-                "responsive": [
-                    {
-                        "breakpoint": 1200,
-                        "settings": {
-                            "slidesToShow": 4,
-                            "centerPadding": '-40px',
-                        }
-                    },
-                    {
-                        "breakpoint": 991,
-                        "settings": {
-                            "slidesToShow": 3,
-                            "centerPadding": '-35px',
-                        }
-                    },
-                    {
-                        "breakpoint": 767,
-                        "settings": {
-                            "slidesToShow": 2,
-                            "centerPadding": '-1px',
-                            "touchMove": true,
-                            "arrows": true,
-                            "speed": 500
-                        }
-                    },
-                    {
-                        "breakpoint": 600,
-                        "settings": {
-                            "slidesToShow": 2,
-                            "centerPadding": '-5px',
-                            "speed": 500,
-                            "touchMove": true,
-                            "arrows": false
-                        }
-                    },
-                    {
-                        "breakpoint": 520,
-                        "settings": {
-                            "slidesToShow": 2,
-                            "centerPadding": '-50px',
-                            "speed": 500,
-                            "touchMove": true,
-                            "arrows": false
-                        }
-                    },
-                    {
-                        "breakpoint": 440,
-                        "settings": {
-                            "slidesToShow": 2,
-                            "centerPadding": '-85px',
-                            "speed": 500,
-                            "touchMove": true,
-                            "arrows": false
-                        }
-                    }
-                ]
-
-            },
             // /SLIDER
 
             apiUrl: "http://127.0.0.1:8000/api/homepage",
@@ -432,16 +342,17 @@ hr {
 }
 
 .cat-cards {
-    height: 300px;
+    height: 100px;
     position: relative;
     cursor: pointer;
 
     img {
         height: 100%;
-        width: 250px;
+        width: 200px;
         border-radius: 20px;
-        background-attachment: fixed;
+        object-fit: cover;
         border: 5px solid #f9fafc;
+        border: 1px solid $tertiary-color;
 
         &.active {
             border: 5px solid $tertiary-color;
@@ -450,11 +361,17 @@ hr {
 
     p {
         position: absolute;
+        margin: 0;
         bottom: 10px;
         color: white;
-        left: 25px;
+        left: 10px;
         font-weight: bold;
         font-size: 1.2rem;
+        background-color: $tertiary-color;
+        border-radius: 6px;
+        padding: 2px 10px;
+        color: white;
+        font-size: .7rem;
     }
 }
 
@@ -463,9 +380,47 @@ hr {
     color: $tertiary-color !important;
 }
 
+/* Media per le Cards Categories */
+
+@media screen and (max-width: 677px) {
+
+    .cat-cards {
+        height: 100px;
+
+        img {
+            width: 150px;
+            object-fit: cover;
+        }
+    }
+}
+
+@media screen and (max-width: 527px) {
+
+    .cat-cards {
+        height: 90px;
+
+        img {
+            width: 125px;
+            object-fit: cover;
+        }
+    }
+}
+
+@media screen and (max-width: 452px) {
+
+    .cat-cards {
+        height: 75px;
+
+        img {
+            width: 95px;
+            object-fit: cover;
+        }
+    }
+}
+
 /* Restaurants */
 .restaurants {
-    margin-top: 75px;
+    margin-top: 15px;
     margin-bottom: 75px;
 }
 
