@@ -20,22 +20,26 @@
                             <table class="table my-1">
                                 <thead>
                                     <tr class="text-center">
-                                        <th scope="col">ID Ordine</th>
-                                        <th scope="col">Data</th>
+                                        {{-- <th scope="col">ID Ordine</th> --}}
+                                        <th scope="col">Data di acquisto</th>
                                         <th scope="col">Nome Cliente</th>
+                                        <th scope="col">Email Cliente</th>
+                                        <th scope="col">Telefono Cliente</th>
                                         <th scope="col">Totale Ordine</th>
                                         <th scope="col">Dettagli</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-
+                                    {{-- @dd($orders) --}}
                                     @foreach ($orders as $order)
 
                                     <tr class="text-center">
-                                            <td>{{ $order->id }}</td>
+                                            {{-- <td>{{ $order->id }}</td> --}}
                                             <td>{{ $order->updated_at }}</td>
                                             <td>{{ $order->name }} {{ $order->surname }}</td>
+                                            <td>{{ $order->email }}</td>
+                                            <td>{{ $order->telephone_number }}</td>
                                             <td>{{ $order->total }} &euro; </td>
                                             <td>
                                                 <a class="btn btn_custom_info"
