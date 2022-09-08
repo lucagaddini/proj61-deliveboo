@@ -57,7 +57,7 @@
 
                         <div class="card-body d-flex flex-column flex-md-row row">
                             <div class="card-body col-12 col-lg-8">
-                                <p class="card-title">Il piatto selezionato non è presente nel tuo menu</p>
+                                <p class="card-title">L'ordine selezionato non è presente nel tuo riepilogo ordini.</p>
                             </div>
                         </div>
                     </div>

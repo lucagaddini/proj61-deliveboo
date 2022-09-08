@@ -34,7 +34,7 @@
                     <table class="table my-1">
                       <thead>
                           <tr class="text-center">
-                          <th scope="col">ID</th>
+                          {{-- <th scope="col">ID</th> --}}
                           <th scope="col">Nome</th>
                           <th class="d-none d-md-block" scope="col">Vegetariano</th>
                           <th scope="col">Visibile</th>
@@ -65,7 +65,7 @@
 
                         <tr class="text-center">
 
-                          <td>{{ $item->id }}</td>
+                          {{-- <td>{{ $item->id }}</td> --}}
                           <td>{{ $item->name }}</td>
                           <td class="d-none d-md-block" style="color:{{$colorVeg}}">{{ $item->vegetarian === 1? 'Sì' : 'No' }}</td>
                           <td style="color:{{$coloreVis}}">{{ $item->visible === 1? 'Sì' : 'No' }}</td>
