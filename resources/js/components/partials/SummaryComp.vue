@@ -17,7 +17,9 @@
               <div class="d-flex">
                 <!-- ICONA PER ELIMINARE L\'ELEMENTO -->
                 <div>
-                  <a class="mx-2" @click="removeFromCart(item)"
+                  <a class="mx-2"
+                  v-if="cardVerified === false"
+                  @click="removeFromCart(item)"
                     ><i class="fa-solid fa-trash"></i
                   ></a>
                 </div>
@@ -36,18 +38,23 @@
 
             <div class="text-center">
               <span>Quantità: </span>
-              <a
+
+              <a id="decrease-item" 
                 class="mx-2"
-                v-if="item.quantity > 1"
+                v-if="item.quantity > 1 && cardVerified === false"
                 @click="decreaseQuantity(item)"
                 ><i class="fa-solid fa-circle-minus btn-delete-custom"></i>
               </a>
 
               <span>{{ item.quantity }}</span>
 
-              <a class="mx-2 addtocart" @click="increaseQuantity(item)">
+              <a id="increase-item" 
+              class="mx-2 addtocart"
+              v-if="cardVerified === false"
+              @click="increaseQuantity(item)">
                 <i class="fa-solid fa-circle-plus"></i>
               </a>
+
             </div>
           </div>
           <!-- /Singol Item -->
