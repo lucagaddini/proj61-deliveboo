@@ -25,12 +25,14 @@ class OrderController extends Controller
         $current_user = auth()->user()->id;
 
         $orders = DB::table('orders')
-            ->select('orders.*')
+            ->select('orders.*' , 'items.user_id')
             ->join('item_order','order_id','=','orders.id')
-            ->join('items','items.id','=','item_order.order_id')
+            ->join('items','items.id','=','item_order.item_id')
             ->where('items.user_id','=', $current_user)
-            ->orderBy('updated_at','desc')
+            ->orderBy('orders.updated_at','desc')
             ->distinct()->paginate(10);
+
+        // dd($current_user, $orders);
 
         return view('admin.orders.index', compact('orders'));
 
