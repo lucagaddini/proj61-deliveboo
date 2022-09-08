@@ -69,7 +69,7 @@
             class="buy-now"
           >
             <a @click="saveOrderApi()" class="p-1 mt-2 font-weight-bold"
-                data-toggle="modal" data-target="#ModalSucces"
+            data-toggle="modal" data-target="#ModalSucces"
               >Completa e Paga</a
             >
           </div>
@@ -94,18 +94,18 @@
             <h5 v-if="(paymentStatusCheck === true)" class="modal-title" id="exampleModalLongTitle">Pagamento avvenuto con successo!</h5>
             <h5 v-else class="modal-title" id="exampleModalLongTitle">Errore nel Pagamento</h5>
 
-            <button
+            <!-- <button
               type="button"
               class="close"
               data-dismiss="modal"
               aria-label="Close"
             >
               <span aria-hidden="true">&times;</span>
-            </button>
+            </button> -->
           </div>
 
           <div v-if="(paymentStatusCheck === true)" class="modal-body">Il pagamento di {{ subtotalCart }} &euro; è avvenuto con successo</div>
-          <div v-else class="modal-body">Prego riprovare il pagamento.</div>
+          <div v-else class="modal-body">L'ordine non è stato salvato, verifica i dati ordine ed la carta inserita.</div>
 
           <div class="modal-footer">
 
@@ -122,6 +122,7 @@
               type="button"
               class="btn btn-secondary"
               data-dismiss="modal"
+              @click="activeField()"
             >
               Riprova
             </button>
@@ -130,6 +131,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -220,41 +222,61 @@ export default {
 
       this.orderCustomerInfo.total = this.subtotalCart;
 
-      // axios
+      // var test = axios
       //   .post(this.orderUrl, {
       //     customerInfo: this.orderCustomerInfo,
       //     cartInfo: this.cartArray,
       //   })
       //   .then(function (response) {
-      //     console.log("--->" , response.statusText);
+          
 
       //     if(response.statusText === "OK"){
-      //       return true
+      //       console.log("--->IF" , response.statusText);
+      //       return true;
       //     }
 
       //   });
-
-        var status = axios
-        .post(this.orderUrl, {
+      const promise = new Promise((resolve, reject) => {
+        axios.post(this.orderUrl, {
           customerInfo: this.orderCustomerInfo,
           cartInfo: this.cartArray,
+        }).then(function (response) {
+          if(response.statusText === "OK"){
+            console.log("--->IF" , response.statusText);
+            resolve(true);
+          } else reject (false);
         })
-        .then(function (response) {
-          // console.log("--->" , response.statusText);
 
-    
-            return response.statusText ;
-          
+      });
 
-        });
-
-      setTimeout(this.paymentStatusCheck = status['value'], 2000)
-        // this.paymentStatusCheck = status;
-
-      console.log("STATUS:", status)
-      
+      promise.then(res => {
+          console.log("response PROMISE", res)
+          this.paymentStatusCheck = true;
+        }).catch(err => {
+          console.log("response PROMISE", err)
+          this.paymentStatusCheck = false;
+        })
 
     },
+
+    activeField(){
+
+        document.getElementById('order-info-name').removeAttribute("disabled","disabled");
+        document.getElementById('order-info-surname').removeAttribute("disabled","disabled");
+        document.getElementById('order-info-address').removeAttribute("disabled","disabled");
+        document.getElementById('order-info-phone').removeAttribute("disabled","disabled");
+        document.getElementById('order-info-email').removeAttribute("disabled","disabled");
+
+        document.getElementById('save-data-button').removeAttribute("disabled","disabled");
+        document.getElementById('save-data-button').classList.remove('d-none');
+
+    },
+
+    clearCart(){
+      console.log("CLEAR CART FUNZIONE")
+      localStorage.clear("cart");
+    }
+
   },
   computed: {
     subtotalCart() {
