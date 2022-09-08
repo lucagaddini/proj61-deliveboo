@@ -46,7 +46,7 @@
                             </validationProvider>
                         </div>
 
-                        <validationProvider name="indirizzo" rules="required|alpha_spaces && alpha_dash|min:5" v-slot="{ errors }" class="form-group">
+                        <validationProvider name="indirizzo" rules="required|alpha_dash|min:5" v-slot="{ errors }" class="form-group">
                             <label for="inputAddress">Indirizzo Completo</label>
                             <input type="text" class="form-control" id="order-info-address"
                                 placeholder="Via e numero Civico" v-model="orderCustomerInfo.address">
