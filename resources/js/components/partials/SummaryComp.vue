@@ -139,7 +139,7 @@ export default {
     return {
       cartArray: [],
       shippingFee: 5,
-      paymentStatusCheck:true,
+      paymentStatusCheck: {},
       restaurantInfoParams: this.$route.params,
       orderUrl: "http://127.0.0.1:8000/api/saveOrder/",
     };
@@ -217,18 +217,43 @@ export default {
     },
 
     saveOrderApi() {
+
       this.orderCustomerInfo.total = this.subtotalCart;
 
+      // axios
+      //   .post(this.orderUrl, {
+      //     customerInfo: this.orderCustomerInfo,
+      //     cartInfo: this.cartArray,
+      //   })
+      //   .then(function (response) {
+      //     console.log("--->" , response.statusText);
 
-      axios
+      //     if(response.statusText === "OK"){
+      //       return true
+      //     }
+
+      //   });
+
+        var status = axios
         .post(this.orderUrl, {
           customerInfo: this.orderCustomerInfo,
           cartInfo: this.cartArray,
         })
         .then(function (response) {
-          console.log("--->" , response.statusText);
+          // console.log("--->" , response.statusText);
+
+    
+            return response.statusText ;
+          
 
         });
+
+      setTimeout(this.paymentStatusCheck = status['value'], 2000)
+        // this.paymentStatusCheck = status;
+
+      console.log("STATUS:", status)
+      
+
     },
   },
   computed: {
