@@ -114,10 +114,6 @@
 import SummaryComp from "../partials/SummaryComp.vue";
 import Payment from "../partials/Payment.vue";
 
-// import { ValidationProvider } from 'vee-validate/dist/vee-validate.full.esm';
-// import { ValidationObserver } from 'vee-validate';
-
-
 export default {
     components: { SummaryComp,Payment,  },
     data () {
@@ -138,6 +134,9 @@ export default {
   methods: {
     onSubmit(){
 
+
+        if(this.orderCustomerInfo.telephone_number !="" && this.orderCustomerInfo.email !="" && this.orderCustomerInfo.address !="" && this.orderCustomerInfo.name !="" && this.orderCustomerInfo.surname !=""){
+
         document.getElementById('order-info-name').setAttribute("disabled","disabled");
         document.getElementById('order-info-surname').setAttribute("disabled","disabled");
         document.getElementById('order-info-address').setAttribute("disabled","disabled");
@@ -148,29 +147,10 @@ export default {
         document.getElementById('save-data-button').classList.add('d-none');
 
         console.log(this.orderCustomerInfo);
+
+        }
+                
     },
-
-    // saveData(){
-
-    //     this.orderCustomerInfo = {
-    //         'name': document.getElementById('order-info-name').value,
-    //         'surname': document.getElementById('order-info-surname').value,
-    //         'address': document.getElementById('order-info-address').value,
-    //         'telephone_number': document.getElementById('order-info-phone').value,
-    //         'email': document.getElementById('order-info-email').value,
-    //         'total': 0
-    //     };
-
-    //     document.getElementById('order-info-name').setAttribute("disabled","disabled");
-    //     document.getElementById('order-info-surname').setAttribute("disabled","disabled");
-    //     document.getElementById('order-info-address').setAttribute("disabled","disabled");
-    //     document.getElementById('order-info-phone').setAttribute("disabled","disabled");
-    //     document.getElementById('order-info-email').setAttribute("disabled","disabled");
-
-    //     // document.getElementById('save-data-button').setAttribute("disabled","disabled");
-    //     document.getElementById('save-data-button').classList.add('d-none');
-
-    // },
 
     onLoad (instance) {
       this.instance = instance;
