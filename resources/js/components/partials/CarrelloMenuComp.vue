@@ -63,7 +63,9 @@
 
                     <div class="buy-now">
 
-                        <router-link class="nav-link"
+                        <router-link 
+                                class="nav-link"
+                                v-if="existCart()"
                                 :to="{
                                     name: 'checkout', 
                                     params: this.restaurantInfo
@@ -92,6 +94,11 @@ export default {
 
         setCart(){
             this.cartArray = JSON.parse(localStorage.getItem("cart"));
+        },
+        existCart(){
+            if(localStorage.getItem("cart")){
+                return true
+            } else return false
         },
 
         decreaseQuantity(item) {
@@ -158,6 +165,7 @@ export default {
 
             if(existingCart.length == 0){
                 localStorage.clear("cart");
+                location.reload();
             }
         }
 

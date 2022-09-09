@@ -116,13 +116,13 @@
 
           <div class="modal-footer">
 
-              <router-link
+              <button
                   v-if="(paymentStatusCheck === true)"
                   data-dismiss="modal"
                   class="btn btn-success"
-                  :to="{name: 'search'}">
+                  @click="goToHome()">
                   Vai alla home
-              </router-link>
+              </button>
 
             <button
               v-else
@@ -143,6 +143,9 @@
 </template>
 
 <script>
+
+import router from '../../routes';
+
 export default {
   data() {
     return {
@@ -222,6 +225,11 @@ export default {
 
         // existingCart.push(newItem);
         localStorage.setItem("cart", JSON.stringify(existingCart));
+
+        if(existingCart.length == 0){
+          this.goToHome()
+        }
+
       }
     },
 
@@ -229,20 +237,6 @@ export default {
 
       this.orderCustomerInfo.total = this.subtotalCart;
 
-      // var test = axios
-      //   .post(this.orderUrl, {
-      //     customerInfo: this.orderCustomerInfo,
-      //     cartInfo: this.cartArray,
-      //   })
-      //   .then(function (response) {
-          
-
-      //     if(response.statusText === "OK"){
-      //       console.log("--->IF" , response.statusText);
-      //       return true;
-      //     }
-
-      //   });
       const promise = new Promise((resolve, reject) => {
         axios.post(this.orderUrl, {
           customerInfo: this.orderCustomerInfo,
@@ -279,9 +273,12 @@ export default {
 
     },
 
-    clearCart(){
+    goToHome(){
       console.log("CLEAR CART FUNZIONE")
       localStorage.clear("cart");
+
+      router.push({ name: 'search'});
+
     }
 
   },
