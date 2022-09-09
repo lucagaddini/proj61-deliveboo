@@ -29,7 +29,7 @@
 
                                 <!-- PREZZO PRODOTTO-->
                                 <div>
-                                    <h6>{{item.price * item.quantity}}&euro;</h6>
+                                    <h6>{{(item.price * item.quantity).toFixed(2)}}&euro;</h6>
                                 </div>
 
                             </div>
@@ -63,11 +63,11 @@
 
                     <div class="buy-now">
 
-                        <router-link 
+                        <router-link
                                 class="nav-link"
                                 v-if="existCart()"
                                 :to="{
-                                    name: 'checkout', 
+                                    name: 'checkout',
                                     params: this.restaurantInfo
                                     }"
                                 >CHECKOUT</router-link>
@@ -84,7 +84,7 @@ export default {
     data(){
         return{
             cartArray: [],
-            
+
         }
     },
     props:{
@@ -186,7 +186,7 @@ export default {
 
             }
 
-            return subtotal;
+            return subtotal.toFixed(2);
         }
     },
     mounted(){

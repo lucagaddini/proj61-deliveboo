@@ -5,9 +5,13 @@
             <div v-if="current_restaurant.image_path == null">
                 <div class="jumbo d-flex align-items-end"
                     style="background-image: url('/images/restaurant_placeholder.jpg')">
-                    <div class="jumbo-info container p-2">
-                        <h2 class="restaurant-name">{{ current_restaurant.name }}</h2>
-                        <h5 class="restaurant-cat-address">><span></span> <span>{{  current_restaurant.address  }}</span></h5>
+                    <div class="background-info container-fluid">
+                        <div class="jumbo-info container p-2">
+                            <h2>{{ current_restaurant.name }}</h2>
+                            <h5>
+                                <span>{{  current_restaurant.address  }}</span>
+                            </h5>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -19,12 +23,8 @@
                         <div class="jumbo-info container p-2">
                             <h2>{{ current_restaurant.name }}</h2>
                             <h5>
-                                <!-- VERIFICARE FUNZINAMENTO CATEGORIES PASSATE TRAMITE ROUTELINK -->
-                                <!-- <span :v-for="item in current_user_categories"
-                                    :key="'category'+item.id">
-                                    {{item.name}}
-                                </span> -  -->
-                                <span>{{  current_restaurant.address  }}</span></h5>
+                                <span>{{  current_restaurant.address  }}</span>
+                            </h5>
                         </div>
 
                     </div>
@@ -81,7 +81,7 @@
             <!----------------------------- Card dei piatti ---------------------------------->
 
             <!-- componente carrello -->
-            <CarrelloMenuComp 
+            <CarrelloMenuComp
             :restaurantInfo="current_restaurant"/>
             <!-- /componente carrello -->
 

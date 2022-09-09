@@ -26,20 +26,20 @@
 
                 <!-- NOME PRODOTTO-->
                 <div>
-                  <h6 class="mx-2">{{ item.id }} - {{ item.name }}</h6>
+                  <h6 class="mx-2">{{ item.name }}</h6>
                 </div>
               </div>
 
               <!-- PREZZO PRODOTTO-->
               <div>
-                <h6>{{ item.quantity * item.price }} &euro;</h6>
+                <h6>{{ (item.quantity * item.price).toFixed(2) }} &euro;</h6>
               </div>
             </div>
 
             <div class="text-center">
               <span>Quantità: </span>
 
-              <a id="decrease-item" 
+              <a id="decrease-item"
                 class="mx-2"
                 v-if="item.quantity > 1 && cardVerified === false"
                 @click="decreaseQuantity(item)"
@@ -48,7 +48,7 @@
 
               <span>{{ item.quantity }}</span>
 
-              <a id="increase-item" 
+              <a id="increase-item"
               class="mx-2 addtocart"
               v-if="cardVerified === false"
               @click="increaseQuantity(item)">
@@ -298,7 +298,7 @@ export default {
         subtotal += this.shippingFee;
       }
 
-      return subtotal;
+      return subtotal.toFixed(2);
     },
   },
   mounted() {
