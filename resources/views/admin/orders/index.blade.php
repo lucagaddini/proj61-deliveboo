@@ -68,4 +68,8 @@
 
 
     </div>
+
+    <script>
+        window.userID = {{ Auth::user()->id }};
+    </script>
 @endsection

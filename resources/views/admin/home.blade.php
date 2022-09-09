@@ -37,5 +37,9 @@
 
     <script src="{{ mix('/js/back.js') }}"></script>
 
+    <script>
+        window.userID = {{ Auth::user()->id }};
+    </script>
+
 </div>
 @endsection

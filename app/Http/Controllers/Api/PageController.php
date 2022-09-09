@@ -94,13 +94,13 @@ class PageController extends Controller
         }
     }
 
-    public function getOrder(){
+    public function getOrder($userId){
 
         $orders = DB::table('orders')
         ->select('orders.*')
         ->join('item_order', 'order_id', '=', 'orders.id')
         ->join('items', 'items.id', '=', 'item_order.item_id')
-        ->where('items.user_id', '=', '1')
+        ->where('items.user_id', '=', $userId)
         ->distinct()->get();
 
         return response()->json(compact('orders'));

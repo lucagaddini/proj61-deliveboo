@@ -33,8 +33,10 @@ new Chart(
 );
 
 function getOrder() {
-    Axios.get("http://127.0.0.1:8000/api/getOrder/").then((response) => {
+    console.log("USERID", window.userID )
+    Axios.get("http://127.0.0.1:8000/api/getOrder/"+ window.userID ).then((response) => {
         /* const orders = response.data.data; */
+        
         console.log(response.data.orders);
     })
 };
