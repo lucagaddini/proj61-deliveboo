@@ -228,4 +228,13 @@ export default {
         border: 1px solid $fifth-color;
     }
 }
+
+@media screen and (max-width: 524px) {
+
+    .recap-space{
+        margin: 0 auto;
+    }
+
+}
+
 </style>

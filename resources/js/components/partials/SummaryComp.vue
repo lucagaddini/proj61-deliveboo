@@ -1,6 +1,6 @@
 <template>
   <div class="m-4">
-    <div class="container">
+    <div class="">
       <div class="cart-container bg-light">
         <div class="cart-title bg-dark p-1">
           <h4>Riepilogo Ordine</h4>
@@ -316,10 +316,17 @@ export default {
 }
 
 .cart-container {
-  width: 400px;
+  width: 445px;
   height: auto;
   border-radius: 10px;
   overflow: hidden;
+}
+
+@media screen and (max-width: 524px) {
+
+    .cart-container {
+        width: 300px;
+    }
 }
 
 .cart-title {
