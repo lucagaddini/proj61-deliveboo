@@ -56,6 +56,7 @@ class PageController extends Controller
                 ->join('users','users.id','=','items.user_id')
                 ->where('users.slug','=', $slug)
                 ->where('items.course_id','=', $courseId)
+                ->where('items.visible', '=', '1')
                 ->distinct()->get();
 
         return response()->json(compact('items'));
@@ -87,7 +88,7 @@ class PageController extends Controller
         }
 
         if($result)
-        {   
+        {
             return ["Result"=> "Data has been saved"];
         }else{
             return ["Result"=>"Operation failed"];
