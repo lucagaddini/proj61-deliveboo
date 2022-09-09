@@ -134,8 +134,17 @@ export default {
   methods: {
     onSubmit(){
 
+        let patternDomain = /[a-zA-Z]/g;
+        let patternNumber = /^[0-9]+$/;
+        let domain = this.orderCustomerInfo.email.slice(this.orderCustomerInfo.email.lastIndexOf(".")+1);
 
-        if(this.orderCustomerInfo.telephone_number !="" && this.orderCustomerInfo.email !="" && this.orderCustomerInfo.address !="" && this.orderCustomerInfo.name !="" && this.orderCustomerInfo.surname !=""){
+
+        if( patternNumber.test(this.orderCustomerInfo.telephone_number) === true && this.orderCustomerInfo.address !="" && this.orderCustomerInfo.name !="" && this.orderCustomerInfo.surname !="" && ( this.orderCustomerInfo.email.includes('@') && this.orderCustomerInfo.email.includes('.', this.orderCustomerInfo.email.indexOf('@')) &&
+          (patternDomain.test(domain) === true && domain.length > 1)
+        )
+
+
+        ){
 
         document.getElementById('order-info-name').setAttribute("disabled","disabled");
         document.getElementById('order-info-surname').setAttribute("disabled","disabled");
@@ -149,7 +158,7 @@ export default {
         console.log(this.orderCustomerInfo);
 
         }
-                
+
     },
 
     onLoad (instance) {
