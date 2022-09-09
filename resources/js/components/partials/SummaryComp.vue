@@ -116,13 +116,13 @@
 
           <div class="modal-footer">
 
-              <router-link
+              <button
                   v-if="(paymentStatusCheck === true)"
                   data-dismiss="modal"
                   class="btn btn-success"
-                  :to="{name: 'search'}">
+                  @click="goToHome()">
                   Vai alla home
-              </router-link>
+              </button>
 
             <button
               v-else
@@ -143,6 +143,9 @@
 </template>
 
 <script>
+
+import router from '../../routes';
+
 export default {
   data() {
     return {
@@ -279,9 +282,12 @@ export default {
 
     },
 
-    clearCart(){
+    goToHome(){
       console.log("CLEAR CART FUNZIONE")
       localStorage.clear("cart");
+
+      router.push({ name: 'search'});
+
     }
 
   },

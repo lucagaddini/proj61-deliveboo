@@ -158,7 +158,7 @@ export default {
 
             if(existingCart.length == 0){
                 localStorage.clear("cart");
-                   location.reload();
+                location.reload();
             }
         }
 
