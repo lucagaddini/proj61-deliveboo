@@ -225,6 +225,11 @@ export default {
 
         // existingCart.push(newItem);
         localStorage.setItem("cart", JSON.stringify(existingCart));
+
+        if(existingCart.length == 0){
+          this.goToHome()
+        }
+
       }
     },
 
@@ -232,20 +237,6 @@ export default {
 
       this.orderCustomerInfo.total = this.subtotalCart;
 
-      // var test = axios
-      //   .post(this.orderUrl, {
-      //     customerInfo: this.orderCustomerInfo,
-      //     cartInfo: this.cartArray,
-      //   })
-      //   .then(function (response) {
-          
-
-      //     if(response.statusText === "OK"){
-      //       console.log("--->IF" , response.statusText);
-      //       return true;
-      //     }
-
-      //   });
       const promise = new Promise((resolve, reject) => {
         axios.post(this.orderUrl, {
           customerInfo: this.orderCustomerInfo,
