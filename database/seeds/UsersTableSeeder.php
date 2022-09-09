@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
                 'address' => 'Via kebab 12, ABC',
                 'vat_number' => '124512451245',
                 'slug' => Str::slug('Hamburgheria','-'),
-                'categories' => ['5'],
+                'categories' => ['7'],
                 'image_path' => 'restaurant-2.jpg'
             ],
             [
