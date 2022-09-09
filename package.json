@@ -27,6 +27,7 @@
     "dependencies": {
         "autoload": "^0.1.2",
         "braintree-web-drop-in": "^1.33.4",
+        "chart.js": "^3.9.1",
         "vee-validate": "^3.4.14",
         "vue-router": "^2.8.1",
         "vue-slick-carousel": "^1.0.6"

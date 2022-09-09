@@ -28,5 +28,14 @@
 
     </div>
 
+    {{-- Chart --}}
+    <div style=" margin: auto;" class="container-fluid">
+        <section class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <canvas id="myChart"></canvas>
+        </section>
+    </div>
+
+    <script src="{{ mix('/js/back.js') }}"></script>
+
 </div>
 @endsection

@@ -24,4 +24,4 @@ Route::get('/categoryUser/{slug}', 'Api\PageController@categoryUser');
 Route::get('/userInfo/{slug}', 'Api\PageController@userInfo');
 Route::get('/itemsUser/{slug}/{courseId}', 'Api\PageController@itemsUser');
 Route::post('/saveOrder', 'Api\PageController@saveOrder');
-
+Route::get('/getOrder', 'Api\PageController@getOrder');
