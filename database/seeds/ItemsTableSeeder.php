@@ -620,7 +620,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'Impasto dell\'arancino con all\'interno zucchine e topping di crema di peperoni gialli - 6pz',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 7,
+                'user_id' => 8,
                 'course_id' => 2
             ],
             [
@@ -630,7 +630,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'Riso in forma quadrata, verdure e gamberi con topping di gambero fritto - 1pz',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 7,
+                'user_id' => 8,
                 'course_id' => 3
             ],
             [
@@ -640,7 +640,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'Fette di tonno fresco di altissima qualità - 4pz.',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 7,
+                'user_id' => 8,
                 'course_id' => 3
             ],
             [
@@ -650,7 +650,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'Hosomaki, sashimi e nigiri - 12pz.',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 7,
+                'user_id' => 8,
                 'course_id' => 2
             ],
             [
@@ -660,7 +660,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'Involtino di riso con ingredienti tipici della cultura giapponese : salmone, tonno , alghe , radici ecc..  - 5pz.',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 7,
+                'user_id' => 8,
                 'course_id' => 2
             ],
             [
@@ -670,7 +670,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'Base di riso con copertura di pesce crudo e freschissimo - 3pz.',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 7,
+                'user_id' => 8,
                 'course_id' => 3
             ],
             [
@@ -680,7 +680,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'Riso nishiki, branzino, avocado',
                 'visible' => 1,
                 'vegetarian' => 0,
-                'user_id' => 7,
+                'user_id' => 8,
                 'course_id' => 3
             ],
             [
@@ -690,7 +690,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'Capesante e avocado',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 7,
+                'user_id' => 8,
                 'course_id' => 3
             ],
             [
@@ -700,7 +700,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'Gamberi, teriaki',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 7,
+                'user_id' => 8,
                 'course_id' => 3
             ],
             [
@@ -710,7 +710,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'Salmone tritato, salsa piccante, riso',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 7,
+                'user_id' => 8,
                 'course_id' => 3
             ],
             [
@@ -720,7 +720,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'Avocado, alga nori, risp, uova di salmone',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 7,
+                'user_id' => 8,
                 'course_id' => 3
             ],
         //fine cibo sushi--------------
@@ -734,7 +734,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'patatine fritte dolci, salsa',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 8,
+                'user_id' => 9,
                 'course_id' => 1
             ],
             [
@@ -744,7 +744,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'gnocchi, spinaci, castagne, semolino',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 8,
+                'user_id' => 9,
                 'course_id' => 1
             ],
             [
@@ -754,7 +754,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'cornetti salati con misto di verdura e salsa',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 8,
+                'user_id' => 9,
                 'course_id' => 2
             ],
             [
@@ -764,7 +764,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'impasto della pizza, salsa di pomodoro, mozzarella, pomodoro, peperoncino rosso',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 8,
+                'user_id' => 9,
                 'course_id' => 3
             ],
             [
@@ -774,7 +774,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'rucola, radicchio, finocchio, carote, porro, olio d\'oliva',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 8,
+                'user_id' => 9,
                 'course_id' => 2
             ],
             [
@@ -784,7 +784,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'panino con bistecca di soia, cipolla rossa, insalata, salsa, pomodoro',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 8,
+                'user_id' => 9,
                 'course_id' => 3
             ],
             [
@@ -794,7 +794,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'noodles, cavolo capuccio, carote, peperoni, cipollini, zucchine',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 8,
+                'user_id' => 9,
                 'course_id' => 2
             ],
             [
@@ -804,7 +804,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'piadina croccante, pomodoro, mais, peperoni verdi dolci',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 8,
+                'user_id' => 9,
                 'course_id' => 2
             ],
             [
@@ -814,7 +814,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'tacos, patafine fritte, pomodoro, cipolle rosse, insalata',
                 'visible' => 1,
                 'vegetarian' => 1,
-                'user_id' => 8,
+                'user_id' => 9,
                 'course_id' => 3
             ],
         //fine cibo vegetariano--------------
