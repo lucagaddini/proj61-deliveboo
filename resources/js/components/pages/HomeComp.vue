@@ -114,7 +114,7 @@
             <div class="restaurants container">
                 <!-- Res. Title -->
                 <div class="res-title text-center">
-                    <h2>I più votati</h2>
+                    <h2>I nostri ristoranti</h2>
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti?</p>
                 </div>
                 <!-- /Res. Title -->

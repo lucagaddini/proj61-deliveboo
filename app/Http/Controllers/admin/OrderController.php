@@ -25,12 +25,30 @@ class OrderController extends Controller
         $current_user = auth()->user()->id;
 
         $orders = DB::table('orders')
-            ->select('orders.*' , 'items.user_id')
+            ->select('orders.id',
+                    'orders.updated_at',
+                    'orders.created_at',
+                    'orders.name',
+                    'orders.surname',
+                    'orders.email',
+                    'orders.telephone_number',
+                    'orders.total',
+                    'items.user_id')
             ->join('item_order','order_id','=','orders.id')
             ->join('items','items.id','=','item_order.item_id')
             ->where('items.user_id','=', $current_user)
+// Per far funzionare groupBy e risolvere il bug dei link dato da distinct()->paginate() bisogna scrivere a mano ogni singola colonna
+            ->groupBy('orders.id',
+                    'orders.updated_at',
+                    'orders.created_at',
+                    'orders.name',
+                    'orders.surname',
+                    'orders.email',
+                    'orders.telephone_number',
+                    'orders.total',
+                    'items.user_id')
             ->orderBy('orders.updated_at','desc')
-            ->distinct()->paginate(10);
+            ->paginate(10);
 
         // dd($current_user, $orders);
 
